@@ -12,7 +12,7 @@ import {FontAwesome5} from 'react-native-vector-icons';
 class drawerNavigation extends React.Component {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <SafeAreaView style={{flex: 1}}>
           <TouchableOpacity
             style={{alignItems: 'flex-end', margin: 16}}
@@ -21,7 +21,7 @@ class drawerNavigation extends React.Component {
           </TouchableOpacity>
           <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text style={styles.text}>{this.props.name}Screen</Text>
+            <Text style={styles.text}>{this.props.name} Screen</Text>
           </View>
         </SafeAreaView>
       </View>
