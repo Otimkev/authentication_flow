@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
@@ -15,11 +16,11 @@ import {
   InventoriesScreen,
   SettingsScreen,
   LogOutScreen,
-} from '../sideMenu';
+} from '../sideMenu/drawer';
 
-import SideBar from './SideBar';
+import SideBar from '../components/SideBar';
 
-const DrawerNavigator = createDrawerNavigator(
+const SideMenuScreen = createDrawerNavigator(
   {
     DashboardScreen: {
       screen: DashboardScreen,
@@ -133,4 +134,4 @@ const DrawerNavigator = createDrawerNavigator(
   },
 );
 
-export default createAppContainer(DrawerNavigator);
+export default createAppContainer(SideMenuScreen);
