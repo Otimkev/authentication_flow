@@ -11,12 +11,14 @@ const InputComponent = ({placeholderText}) => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    width: 350,
+    width: 320,
     height: 45,
     borderColor: '#CCC',
+    backgroundColor: '#6B8E23',
     borderWidth: 1,
-    borderRadius: 6,
+    borderRadius: 20,
     margin: 10,
+    justifyContent: 'center',
   },
 });
 
