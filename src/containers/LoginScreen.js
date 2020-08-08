@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#003f5c',
+    justifyContent: 'center',
   },
   loginText: {
     fontSize: 24,
