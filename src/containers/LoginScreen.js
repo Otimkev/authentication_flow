@@ -13,9 +13,15 @@ const LoginScreen = ({navigation}) => {
         />
       </View>
 
-      <View style={styles.inputContainer}>
-        <InputComponent placeholderText="Username" />
-        <InputComponent placeholderText="Password" />
+      <View>
+        <InputComponent
+          placeholderText="Username"
+          style={styles.inputContainer}
+        />
+        <InputComponent
+          placeholderText="Password"
+          style={styles.inputContainer}
+        />
       </View>
 
       <TouchableOpacity
@@ -52,9 +58,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#fff',
   },
+  inputContainer: {
+    color: '#fff',
+  },
   loginBtn: {
     width: '60%',
-    backgroundColor: '#006400',
+    backgroundColor: '#2F4F4F',
     borderRadius: 25,
     height: 50,
     alignItems: 'center',
