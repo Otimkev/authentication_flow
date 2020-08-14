@@ -1,10 +1,15 @@
 import React from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
+// import {color, greaterThan} from 'react-native-reanimated';
 
 const InputComponent = ({placeholderText}) => {
   return (
     <View style={styles.inputContainer}>
-      <TextInput placeholder={placeholderText} placeholderTextColor="#A9A9A9" />
+      <TextInput
+        placeholder={placeholderText}
+        placeholderTextColor="#A9A9A9"
+        style={styles.TextInput}
+      />
     </View>
   );
 };
@@ -20,9 +25,9 @@ const styles = StyleSheet.create({
     margin: 10,
     justifyContent: 'center',
   },
-  // placeholder: {
-  //   color: 'green',
-  // },
+  TextInput: {
+    paddingHorizontal: 30,
+  },
 });
 
 export default InputComponent;

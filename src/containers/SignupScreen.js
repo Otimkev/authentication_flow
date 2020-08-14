@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   forgot: {
     color: '#aaae',
     fontSize: 11,
+    alignItems: 'center',
   },
 });
 
