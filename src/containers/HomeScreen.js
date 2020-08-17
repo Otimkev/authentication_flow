@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import Dashboard from 'react-native-dashboard';
+import Attention from '../components/AttentionComponent';
 // import {Feather} from 'react-native-vector-icons';
 
 const items = [
@@ -10,7 +11,7 @@ const items = [
   {name: 'Wards', background: '#2F4F4F', icon: 'heart'},
   {name: 'Inventory', background: '#2F4F4F', icon: 'users'},
   {name: 'Medical Officers', background: '#2F4F4F', icon: 'group'},
-  {name: 'Calendars', background: '#2F4F4F', icon: 'calendar'},
+  {name: '', background: '#2F4F4F', icon: 'calendar'},
 ];
 
 class HomeScreen extends Component {
@@ -20,6 +21,7 @@ class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Attention />
         <Dashboard
           items={items}
           background={true}
