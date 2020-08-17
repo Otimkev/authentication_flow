@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import Dashboard from 'react-native-dashboard';
 import Attention from '../components/AttentionComponent';
+import Tab from '../components/TabNavigator';
 // import {Feather} from 'react-native-vector-icons';
 
 const items = [
@@ -28,6 +29,7 @@ class HomeScreen extends Component {
           card={this._card}
           column={2}
         />
+        <Tab />
       </View>
     );
   }
