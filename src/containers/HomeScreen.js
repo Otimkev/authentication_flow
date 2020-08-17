@@ -2,9 +2,10 @@ import 'react-native-gesture-handler';
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import Dashboard from 'react-native-dashboard';
+// import {Feather} from 'react-native-vector-icons';
 
 const items = [
-  {name: 'Patients', background: '#2F4F4F', icon: 'user'},
+  {name: 'Patients', background: '#2F4F4F', icon: 'users'},
   {name: 'Specialists', background: '#2F4F4F', icon: 'gratipay'},
   {name: 'Wards', background: '#2F4F4F', icon: 'heart'},
   {name: 'Inventory', background: '#2F4F4F', icon: 'users'},
