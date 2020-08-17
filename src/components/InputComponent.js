@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
   },
   TextInput: {
     paddingHorizontal: 30,
+    color: '#2F4F4F',
+    fontWeight: 'bold',
   },
 });
 
