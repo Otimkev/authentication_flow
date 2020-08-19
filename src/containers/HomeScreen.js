@@ -2,7 +2,6 @@ import 'react-native-gesture-handler';
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import Attention from '../components/AttentionComponent';
-// import Dash from '../components/Dash';
 import HomeCards from '../components/HomeCards';
 class HomeScreen extends Component {
   render() {
