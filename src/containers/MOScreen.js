@@ -2,11 +2,11 @@ import 'react-native-gesture-handler';
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
-class WardsScreen extends Component {
+class MOScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Wards</Text>
+        <Text>Mdeical Officers</Text>
       </View>
     );
   }
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WardsScreen;
+export default MOScreen;
