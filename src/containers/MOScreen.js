@@ -6,7 +6,7 @@ class MOScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Mdeical Officers</Text>
+        <Text>Medical Officers</Text>
       </View>
     );
   }
