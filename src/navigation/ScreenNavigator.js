@@ -9,7 +9,7 @@ import HomeScreen from '../containers/HomeScreen';
 import PatientsScreen from '../containers/PatientsScreen';
 import WardsScreen from '../containers/WardsScreen';
 import SpecialistsScreen from '../containers/SpecialistsScreen';
-import MOScreen from '../containers/MOScreen'
+import MOScreen from '../containers/MOScreen';
 // import {create} from 'react-test-renderer';
 
 const Stack = createStackNavigator();
