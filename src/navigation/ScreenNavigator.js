@@ -10,6 +10,7 @@ import PatientsScreen from '../containers/PatientsScreen';
 import WardsScreen from '../containers/WardsScreen';
 import SpecialistsScreen from '../containers/SpecialistsScreen';
 import MOScreen from '../containers/MOScreen';
+import WardDetails from '../containers/WardDetails';
 // import {create} from 'react-test-renderer';
 
 const Stack = createStackNavigator();
@@ -25,6 +26,7 @@ const ScreenNavigator = () => {
         <Stack.Screen name="Specialists" component={SpecialistsScreen} />
         <Stack.Screen name="Wards" component={WardsScreen} />
         <Stack.Screen name="Medical Officers" component={MOScreen} />
+        <Stack.Screen name="Ward Details" component={WardDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );

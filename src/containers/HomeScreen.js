@@ -24,6 +24,11 @@ const App = ({navigation}) => {
         size="small"
         onPress={() => onPress('Medical Officers')}
       />
+      <Button
+        text="Ward Details"
+        size="small"
+        onPress={() => onPress('Ward Details')}
+      />
     </View>
   );
 };
