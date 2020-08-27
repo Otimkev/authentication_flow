@@ -1,24 +1,36 @@
-import 'react-native-gesture-handler';
-import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
-import Attention from '../components/AttentionComponent';
-import DashCards from '../components/DashCards';
-class HomeScreen extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Attention />
-        <DashCards />
-      </View>
-    );
-  }
-}
+import React from 'react';
+import Button from '../components/NewButton';
+import {View} from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+const App = ({navigation}) => {
+  const onPress = (route) => {
+    navigation.navigate(route);
+  };
+  return (
+    <View>
+      <Button
+        text="Patients"
+        size="small"
+        onPress={() => onPress('Patients')}
+      />
+      <Button
+        text="Specialists"
+        size="small"
+        onPress={() => onPress('Specialists')}
+      />
+      <Button text="Wards" size="small" onPress={() => onPress('Wards')} />
+      <Button
+        text="Medical Officers"
+        size="small"
+        onPress={() => onPress('Medical Officers')}
+      />
+      <Button
+        text="Ward Details"
+        size="small"
+        onPress={() => onPress('Ward Details')}
+      />
+    </View>
+  );
+};
 
-export default HomeScreen;
+export default App;

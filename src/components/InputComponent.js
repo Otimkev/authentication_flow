@@ -18,16 +18,16 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: 340,
     height: 45,
-    borderColor: '#2F4F4F',
+    borderColor: '#7cb63b',
     backgroundColor: '#fff',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 10,
-    margin: 10,
+    margin: 5,
     justifyContent: 'center',
   },
   TextInput: {
     paddingHorizontal: 30,
-    color: '#2F4F4F',
+    color: '#026062',
     fontWeight: 'bold',
   },
 });
