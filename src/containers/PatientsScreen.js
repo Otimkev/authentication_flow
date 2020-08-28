@@ -1,16 +1,19 @@
 import 'react-native-gesture-handler';
-import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
+import Button from '../components/NewButton';
+import PatientsForm from '../containers/PatientsForm';
 
-class PatientsScreen extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Patients</Text>
-      </View>
-    );
-  }
-}
+const PatientsScreen = ({navigation}) => {
+  return (
+    <View style={styles.container}>
+      <Button
+        text={'Add Patient'}
+        onPress={() => navigation.navigate('PatientsForm')}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
