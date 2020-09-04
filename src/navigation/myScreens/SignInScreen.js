@@ -8,10 +8,9 @@ import {
   Image,
   TextInput,
 } from 'react-native';
-import InputComponent from '../components/InputComponent';
-import LoginRepository from '../httpClient/repository/login/LoginRepository.js';
+import LoginRepository from '../../httpClient/repository/login/LoginRepository';
 
-const LoginScreen = ({navigation}) => {
+const SignInScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -24,7 +23,7 @@ const LoginScreen = ({navigation}) => {
     <View style={styles.loginContainer}>
       <View>
         <Image
-          source={require('../assets/img/Criticare_Logo.jpg')}
+          source={require('../../assets/img/Criticare_Logo.jpg')}
           style={styles.header}
         />
       </View>
@@ -58,7 +57,9 @@ const LoginScreen = ({navigation}) => {
       </TouchableOpacity>
 
       <TouchableOpacity>
-        <Text style={styles.text} onPress={() => navigation.navigate('SignUp')}>
+        <Text
+          style={styles.text}
+          onPress={() => navigation.navigate('SignUpScreen')}>
           Don't have an account? Sign up.
         </Text>
       </TouchableOpacity>
@@ -112,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default SignInScreen;

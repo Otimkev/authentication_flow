@@ -7,10 +7,9 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  ToastAndroid,
 } from 'react-native';
-import InputComponent from '../components/InputComponent';
-import UserModel from '../httpClient/models/UserModel';
-import SignupRepository from '../httpClient/repository/signup/SignupRepository';
+import SignupRepository from '../../httpClient/repository/signup/SignupRepository';
 
 const SignupScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
@@ -18,13 +17,19 @@ const SignupScreen = ({navigation}) => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [hospital, setHospital] = useState('');
 
   const postUserData = {
     firstName: firstName,
     lastName: lastName,
     phone: phone,
     email: email,
+    hospital: hospital,
     password: password,
+  };
+
+  const showToast = (message) => {
+    ToastAndroid.show(message, ToastAndroid.SHORT);
   };
 
   return (
@@ -46,7 +51,7 @@ const SignupScreen = ({navigation}) => {
           value={firstName}
         />
         <TextInput
-          placeholder="Other Name"
+          placeholder="Last Name"
           style={styles.inputContainer}
           onChangeText={(text) => {
             setLastName(text);
@@ -64,6 +69,13 @@ const SignupScreen = ({navigation}) => {
           style={styles.inputContainer}
           onChangeText={(text) => {
             setPhone(text);
+          }}
+        />
+        <TextInput
+          placeholder="Hospital/Facility"
+          style={styles.inputContainer}
+          onChangeText={(text) => {
+            setHospital(text);
           }}
         />
         <TextInput
@@ -87,15 +99,18 @@ const SignupScreen = ({navigation}) => {
 
       <TouchableOpacity
         style={styles.loginBtn}
-        onPress={() => navigation.navigate('Home')}>
-        {/* //onPress={() => {
-        //   SignupRepository.postSignupData(postUserData);
-        }}> */}
+        onPress={() =>
+          SignupRepository.postSignupData(postUserData)
+            ? showToast('Success')
+            : showToast('Failed')
+        }>
         <Text style={styles.loginText}>Sign Up</Text>
       </TouchableOpacity>
 
       <TouchableOpacity>
-        <Text style={styles.text} onPress={() => navigation.navigate('Login')}>
+        <Text
+          style={styles.text}
+          onPress={() => navigation.navigate('SignInScreen')}>
           Already have an account? Login.
         </Text>
       </TouchableOpacity>
@@ -108,6 +123,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#fff',
+    padding: 8,
     justifyContent: 'center',
   },
   header: {
