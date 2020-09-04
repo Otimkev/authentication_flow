@@ -26,9 +26,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   TextInput: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 0,
     color: '#026062',
-    fontWeight: 'bold',
+    fontWeight: 'normal',
+    fontSize: 20,
   },
 });
 
