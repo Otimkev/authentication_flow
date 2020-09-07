@@ -5,14 +5,12 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Image,
   TextInput,
   ToastAndroid,
 } from 'react-native';
-import SignupRepository from '../../httpClient/repository/signup/SignupRepository';
 import {AuthContext} from '../../../App';
 
-const SignupScreen = ({navigation}) => {
+const SignUpScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
@@ -163,4 +161,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignupScreen;
+export default SignUpScreen;

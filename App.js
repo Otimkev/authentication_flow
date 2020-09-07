@@ -1,13 +1,14 @@
 import * as React from 'react';
-import {Button, Text, TextInput, View} from 'react-native';
-import {AsyncStorage} from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-//import {SplashScreens} from './src/navigation/myScreens/SplashScreen';
-import {MainTabScreen} from './src/navigation/MainTabScreen';
-import SignInScreen from './SignInScreen';
-import SplashScreen from './Splashscreen';
-import HomeScreen from './HomeScreen';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import MainTabScreen from './src/navigation/MainTabScreen';
+import SplashScreen from './src/navigation/myScreens/SplashScreen';
+import ProfileScreen from './src/navigation/myScreens/ProfileScreen';
+import RootStackScreen from './src/navigation/RootStack';
+import SignupRepository from './src/httpClient/repository/signup/SignupRepository';
+import LoginRepository from './src/httpClient/repository/login/LoginRepository';
 
 export const AuthContext = React.createContext();
 
@@ -47,19 +48,18 @@ export default function App({navigation}) {
   React.useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
-      let userToken;
+      var userToken;
 
       try {
-        userToken = await AsyncStorage.getItem('userToken');
+        userToken = await AsyncStorage.getItem('token_key');
       } catch (e) {
         // Restoring token failed
       }
 
       // After restoring token, we may need to validate it in production apps
-
+      dispatch({type: 'RESTORE_TOKEN', token: userToken});
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-      dispatch({type: 'RESTORE_TOKEN', token: userToken});
     };
 
     bootstrapAsync();
@@ -68,51 +68,63 @@ export default function App({navigation}) {
   const authContext = React.useMemo(
     () => ({
       signIn: async (data) => {
-        console.log(data);
-        // In a production app, we need to send some data (usually username, password) to server and get a token
-        // We will also need to handle errors if sign in failed
-        // After getting token, we need to persist the token using `AsyncStorage`
-        // In the example, we'll use a dummy token
-
-        dispatch({type: 'SIGN_IN', token: 'dummy-auth-token'});
+        try {
+          const {token, status, result} = await LoginRepository.postSigninData(
+            data,
+          );
+          if (status !== 200) {
+            console.log('Failed to signin user');
+            return;
+          }
+          dispatch({type: 'SIGN_IN', token: token});
+          return;
+        } catch (error) {
+          console.log(error);
+        }
       },
       signOut: () => dispatch({type: 'SIGN_OUT'}),
       signUp: async (data) => {
-        console.log(data);
+        try {
+          console.log(data);
+          const result = await SignupRepository.postSignupData(data);
+          const {token, status} = result;
+          console.log(token);
+          if (status !== 200) {
+            console.log('signup failed');
+            return;
+          }
+          dispatch({type: 'SIGN_IN', token: token});
+          return;
+        } catch (error) {
+          console.log(error);
+        }
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
         // After getting token, we need to persist the token using `AsyncStorage`
         // In the example, we'll use a dummy token
-
-        dispatch({type: 'SIGN_IN', token: 'dummy-auth-token'});
       },
     }),
     [],
   );
-
+  const Drawer = createDrawerNavigator();
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        <Stack.Navigator>
-          {state.isLoading ? (
-            // We haven't finished checking for the token yet
+        {state.isLoading ? (
+          // We haven't finished checking for the token yet
+          <Stack.Navigator headerMode="none">
             <Stack.Screen name="Splash" component={SplashScreen} />
-          ) : state.userToken == null ? (
-            // No token found, user isn't signed in
-            <Stack.Screen
-              name="SignIn"
-              component={SignInScreen}
-              options={{
-                title: 'Sign in',
-                // When logging out, a pop animation feels intuitive
-                animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-              }}
-            />
-          ) : (
-            // User is signed in
-            <Stack.Screen name="Home" component={HomeScreen} />
-          )}
-        </Stack.Navigator>
+          </Stack.Navigator>
+        ) : state.userToken == null ? (
+          // No token found, user isn't signed in
+          <RootStackScreen />
+        ) : (
+          // User is signed in
+          <Drawer.Navigator initialRouteName="Home">
+            <Drawer.Screen name="Home" component={MainTabScreen} />
+            <Drawer.Screen name="Notifications" component={ProfileScreen} />
+          </Drawer.Navigator>
+        )}
       </NavigationContainer>
     </AuthContext.Provider>
   );

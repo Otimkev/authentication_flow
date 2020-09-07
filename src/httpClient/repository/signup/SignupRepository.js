@@ -31,9 +31,10 @@ class SignupRepository {
       this.loadingData.push(true);
 
       const jwtToken = responseResult.data;
-      const {token, result} = jwtToken;
-
-      return await auth.onValueChange('token_key', token);
+      const status = responseResult.status;
+      const {token} = jwtToken;
+      await auth.onValueChange('token_key', token);
+      return {token: token, status: status};
     } catch (error) {
       this.loadingData.length = 0;
       this.loadingData.push(false);
