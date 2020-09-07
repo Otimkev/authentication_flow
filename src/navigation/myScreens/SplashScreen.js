@@ -1,32 +1,25 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
-class SplashScreen extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.props.navigation.navigate('SignInScreen');
-    }, 2500);
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <View>
-          <Image
-            style={styles.imageContainer}
-            source={require('../../assets/img/logo2-avatar.png')}
-          />
-        </View>
+const SplashScreens = () => {
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.props.navigation.navigate('SignInScreen');
+  //   }, 2500);
+  // }
+  return (
+    <View style={styles.container}>
+      <View>
+        <Image
+          style={styles.imageContainer}
+          source={require('../../assets/img/logo2-avatar.png')}
+        />
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
-export default SplashScreen;
+export default SplashScreens;
 
 const styles = StyleSheet.create({
   container: {

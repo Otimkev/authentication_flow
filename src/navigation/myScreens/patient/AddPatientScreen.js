@@ -152,7 +152,7 @@ const AddPatientScreen = () => {
             />
           </View>
           <View style={{marginVertical: 10}}>
-            <Button style={{backgroundColor: '#fff'}}
+            <Button
               title="Submit"
               onPress={() => {
                 AddPatient.processAddPatient()

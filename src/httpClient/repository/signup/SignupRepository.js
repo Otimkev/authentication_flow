@@ -1,4 +1,5 @@
 import axios from '../../config/Config.js';
+import auth from '../../../navigation/SampleAuth.js';
 
 class SignupRepository {
   loadingData = [];
@@ -11,16 +12,28 @@ class SignupRepository {
   async postSignupData(postData) {
     this.loadingData.length = 0;
     this.loadingData.push(false);
+    const {firstName, lastName, email, phone, password, facility} = postData;
     try {
-      const responseResult = await axios.post('user/signup/', postData);
+      const responseResult = await axios.post('user/signup/', {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        password: password,
+        facility: facility,
+      });
       if (!responseResult.status === 200) {
         this.loadingData.length = 0;
         this.loadingData.push(false);
-        return responseResult.status;
+        return responseResult.data;
       }
       this.loadingData.length = 0;
       this.loadingData.push(true);
-      return console.log(responseResult.data);
+
+      const jwtToken = responseResult.data;
+      const {token, result} = jwtToken;
+
+      return await auth.onValueChange('token_key', token);
     } catch (error) {
       this.loadingData.length = 0;
       this.loadingData.push(false);

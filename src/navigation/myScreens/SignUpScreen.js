@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
   ToastAndroid,
 } from 'react-native';
 import SignupRepository from '../../httpClient/repository/signup/SignupRepository';
+import {AuthContext} from '../../../App';
 
 const SignupScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
@@ -19,12 +20,14 @@ const SignupScreen = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [hospital, setHospital] = useState('');
 
+  const {signUp} = useContext(AuthContext);
+
   const postUserData = {
     firstName: firstName,
     lastName: lastName,
     phone: phone,
     email: email,
-    hospital: hospital,
+    facility: hospital,
     password: password,
   };
 
@@ -72,7 +75,7 @@ const SignupScreen = ({navigation}) => {
           }}
         />
         <TextInput
-          placeholder="Hospital/Facility"
+          placeholder="Facility"
           style={styles.inputContainer}
           onChangeText={(text) => {
             setHospital(text);
@@ -96,14 +99,9 @@ const SignupScreen = ({navigation}) => {
           Conditions.
         </Text>
       </TouchableOpacity>
-
       <TouchableOpacity
         style={styles.loginBtn}
-        onPress={() =>
-          SignupRepository.postSignupData(postUserData)
-            ? showToast('Success')
-            : showToast('Failed')
-        }>
+        onPress={() => signUp(postUserData)}>
         <Text style={styles.loginText}>Sign Up</Text>
       </TouchableOpacity>
 
