@@ -11,13 +11,13 @@ import {
 import AddPatient from '../../../httpClient/repository/patient/AddPatient';
 import CardView from 'react-native-cardview';
 
-const AddPatientScreen = () => {
+const AddPatientScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [sex, setSex] = useState('');
+  const [gender, setGender] = useState('');
   const [age, setAge] = useState('');
   const [nationality, setNationality] = useState('');
-  const [religion, setReligion] = useState('');
+  const [religon, setReligon] = useState('');
   const [maritalStatus, setMaritalStatus] = useState('');
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
@@ -26,27 +26,14 @@ const AddPatientScreen = () => {
   const patientData = {
     firstName: firstName,
     lastName: lastName,
-    sex: sex,
+    gender: gender,
     age: age,
     nationality: nationality,
-    religion: religion,
+    religon: religon,
     maritalStatus: maritalStatus,
     address: address,
     email: email,
     weight: weight,
-  };
-
-  const patient = {
-    firstName: 'mangoes',
-    lastName: 'lastName',
-    sex: 'male',
-    age: 34,
-    nationality: 'ugandan',
-    religion: 'christian',
-    maritalStatus: 'single',
-    address: 'kampala',
-    email: 'mangoes@gmail.com',
-    weight: 67,
   };
 
   const showToast = (message) => {
@@ -82,9 +69,9 @@ const AddPatientScreen = () => {
           <View>
             <TextInput
               style={styles.inputContainer}
-              placeholder="Sex"
+              placeholder="Gender"
               onChangeText={(text) => {
-                setSex(text);
+                setGender(text);
               }}
             />
           </View>
@@ -111,7 +98,7 @@ const AddPatientScreen = () => {
               style={styles.inputContainer}
               placeholder="Religon"
               onChangeText={(text) => {
-                setReligion(text);
+                setReligon(text);
               }}
             />
           </View>
@@ -151,13 +138,23 @@ const AddPatientScreen = () => {
               }}
             />
           </View>
-          <View style={{marginVertical: 10}}>
-            <Button style={{backgroundColor: '#fff'}}
+          <View
+            style={{
+              marginVertical: 10,
+              width: 320,
+              height: 40,
+            }}>
+            <Button
               title="Submit"
-              onPress={() => {
-                AddPatient.processAddPatient()
-                  ? showToast('Success')
-                  : showToast('Faild');
+              color="#009387"
+              onPress={async () => {
+                const result = await AddPatient.processAddPatient(patientData);
+                if (!result) {
+                  showToast('Unsuccessful');
+                  return;
+                }
+                showToast('Sucessful');
+                navigation.navigate('Patients');
               }}
             />
           </View>
@@ -187,7 +184,7 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: '#7cb63b',
+    borderColor: '#009387',
     marginVertical: 5,
     borderRadius: 5,
   },

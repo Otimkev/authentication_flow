@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -8,9 +8,10 @@ import {
   Image,
   TextInput,
 } from 'react-native';
-import LoginRepository from '../../httpClient/repository/login/LoginRepository';
+import {AuthContext} from '../../../App';
 
 const SignInScreen = ({navigation}) => {
+  const {signIn} = useContext(AuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -47,8 +48,7 @@ const SignInScreen = ({navigation}) => {
 
       <TouchableOpacity
         style={styles.loginBtn}
-        // onPress={() => navigation.navigate('Home')}>
-        onPress={() => LoginRepository.postSigninData(userCredentials)}>
+        onPress={() => signIn(userCredentials)}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
 
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: '60%',
-    backgroundColor: '#7cb63b',
+    backgroundColor: '#009387',
     borderRadius: 10,
     height: 50,
     alignItems: 'center',
