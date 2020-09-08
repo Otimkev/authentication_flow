@@ -16,7 +16,10 @@ const PatientScreen = ({navigation}) => {
         cardElevation={2}
         cardMaxElevation={2}
         cornerRadius={5}>
-        <Text>Elevation 0</Text>
+        <Text>Name:</Text>
+        <Text>Weight:</Text>
+        <Text>Bed No.:</Text>
+        <Text>Ward:</Text>
       </CardView>
     </View>
   );

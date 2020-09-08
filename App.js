@@ -52,12 +52,13 @@ export default function App({navigation}) {
 
       try {
         userToken = await AsyncStorage.getItem('token_key');
+        dispatch({type: 'RESTORE_TOKEN', token: userToken});
       } catch (e) {
         // Restoring token failed
       }
 
       // After restoring token, we may need to validate it in production apps
-      dispatch({type: 'RESTORE_TOKEN', token: userToken});
+
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
     };
@@ -82,7 +83,19 @@ export default function App({navigation}) {
           console.log(error);
         }
       },
-      signOut: () => dispatch({type: 'SIGN_OUT'}),
+      signOut: async () => {
+        try {
+          const userToken = await AsyncStorage.getItem('token_key');
+          if (userToken) {
+            await AsyncStorage.removeItem('token_key');
+            dispatch({type: 'SIGN_OUT'});
+            return;
+          }
+          console.log('token removal faild');
+        } catch (error) {
+          console.log(error);
+        }
+      },
       signUp: async (data) => {
         try {
           console.log(data);
