@@ -8,6 +8,7 @@ import ProfileScreen from './myScreens/ProfileScreen';
 import ChatScreen from '././myScreens/ChatScreen';
 import PatientScreen from './myScreens/PatientScreen';
 import AddPatientScreen from './myScreens/patient/AddPatientScreen';
+import SettingsScreen from './myScreens/SettingsScreen';
 
 const HomeStack = createStackNavigator();
 const ChatsStack = createStackNavigator();
@@ -30,6 +31,15 @@ const MainTabScreen = () => (
     <Tab.Screen
       name="Chats"
       component={ChatsStackScreen}
+      options={{
+        tabBarLabel: 'Chats',
+        tabBarColor: '#009387',
+        tabBarIcon: () => <Icon name="comment" color={color} size={26} />,
+      }}
+    />
+    <Tab.Screen
+      name="Settings"
+      component={SettingsScreen}
       options={{
         tabBarLabel: 'Chats',
         tabBarColor: '#009387',
