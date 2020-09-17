@@ -4,12 +4,20 @@ import auth from '../../../navigation/SampleAuth.js';
 class LoginRepository {
   async postSigninData(postData) {
     try {
-      const responseResult = await axios.post('user/signin/', postData);
+      const responseResult = await axios.post('/signin/', postData);
       const status = responseResult.status;
       const {token, result} = responseResult.data;
-      await auth.onValueChange('token_key', token);
-      console.log(status);
-      console.log(result);
+      const {id, lastName, firstName, email, phoneNumber, facility} = result;
+      const mData = {
+        userId: id,
+        userName: `${firstName} ${lastName}`,
+        email: email,
+        phoneNumber: phoneNumber,
+        facility: facility,
+        token_key: token,
+      };
+      await auth.onValueChange('user', JSON.stringify(mData));
+
       return {
         token: token,
         status: status,

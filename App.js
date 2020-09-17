@@ -51,7 +51,7 @@ export default function App({navigation}) {
       var userToken;
 
       try {
-        userToken = await AsyncStorage.getItem('token_key');
+        userToken = await AsyncStorage.getItem('user');
         dispatch({type: 'RESTORE_TOKEN', token: userToken});
       } catch (e) {
         // Restoring token failed
@@ -85,9 +85,9 @@ export default function App({navigation}) {
       },
       signOut: async () => {
         try {
-          const userToken = await AsyncStorage.getItem('token_key');
+          const userToken = await AsyncStorage.getItem('user');
           if (userToken) {
-            await AsyncStorage.removeItem('token_key');
+            await AsyncStorage.removeItem('user');
             dispatch({type: 'SIGN_OUT'});
             return;
           }
@@ -128,11 +128,11 @@ export default function App({navigation}) {
           <Stack.Navigator headerMode="none">
             <Stack.Screen name="Splash" component={SplashScreen} />
           </Stack.Navigator>
-        ) : state.userToken == null ? (
+        ) : state.userToken === null ? (
           // No token found, user isn't signed in
           <RootStackScreen />
         ) : (
-          // User is signed in
+          // User is signed in, token found
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={MainTabScreen} />
             <Drawer.Screen name="Notifications" component={ProfileScreen} />
