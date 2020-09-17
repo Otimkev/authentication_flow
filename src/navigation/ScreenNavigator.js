@@ -128,4 +128,4 @@ const ScreenNavigator = () => {
   );
 };
 
-export default ScreenNavigator;
+//export default ScreenNavigator;
