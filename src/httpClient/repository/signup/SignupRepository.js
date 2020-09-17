@@ -10,8 +10,6 @@ class SignupRepository {
   }
 
   async postSignupData(postData) {
-    this.loadingData.length = 0;
-    this.loadingData.push(false);
     try {
       const responseResult = await axios.post('signup/', {
         firstName: postData.firstName,
@@ -21,18 +19,8 @@ class SignupRepository {
         password: postData.password,
         facility: postData.facility,
       });
-      if (!responseResult.status === 200) {
-        this.loadingData.length = 0;
-        this.loadingData.push(false);
-        return responseResult.data;
-      }
-      this.loadingData.length = 0;
-      this.loadingData.push(true);
-
-      const result = responseResult.data;
       const status = responseResult.status;
-      const {token} = result;
-      console.log(`This is the user data ${result}`);
+      const {token, result} = responseResult.data;
       const {id, lastName, firstName, email, phoneNumber, facility} = result;
       const mData = {
         userId: id,
@@ -42,11 +30,9 @@ class SignupRepository {
         facility: facility,
         token_key: token,
       };
-      await auth.onValueChange('user', mData);
-      return {token: token, status: status};
+      await auth.onValueChange('user', JSON.stringify(mData));
+      return {token: token, status: status, result: result};
     } catch (error) {
-      this.loadingData.length = 0;
-      this.loadingData.push(false);
       console.log(error);
     }
   }

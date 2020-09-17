@@ -101,7 +101,6 @@ export default function App({navigation}) {
           console.log(data);
           const result = await SignupRepository.postSignupData(data);
           const {token, status} = result;
-          console.log(token);
           if (status !== 200) {
             console.log('signup failed');
             return;

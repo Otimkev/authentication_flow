@@ -1,41 +1,14 @@
-class SessionManager {
-  constructor(
-    sessionIdArg,
-    userFirstNameArg,
-    userLastNameArg,
-    userEmailArg,
-    userPhoneNumberArg,
-  ) {
-    if (SessionManager.UserSessionInstance instanceof SessionManager) {
-      return SessionManager.UserSessionInstance;
-    }
-    this.id = sessionIdArg;
-    this.firstName = userFirstNameArg;
-    this.lastName = userLastNameArg;
-    this.email = userEmailArg;
-    this.phoneNumber = userPhoneNumberArg;
+// import AsyncStorage from '@react-native-community/async-storage';
 
-    SessionManager.UserSessionInstance = this;
-  }
-  getUser() {
-    return SessionManager.UserSessionInstance;
-  }
+// class SessionManager {
+//   constructor(key) {
+//     const m = this.retrieveItem(key);
+//     this.email = m.then((email) => email.email);
+//   }
 
-  getUserId() {
-    return this.id;
-  }
-  getUserFirstName() {
-    return this.firstName;
-  }
-  getUserLastName() {
-    return this.lastName;
-  }
-  getUserEmail() {
-    return this.email;
-  }
-  getUserPhoneNumber() {
-    return this.phoneNumber;
-  }
-}
+//   getData() {
+//     return this.email;
+//   }
+// }
 
-export default SessionManager;
+// export default new SessionManager('user');

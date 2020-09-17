@@ -17,7 +17,6 @@ class LoginRepository {
         token_key: token,
       };
       await auth.onValueChange('user', JSON.stringify(mData));
-
       return {
         token: token,
         status: status,

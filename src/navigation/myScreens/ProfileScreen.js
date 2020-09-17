@@ -1,20 +1,31 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {AuthContext} from '../../../App';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const ProfileScreen = () => {
-  const session = async () => {
-    try {
-      const result = await AsyncStorage.getItem('user');
-      console.log(JSON.parse(result));
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  session();
+  const [userId, setUserId] = useState('');
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [userPhone, setUserPhone] = useState('');
+  const [userFacility, setUserFacility] = useState('');
 
+  const retrieveItem = async (key) => {
+    try {
+      const retrievedItem = await AsyncStorage.getItem(key);
+      const item = JSON.parse(retrievedItem);
+      console.log(item);
+      setUserId(item.userId);
+      setUserName(item.userName);
+      setUserEmail(item.email);
+      setUserPhone(item.phoneNumber);
+      setUserFacility(item.facility);
+    } catch (error) {
+      console.log(error.message);
+    }
+    return;
+  };
+  retrieveItem('user');
   const {signOut} = useContext(AuthContext);
   return (
     <View style={styles.container}>
@@ -26,7 +37,7 @@ const ProfileScreen = () => {
               uri: 'https://bootdey.com/img/Content/avatar/avatar2.png',
             }}
           />
-          <Text style={styles.name}>dddddddd</Text>
+          <Text style={styles.name}>{userName}</Text>
         </View>
       </View>
 
@@ -47,9 +58,9 @@ const ProfileScreen = () => {
 
       <View style={styles.body}>
         <View style={styles.bodyContent}>
-          <Text style={styles.name}>John Doe</Text>
-          <Text style={styles.name}>John Doe</Text>
-          <Text style={styles.name}>John Doe</Text>
+          <Text style={styles.name}>{userEmail}</Text>
+          <Text style={styles.name}>{userPhone}</Text>
+          <Text style={styles.name}>{userFacility}</Text>
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={() => signOut()}>
