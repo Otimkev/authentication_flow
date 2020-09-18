@@ -23,13 +23,13 @@ export default class PatientScreen extends Component {
         {
           id: 10,
           name: 'Fermod Doe',
-          status: 'active',
+          status: 'Cancer',
           image: 'https://bootdey.com/img/Content/avatar/avatar7.png',
         },
         {
           id: 11,
           name: 'Danny Doe',
-          status: 'active',
+          status: 'Blood',
           image: 'https://bootdey.com/img/Content/avatar/avatar1.png',
         },
       ],
@@ -68,7 +68,7 @@ export default class PatientScreen extends Component {
                 ellipsizeMode="tail">
                 {item.name}
               </Text>
-              <Text style={styles.mblTxt}>Mobile</Text>
+              <Text style={styles.mblTxt}>BED03</Text>
             </View>
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.status}</Text>

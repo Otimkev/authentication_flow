@@ -2,9 +2,12 @@ import axios from '../../config/Config.js';
 import PatientsModel from '../../models/PatientsModel.js';
 
 class AddPatient {
-  async processAddPatient(patientData) {
+  async processAddPatient(patientData, userId) {
     try {
-      const responseResult = await axios.post('patient/add/', patientData);
+      const responseResult = await axios.post(
+        `add-patient/${userId}`,
+        patientData,
+      );
       if (!responseResult.status === 200) {
         console.log('Failed to save');
         return;
