@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -94,7 +94,7 @@ export default class PatientScreen extends Component {
         <FloatingAction
           actions={this.state.actions}
           onPressItem={() => {
-            console.log('selected button');
+            this.props.navigation.navigate('Register Patient');
           }}
         />
       </View>
