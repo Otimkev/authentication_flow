@@ -24,6 +24,7 @@
     "react-native-cards": "^1.1.4",
     "react-native-cardview": "^2.0.5",
     "react-native-dashboard": "0.0.4",
+    "react-native-floating-action": "^1.21.0",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-paper": "^4.0.1",
