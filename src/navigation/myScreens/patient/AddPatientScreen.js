@@ -4,13 +4,14 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  Button,
   ScrollView,
   ToastAndroid,
+  TouchableOpacity,
 } from 'react-native';
 import AddPatient from '../../../httpClient/repository/patient/AddPatient';
 import CardView from 'react-native-cardview';
 import SessionManager from '../../../httpClient/utils/SessionManager';
+import {globalStyles} from '../../../styles/Global';
 
 const AddPatientScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
@@ -48,10 +49,10 @@ const AddPatientScreen = ({navigation}) => {
         cardElevation={2}
         cardMaxElevation={2}
         cornerRadius={5}>
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
           <View>
             <TextInput
-              style={styles.inputContainer}
+              style={globalStyles.inputContainer}
               placeholder="First name"
               onChangeText={(text) => {
                 setFirstName(text);
@@ -60,7 +61,7 @@ const AddPatientScreen = ({navigation}) => {
           </View>
           <View>
             <TextInput
-              style={styles.inputContainer}
+              style={globalStyles.inputContainer}
               placeholder="Last name"
               onChangeText={(text) => {
                 setLastName(text);
@@ -69,7 +70,7 @@ const AddPatientScreen = ({navigation}) => {
           </View>
           <View>
             <TextInput
-              style={styles.inputContainer}
+              style={globalStyles.inputContainer}
               placeholder="Gender"
               onChangeText={(text) => {
                 setGender(text);
@@ -78,7 +79,7 @@ const AddPatientScreen = ({navigation}) => {
           </View>
           <View>
             <TextInput
-              style={styles.inputContainer}
+              style={globalStyles.inputContainer}
               placeholder="Date of Birth"
               onChangeText={(text) => {
                 setDateOfBirth(text);
@@ -87,7 +88,7 @@ const AddPatientScreen = ({navigation}) => {
           </View>
           <View>
             <TextInput
-              style={styles.inputContainer}
+              style={globalStyles.inputContainer}
               placeholder="Nationality"
               onChangeText={(text) => {
                 setNationality(text);
@@ -96,7 +97,7 @@ const AddPatientScreen = ({navigation}) => {
           </View>
           <View>
             <TextInput
-              style={styles.inputContainer}
+              style={globalStyles.inputContainer}
               placeholder="Religon"
               onChangeText={(text) => {
                 setReligon(text);
@@ -105,7 +106,7 @@ const AddPatientScreen = ({navigation}) => {
           </View>
           <View>
             <TextInput
-              style={styles.inputContainer}
+              style={globalStyles.inputContainer}
               placeholder="Marital status"
               onChangeText={(text) => {
                 setMaritalStatus(text);
@@ -123,7 +124,7 @@ const AddPatientScreen = ({navigation}) => {
           </View>
           <View>
             <TextInput
-              style={styles.inputContainer}
+              style={globalStyles.inputContainer}
               placeholder="Residency"
               onChangeText={(text) => {
                 setResidency(text);
@@ -132,20 +133,34 @@ const AddPatientScreen = ({navigation}) => {
           </View>
           <View>
             <TextInput
-              style={styles.inputContainer}
+              style={globalStyles.inputContainer}
               placeholder="Phone Number"
               onChangeText={(text) => {
                 setPhoneNymber(text);
               }}
             />
           </View>
-          <View
+          <TouchableOpacity
+            style={globalStyles.Button}
+            onPress={async () => {
+              const result = await AddPatient.processAddPatient(patientData);
+              if (!result) {
+                showToast('Unsuccessful');
+                return;
+              }
+              showToast('Sucessful');
+              navigation.navigate('Patients');
+            }}>
+            <Text style={globalStyles.ButtonText}>Add Patient</Text>
+          </TouchableOpacity>
+          {/* <View
             style={{
               marginVertical: 10,
               width: 320,
               height: 40,
-            }}>
-            <Button
+            }}> */}
+          {/* <Button
+              style={globalStyles.Button}
               title="Submit"
               color="#009387"
               onPress={async () => {
@@ -160,8 +175,8 @@ const AddPatientScreen = ({navigation}) => {
                 showToast('Sucessful');
                 navigation.navigate('Patients');
               }}
-            />
-          </View>
+            /> */}
+          {/* </View> */}
         </View>
       </CardView>
     </ScrollView>
@@ -181,15 +196,5 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     padding: 8,
-  },
-  inputContainer: {
-    color: '#000',
-    width: 320,
-    height: 40,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#009387',
-    marginVertical: 5,
-    borderRadius: 5,
   },
 });

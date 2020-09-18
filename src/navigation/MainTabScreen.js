@@ -8,7 +8,6 @@ import ProfileScreen from './myScreens/ProfileScreen';
 import ChatScreen from '././myScreens/ChatScreen';
 import PatientScreen from './myScreens/PatientScreen';
 import AddPatientScreen from './myScreens/patient/AddPatientScreen';
-import SettingsScreen from './myScreens/SettingsScreen';
 
 const HomeStack = createStackNavigator();
 const ChatsStack = createStackNavigator();
@@ -24,26 +23,8 @@ const MainTabScreen = () => (
       component={HomeStackScreen}
       options={{
         tabBarLabel: 'Home',
-        tabBarColor: '#009387',
-        tabBarIcon: () => <Icon name="home" color={color} size={26} />,
-      }}
-    />
-    <Tab.Screen
-      name="Chats"
-      component={ChatsStackScreen}
-      options={{
-        tabBarLabel: 'Chats',
-        tabBarColor: '#009387',
-        tabBarIcon: () => <Icon name="comment" color={color} size={26} />,
-      }}
-    />
-    <Tab.Screen
-      name="Settings"
-      component={SettingsScreen}
-      options={{
-        tabBarLabel: 'Chats',
-        tabBarColor: '#009387',
-        tabBarIcon: () => <Icon name="comment" color={color} size={26} />,
+        tabBarColor: '#7cb63b',
+        tabBarIcon: () => <Icon name="home" color={color} size={22} />,
       }}
     />
     <Tab.Screen
@@ -51,8 +32,17 @@ const MainTabScreen = () => (
       component={PatientStackScreen}
       options={{
         tabBarLabel: 'Patients',
-        tabBarColor: '#009387',
-        tabBarIcon: () => <Icon name="user-injured" color={color} size={26} />,
+        tabBarColor: '#7cb63b',
+        tabBarIcon: () => <Icon name="user-injured" color={color} size={22} />,
+      }}
+    />
+    <Tab.Screen
+      name="Chats"
+      component={ChatsStackScreen}
+      options={{
+        tabBarLabel: 'Chats',
+        tabBarColor: '#7cb63b',
+        tabBarIcon: () => <Icon name="comment" color={color} size={22} />,
       }}
     />
     <Tab.Screen
@@ -60,8 +50,8 @@ const MainTabScreen = () => (
       component={ProfileStackScreen}
       options={{
         tabBarLabel: 'Profile',
-        tabBarColor: '#009387',
-        tabBarIcon: () => <Icon name="user" color={color} size={26} />,
+        tabBarColor: '#7cb63b',
+        tabBarIcon: () => <Icon name="user" color={color} size={22} />,
       }}
     />
   </Tab.Navigator>
@@ -73,7 +63,7 @@ const HomeStackScreen = ({navigation}) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#009387',
+        backgroundColor: '#7cb63b',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -89,7 +79,7 @@ const HomeStackScreen = ({navigation}) => (
           <Icon.Button
             name="bars"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#7cb63b"
             onPress={() => navigation.openDrawer()}
           />
         ),
@@ -102,7 +92,7 @@ const ChatsStackScreen = ({navigation}) => (
   <ChatsStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#009387',
+        backgroundColor: '#7cb63b',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -117,7 +107,7 @@ const ChatsStackScreen = ({navigation}) => (
           <Icon.Button
             name="bars"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#7cb63b"
             onPress={() => navigation.openDrawer()}
           />
         ),
@@ -130,7 +120,7 @@ const PatientStackScreen = ({navigation}) => (
   <PatientsStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#009387',
+        backgroundColor: '#7cb63b',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -145,7 +135,7 @@ const PatientStackScreen = ({navigation}) => (
           <Icon.Button
             name="bars"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#7cb63b"
             onPress={() => navigation.openDrawer()}
           />
         ),
@@ -159,7 +149,7 @@ const PatientStackScreen = ({navigation}) => (
           <Icon.Button
             name="bars"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#7cb63b"
             onPress={() => navigation.openDrawer()}
           />
         ),
@@ -172,7 +162,7 @@ const ProfileStackScreen = ({navigation}) => (
   <ProfilesStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#009387',
+        backgroundColor: '#7cb63b',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -187,7 +177,7 @@ const ProfileStackScreen = ({navigation}) => (
           <Icon.Button
             name="bars"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#7cb63b"
             onPress={() => navigation.openDrawer()}
           />
         ),
