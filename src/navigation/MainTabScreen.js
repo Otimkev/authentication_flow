@@ -8,7 +8,6 @@ import ProfileScreen from './myScreens/ProfileScreen';
 import ChatScreen from '././myScreens/ChatScreen';
 import PatientScreen from './myScreens/PatientScreen';
 import AddPatientScreen from './myScreens/patient/AddPatientScreen';
-import SettingsScreen from './myScreens/SettingsScreen';
 
 const HomeStack = createStackNavigator();
 const ChatsStack = createStackNavigator();
@@ -20,30 +19,21 @@ const color = '#fff';
 const MainTabScreen = () => (
   <Tab.Navigator initialRouteName="Home" activeColor="#fff">
     <Tab.Screen
-      name="Patients"
-      component={PatientStackScreen}
-      options={{
-        tabBarLabel: 'Patients',
-        tabBarColor: '#7cb63b',
-        tabBarIcon: () => <Icon name="user-injured" color={color} size={22} />,
-      }}
-    />
-    <Tab.Screen
-      name="Settings"
-      component={SettingsScreen}
-      options={{
-        tabBarLabel: 'Chats',
-        tabBarColor: '#7cb63b',
-        tabBarIcon: () => <Icon name="comment" color={color} size={22} />,
-      }}
-    />
-    <Tab.Screen
       name="Home"
       component={HomeStackScreen}
       options={{
         tabBarLabel: 'Home',
         tabBarColor: '#7cb63b',
         tabBarIcon: () => <Icon name="home" color={color} size={22} />,
+      }}
+    />
+    <Tab.Screen
+      name="Patients"
+      component={PatientStackScreen}
+      options={{
+        tabBarLabel: 'Patients',
+        tabBarColor: '#7cb63b',
+        tabBarIcon: () => <Icon name="user-injured" color={color} size={22} />,
       }}
     />
     <Tab.Screen
