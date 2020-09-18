@@ -8,22 +8,9 @@ import {
   ToastAndroid,
   TouchableOpacity,
 } from 'react-native';
-import {Dropdown} from 'react-native-material-dropdown';
 import AddPatient from '../../../httpClient/repository/patient/AddPatient';
 import CardView from 'react-native-cardview';
 import {globalStyles} from '../../../styles/Global';
-
-const data = [
-  {
-    value: 'Banana',
-  },
-  {
-    value: 'Mango',
-  },
-  {
-    value: 'Pear',
-  },
-];
 
 const AddPatientScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
@@ -152,7 +139,6 @@ const AddPatientScreen = ({navigation}) => {
               }}
             />
           </View>
-          <Dropdown label="Favorite Fruit" data={data} />
           <TouchableOpacity
             style={globalStyles.Button}
             onPress={async () => {
