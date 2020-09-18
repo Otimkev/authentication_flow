@@ -1,10 +1,13 @@
 import axios from '../../config/Config';
 
 class GetAllPatients {
-  async processGetAllPatients() {
+  async processGetAllPatients(userId) {
     try {
-      const allPatients = await axios.get('/all-patients/');
-      return allPatients.data;
+      const responseResult = await axios.get(`all-patient/${userId}/`);
+      if (!responseResult.status === 200) {
+        console.log('Failed to get all patients');
+      }
+      return responseResult.data.result;
     } catch (error) {
       console.log(error);
       return;
@@ -12,4 +15,4 @@ class GetAllPatients {
   }
 }
 
-export default GetAllPatients;
+export default new GetAllPatients();
