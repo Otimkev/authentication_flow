@@ -10,34 +10,29 @@ class SignupRepository {
   }
 
   async postSignupData(postData) {
-    this.loadingData.length = 0;
-    this.loadingData.push(false);
-    const {firstName, lastName, email, phone, password, facility} = postData;
     try {
-      const responseResult = await axios.post('user/signup/', {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        phone: phone,
-        password: password,
-        facility: facility,
+      const responseResult = await axios.post('signup/', {
+        firstName: postData.firstName,
+        lastName: postData.lastName,
+        email: postData.email,
+        phoneNumber: postData.phoneNumber,
+        password: postData.password,
+        facility: postData.facility,
       });
-      if (!responseResult.status === 200) {
-        this.loadingData.length = 0;
-        this.loadingData.push(false);
-        return responseResult.data;
-      }
-      this.loadingData.length = 0;
-      this.loadingData.push(true);
-
-      const jwtToken = responseResult.data;
       const status = responseResult.status;
-      const {token} = jwtToken;
-      await auth.onValueChange('token_key', token);
-      return {token: token, status: status};
+      const {token, result} = responseResult.data;
+      const {id, lastName, firstName, email, phoneNumber, facility} = result;
+      const mData = {
+        userId: id,
+        userName: `${firstName} ${lastName}`,
+        email: email,
+        phoneNumber: phoneNumber,
+        facility: facility,
+        token_key: token,
+      };
+      await auth.onValueChange('user', JSON.stringify(mData));
+      return {token: token, status: status, result: result};
     } catch (error) {
-      this.loadingData.length = 0;
-      this.loadingData.push(false);
       console.log(error);
     }
   }

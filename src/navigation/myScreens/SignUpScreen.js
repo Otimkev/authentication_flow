@@ -13,7 +13,7 @@ import {AuthContext} from '../../../App';
 const SignUpScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hospital, setHospital] = useState('');
@@ -23,7 +23,7 @@ const SignUpScreen = ({navigation}) => {
   const postUserData = {
     firstName: firstName,
     lastName: lastName,
-    phone: phone,
+    phoneNumber: phoneNumber,
     email: email,
     facility: hospital,
     password: password,
@@ -69,7 +69,7 @@ const SignUpScreen = ({navigation}) => {
           placeholder="Phone"
           style={styles.inputContainer}
           onChangeText={(text) => {
-            setPhone(text);
+            setPhoneNumber(text);
           }}
         />
         <TextInput
