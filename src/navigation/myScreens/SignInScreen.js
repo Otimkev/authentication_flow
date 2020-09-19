@@ -9,6 +9,7 @@ import {
   TextInput,
 } from 'react-native';
 import {AuthContext} from '../../../App';
+import {globalStyles} from '../../styles/Global';
 
 const SignInScreen = ({navigation}) => {
   const {signIn} = useContext(AuthContext);
@@ -32,14 +33,14 @@ const SignInScreen = ({navigation}) => {
       <View>
         <TextInput
           placeholder="Username"
-          style={styles.inputContainer}
+          style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setUsername(text);
           }}
         />
         <TextInput
           placeholder="Password"
-          style={styles.inputContainer}
+          style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setPassword(text);
           }}
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: '60%',
-    backgroundColor: '#009387',
+    backgroundColor: '#7cb63b',
     borderRadius: 10,
     height: 50,
     alignItems: 'center',

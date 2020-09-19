@@ -9,16 +9,13 @@ import ProfileScreen from './src/navigation/myScreens/ProfileScreen';
 import RootStackScreen from './src/navigation/RootStack';
 import SignupRepository from './src/httpClient/repository/signup/SignupRepository';
 import LoginRepository from './src/httpClient/repository/login/LoginRepository';
+import WardsScreen from './src/navigation/myScreens/WardsScreen';
+import SettingsScreen from './src/navigation/myScreens/SettingsScreen';
+import SpecialistScreen from './src/navigation/myScreens/SpecialistScreen';
 
-<<<<<<< HEAD
-const App = () => {
-  return <ScreenNavigation />;
-};
-=======
 export const AuthContext = React.createContext();
 
 const Stack = createStackNavigator();
->>>>>>> master
 
 export default function App({navigation}) {
   const [state, dispatch] = React.useReducer(
@@ -133,14 +130,17 @@ export default function App({navigation}) {
           <Stack.Navigator headerMode="none">
             <Stack.Screen name="Splash" component={SplashScreen} />
           </Stack.Navigator>
-        ) : state.userToken != null ? (
+        ) : state.userToken === null ? (
           // No token found, user isn't signed in
           <RootStackScreen />
         ) : (
           // User is signed in, token found
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={MainTabScreen} />
+            <Drawer.Screen name="Specialists" component={SpecialistScreen} />
+            <Drawer.Screen name="Wards" component={WardsScreen} />
             <Drawer.Screen name="Notifications" component={ProfileScreen} />
+            <Drawer.Screen name="Settings" component={SettingsScreen} />
           </Drawer.Navigator>
         )}
       </NavigationContainer>

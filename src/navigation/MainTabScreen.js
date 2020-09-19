@@ -1,18 +1,20 @@
 import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/Fontisto';
 
 import HomeScreen from './myScreens/HomeScreen';
 import ProfileScreen from './myScreens/ProfileScreen';
 import ChatScreen from '././myScreens/ChatScreen';
 import PatientScreen from './myScreens/PatientScreen';
 import AddPatientScreen from './myScreens/patient/AddPatientScreen';
+import NotificationsScreen from './myScreens/NotificationScreen';
 
 const HomeStack = createStackNavigator();
 const ChatsStack = createStackNavigator();
 const PatientsStack = createStackNavigator();
 const ProfilesStack = createStackNavigator();
+const NotificationsStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
 const color = '#fff';
@@ -33,7 +35,7 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Patients',
         tabBarColor: '#7cb63b',
-        tabBarIcon: () => <Icon name="user-injured" color={color} size={22} />,
+        tabBarIcon: () => <Icon name="first-aid-alt" color={color} size={20} />,
       }}
     />
     <Tab.Screen
@@ -42,7 +44,16 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Chats',
         tabBarColor: '#7cb63b',
-        tabBarIcon: () => <Icon name="comment" color={color} size={22} />,
+        tabBarIcon: () => <Icon name="commenting" color={color} size={20} />,
+      }}
+    />
+    <Tab.Screen
+      name="Notifications"
+      component={NotificationsStackScreen}
+      options={{
+        tabBarLabel: 'Notifications',
+        tabBarColor: '#7cb63b',
+        tabBarIcon: () => <Icon name="bell" color={color} size={22} />,
       }}
     />
     <Tab.Screen
@@ -51,7 +62,7 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Profile',
         tabBarColor: '#7cb63b',
-        tabBarIcon: () => <Icon name="user" color={color} size={22} />,
+        tabBarIcon: () => <Icon name="doctor" color={color} size={22} />,
       }}
     />
   </Tab.Navigator>
@@ -77,7 +88,7 @@ const HomeStackScreen = ({navigation}) => (
         title: 'Home',
         headerLeft: () => (
           <Icon.Button
-            name="bars"
+            name="nav-icon-list-a"
             size={25}
             backgroundColor="#7cb63b"
             onPress={() => navigation.openDrawer()}
@@ -105,7 +116,7 @@ const ChatsStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="bars"
+            name="nav-icon-list-a"
             size={25}
             backgroundColor="#7cb63b"
             onPress={() => navigation.openDrawer()}
@@ -133,7 +144,7 @@ const PatientStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="bars"
+            name="nav-icon-list-a"
             size={25}
             backgroundColor="#7cb63b"
             onPress={() => navigation.openDrawer()}
@@ -147,7 +158,7 @@ const PatientStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="bars"
+            name="nav-icon-list-a"
             size={25}
             backgroundColor="#7cb63b"
             onPress={() => navigation.openDrawer()}
@@ -175,7 +186,7 @@ const ProfileStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="bars"
+            name="nav-icon-list-a"
             size={25}
             backgroundColor="#7cb63b"
             onPress={() => navigation.openDrawer()}
@@ -184,4 +195,32 @@ const ProfileStackScreen = ({navigation}) => (
       }}
     />
   </ProfilesStack.Navigator>
+);
+
+const NotificationsStackScreen = ({navigation}) => (
+  <NotificationsStack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#7cb63b',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}>
+    <NotificationsStack.Screen
+      name="Notifications"
+      component={NotificationsScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#7cb63b"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+  </NotificationsStack.Navigator>
 );
