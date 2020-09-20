@@ -98,6 +98,8 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
 /**
  * The preferred build flavor of JavaScriptCore.
  *
@@ -216,5 +218,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

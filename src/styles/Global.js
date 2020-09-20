@@ -9,7 +9,7 @@ export const globalStyles = StyleSheet.create({
   inputContainer: {
     width: 340,
     height: 45,
-    borderColor: '#7cb63b',
+    borderColor: '#007360',
     backgroundColor: '#fff',
     borderWidth: 2,
     borderRadius: 10,
@@ -24,7 +24,7 @@ export const globalStyles = StyleSheet.create({
   },
   Button: {
     width: '60%',
-    backgroundColor: '#7cb63b',
+    backgroundColor: '#007360',
     borderRadius: 10,
     height: 50,
     alignItems: 'center',

@@ -9,6 +9,7 @@ import {
   ToastAndroid,
 } from 'react-native';
 import {AuthContext} from '../../../App';
+import {globalStyles} from '../../styles/Global';
 
 const SignUpScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
@@ -45,7 +46,7 @@ const SignUpScreen = ({navigation}) => {
       <View>
         <TextInput
           placeholder="First Name"
-          style={styles.inputContainer}
+          style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setFirstName(text);
           }}
@@ -53,42 +54,42 @@ const SignUpScreen = ({navigation}) => {
         />
         <TextInput
           placeholder="Last Name"
-          style={styles.inputContainer}
+          style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setLastName(text);
           }}
         />
         <TextInput
           placeholder="Email Address"
-          style={styles.inputContainer}
+          style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setEmail(text);
           }}
         />
         <TextInput
           placeholder="Phone"
-          style={styles.inputContainer}
+          style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setPhoneNumber(text);
           }}
         />
         <TextInput
           placeholder="Facility"
-          style={styles.inputContainer}
+          style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setHospital(text);
           }}
         />
         <TextInput
           placeholder="Password"
-          style={styles.inputContainer}
+          style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setPassword(text);
           }}
         />
         <TextInput
           placeholder="Retype Password"
-          style={styles.inputContainer}
+          style={globalStyles.inputContainer}
         />
       </View>
       <TouchableOpacity>
@@ -129,6 +130,12 @@ const styles = StyleSheet.create({
   loginText: {
     fontSize: 24,
     color: '#fff',
+  },
+  TextInput: {
+    paddingHorizontal: 10,
+    color: '#026062',
+    fontWeight: 'normal',
+    fontSize: 20,
   },
   inputContainer: {
     color: '#000',

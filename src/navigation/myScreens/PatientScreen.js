@@ -14,6 +14,7 @@ import {
 import GetAllPatients from '../../httpClient/repository/patient/GetAllPatients';
 import SessionManager from '../../httpClient/utils/SessionManager';
 import {FloatingAction} from 'react-native-floating-action';
+// import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
 export default class PatientScreen extends Component {
   constructor(props) {
@@ -101,6 +102,7 @@ export default class PatientScreen extends Component {
     );
   }
 }
+// onPress={() => navigation.navigate('SignUpScreen')}>
 
 const styles = StyleSheet.create({
   row: {
