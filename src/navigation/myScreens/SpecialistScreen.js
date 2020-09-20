@@ -4,7 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 const SpecialistScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Home screen</Text>
+      <Text>Specialist screen</Text>
     </View>
   );
 };

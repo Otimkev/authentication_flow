@@ -9,12 +9,18 @@ import ChatScreen from '././myScreens/ChatScreen';
 import PatientScreen from './myScreens/PatientScreen';
 import AddPatientScreen from './myScreens/patient/AddPatientScreen';
 import NotificationsScreen from './myScreens/NotificationScreen';
+// import WardsScreen from './myScreens/WardsScreen';
+// import SpecialistScreen from './myScreens/SpecialistScreen';
+// import SettingsScreen from './myScreens/SettingsScreen';
 
 const HomeStack = createStackNavigator();
 const ChatsStack = createStackNavigator();
 const PatientsStack = createStackNavigator();
 const ProfilesStack = createStackNavigator();
 const NotificationsStack = createStackNavigator();
+// const WardsStack = createStackNavigator();
+// const SpecialistStack = createStackNavigator();
+// const SettingsStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
 const color = '#fff';
