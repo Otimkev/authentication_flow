@@ -140,7 +140,7 @@ export default function App({navigation}) {
           // User is signed in, token found
           <Drawer.Navigator
             drawerContent={(props) => <DrawerContent {...props} />}>
-            <Drawer.Screen name="Home" component={MainTabScreen} />
+            <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
             <Drawer.Screen name="Specialists" component={SpecialistScreen} />
             <Drawer.Screen name="Wards" component={WardsScreen} />
             <Drawer.Screen name="Notifications" component={ProfileScreen} />
