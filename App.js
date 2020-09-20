@@ -78,7 +78,6 @@ export default function App({navigation}) {
             return;
           }
           dispatch({type: 'SIGN_IN', token: token});
-          return;
         } catch (error) {
           console.log(error);
         }
@@ -106,7 +105,6 @@ export default function App({navigation}) {
             return;
           }
           dispatch({type: 'SIGN_IN', token: token});
-          return;
         } catch (error) {
           console.log(error);
         }

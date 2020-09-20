@@ -1,16 +1,15 @@
 import React, {useState} from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
   ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
   ToastAndroid,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import AddPatient from '../../../httpClient/repository/patient/AddPatient';
 import CardView from 'react-native-cardview';
-import SessionManager from '../../../httpClient/utils/SessionManager';
 import {globalStyles} from '../../../styles/Global';
 
 const AddPatientScreen = ({navigation}) => {
