@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {DrawerContent} from './src/navigation/DrawerContent';
 import MainTabScreen from './src/navigation/MainTabScreen';
 import SplashScreen from './src/navigation/myScreens/SplashScreen';
 import ProfileScreen from './src/navigation/myScreens/ProfileScreen';
@@ -73,9 +74,11 @@ export default function App({navigation}) {
     () => ({
       signIn: async (data) => {
         try {
-          const {token, status, result} = await LoginRepository.postSigninData(
-            data,
-          );
+          const {
+            tokenDrawerContent,
+            status,
+            result,
+          } = await LoginRepository.postSigninData(data);
           if (status !== 200) {
             console.log('Failed to signin user');
             return;
@@ -135,7 +138,8 @@ export default function App({navigation}) {
           <RootStackScreen />
         ) : (
           // User is signed in, token found
-          <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Navigator
+            drawerContent={(props) => <DrawerContent {...props} />}>
             <Drawer.Screen name="Home" component={MainTabScreen} />
             <Drawer.Screen name="Specialists" component={SpecialistScreen} />
             <Drawer.Screen name="Wards" component={WardsScreen} />
