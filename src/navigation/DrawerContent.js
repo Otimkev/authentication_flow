@@ -7,9 +7,6 @@ import {
   Caption,
   Paragraph,
   Drawer,
-  Text,
-  TouchableRipple,
-  Switch,
 } from 'react-native-paper';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 
@@ -20,12 +17,12 @@ import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 // import SupportScreen from './myScreens/SupportScreen';
 
 import Icon from 'react-native-vector-icons/Fontisto';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // import {AuthContext} from '../components/context';
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
-
 
   return (
     <View style={{flex: 1}}>
@@ -117,7 +114,7 @@ export function DrawerContent(props) {
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
           icon={({color, size}) => (
-            <Icon name="power" color={color} size={size} />
+            <Ionicons name="log-out-outline" color={color} size={size} />
           )}
           label="Sign Out"
         />

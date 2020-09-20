@@ -31,7 +31,7 @@ const MainTabScreen = () => (
       component={HomeStackScreen}
       options={{
         tabBarLabel: 'Home',
-        tabBarColor: '#7cb63b',
+        tabBarColor: '#007360',
         tabBarIcon: () => <Icon name="home" color={color} size={22} />,
       }}
     />
@@ -40,7 +40,7 @@ const MainTabScreen = () => (
       component={PatientStackScreen}
       options={{
         tabBarLabel: 'Patients',
-        tabBarColor: '#7cb63b',
+        tabBarColor: '#007360',
         tabBarIcon: () => <Icon name="first-aid-alt" color={color} size={20} />,
       }}
     />
@@ -49,7 +49,7 @@ const MainTabScreen = () => (
       component={ChatsStackScreen}
       options={{
         tabBarLabel: 'Chats',
-        tabBarColor: '#7cb63b',
+        tabBarColor: '#007360',
         tabBarIcon: () => <Icon name="commenting" color={color} size={20} />,
       }}
     />
@@ -58,7 +58,7 @@ const MainTabScreen = () => (
       component={NotificationsStackScreen}
       options={{
         tabBarLabel: 'Notifications',
-        tabBarColor: '#7cb63b',
+        tabBarColor: '#007360',
         tabBarIcon: () => <Icon name="bell" color={color} size={22} />,
       }}
     />
@@ -67,7 +67,7 @@ const MainTabScreen = () => (
       component={ProfileStackScreen}
       options={{
         tabBarLabel: 'Profile',
-        tabBarColor: '#7cb63b',
+        tabBarColor: '#007360',
         tabBarIcon: () => <Icon name="doctor" color={color} size={22} />,
       }}
     />
@@ -80,7 +80,7 @@ const HomeStackScreen = ({navigation}) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#7cb63b',
+        backgroundColor: '#007360',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -96,7 +96,7 @@ const HomeStackScreen = ({navigation}) => (
           <Icon.Button
             name="nav-icon-list-a"
             size={25}
-            backgroundColor="#7cb63b"
+            backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
           />
         ),
@@ -109,7 +109,7 @@ const ChatsStackScreen = ({navigation}) => (
   <ChatsStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#7cb63b',
+        backgroundColor: '#007360',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -124,7 +124,7 @@ const ChatsStackScreen = ({navigation}) => (
           <Icon.Button
             name="nav-icon-list-a"
             size={25}
-            backgroundColor="#7cb63b"
+            backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
           />
         ),
@@ -137,7 +137,7 @@ const PatientStackScreen = ({navigation}) => (
   <PatientsStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#7cb63b',
+        backgroundColor: '#007360',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -152,7 +152,7 @@ const PatientStackScreen = ({navigation}) => (
           <Icon.Button
             name="nav-icon-list-a"
             size={25}
-            backgroundColor="#7cb63b"
+            backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
           />
         ),
@@ -166,7 +166,7 @@ const PatientStackScreen = ({navigation}) => (
           <Icon.Button
             name="nav-icon-list-a"
             size={25}
-            backgroundColor="#7cb63b"
+            backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
           />
         ),
@@ -179,7 +179,7 @@ const ProfileStackScreen = ({navigation}) => (
   <ProfilesStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#7cb63b',
+        backgroundColor: '#007360',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -194,7 +194,7 @@ const ProfileStackScreen = ({navigation}) => (
           <Icon.Button
             name="nav-icon-list-a"
             size={25}
-            backgroundColor="#7cb63b"
+            backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
           />
         ),
@@ -207,7 +207,7 @@ const NotificationsStackScreen = ({navigation}) => (
   <NotificationsStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#7cb63b',
+        backgroundColor: '#007360',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -222,7 +222,7 @@ const NotificationsStackScreen = ({navigation}) => (
           <Icon.Button
             name="nav-icon-list-a"
             size={25}
-            backgroundColor="#7cb63b"
+            backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
           />
         ),
