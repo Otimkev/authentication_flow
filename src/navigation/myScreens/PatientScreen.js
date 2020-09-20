@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -24,13 +24,13 @@ export default class PatientScreen extends Component {
         {
           id: 10,
           name: 'Fermod Doe',
-          status: 'active',
+          status: 'Cancer',
           image: 'https://bootdey.com/img/Content/avatar/avatar7.png',
         },
         {
           id: 11,
           name: 'Danny Doe',
-          status: 'active',
+          status: 'Blood',
           image: 'https://bootdey.com/img/Content/avatar/avatar1.png',
         },
       ],
@@ -69,7 +69,7 @@ export default class PatientScreen extends Component {
                 ellipsizeMode="tail">
                 {item.name}
               </Text>
-              <Text style={styles.mblTxt}>Mobile</Text>
+              <Text style={styles.mblTxt}>BED03</Text>
             </View>
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.status}</Text>
@@ -95,7 +95,7 @@ export default class PatientScreen extends Component {
         <FloatingAction
           actions={this.state.actions}
           onPressItem={() => {
-            console.log('selected button');
+            this.props.navigation.navigate('Register Patient');
           }}
         />
       </View>

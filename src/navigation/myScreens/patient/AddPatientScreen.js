@@ -10,31 +10,32 @@ import {
 } from 'react-native';
 import AddPatient from '../../../httpClient/repository/patient/AddPatient';
 import CardView from 'react-native-cardview';
+import SessionManager from '../../../httpClient/utils/SessionManager';
 import {globalStyles} from '../../../styles/Global';
 
 const AddPatientScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [gender, setGender] = useState('');
-  const [age, setAge] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
   const [nationality, setNationality] = useState('');
   const [religon, setReligon] = useState('');
   const [maritalStatus, setMaritalStatus] = useState('');
-  const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
-  const [weight, setWeight] = useState('');
+  const [phoneNumber, setPhoneNymber] = useState('');
+  const [residency, setResidency] = useState('');
 
   const patientData = {
     firstName: firstName,
     lastName: lastName,
     gender: gender,
-    age: age,
+    dateOfBirth: dateOfBirth,
     nationality: nationality,
     religon: religon,
     maritalStatus: maritalStatus,
-    address: address,
     email: email,
-    weight: weight,
+    phoneNumber: phoneNumber,
+    residency: residency,
   };
 
   const showToast = (message) => {
@@ -79,9 +80,9 @@ const AddPatientScreen = ({navigation}) => {
           <View>
             <TextInput
               style={globalStyles.inputContainer}
-              placeholder="Age"
+              placeholder="Date of Birth"
               onChangeText={(text) => {
-                setAge(text);
+                setDateOfBirth(text);
               }}
             />
           </View>
@@ -114,16 +115,7 @@ const AddPatientScreen = ({navigation}) => {
           </View>
           <View>
             <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="Address"
-              onChangeText={(text) => {
-                setAddress(text);
-              }}
-            />
-          </View>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
+              style={styles.inputContainer}
               placeholder="Email"
               onChangeText={(text) => {
                 setEmail(text);
@@ -133,9 +125,18 @@ const AddPatientScreen = ({navigation}) => {
           <View>
             <TextInput
               style={globalStyles.inputContainer}
-              placeholder="Weight"
+              placeholder="Residency"
               onChangeText={(text) => {
-                setWeight(text);
+                setResidency(text);
+              }}
+            />
+          </View>
+          <View>
+            <TextInput
+              style={globalStyles.inputContainer}
+              placeholder="Phone Number"
+              onChangeText={(text) => {
+                setPhoneNymber(text);
               }}
             />
           </View>
@@ -163,7 +164,10 @@ const AddPatientScreen = ({navigation}) => {
               title="Submit"
               color="#009387"
               onPress={async () => {
-                const result = await AddPatient.processAddPatient(patientData);
+                const result = await AddPatient.processAddPatient(
+                  patientData,
+                  SessionManager.getUserId(),
+                );
                 if (!result) {
                   showToast('Unsuccessful');
                   return;

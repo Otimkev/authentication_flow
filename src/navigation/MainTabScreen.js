@@ -159,7 +159,7 @@ const PatientStackScreen = ({navigation}) => (
       }}
     />
     <PatientsStack.Screen
-      name="AddPatientScreen"
+      name="Register Patient"
       component={AddPatientScreen}
       options={{
         headerLeft: () => (
