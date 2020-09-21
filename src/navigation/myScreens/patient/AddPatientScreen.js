@@ -11,6 +11,8 @@ import {
 import AddPatient from '../../../httpClient/repository/patient/AddPatient';
 import CardView from 'react-native-cardview';
 import {globalStyles} from '../../../styles/Global';
+import AsyncStorage from '@react-native-community/async-storage';
+import GetAllPatients from '../../../httpClient/repository/patient/GetAllPatients';
 
 const AddPatientScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
@@ -18,10 +20,10 @@ const AddPatientScreen = ({navigation}) => {
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [nationality, setNationality] = useState('');
-  const [religon, setReligon] = useState('');
+  const [religion, setReligion] = useState('');
   const [maritalStatus, setMaritalStatus] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNymber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [residency, setResidency] = useState('');
 
   const patientData = {
@@ -30,7 +32,7 @@ const AddPatientScreen = ({navigation}) => {
     gender: gender,
     dateOfBirth: dateOfBirth,
     nationality: nationality,
-    religon: religon,
+    religion: religion,
     maritalStatus: maritalStatus,
     email: email,
     phoneNumber: phoneNumber,
@@ -97,9 +99,9 @@ const AddPatientScreen = ({navigation}) => {
           <View>
             <TextInput
               style={globalStyles.inputContainer}
-              placeholder="Religon"
+              placeholder="Religion"
               onChangeText={(text) => {
-                setReligon(text);
+                setReligion(text);
               }}
             />
           </View>
@@ -135,47 +137,36 @@ const AddPatientScreen = ({navigation}) => {
               style={globalStyles.inputContainer}
               placeholder="Phone Number"
               onChangeText={(text) => {
-                setPhoneNymber(text);
+                setPhoneNumber(text);
               }}
             />
           </View>
           <TouchableOpacity
             style={globalStyles.Button}
             onPress={async () => {
-              const result = await AddPatient.processAddPatient(patientData);
+              const user = await AsyncStorage.getItem('user');
+              const mUser = JSON.parse(user);
+              const result = await AddPatient.processAddPatient(
+                patientData,
+                mUser.userId,
+              );
               if (!result) {
                 showToast('Unsuccessful');
                 return;
               }
-              showToast('Sucessful');
+              showToast('Successful');
+              await GetAllPatients.processGetAllPatients(mUser.userId);
               navigation.navigate('Patients');
             }}>
             <Text style={globalStyles.ButtonText}>Add Patient</Text>
           </TouchableOpacity>
-          {/* <View
-            style={{
-              marginVertical: 10,
-              width: 320,
-              height: 40,
-            }}> */}
-          {/* <Button
-              style={globalStyles.Button}
-              title="Submit"
-              color="#009387"
-              onPress={async () => {
-                const result = await AddPatient.processAddPatient(
-                  patientData,
-                  SessionManager.getUserId(),
-                );
-                if (!result) {
-                  showToast('Unsuccessful');
-                  return;
-                }
-                showToast('Sucessful');
-                navigation.navigate('Patients');
-              }}
-            /> */}
-          {/* </View> */}
+          <TouchableOpacity
+            style={globalStyles.Button}
+            onPress={async () => {
+              navigation.navigate('Patients');
+            }}>
+            <Text style={globalStyles.ButtonText}>cancel</Text>
+          </TouchableOpacity>
         </View>
       </CardView>
     </ScrollView>

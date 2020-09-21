@@ -21,6 +21,7 @@ export default class PatientScreen extends Component {
     super(props);
     this.state = {
       calls: [],
+      isLoading: false,
       actions: [
         {
           text: 'Add patient',
@@ -33,11 +34,14 @@ export default class PatientScreen extends Component {
   }
 
   async componentDidMount() {
+    this.setState({isLoading: false});
     try {
       const user = await AsyncStorage.getItem('user');
       const mUser = JSON.parse(user);
       const ApiCall = await GetAllPatients.processGetAllPatients(mUser.userId);
       this.setState({calls: ApiCall});
+      this.setState({isLoading: true});
+      console.log(`NEW DATA ${this.calls}`);
     } catch (err) {
       console.log('Error fetching data-----------', err);
     }

@@ -15,6 +15,7 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 10,
     margin: 5,
     justifyContent: 'center',
+    fontSize: 16,
   },
   TextInput: {
     paddingHorizontal: 10,
@@ -23,17 +24,17 @@ export const globalStyles = StyleSheet.create({
     fontSize: 20,
   },
   Button: {
-    width: '60%',
+    width: '100%',
     backgroundColor: '#007360',
     borderRadius: 10,
-    height: 50,
+    height: 45,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 10,
     marginBottom: 10,
   },
   ButtonText: {
-    fontSize: 24,
+    fontSize: 18,
     color: '#fff',
   },
 });

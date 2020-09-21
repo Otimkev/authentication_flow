@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {
   useTheme,
@@ -19,11 +19,11 @@ import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-// import {AuthContext} from '../components/context';
+import {AuthContext} from '../../App';
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
-
+  const {signOut} = useContext(AuthContext);
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView {...props}>
@@ -117,6 +117,7 @@ export function DrawerContent(props) {
             <Ionicons name="log-out-outline" color={color} size={size} />
           )}
           label="Sign Out"
+          onPress={() => signOut()}
         />
       </Drawer.Section>
     </View>

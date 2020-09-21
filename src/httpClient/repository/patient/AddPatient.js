@@ -1,5 +1,4 @@
 import axios from '../../config/Config.js';
-import PatientsModel from '../../models/PatientsModel.js';
 
 class AddPatient {
   async processAddPatient(patientData, userId) {
@@ -12,12 +11,9 @@ class AddPatient {
         console.log('Failed to save');
         return;
       }
-      const result = await responseResult.data;
-      console.log(result);
-      return result;
+      return await responseResult.data;
     } catch (error) {
       console.log(error);
-      return;
     }
   }
 }
