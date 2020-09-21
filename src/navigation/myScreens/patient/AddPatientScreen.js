@@ -153,30 +153,6 @@ const AddPatientScreen = ({navigation}) => {
             }}>
             <Text style={globalStyles.ButtonText}>Add Patient</Text>
           </TouchableOpacity>
-          {/* <View
-            style={{
-              marginVertical: 10,
-              width: 320,
-              height: 40,
-            }}> */}
-          {/* <Button
-              style={globalStyles.Button}
-              title="Submit"
-              color="#009387"
-              onPress={async () => {
-                const result = await AddPatient.processAddPatient(
-                  patientData,
-                  SessionManager.getUserId(),
-                );
-                if (!result) {
-                  showToast('Unsuccessful');
-                  return;
-                }
-                showToast('Sucessful');
-                navigation.navigate('Patients');
-              }}
-            /> */}
-          {/* </View> */}
         </View>
       </CardView>
     </ScrollView>
