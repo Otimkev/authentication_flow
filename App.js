@@ -133,7 +133,7 @@ export default function App({navigation}) {
           <Stack.Navigator headerMode="none">
             <Stack.Screen name="Splash" component={SplashScreen} />
           </Stack.Navigator>
-        ) : state.userToken != null ? (
+        ) : state.userToken === null ? (
           // No token found, user isn't signed in
           <RootStackScreen />
         ) : (

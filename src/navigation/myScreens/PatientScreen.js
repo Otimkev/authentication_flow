@@ -60,7 +60,12 @@ export default class PatientScreen extends Component {
     return (
       <TouchableOpacity>
         <View style={styles.row}>
-          <Image source={{uri: item.image}} style={styles.pic} />
+          <Image
+            source={{
+              uri: item.image,
+            }}
+            style={styles.pic}
+          />
           <View>
             <View style={styles.nameContainer}>
               <Text
@@ -69,10 +74,10 @@ export default class PatientScreen extends Component {
                 ellipsizeMode="tail">
                 {item.name}
               </Text>
-              <Text style={styles.mblTxt}>BED03</Text>
+              <Text style={styles.mblTxt}> BED03 </Text>
             </View>
             <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.status}</Text>
+              <Text style={styles.msgTxt}> {item.status} </Text>
             </View>
           </View>
         </View>
@@ -82,7 +87,10 @@ export default class PatientScreen extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View
+        style={{
+          flex: 1,
+        }}>
         <FlatList
           extraData={this.state}
           data={this.state.calls}
@@ -91,7 +99,6 @@ export default class PatientScreen extends Component {
           }}
           renderItem={this.renderItem}
         />
-
         <FloatingAction
           actions={this.state.actions}
           onPressItem={() => {

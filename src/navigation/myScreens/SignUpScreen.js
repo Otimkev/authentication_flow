@@ -99,7 +99,7 @@ const SignUpScreen = ({navigation}) => {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.loginBtn}
+        style={globalStyles.Button}
         onPress={() => signUp(postUserData)}>
         <Text style={styles.loginText}>Sign Up</Text>
       </TouchableOpacity>
@@ -146,16 +146,6 @@ const styles = StyleSheet.create({
     borderColor: '#7cb63b',
     marginVertical: 5,
     borderRadius: 5,
-  },
-  loginBtn: {
-    width: '60%',
-    backgroundColor: '#009387',
-    borderRadius: 10,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10,
   },
   text: {
     color: '#aaae',
