@@ -48,7 +48,7 @@ const SignInScreen = ({navigation}) => {
       </View>
 
       <TouchableOpacity
-        style={styles.loginBtn}
+        style={globalStyles.Button}
         onPress={() => signIn(userCredentials)}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
@@ -92,16 +92,6 @@ const styles = StyleSheet.create({
     borderColor: '#CCC',
     marginVertical: 5,
     borderRadius: 5,
-  },
-  loginBtn: {
-    width: '60%',
-    backgroundColor: '#7cb63b',
-    borderRadius: 10,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10,
   },
   text: {
     color: '#aaae',

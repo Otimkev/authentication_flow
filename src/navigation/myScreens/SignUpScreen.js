@@ -99,7 +99,7 @@ const SignUpScreen = ({navigation}) => {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.loginBtn}
+        style={globalStyles.Button}
         onPress={() => signUp(postUserData)}>
         <Text style={styles.loginText}>Sign Up</Text>
       </TouchableOpacity>

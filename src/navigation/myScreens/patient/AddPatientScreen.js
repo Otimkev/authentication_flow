@@ -114,7 +114,7 @@ const AddPatientScreen = ({navigation}) => {
           </View>
           <View>
             <TextInput
-              style={styles.inputContainer}
+              style={globalStyles.inputContainer}
               placeholder="Email"
               onChangeText={(text) => {
                 setEmail(text);
