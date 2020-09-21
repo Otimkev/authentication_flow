@@ -20,20 +20,7 @@ export default class PatientScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      calls: [
-        {
-          id: 10,
-          name: 'Fermod Doe',
-          status: 'Cancer',
-          image: 'https://bootdey.com/img/Content/avatar/avatar7.png',
-        },
-        {
-          id: 11,
-          name: 'Danny Doe',
-          status: 'Blood',
-          image: 'https://bootdey.com/img/Content/avatar/avatar1.png',
-        },
-      ],
+      calls: [],
       actions: [
         {
           text: 'Add patient',
@@ -47,10 +34,10 @@ export default class PatientScreen extends Component {
 
   async componentDidMount() {
     try {
-      const ApiCall = await GetAllPatients.processGetAllPatients(1);
-      // const patients = await ApiCall.json();
-      console.log(ApiCall);
-      //this.setState({pokeList: patients.data, loading: false});
+      const user = await AsyncStorage.getItem('user');
+      const mUser = JSON.parse(user);
+      const ApiCall = await GetAllPatients.processGetAllPatients(mUser.userId);
+      this.setState({calls: ApiCall});
     } catch (err) {
       console.log('Error fetching data-----------', err);
     }
@@ -67,12 +54,12 @@ export default class PatientScreen extends Component {
                 style={styles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
-                {item.name}
+                {`${item.firstName} ${item.lastName}`}
               </Text>
               <Text style={styles.mblTxt}>BED03</Text>
             </View>
             <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.status}</Text>
+              <Text style={styles.msgTxt}>{item.id}</Text>
             </View>
           </View>
         </View>

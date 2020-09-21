@@ -1,5 +1,5 @@
 import axios from '../../config/Config.js';
-import auth from '../../../navigation/SampleAuth.js';
+import auth from '../../utils/SampleAuth.js';
 
 class SignupRepository {
   loadingData = [];

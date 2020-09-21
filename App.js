@@ -74,11 +74,9 @@ export default function App({navigation}) {
     () => ({
       signIn: async (data) => {
         try {
-          const {
-            tokenDrawerContent,
-            status,
-            result,
-          } = await LoginRepository.postSigninData(data);
+          const {token, status, result} = await LoginRepository.postSigninData(
+            data,
+          );
           if (status !== 200) {
             console.log('Failed to signin user');
             return;
@@ -92,11 +90,11 @@ export default function App({navigation}) {
         try {
           const userToken = await AsyncStorage.getItem('user');
           if (userToken) {
-            await AsyncStorage.removeItem('user');
+            await AsyncStorage.clear();
             dispatch({type: 'SIGN_OUT'});
             return;
           }
-          console.log('token removal faild');
+          console.log('token removal successful');
         } catch (error) {
           console.log(error);
         }
