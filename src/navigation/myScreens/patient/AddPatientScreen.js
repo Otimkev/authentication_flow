@@ -42,11 +42,11 @@ const AddPatientScreen = ({navigation}) => {
     maritalStatus: maritalStatus,
     email: email,
     phoneNumber: phoneNumber,
-    address: address,
-    emergencyFirstName: emergencyFirstName,
-    emergencyLastName: emergencyLastName,
-    emergencyPhoneNumber: emergencyPhoneNumber,
-    relationship: relationship,
+    // address: address,
+    // emergencyFirstName: emergencyFirstName,
+    // emergencyLastName: emergencyLastName,
+    // emergencyPhoneNumber: emergencyPhoneNumber,
+    // relationship: relationship,
   };
 
   const showToast = (message) => {

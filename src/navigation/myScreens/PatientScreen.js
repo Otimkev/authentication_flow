@@ -31,34 +31,24 @@ const PatientScreen = (props) => {
       position: 2,
     },
   ]);
-  const getUser = async () => {
-    await AsyncStorage.getItem('user');
-  };
-  const fetchData = React.useCallback(() => {
-    GetAllPatients.processGetAllPatients(getUser().userId)
-      .then((response) => {
-        setPatientList(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const fetchPatientData = useCallback(async () => {
+    try {
+      const user = await AsyncStorage.getItem('user');
+      const mUser = JSON.parse(user);
+      console.log(mUser.userId);
+      const patientData = await GetAllPatients.processGetAllPatients(
+        mUser.userId,
+      );
+      console.log(patientData);
+      setPatientList(patientData);
+      return patientData;
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
   React.useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-  // async componentDidMount() {
-  //   this.setState({isLoading: false});
-  //   try {
-  //     const user = await AsyncStorage.getItem('user');
-  //     const mUser = JSON.parse(user);
-  //     const ApiCall = await GetAllPatients.processGetAllPatients(mUser.userId);
-  //     this.setState({calls: ApiCall});
-  //     this.setState({isLoading: true});
-  //     console.log(`NEW DATA ${this.calls}`);
-  //   } catch (err) {
-  //     console.log('Error fetching data-----------', err);
-  //   }
-  // }
+    fetchPatientData().then((r) => setPatientList(r));
+  }, [fetchPatientData]);
 
   const renderItem = ({item}) => {
     return (
@@ -95,7 +85,7 @@ const PatientScreen = (props) => {
         flex: 1,
       }}>
       <FlatList
-        extraData={patientList}
+        extraData={true}
         data={patientList}
         keyExtractor={(item) => {
           return item.id;
