@@ -12,6 +12,7 @@ import AddPatient from '../../../httpClient/repository/patient/AddPatient';
 import CardView from 'react-native-cardview';
 import SessionManager from '../../../httpClient/utils/SessionManager';
 import {globalStyles} from '../../../styles/Global';
+import {Picker} from '@react-native-community/picker';
 
 const AddPatientScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');

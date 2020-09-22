@@ -56,10 +56,10 @@ export const globalStyles = StyleSheet.create({
     padding: 10,
     color: '#fff',
     fontWeight: 'bold',
-    borderRadius: 5,
-    marginTop: 10,
+    borderRadius: 2,
+    marginTop: 50,
   },
   NormalFlex: {
-    marginTop: 10,
+    marginTop: 30,
   },
 });
