@@ -1,4 +1,10 @@
-import React, {Component, useContext} from 'react';
+import React, {
+  Component,
+  useContext,
+  useCallback,
+  useState,
+  useEffect,
+} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -16,38 +22,45 @@ import SessionManager from '../../httpClient/utils/SessionManager';
 import {FloatingAction} from 'react-native-floating-action';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
-export default class PatientScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      calls: [],
-      isLoading: false,
-      actions: [
-        {
-          text: 'Add patient',
-          name: 'bt_accessibility',
-          icon: () => <Icon name="user-injured" color="#ccc" size={26} />,
-          position: 2,
-        },
-      ],
-    };
-  }
+const PatientScreen = (props) => {
+  const [patientList, setPatientList] = useState([]);
+  const [actions, setActions] = useState([
+    {
+      text: 'Accessibility',
+      name: 'bt_accessibility',
+      position: 2,
+    },
+  ]);
+  const getUser = async () => {
+    await AsyncStorage.getItem('user');
+  };
+  const fetchData = React.useCallback(() => {
+    GetAllPatients.processGetAllPatients(getUser().userId)
+      .then((response) => {
+        setPatientList(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  React.useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+  // async componentDidMount() {
+  //   this.setState({isLoading: false});
+  //   try {
+  //     const user = await AsyncStorage.getItem('user');
+  //     const mUser = JSON.parse(user);
+  //     const ApiCall = await GetAllPatients.processGetAllPatients(mUser.userId);
+  //     this.setState({calls: ApiCall});
+  //     this.setState({isLoading: true});
+  //     console.log(`NEW DATA ${this.calls}`);
+  //   } catch (err) {
+  //     console.log('Error fetching data-----------', err);
+  //   }
+  // }
 
-  async componentDidMount() {
-    this.setState({isLoading: false});
-    try {
-      const user = await AsyncStorage.getItem('user');
-      const mUser = JSON.parse(user);
-      const ApiCall = await GetAllPatients.processGetAllPatients(mUser.userId);
-      this.setState({calls: ApiCall});
-      this.setState({isLoading: true});
-      console.log(`NEW DATA ${this.calls}`);
-    } catch (err) {
-      console.log('Error fetching data-----------', err);
-    }
-  }
-
-  renderItem = ({item}) => {
+  const renderItem = ({item}) => {
     return (
       <TouchableOpacity>
         <View style={styles.row}>
@@ -76,31 +89,30 @@ export default class PatientScreen extends Component {
     );
   };
 
-  render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-        }}>
-        <FlatList
-          extraData={this.state}
-          data={this.state.calls}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
-          renderItem={this.renderItem}
-        />
-        <FloatingAction
-          actions={this.state.actions}
-          onPressItem={() => {
-            this.props.navigation.navigate('Register Patient');
-          }}
-        />
-      </View>
-    );
-  }
-}
-// onPress={() => navigation.navigate('SignUpScreen')}>
+  return (
+    <View
+      style={{
+        flex: 1,
+      }}>
+      <FlatList
+        extraData={patientList}
+        data={patientList}
+        keyExtractor={(item) => {
+          return item.id;
+        }}
+        renderItem={renderItem}
+      />
+      <FloatingAction
+        actions={actions}
+        onPressItem={() => {
+          props.navigation.navigate('Register Patient');
+        }}
+      />
+    </View>
+  );
+};
+
+export default PatientScreen;
 
 const styles = StyleSheet.create({
   row: {
