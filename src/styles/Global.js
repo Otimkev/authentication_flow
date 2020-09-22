@@ -36,4 +36,9 @@ export const globalStyles = StyleSheet.create({
     fontSize: 24,
     color: '#fff',
   },
+  Row: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    height: 100,
+  },
 });

@@ -50,7 +50,27 @@ const AddPatientScreen = ({navigation}) => {
         cardMaxElevation={2}
         cornerRadius={5}>
         <View style={globalStyles.container}>
-          <View>
+          <Text style={styles.label}>Name</Text>
+          <View style={globalStyles.Row}>
+            <View style={styles.inputWrap}>
+              <TextInput
+                placeholder="First name"
+                onChangeText={(text) => {
+                  setFirstName(text);
+                }}
+              />
+            </View>
+
+            <View style={styles.inputWrap}>
+              <TextInput
+                placeholder="Last name"
+                onChangeText={(text) => {
+                  setLastName(text);
+                }}
+              />
+            </View>
+          </View>
+          {/* <View>
             <TextInput
               style={globalStyles.inputContainer}
               placeholder="First name"
@@ -139,7 +159,7 @@ const AddPatientScreen = ({navigation}) => {
                 setPhoneNymber(text);
               }}
             />
-          </View>
+          </View> */}
           <TouchableOpacity
             style={globalStyles.Button}
             onPress={async () => {
@@ -161,16 +181,36 @@ const AddPatientScreen = ({navigation}) => {
 
 export default AddPatientScreen;
 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     alignItems: 'center',
+//     backgroundColor: '#fff',
+//     padding: 10,
+//   },
+//   cardContainer: {
+//     width: '100%',
+//     height: '100%',
+//     padding: 8,
+//   },
+// });
+
 const styles = StyleSheet.create({
-  container: {
+  label: {
     flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 10,
+    fontWeight: 'bold',
   },
-  cardContainer: {
-    width: '100%',
-    height: '100%',
-    padding: 8,
+  inputWrap: {
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+  },
+  inputDate: {
+    flex: 1,
+    backgroundColor: '#108c96',
+  },
+  inputCvv: {
+    flex: 1,
+    backgroundColor: '#6fa511',
   },
 });
