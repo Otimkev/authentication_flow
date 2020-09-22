@@ -51,6 +51,7 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     fontWeight: 'bold',
     color: '#007360',
+    fontSize: 16,
   },
   BlockHeading: {
     backgroundColor: '#007360',
