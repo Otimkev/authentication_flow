@@ -37,4 +37,30 @@ export const globalStyles = StyleSheet.create({
     fontSize: 18,
     color: '#fff',
   },
+  Row: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    height: 70,
+  },
+  InputBorderBottom: {
+    padding: 10,
+    borderBottomColor: '#007360',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  Heading: {
+    flex: 1,
+    fontWeight: 'bold',
+    color: '#007360',
+  },
+  BlockHeading: {
+    backgroundColor: '#007360',
+    padding: 10,
+    color: '#fff',
+    fontWeight: 'bold',
+    borderRadius: 2,
+    marginTop: 50,
+  },
+  NormalFlex: {
+    marginTop: 30,
+  },
 });

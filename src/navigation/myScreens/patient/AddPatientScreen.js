@@ -13,6 +13,7 @@ import CardView from 'react-native-cardview';
 import {globalStyles} from '../../../styles/Global';
 import AsyncStorage from '@react-native-community/async-storage';
 import GetAllPatients from '../../../httpClient/repository/patient/GetAllPatients';
+import {Picker} from '@react-native-community/picker';
 
 const AddPatientScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
@@ -25,6 +26,11 @@ const AddPatientScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [residency, setResidency] = useState('');
+  const [address, setAddress] = useState('');
+  const [emergencyFirstName, setEmergencyFirstName] = useState('');
+  const [emergencyLastName, setEmergencyLastName] = useState('');
+  const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
+  const [relationship, setRelationship] = useState('');
 
   const patientData = {
     firstName: firstName,
@@ -36,7 +42,11 @@ const AddPatientScreen = ({navigation}) => {
     maritalStatus: maritalStatus,
     email: email,
     phoneNumber: phoneNumber,
-    residency: residency,
+    address: address,
+    emergencyFirstName: emergencyFirstName,
+    emergencyLastName: emergencyLastName,
+    emergencyPhoneNumber: emergencyPhoneNumber,
+    relationship: relationship,
   };
 
   const showToast = (message) => {
@@ -51,96 +61,159 @@ const AddPatientScreen = ({navigation}) => {
         cardMaxElevation={2}
         cornerRadius={5}>
         <View style={globalStyles.container}>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="First name"
-              onChangeText={(text) => {
-                setFirstName(text);
-              }}
-            />
+          {/* Patient Name Section */}
+          <Text style={globalStyles.Heading}>Name</Text>
+          <View style={globalStyles.Row}>
+            <View style={styles.inputWrap}>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="First name"
+                onChangeText={(text) => {
+                  setFirstName(text);
+                }}
+              />
+            </View>
+            <View style={styles.inputWrap}>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="Last name"
+                onChangeText={(text) => {
+                  setLastName(text);
+                }}
+              />
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="Last name"
-              onChangeText={(text) => {
-                setLastName(text);
-              }}
-            />
+          {/*Patient Age and Sex Section*/}
+          <View style={globalStyles.Row}>
+            <View style={styles.inputWrap}>
+              <Text style={globalStyles.Heading}>Gender</Text>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="Gender"
+                onChangeText={(text) => {
+                  setGender(text);
+                }}
+              />
+            </View>
+            <View style={styles.inputWrap}>
+              <Text style={globalStyles.Heading}>Age</Text>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="Age"
+                onChangeText={(text) => {
+                  setDateOfBirth(text);
+                }}
+                keyboardType="phone-pad"
+              />
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="Gender"
-              onChangeText={(text) => {
-                setGender(text);
-              }}
-            />
+          {/* Patient Address Section */}
+          <View style={globalStyles.NormalFlex}>
+            <View style={styles.inputWrap}>
+              <Text style={globalStyles.Heading}>Address</Text>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="Address"
+                onChangeText={(text) => {
+                  setAddress(text);
+                }}
+              />
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="Date of Birth"
-              onChangeText={(text) => {
-                setDateOfBirth(text);
-              }}
-            />
+          {/* Patient Marital Status Section */}
+          <View style={globalStyles.NormalFlex}>
+            <View style={styles.inputWrap}>
+              <Text style={globalStyles.Heading}>Marital Status</Text>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="Marital Status"
+                onChangeText={(text) => {
+                  setMaritalStatus(text);
+                }}
+              />
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="Nationality"
-              onChangeText={(text) => {
-                setNationality(text);
-              }}
-            />
+          {/* Patient Phone Number Section */}
+          <View style={globalStyles.NormalFlex}>
+            <View style={styles.inputWrap}>
+              <Text style={globalStyles.Heading}>Phone Number</Text>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="Phone Number"
+                onChangeText={(text) => {
+                  setPhoneNumber(text);
+                }}
+                keyboardType="phone-pad"
+              />
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="Religion"
-              onChangeText={(text) => {
-                setReligion(text);
-              }}
-            />
+          {/* Patient Email Address Section */}
+          <View style={globalStyles.NormalFlex}>
+            <View style={styles.inputWrap}>
+              <Text style={globalStyles.Heading}>Email Address</Text>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="Email"
+                onChangeText={(text) => {
+                  setEmail(text);
+                }}
+                keyboardType="email-address"
+              />
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="Marital status"
-              onChangeText={(text) => {
-                setMaritalStatus(text);
-              }}
-            />
+          {/* Emergency Contact section */}
+          <Text style={globalStyles.BlockHeading}>
+            Emergency contact Information
+          </Text>
+          <View style={globalStyles.Row}>
+            <View style={styles.inputWrap}>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="First name"
+                onChangeText={(text) => {
+                  setEmergencyFirstName(text);
+                }}
+              />
+            </View>
+
+            <View style={styles.inputWrap}>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="Last name"
+                onChangeText={(text) => {
+                  setEmergencyLastName(text);
+                }}
+              />
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="Email"
-              onChangeText={(text) => {
-                setEmail(text);
-              }}
-            />
+          {/* Emergency Phone Number Section */}
+          <View style={globalStyles.NormalFlex}>
+            <View style={styles.inputWrap}>
+              <Text style={globalStyles.Heading}>Phone Number</Text>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="eg. 0777..."
+                onChangeText={(text) => {
+                  setEmergencyPhoneNumber(text);
+                }}
+                keyboardType="phone-pad"
+              />
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="Residency"
-              onChangeText={(text) => {
-                setResidency(text);
-              }}
-            />
+          {/* Patient Marital Status Section */}
+          <View style={globalStyles.NormalFlex}>
+            <View style={styles.inputWrap}>
+              <Text style={globalStyles.Heading}>Relationship</Text>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="eg. Mother, Father"
+                onChangeText={(text) => {
+                  setRelationship(text);
+                }}
+              />
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={globalStyles.inputContainer}
-              placeholder="Phone Number"
-              onChangeText={(text) => {
-                setPhoneNumber(text);
-              }}
-            />
-          </View>
+          {/* Submit Button Section */}
           <TouchableOpacity
             style={globalStyles.Button}
             onPress={async () => {
@@ -173,18 +246,17 @@ const AddPatientScreen = ({navigation}) => {
   );
 };
 
-export default AddPatientScreen;
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 10,
-  },
   cardContainer: {
     width: '100%',
     height: '100%',
     padding: 8,
   },
+  inputWrap: {
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+  },
 });
+
+export default AddPatientScreen;
