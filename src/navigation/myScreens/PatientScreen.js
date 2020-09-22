@@ -35,11 +35,9 @@ const PatientScreen = (props) => {
     try {
       const user = await AsyncStorage.getItem('user');
       const mUser = JSON.parse(user);
-      console.log(mUser.userId);
       const patientData = await GetAllPatients.processGetAllPatients(
         mUser.userId,
       );
-      console.log(patientData);
       setPatientList(patientData);
       return patientData;
     } catch (e) {
@@ -48,7 +46,7 @@ const PatientScreen = (props) => {
   }, []);
   React.useEffect(() => {
     fetchPatientData().then((r) => setPatientList(r));
-  }, [fetchPatientData]);
+  }, [fetchPatientData, patientList]);
 
   const renderItem = ({item}) => {
     return (

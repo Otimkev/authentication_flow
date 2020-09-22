@@ -14,6 +14,7 @@ import {globalStyles} from '../../../styles/Global';
 import AsyncStorage from '@react-native-community/async-storage';
 import GetAllPatients from '../../../httpClient/repository/patient/GetAllPatients';
 import {Picker} from '@react-native-community/picker';
+//import {Dropdown} from 'react-native-material-dropdown';
 
 const AddPatientScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
@@ -42,12 +43,24 @@ const AddPatientScreen = ({navigation}) => {
     maritalStatus: maritalStatus,
     email: email,
     phoneNumber: phoneNumber,
-    // address: address,
+    residency: address,
     // emergencyFirstName: emergencyFirstName,
     // emergencyLastName: emergencyLastName,
     // emergencyPhoneNumber: emergencyPhoneNumber,
     // relationship: relationship,
   };
+
+  let data = [
+    {
+      value: 'Banana',
+    },
+    {
+      value: 'Mango',
+    },
+    {
+      value: 'Pear',
+    },
+  ];
 
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);

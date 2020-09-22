@@ -13,6 +13,8 @@ import LoginRepository from './src/httpClient/repository/login/LoginRepository';
 import WardsScreen from './src/navigation/myScreens/WardsScreen';
 import SettingsScreen from './src/navigation/myScreens/SettingsScreen';
 import SpecialistScreen from './src/navigation/myScreens/SpecialistScreen';
+import SharedPatients from './src/navigation/myScreens/SharedPatients';
+import SupportScreen from './src/navigation/myScreens/SupportScreen';
 
 export const AuthContext = React.createContext();
 
@@ -141,6 +143,8 @@ export default function App({navigation}) {
             <Drawer.Screen name="Wards" component={WardsScreen} />
             <Drawer.Screen name="Notifications" component={ProfileScreen} />
             <Drawer.Screen name="Settings" component={SettingsScreen} />
+            <Drawer.Screen name="SharedPatients" component={SharedPatients} />
+            <Drawer.Screen name="SupportScreen" component={SupportScreen} />
           </Drawer.Navigator>
         )}
       </NavigationContainer>

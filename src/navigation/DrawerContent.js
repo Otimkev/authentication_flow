@@ -60,7 +60,7 @@ export function DrawerContent(props) {
               )}
               label="Specialists"
               onPress={() => {
-                props.navigation.navigate('SpecialistScreen');
+                props.navigation.navigate('Specialists');
               }}
             />
             <DrawerItem
@@ -69,7 +69,7 @@ export function DrawerContent(props) {
               )}
               label="Wards"
               onPress={() => {
-                props.navigation.navigate('WardsScreen');
+                props.navigation.navigate('Wards');
               }}
             />
             <DrawerItem
@@ -96,7 +96,7 @@ export function DrawerContent(props) {
               )}
               label="Settings"
               onPress={() => {
-                props.navigation.navigate('SettingsScreen');
+                props.navigation.navigate('Settings');
               }}
             />
             <DrawerItem
