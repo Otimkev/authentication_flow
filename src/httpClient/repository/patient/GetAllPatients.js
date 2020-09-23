@@ -7,10 +7,9 @@ class GetAllPatients {
       if (!responseResult.status === 200) {
         console.log('Failed to get all patients');
       }
-      return responseResult.data.result;
+      return responseResult.data[0].patients;
     } catch (error) {
       console.log(error);
-      return;
     }
   }
 }

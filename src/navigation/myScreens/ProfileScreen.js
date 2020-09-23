@@ -75,7 +75,7 @@ export default ProfileScreen;
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#00CED1',
+    backgroundColor: '#fff',
   },
   headerContent: {
     padding: 30,
@@ -133,11 +133,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 250,
     borderRadius: 30,
-    backgroundColor: '#00CED1',
+    backgroundColor: '#7cb63b',
   },
   description: {
     fontSize: 20,
-    color: '#00CED1',
+    color: '#7cb63b',
     marginTop: 10,
     textAlign: 'center',
   },

@@ -1,4 +1,10 @@
-import React, {Component, useContext} from 'react';
+import React, {
+  Component,
+  useContext,
+  useCallback,
+  useState,
+  useEffect,
+} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -16,47 +22,33 @@ import SessionManager from '../../httpClient/utils/SessionManager';
 import {FloatingAction} from 'react-native-floating-action';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
-export default class PatientScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      calls: [
-        {
-          id: 10,
-          name: 'Fermod Doe',
-          status: 'Cancer',
-          image: 'https://bootdey.com/img/Content/avatar/avatar7.png',
-        },
-        {
-          id: 11,
-          name: 'Danny Doe',
-          status: 'Blood',
-          image: 'https://bootdey.com/img/Content/avatar/avatar1.png',
-        },
-      ],
-      actions: [
-        {
-          text: 'Add patient',
-          name: 'bt_accessibility',
-          icon: () => <Icon name="user-injured" color="#ccc" size={26} />,
-          position: 2,
-        },
-      ],
-    };
-  }
-
-  async componentDidMount() {
+const PatientScreen = (props) => {
+  const [patientList, setPatientList] = useState([]);
+  const [actions, setActions] = useState([
+    {
+      text: 'Accessibility',
+      name: 'bt_accessibility',
+      position: 2,
+    },
+  ]);
+  const fetchPatientData = useCallback(async () => {
     try {
-      const ApiCall = await GetAllPatients.processGetAllPatients(1);
-      // const patients = await ApiCall.json();
-      console.log(ApiCall);
-      //this.setState({pokeList: patients.data, loading: false});
-    } catch (err) {
-      console.log('Error fetching data-----------', err);
+      const user = await AsyncStorage.getItem('user');
+      const mUser = JSON.parse(user);
+      const patientData = await GetAllPatients.processGetAllPatients(
+        mUser.userId,
+      );
+      setPatientList(patientData);
+      return patientData;
+    } catch (e) {
+      console.log(e);
     }
-  }
+  }, []);
+  React.useEffect(() => {
+    fetchPatientData().then((r) => setPatientList(r));
+  }, [fetchPatientData, patientList]);
 
-  renderItem = ({item}) => {
+  const renderItem = ({item}) => {
     return (
       <TouchableOpacity>
         <View style={styles.row}>
@@ -72,12 +64,12 @@ export default class PatientScreen extends Component {
                 style={styles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
-                {item.name}
+                {`${item.firstName} ${item.lastName}`}
               </Text>
               <Text style={styles.mblTxt}> BED03 </Text>
             </View>
             <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}> {item.status} </Text>
+              <Text style={styles.msgTxt}>{item.id}</Text>
             </View>
           </View>
         </View>
@@ -85,31 +77,30 @@ export default class PatientScreen extends Component {
     );
   };
 
-  render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-        }}>
-        <FlatList
-          extraData={this.state}
-          data={this.state.calls}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
-          renderItem={this.renderItem}
-        />
-        <FloatingAction
-          actions={this.state.actions}
-          onPressItem={() => {
-            this.props.navigation.navigate('Register Patient');
-          }}
-        />
-      </View>
-    );
-  }
-}
-// onPress={() => navigation.navigate('SignUpScreen')}>
+  return (
+    <View
+      style={{
+        flex: 1,
+      }}>
+      <FlatList
+        extraData={true}
+        data={patientList}
+        keyExtractor={(item) => {
+          return item.id;
+        }}
+        renderItem={renderItem}
+      />
+      <FloatingAction
+        actions={actions}
+        onPressItem={() => {
+          props.navigation.navigate('Register Patient');
+        }}
+      />
+    </View>
+  );
+};
+
+export default PatientScreen;
 
 const styles = StyleSheet.create({
   row: {

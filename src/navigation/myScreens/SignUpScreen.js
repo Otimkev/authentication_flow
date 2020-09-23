@@ -147,6 +147,16 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     borderRadius: 5,
   },
+  loginBtn: {
+    width: '60%',
+    backgroundColor: '#7cb63b',
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
   text: {
     color: '#aaae',
     marginTop: 10,

@@ -1,27 +1,32 @@
 import React, {useState} from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
   ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
   ToastAndroid,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import AddPatient from '../../../httpClient/repository/patient/AddPatient';
 import CardView from 'react-native-cardview';
-import SessionManager from '../../../httpClient/utils/SessionManager';
 import {globalStyles} from '../../../styles/Global';
+import AsyncStorage from '@react-native-community/async-storage';
+import GetAllPatients from '../../../httpClient/repository/patient/GetAllPatients';
 import {Picker} from '@react-native-community/picker';
+//import {Dropdown} from 'react-native-material-dropdown';
 
 const AddPatientScreen = ({navigation}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [gender, setGender] = useState('');
-  const [age, setAge] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [nationality, setNationality] = useState('');
+  const [religion, setReligion] = useState('');
   const [maritalStatus, setMaritalStatus] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [residency, setResidency] = useState('');
   const [address, setAddress] = useState('');
   const [emergencyFirstName, setEmergencyFirstName] = useState('');
   const [emergencyLastName, setEmergencyLastName] = useState('');
@@ -32,16 +37,30 @@ const AddPatientScreen = ({navigation}) => {
     firstName: firstName,
     lastName: lastName,
     gender: gender,
-    age: age,
+    dateOfBirth: dateOfBirth,
+    nationality: nationality,
+    religion: religion,
     maritalStatus: maritalStatus,
     email: email,
     phoneNumber: phoneNumber,
-    address: address,
-    emergencyFirstName: emergencyFirstName,
-    emergencyLastName: emergencyLastName,
-    emergencyPhoneNumber: emergencyPhoneNumber,
-    relationship: relationship,
+    residency: address,
+    // emergencyFirstName: emergencyFirstName,
+    // emergencyLastName: emergencyLastName,
+    // emergencyPhoneNumber: emergencyPhoneNumber,
+    // relationship: relationship,
   };
+
+  let data = [
+    {
+      value: 'Banana',
+    },
+    {
+      value: 'Mango',
+    },
+    {
+      value: 'Pear',
+    },
+  ];
 
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -67,7 +86,6 @@ const AddPatientScreen = ({navigation}) => {
                 }}
               />
             </View>
-
             <View style={styles.inputWrap}>
               <TextInput
                 style={globalStyles.InputBorderBottom}
@@ -90,14 +108,13 @@ const AddPatientScreen = ({navigation}) => {
                 }}
               />
             </View>
-
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Age</Text>
               <TextInput
                 style={globalStyles.InputBorderBottom}
                 placeholder="Age"
                 onChangeText={(text) => {
-                  setAge(text);
+                  setDateOfBirth(text);
                 }}
                 keyboardType="phone-pad"
               />
@@ -213,15 +230,28 @@ const AddPatientScreen = ({navigation}) => {
           <TouchableOpacity
             style={globalStyles.Button}
             onPress={async () => {
-              const result = await AddPatient.processAddPatient(patientData);
+              const user = await AsyncStorage.getItem('user');
+              const mUser = JSON.parse(user);
+              const result = await AddPatient.processAddPatient(
+                patientData,
+                mUser.userId,
+              );
               if (!result) {
                 showToast('Unsuccessful');
                 return;
               }
-              showToast('Sucessful');
+              showToast('Successful');
+              await GetAllPatients.processGetAllPatients(mUser.userId);
               navigation.navigate('Patients');
             }}>
             <Text style={globalStyles.ButtonText}>Add Patient</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={globalStyles.Button}
+            onPress={async () => {
+              navigation.navigate('Patients');
+            }}>
+            <Text style={globalStyles.ButtonText}>cancel</Text>
           </TouchableOpacity>
         </View>
       </CardView>

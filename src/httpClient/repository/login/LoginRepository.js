@@ -1,5 +1,5 @@
 import axios from '../../config/Config.js';
-import auth from '../../../navigation/SampleAuth.js';
+import auth from '../../utils/SampleAuth.js';
 
 class LoginRepository {
   async postSigninData(postData) {
@@ -7,6 +7,7 @@ class LoginRepository {
       const responseResult = await axios.post('/signin/', postData);
       const status = responseResult.status;
       const {token, result} = responseResult.data;
+      console.log(`Response ${JSON.stringify(result)}`);
       const {id, lastName, firstName, email, phoneNumber, facility} = result;
       const mData = {
         userId: id,

@@ -13,6 +13,8 @@ import LoginRepository from './src/httpClient/repository/login/LoginRepository';
 import WardsScreen from './src/navigation/myScreens/WardsScreen';
 import SettingsScreen from './src/navigation/myScreens/SettingsScreen';
 import SpecialistScreen from './src/navigation/myScreens/SpecialistScreen';
+import SharedPatients from './src/navigation/myScreens/SharedPatients';
+import SupportScreen from './src/navigation/myScreens/SupportScreen';
 
 export const AuthContext = React.createContext();
 
@@ -74,17 +76,14 @@ export default function App({navigation}) {
     () => ({
       signIn: async (data) => {
         try {
-          const {
-            tokenDrawerContent,
-            status,
-            result,
-          } = await LoginRepository.postSigninData(data);
+          const {token, status, result} = await LoginRepository.postSigninData(
+            data,
+          );
           if (status !== 200) {
             console.log('Failed to signin user');
             return;
           }
           dispatch({type: 'SIGN_IN', token: token});
-          return;
         } catch (error) {
           console.log(error);
         }
@@ -93,11 +92,11 @@ export default function App({navigation}) {
         try {
           const userToken = await AsyncStorage.getItem('user');
           if (userToken) {
-            await AsyncStorage.removeItem('user');
+            await AsyncStorage.clear();
             dispatch({type: 'SIGN_OUT'});
             return;
           }
-          console.log('token removal faild');
+          console.log('token removal successful');
         } catch (error) {
           console.log(error);
         }
@@ -112,7 +111,6 @@ export default function App({navigation}) {
             return;
           }
           dispatch({type: 'SIGN_IN', token: token});
-          return;
         } catch (error) {
           console.log(error);
         }
@@ -133,7 +131,7 @@ export default function App({navigation}) {
           <Stack.Navigator headerMode="none">
             <Stack.Screen name="Splash" component={SplashScreen} />
           </Stack.Navigator>
-        ) : state.userToken != null ? (
+        ) : state.userToken === null ? (
           // No token found, user isn't signed in
           <RootStackScreen />
         ) : (
@@ -145,6 +143,8 @@ export default function App({navigation}) {
             <Drawer.Screen name="Wards" component={WardsScreen} />
             <Drawer.Screen name="Notifications" component={ProfileScreen} />
             <Drawer.Screen name="Settings" component={SettingsScreen} />
+            <Drawer.Screen name="SharedPatients" component={SharedPatients} />
+            <Drawer.Screen name="SupportScreen" component={SupportScreen} />
           </Drawer.Navigator>
         )}
       </NavigationContainer>
