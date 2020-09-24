@@ -243,7 +243,7 @@ const AddPatientScreen = ({navigation}) => {
                 onChangeText={(text) => {
                   setRelationship(text);
                 }}
-              /> */}ar
+              /> */}
             </View>
           </View>
           {/* Submit Button Section */}
