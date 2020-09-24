@@ -5,6 +5,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
+import {ActivityIndicator} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -24,6 +25,7 @@ import {FloatingAction} from 'react-native-floating-action';
 
 const PatientScreen = (props) => {
   const [patientList, setPatientList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [actions, setActions] = useState([
     {
       text: 'Accessibility',
@@ -32,6 +34,7 @@ const PatientScreen = (props) => {
     },
   ]);
   const fetchPatientData = useCallback(async () => {
+    setIsLoading(true);
     try {
       const user = await AsyncStorage.getItem('user');
       const mUser = JSON.parse(user);
@@ -39,6 +42,7 @@ const PatientScreen = (props) => {
         mUser.userId,
       );
       setPatientList(patientData);
+      setIsLoading(false);
       return patientData;
     } catch (e) {
       console.log(e);
@@ -46,11 +50,14 @@ const PatientScreen = (props) => {
   }, []);
   React.useEffect(() => {
     fetchPatientData().then((r) => setPatientList(r));
-  }, [fetchPatientData, patientList]);
+  }, [fetchPatientData]);
 
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('General Tests', {patientId: item.id});
+        }}>
         <View style={styles.row}>
           <Image
             source={{
@@ -77,19 +84,29 @@ const PatientScreen = (props) => {
     );
   };
 
+  const Loader = () => {
+    return (
+      <View style={styles.indicatorContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  };
+
   return (
     <View
       style={{
         flex: 1,
       }}>
-      <FlatList
-        extraData={true}
-        data={patientList}
-        keyExtractor={(item) => {
-          return item.id;
-        }}
-        renderItem={renderItem}
-      />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <FlatList
+          extraData={true}
+          data={patientList}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItem}
+        />
+      )}
       <FloatingAction
         actions={actions}
         onPressItem={() => {
@@ -133,9 +150,9 @@ const styles = StyleSheet.create({
     color: '#777',
     fontSize: 13,
   },
-  msgContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  indicatorContainer: {
+    flex: 1,
+    justifyContent: 'center',
   },
   msgTxt: {
     fontWeight: '400',
