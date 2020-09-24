@@ -194,7 +194,7 @@ const AddPatientScreen = ({navigation}) => {
                 style={globalStyles.InputBorderBottom}
                 placeholder="First name"
                 onChangeText={(text) => {
-                  setEmergencyFirstName(text);
+                  setEmergencyFirstName(text); 
                 }}
               />
             </View>
@@ -243,7 +243,7 @@ const AddPatientScreen = ({navigation}) => {
                 onChangeText={(text) => {
                   setRelationship(text);
                 }}
-              /> */}ar
+              /> */}
             </View>
           </View>
           {/* Submit Button Section */}

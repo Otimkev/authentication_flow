@@ -4,7 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 const SupportScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Call us on this number for any inquiries</Text>
+      <Text>Call Joan Nassuna our Virtual Assistant</Text>
     </View>
   );
 };
