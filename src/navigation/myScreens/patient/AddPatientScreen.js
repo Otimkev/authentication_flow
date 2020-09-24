@@ -26,7 +26,7 @@ const AddPatientScreen = ({navigation}) => {
   const [maritalStatus, setMaritalStatus] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [residency, setResidency] = useState('');
+  // const [residency, setResidency] = useState('');
   const [address, setAddress] = useState('');
   const [emergencyFirstName, setEmergencyFirstName] = useState('');
   const [emergencyLastName, setEmergencyLastName] = useState('');
@@ -44,23 +44,23 @@ const AddPatientScreen = ({navigation}) => {
     email: email,
     phoneNumber: phoneNumber,
     residency: address,
-    // emergencyFirstName: emergencyFirstName,
-    // emergencyLastName: emergencyLastName,
-    // emergencyPhoneNumber: emergencyPhoneNumber,
-    // relationship: relationship,
+    emergencyFirstName: emergencyFirstName,
+    emergencyLastName: emergencyLastName,
+    emergencyPhoneNumber: emergencyPhoneNumber,
+    relationship: relationship,
   };
 
-  let data = [
-    {
-      value: 'Banana',
-    },
-    {
-      value: 'Mango',
-    },
-    {
-      value: 'Pear',
-    },
-  ];
+  // let data = [
+  //   {
+  //     value: 'Banana',
+  //   },
+  //   {
+  //     value: 'Mango',
+  //   },
+  //   {
+  //     value: 'Pear',
+  //   },
+  // ];
 
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -100,13 +100,17 @@ const AddPatientScreen = ({navigation}) => {
           <View style={globalStyles.Row}>
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Gender</Text>
-              <TextInput
+              <Picker>
+                <Picker.Item label="Male" value="Male" />
+                <Picker.Item label="Female" value="Female" />
+              </Picker>
+              {/* <TextInput
                 style={globalStyles.InputBorderBottom}
                 placeholder="Gender"
                 onChangeText={(text) => {
                   setGender(text);
                 }}
-              />
+              /> */}
             </View>
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Age</Text>
@@ -137,13 +141,19 @@ const AddPatientScreen = ({navigation}) => {
           <View style={globalStyles.NormalFlex}>
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Marital Status</Text>
-              <TextInput
+              <Picker>
+                <Picker.Item label="Single" value="Single" />
+                <Picker.Item label="Married" value="Married" />
+                <Picker.Item label="Divorced" value="Divorced" />
+                <Picker.Item label="Widowed" value="Widowed" />
+              </Picker>
+              {/* <TextInput
                 style={globalStyles.InputBorderBottom}
                 placeholder="Marital Status"
                 onChangeText={(text) => {
                   setMaritalStatus(text);
                 }}
-              />
+              /> */}
             </View>
           </View>
           {/* Patient Phone Number Section */}
@@ -213,17 +223,27 @@ const AddPatientScreen = ({navigation}) => {
               />
             </View>
           </View>
-          {/* Patient Marital Status Section */}
+          {/* Emergency Relationship Section */}
           <View style={globalStyles.NormalFlex}>
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Relationship</Text>
-              <TextInput
+              <Picker>
+                <Picker.Item label="Mother" value="Mother" />
+                <Picker.Item label="Father" value="Father" />
+                <Picker.Item label="Sister" value="Sister" />
+                <Picker.Item label="Brother" value="Brother" />
+                <Picker.Item label="Wife" value="Wife" />
+                <Picker.Item label="Husband" value="Husband" />
+                <Picker.Item label="Friend" value="Friend" />
+                <Picker.Item label="Other" value="Other" />
+              </Picker>
+              {/* <TextInput
                 style={globalStyles.InputBorderBottom}
                 placeholder="eg. Mother, Father"
                 onChangeText={(text) => {
                   setRelationship(text);
                 }}
-              />
+              /> */}
             </View>
           </View>
           {/* Submit Button Section */}
@@ -250,7 +270,7 @@ const AddPatientScreen = ({navigation}) => {
             onPress={async () => {
               navigation.navigate('Patients');
             }}>
-            <Text style={globalStyles.ButtonText}>cancel</Text>
+            <Text style={globalStyles.ButtonText}>Cancel</Text>
           </TouchableOpacity>
         </View>
       </CardView>
