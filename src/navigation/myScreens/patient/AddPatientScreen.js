@@ -243,7 +243,7 @@ const AddPatientScreen = ({navigation}) => {
                 onChangeText={(text) => {
                   setRelationship(text);
                 }}
-              /> */}ar
+              /> */}
             </View>
           </View>
           {/* Submit Button Section */}
@@ -261,7 +261,6 @@ const AddPatientScreen = ({navigation}) => {
                 return;
               }
               showToast('Successful');
-              await GetAllPatients.processGetAllPatients(mUser.userId);
               navigation.navigate('Patients');
             }}>
             <Text style={globalStyles.ButtonText}>Add Patient</Text>

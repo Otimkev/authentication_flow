@@ -9,6 +9,7 @@ import ChatScreen from '././myScreens/ChatScreen';
 import PatientScreen from './myScreens/PatientScreen';
 import AddPatientScreen from './myScreens/patient/AddPatientScreen';
 import NotificationsScreen from './myScreens/NotificationScreen';
+import GeneralTestScreen from './myScreens/patient/PatientTests/GeneralTestScreen';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -161,6 +162,20 @@ const PatientStackScreen = ({navigation}) => (
     <PatientsStack.Screen
       name="Register Patient"
       component={AddPatientScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <PatientsStack.Screen
+      name="General Tests"
+      component={GeneralTestScreen}
       options={{
         headerLeft: () => (
           <Icon.Button
