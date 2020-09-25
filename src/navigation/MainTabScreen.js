@@ -10,6 +10,7 @@ import PatientScreen from './myScreens/PatientScreen';
 import AddPatientScreen from './myScreens/patient/AddPatientScreen';
 import NotificationsScreen from './myScreens/NotificationScreen';
 import GeneralTestScreen from './myScreens/patient/PatientTests/GeneralTestScreen';
+import MaternityWard from './myScreens/Wards/MaternityWard';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -19,6 +20,7 @@ const ChatsStack = createStackNavigator();
 const PatientsStack = createStackNavigator();
 const ProfilesStack = createStackNavigator();
 const NotificationsStack = createStackNavigator();
+const MaternityWardStack = createStackNavigator();
 // const WardsStack = createStackNavigator();
 // const SpecialistStack = createStackNavigator();
 // const SettingsStack = createStackNavigator();
@@ -245,3 +247,31 @@ const NotificationsStackScreen = ({navigation}) => (
     />
   </NotificationsStack.Navigator>
 );
+
+// const MaternityWardStackScreen = ({navigation}) => (
+//   <MaternityWardStack.Navigator
+//     screenOptions={{
+//       headerStyle: {
+//         backgroundColor: '#007360',
+//       },
+//       headerTintColor: '#fff',
+//       headerTitleStyle: {
+//         fontWeight: 'bold',
+//       },
+//     }}>
+//     <MaternityWardStack.Screen
+//       name="MaternityWard"
+//       component={MaternityWard}
+//       options={{
+//         headerLeft: () => (
+//           <Icon.Button
+//             name="nav-icon-list-a"
+//             size={25}
+//             backgroundColor="#007360"
+//             onPress={() => navigation.openDrawer()}
+//           />
+//         ),
+//       }}
+//     />
+//   </MaternityWardStack.Navigator>
+// );

@@ -1,13 +1,14 @@
 import * as React from 'react';
-import {View} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import {Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
+import MaternityWard from './Wards/MaternityWard';
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="heart" />;
 const RightContent = (props) => <Avatar.Icon {...props} icon="home" />;
 
-const WardsScreen = () => (
+const WardsScreen = ({navigation}) => (
   <View>
-    <View>
+    <TouchableOpacity onPress={() => navigation.navigate('MaternityWard')}>
       <Card>
         <Card.Title
           title="Marternity Ward"
@@ -19,8 +20,21 @@ const WardsScreen = () => (
           <Paragraph>2 patients</Paragraph>
         </Card.Content>
       </Card>
-    </View>
-    <View>
+    </TouchableOpacity>
+    {/* <View>
+      <Card>
+        <Card.Title
+          title="Marternity Ward"
+          subtitle="Pregnancy"
+          left={RightContent}
+        />
+        <Card.Content>
+          <Title>8 beds</Title>
+          <Paragraph>2 patients</Paragraph>
+        </Card.Content>
+      </Card>
+    </View> */}
+    {/* <View>
       <Card>
         <Card.Title
           title="Cardiology Ward"
@@ -32,8 +46,8 @@ const WardsScreen = () => (
           <Paragraph>2 patients</Paragraph>
         </Card.Content>
       </Card>
-    </View>
-    <View>
+    </View> */}
+    {/* <View>
       <Card>
         <Card.Title
           title="Intensive Care Unit"
@@ -45,7 +59,7 @@ const WardsScreen = () => (
           <Paragraph>2 patients</Paragraph>
         </Card.Content>
       </Card>
-    </View>
+    </View> */}
   </View>
 );
 
