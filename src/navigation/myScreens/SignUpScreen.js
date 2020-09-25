@@ -108,7 +108,7 @@ const SignUpScreen = ({navigation}) => {
       <TouchableOpacity>
         <Text
           style={styles.text}
-          onPress={() => navigation.navigate('SignUpScreen')}>
+          onPress={() => navigation.navigate('SignInScreen')}>
           Have an account Already? Sign In Here.
         </Text>
       </TouchableOpacity>

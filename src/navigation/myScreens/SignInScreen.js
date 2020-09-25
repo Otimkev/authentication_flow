@@ -61,7 +61,7 @@ const SignInScreen = ({navigation}) => {
         <Text
           style={styles.text}
           onPress={() => navigation.navigate('SignUpScreen')}>
-          Don't have an account? Sign up.
+          Don't have an account? Sign up Here.
         </Text>
       </TouchableOpacity>
     </View>
