@@ -22,16 +22,16 @@ const AddPatientScreen = ({navigation}) => {
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [nationality, setNationality] = useState('');
-  const [religion, setReligion] = useState('');
+  const [religion, setReligion] = useState('muslim');
   const [maritalStatus, setMaritalStatus] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   // const [residency, setResidency] = useState('');
   const [address, setAddress] = useState('');
-  const [emergencyFirstName, setEmergencyFirstName] = useState('');
-  const [emergencyLastName, setEmergencyLastName] = useState('');
-  const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
-  const [relationship, setRelationship] = useState('');
+  // const [emergencyFirstName, setEmergencyFirstName] = useState('');
+  // const [emergencyLastName, setEmergencyLastName] = useState('');
+  // const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
+  // const [relationship, setRelationship] = useState('');
 
   const patientData = {
     firstName: firstName,
@@ -39,15 +39,15 @@ const AddPatientScreen = ({navigation}) => {
     gender: gender,
     dateOfBirth: dateOfBirth,
     nationality: nationality,
-    religion: religion,
+    religon: religion,
     maritalStatus: maritalStatus,
     email: email,
     phoneNumber: phoneNumber,
     residency: address,
-    emergencyFirstName: emergencyFirstName,
-    emergencyLastName: emergencyLastName,
-    emergencyPhoneNumber: emergencyPhoneNumber,
-    relationship: relationship,
+    // emergencyFirstName: emergencyFirstName,
+    // emergencyLastName: emergencyLastName,
+    // emergencyPhoneNumber: emergencyPhoneNumber,
+    // relationship: relationship,
   };
 
   // let data = [
@@ -194,7 +194,7 @@ const AddPatientScreen = ({navigation}) => {
                 style={globalStyles.InputBorderBottom}
                 placeholder="First name"
                 onChangeText={(text) => {
-                  setEmergencyFirstName(text); 
+                  setEmergencyFirstName(text);
                 }}
               />
             </View>
