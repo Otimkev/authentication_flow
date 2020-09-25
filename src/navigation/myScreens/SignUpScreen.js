@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   ToastAndroid,
+  Image,
 } from 'react-native';
 import {AuthContext} from '../../../App';
 import {globalStyles} from '../../styles/Global';
@@ -36,13 +37,10 @@ const SignUpScreen = ({navigation}) => {
 
   return (
     <View style={styles.loginContainer}>
-      <View>
-        {/* <Image
-          source={require('../assets/img/Criti30care_Logo.jpg')}
-          style={styles.header}
-        /> */}
-      </View>
-
+      <Image
+        source={require('../../assets/img/Criticare_Logo.jpg')}
+        style={styles.header}
+      />
       <View>
         <TextInput
           placeholder="First Name"
@@ -65,6 +63,7 @@ const SignUpScreen = ({navigation}) => {
           onChangeText={(text) => {
             setEmail(text);
           }}
+          keyboardType="email-address"
         />
         <TextInput
           placeholder="Phone"
@@ -72,6 +71,7 @@ const SignUpScreen = ({navigation}) => {
           onChangeText={(text) => {
             setPhoneNumber(text);
           }}
+          keyboardType="phone-pad"
         />
         <TextInput
           placeholder="Facility"
@@ -86,10 +86,12 @@ const SignUpScreen = ({navigation}) => {
           onChangeText={(text) => {
             setPassword(text);
           }}
+          keyboardType="visible-password"
         />
         <TextInput
           placeholder="Retype Password"
           style={globalStyles.inputContainer}
+          keyboardType="visible-password"
         />
       </View>
       <TouchableOpacity>
@@ -103,12 +105,11 @@ const SignUpScreen = ({navigation}) => {
         onPress={() => signUp(postUserData)}>
         <Text style={styles.loginText}>Sign Up</Text>
       </TouchableOpacity>
-
       <TouchableOpacity>
         <Text
           style={styles.text}
-          onPress={() => navigation.navigate('SignInScreen')}>
-          Already have an account? Login.
+          onPress={() => navigation.navigate('SignUpScreen')}>
+          Have an account Already? Sign In Here.
         </Text>
       </TouchableOpacity>
     </View>
@@ -124,8 +125,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
-    width: 50,
-    marginBottom: 20,
+    width: 300,
+    marginBottom: 10,
   },
   loginText: {
     fontSize: 24,
@@ -137,34 +138,13 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontSize: 20,
   },
-  inputContainer: {
-    color: '#000',
-    width: 300,
-    height: 40,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#7cb63b',
-    marginVertical: 5,
-    borderRadius: 5,
-  },
-  loginBtn: {
-    width: '60%',
-    backgroundColor: '#7cb63b',
-    borderRadius: 10,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  text: {
-    color: '#aaae',
-    marginTop: 10,
-  },
   forgot: {
     color: '#aaae',
     fontSize: 11,
-    alignItems: 'center',
+    textAlign: 'center',
+  },
+  text: {
+    color: '#007360',
   },
 });
 
