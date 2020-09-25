@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
   paragraph: {
     fontWeight: 'bold',
     marginRight: 3,
+    color: '#007360',
   },
   drawerSection: {
     marginTop: 15,
