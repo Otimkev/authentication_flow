@@ -18,6 +18,7 @@ import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 
 import Icon from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Font from 'react-native-vector-icons/FontAwesome5';
 
 import {AuthContext} from '../../App';
 
@@ -56,7 +57,7 @@ export function DrawerContent(props) {
           <Drawer.Section style={styles.drawerSection}>
             <DrawerItem
               icon={({color, size}) => (
-                <Icon name="doctor" color={color} size={size} />
+                <Icon name="doctor" color="#007360" size={size} />
               )}
               label="Specialists"
               onPress={() => {
@@ -65,7 +66,7 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({color, size}) => (
-                <Icon name="bed-patient" color={color} size={size} />
+                <Icon name="bed-patient" color="#007360" size={size} />
               )}
               label="Wards"
               onPress={() => {
@@ -74,7 +75,7 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({color, size}) => (
-                <Icon name="persons" color={color} size={size} />
+                <Font name="share-square" color="#007360" size={size} />
               )}
               label="Shared Patients"
               onPress={() => {
@@ -83,7 +84,7 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({color, size}) => (
-                <Icon name="hospital" color={color} size={size} />
+                <Font name="hospital-user" color="#007360" size={size} />
               )}
               label="Change Facility"
               onPress={() => {
@@ -92,7 +93,7 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({color, size}) => (
-                <Icon name="player-settings" color={color} size={size} />
+                <Icon name="player-settings" color="#007360" size={size} />
               )}
               label="Settings"
               onPress={() => {
@@ -101,7 +102,7 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({color, size}) => (
-                <Icon name="world-o" color={color} size={size} />
+                <Icon name="world-o" color="#007360" size={size} />
               )}
               label="Support"
               onPress={() => {
@@ -114,7 +115,7 @@ export function DrawerContent(props) {
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
           icon={({color, size}) => (
-            <Ionicons name="log-out-outline" color={color} size={size} />
+            <Ionicons name="log-out-outline" color="#007360" size={size} />
           )}
           label="Sign Out"
           onPress={() => signOut()}
@@ -135,10 +136,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 3,
     fontWeight: 'bold',
+    color: '#007360',
   },
   caption: {
     fontSize: 14,
     lineHeight: 14,
+    color: '#007360',
   },
   row: {
     marginTop: 20,
