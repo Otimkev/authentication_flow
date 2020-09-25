@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import {Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
-import MaternityWard from './Wards/MaternityWard';
+// import MaternityWard from './Wards/MaternityWard';
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="heart" />;
 const RightContent = (props) => <Avatar.Icon {...props} icon="home" />;
 
 const WardsScreen = ({navigation}) => (
   <View>
-    <TouchableOpacity onPress={() => navigation.navigate('MaternityWard')}>
+    <TouchableOpacity>
       <Card>
         <Card.Title
           title="Marternity Ward"
