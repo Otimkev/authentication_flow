@@ -12,7 +12,7 @@ const SplashScreens = () => {
       <View>
         <Image
           style={styles.imageContainer}
-          source={require('../../assets/img/logo2-avatar.png')}
+          source={require('../../assets/img/Crit.png')}
         />
       </View>
     </View>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   imageContainer: {
-    width: 80,
-    height: 80,
+    width: 350,
+    height: 150,
   },
 });
