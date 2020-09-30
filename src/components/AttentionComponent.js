@@ -1,20 +1,13 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  View,
-  FlatList,
-  ProgressBarAndroid,
-  StyleSheet,
-} from 'react-native';
+import {Text, View, ProgressBarAndroid, StyleSheet} from 'react-native';
 
 class AttentionComponent extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}> ⚠ ATTENTION</Text>
+        <Text style={styles.header}>ATTENTION</Text>
         <Text>
           <ProgressBarAndroid />
-          <FlatList />
         </Text>
       </View>
     );
@@ -23,8 +16,8 @@ class AttentionComponent extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.5,
-    justifyContent: 'center',
+    flex: 1,
+    // justifyContent: 'center',
     alignItems: 'center',
     borderColor: 'black',
   },
