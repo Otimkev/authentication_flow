@@ -1,66 +1,71 @@
-import * as React from 'react';
-import {View, TouchableOpacity} from 'react-native';
-import {Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
-import MaternityWard from './Wards/MaternityWard';
+import React, {Component} from 'react';
+import {Text, View, StyleSheet} from 'react-native';
+import Dashboard from 'react-native-dashboard';
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="heart" />;
-const RightContent = (props) => <Avatar.Icon {...props} icon="home" />;
+const items = [
+  {
+    name: 'Maternity',
+    background: '#007360',
+    icon: 'user',
+  },
+  {
+    name: 'Cardiology',
+    background: '#007360',
+    icon: 'heartbeat',
+  },
+  {
+    name: 'ICU',
+    background: '#007360',
+    icon: 'plus-circle',
+  },
+  {
+    name: 'Orthopaedics',
+    background: '#007360',
+    icon: 'wheelchair',
+  },
+  {
+    name: 'Oncology',
+    background: '#007360',
+    icon: 'stethoscope',
+  },
+  {
+    name: 'Neurology',
+    background: '#007360',
+    icon: 'medkit',
+  },
+  {
+    name: 'Ophthalmology',
+    background: '#007360',
+    icon: 'eye',
+  },
+  {
+    name: 'Otolaryngology',
+    background: '#007360',
+    icon: 'deaf',
+  },
+];
 
-const WardsScreen = ({navigation}) => (
-  <View>
-    <TouchableOpacity onPress={() => navigation.navigate('MaternityWard')}>
-      <Card>
-        <Card.Title
-          title="Marternity Ward"
-          subtitle="Pregnancy"
-          left={RightContent}
+export default class WardScreen extends Component {
+  _card = (el) => {
+    console.log('Card: ' + el.name);
+  };
+  render() {
+    return (
+      <View style={styles.container}>
+        <Dashboard
+          items={items}
+          background={true}
+          card={this._card}
+          column={2}
         />
-        <Card.Content>
-          <Title>8 beds</Title>
-          <Paragraph>2 patients</Paragraph>
-        </Card.Content>
-      </Card>
-    </TouchableOpacity>
-    {/* <View>
-      <Card>
-        <Card.Title
-          title="Marternity Ward"
-          subtitle="Pregnancy"
-          left={RightContent}
-        />
-        <Card.Content>
-          <Title>8 beds</Title>
-          <Paragraph>2 patients</Paragraph>
-        </Card.Content>
-      </Card>
-    </View> */}
-    {/* <View>
-      <Card>
-        <Card.Title
-          title="Cardiology Ward"
-          subtitle="Heart"
-          left={LeftContent}
-        />
-        <Card.Content>
-          <Title>8 beds</Title>
-          <Paragraph>2 patients</Paragraph>
-        </Card.Content>
-      </Card>
-    </View> */}
-    {/* <View>
-      <Card>
-        <Card.Title
-          title="Intensive Care Unit"
-          subtitle="Critical Care"
-          left={LeftContent}
-        />
-        <Card.Content>
-          <Title>8 beds</Title>
-          <Paragraph>2 patients</Paragraph>
-        </Card.Content>
-      </Card>
-    </View> */}
-  </View>
-);
+      </View>
+    );
+  }
+}
 
-export default WardsScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ecf0f1',
+  },
+});
