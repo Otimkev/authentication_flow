@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import Attention from '../../components/AttentionComponent';
+import {globalStyles} from '../../styles/Global';
 
 const HomeScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>Home screen</Text>
+    <View style={globalStyles.container}>
+      <Attention />
     </View>
   );
 };
@@ -12,9 +14,9 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  // container: {
+  //   flex: 1,
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
 });
