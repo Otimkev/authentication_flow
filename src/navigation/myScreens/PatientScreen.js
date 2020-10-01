@@ -21,6 +21,7 @@ import {
 import GetAllPatients from '../../httpClient/repository/patient/GetAllPatients';
 import SessionManager from '../../httpClient/utils/SessionManager';
 import {FloatingAction} from 'react-native-floating-action';
+import {log} from 'react-native-reanimated';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
 const PatientScreen = (props) => {
@@ -33,24 +34,30 @@ const PatientScreen = (props) => {
       position: 2,
     },
   ]);
-  const fetchPatientData = useCallback(async () => {
+  const fetchPatientData = async () => {
     setIsLoading(true);
     try {
       const user = await AsyncStorage.getItem('user');
       const mUser = JSON.parse(user);
-      const patientData = await GetAllPatients.processGetAllPatients(
-        mUser.userId,
-      );
-      setPatientList(patientData);
+      const result = await GetAllPatients.processGetAllPatients(mUser.userId);
       setIsLoading(false);
-      return patientData;
+      return result;
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  };
   React.useEffect(() => {
-    fetchPatientData().then((r) => setPatientList(r));
-  }, [fetchPatientData]);
+    async function fetchMyData() {
+      try {
+        return await fetchPatientData();
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchMyData()
+      .then((data) => setPatientList(data))
+      .catch((e) => console.log(e));
+  }, [setPatientList]);
 
   const renderItem = ({item}) => {
     return (
