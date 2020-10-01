@@ -22,7 +22,7 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: 10,
     color: '#026062',
     fontWeight: 'normal',
-    fontSize: 20,
+    fontSize: 24,
   },
   Button: {
     width: '60%',
@@ -44,6 +44,7 @@ export const globalStyles = StyleSheet.create({
     height: 70,
   },
   InputBorderBottom: {
+    fontSize: 18,
     padding: 10,
     borderBottomColor: '#007360',
     borderBottomWidth: StyleSheet.hairlineWidth,
