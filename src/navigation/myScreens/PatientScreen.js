@@ -1,12 +1,4 @@
-import React, {
-  Component,
-  useContext,
-  useCallback,
-  useState,
-  useEffect,
-} from 'react';
-import {ActivityIndicator} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import React, {Component} from 'react';
 import {
   StyleSheet,
   Text,
@@ -17,51 +9,49 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import GetAllPatients from '../../httpClient/repository/patient/GetAllPatients';
-import {FloatingAction} from 'react-native-floating-action';
 
-const PatientScreen = (props) => {
-  const [patientList, setPatientList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [actions, setActions] = useState([
-    {
-      text: 'Accessibility',
-      name: 'bt_accessibility',
-      position: 2,
-    },
-  ]);
-  const fetchPatientData = async () => {
-    setIsLoading(true);
+export default class Contacts extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      calls: [],
+      patientList: [],
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      await this.fetchData();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async fetchData() {
     try {
       const user = await AsyncStorage.getItem('user');
       const mUser = JSON.parse(user);
       const result = await GetAllPatients.processGetAllPatients(mUser.userId);
-      setIsLoading(false);
-      return result;
+      this.setState({calls: result});
     } catch (e) {
       console.log(e);
     }
-  };
-  React.useEffect(() => {
-    async function f() {
-      const result = await fetchPatientData();
-      setPatientList(result);
-    }
-  }, [setPatientList]);
+  }
 
-  const renderItem = ({item}) => {
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.calls !== prevState.calls) {
+      console.log('Component updating');
+      await this.fetchData();
+    }
+  }
+
+  renderItem = ({item}) => {
     return (
-      <TouchableOpacity
-        onPress={() => {
-          props.navigation.navigate('General Tests', {patientId: item.id});
-        }}>
+      <TouchableOpacity>
         <View style={styles.row}>
-          <Image
-            source={{
-              uri: item.image,
-            }}
-            style={styles.pic}
-          />
+          <Image source={{uri: item.image}} style={styles.pic} />
           <View>
             <View style={styles.nameContainer}>
               <Text
@@ -70,7 +60,7 @@ const PatientScreen = (props) => {
                 ellipsizeMode="tail">
                 {`${item.firstName} ${item.lastName}`}
               </Text>
-              <Text style={styles.mblTxt}> BED03 </Text>
+              <Text style={styles.mblTxt}>{item.phoneNumber}</Text>
             </View>
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.id}</Text>
@@ -81,38 +71,21 @@ const PatientScreen = (props) => {
     );
   };
 
-  const Loader = () => {
+  render() {
     return (
-      <View style={styles.indicatorContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
+      <View style={{flex: 1}}>
+        <FlatList
+          extraData={this.state}
+          data={this.state.calls}
+          keyExtractor={(item) => {
+            return item.id;
+          }}
+          renderItem={this.renderItem}
+        />
       </View>
     );
-  };
-
-  return (
-    <View
-      style={{
-        flex: 1,
-      }}>
-      {{isLoading?<Loader/>:
-        <FlatList
-          extraData={true}
-          data={patientList}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={renderItem}
-        />
-      }}
-      <FloatingAction
-        actions={actions}
-        onPressItem={() => {
-          props.navigation.navigate('Register Patient');
-        }}
-      />
-    </View>
-  );
-};
-
-export default PatientScreen;
+  }
+}
 
 const styles = StyleSheet.create({
   row: {
@@ -145,9 +118,9 @@ const styles = StyleSheet.create({
     color: '#777',
     fontSize: 13,
   },
-  indicatorContainer: {
-    flex: 1,
-    justifyContent: 'center',
+  msgContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   msgTxt: {
     fontWeight: '400',
