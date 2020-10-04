@@ -7,10 +7,11 @@ import {
   Image,
   Alert,
   ScrollView,
-  FlatList,
+  FlatList, ActivityIndicator,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import GetAllPatients from '../../httpClient/repository/patient/GetAllPatients';
+import {FloatingAction} from "react-native-floating-action";
 
 export default class Contacts extends Component {
   constructor(props) {
@@ -47,6 +48,32 @@ export default class Contacts extends Component {
     }
   }
 
+  Loader = () => {
+    return (
+      <View style={styles.indicatorContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  };
+
+  return (
+<View
+style={{
+  flex: 1,
+}}>
+{isLoading ? (
+  <Loader />
+) : (
+  <FlatList
+    extraData={true}
+    data={patientList}
+    keyExtractor={(item) => item.id.toString()}
+    renderItem={renderItem}
+  />
+)}
+
+</View>
+
   renderItem = ({item}) => {
     return (
       <TouchableOpacity>
@@ -78,9 +105,15 @@ export default class Contacts extends Component {
           extraData={this.state}
           data={this.state.calls}
           keyExtractor={(item) => {
-            return item.id;
+            return item.id.toString();
           }}
           renderItem={this.renderItem}
+        />
+        <FloatingAction
+          actions={actions}
+          onPressItem={() => {
+            props.navigation.navigate('Register Patient');
+          }}
         />
       </View>
     );
@@ -95,6 +128,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     padding: 10,
+  },
+  indicatorContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   pic: {
     borderRadius: 30,
