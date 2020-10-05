@@ -6,7 +6,7 @@ import {globalStyles} from '../../styles/Global';
 const HomeScreen = () => {
   return (
     <View style={globalStyles.container}>
-      <Attention />
+      {/*<Attention />*/}
     </View>
   );
 };

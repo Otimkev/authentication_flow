@@ -244,8 +244,9 @@ const AddPatientScreen = ({navigation}) => {
                 return;
               }
               showToast('Successful');
-              await GetAllPatients.processGetAllPatients(mUser.userId);
-              navigation.navigate('Patients');
+              navigation.navigate('Patients', {
+                mData: await GetAllPatients.processGetAllPatients(mUser.userId),
+              });
             }}>
             <Text style={globalStyles.ButtonText}>Add Patient</Text>
           </TouchableOpacity>

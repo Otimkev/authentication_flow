@@ -7,72 +7,41 @@ import {
   Image,
   Alert,
   ScrollView,
-  FlatList, ActivityIndicator,
+  FlatList,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import GetAllPatients from '../../httpClient/repository/patient/GetAllPatients';
-import {FloatingAction} from "react-native-floating-action";
 
 export default class Contacts extends Component {
   constructor(props) {
     super(props);
     this.state = {
       calls: [],
-      patientList: [],
+      newCall: this.fetchData(),
+      isLoading: false,
     };
+    this.fetchData().then((result) => this.setState({calls: result}));
   }
 
   async componentDidMount() {
-    try {
+    await this.fetchData();
+  }
+
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.isLoading) {
       await this.fetchData();
-    } catch (e) {
-      console.log(e);
     }
   }
 
   async fetchData() {
-    try {
-      const user = await AsyncStorage.getItem('user');
-      const mUser = JSON.parse(user);
-      const result = await GetAllPatients.processGetAllPatients(mUser.userId);
-      this.setState({calls: result});
-    } catch (e) {
-      console.log(e);
-    }
+    this.setState({isLoading: true});
+    const user = await AsyncStorage.getItem('user');
+    const mUser = JSON.parse(user);
+    const result = await GetAllPatients.processGetAllPatients(mUser.userId);
+    this.setState({isLoading: false});
+    this.setState({calls: result});
+    return result;
   }
-
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.calls !== prevState.calls) {
-      console.log('Component updating');
-      await this.fetchData();
-    }
-  }
-
-  Loader = () => {
-    return (
-      <View style={styles.indicatorContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  };
-
-  return (
-<View
-style={{
-  flex: 1,
-}}>
-{isLoading ? (
-  <Loader />
-) : (
-  <FlatList
-    extraData={true}
-    data={patientList}
-    keyExtractor={(item) => item.id.toString()}
-    renderItem={renderItem}
-  />
-)}
-
-</View>
 
   renderItem = ({item}) => {
     return (
@@ -85,9 +54,9 @@ style={{
                 style={styles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
-                {`${item.firstName} ${item.lastName}`}
+                {item.firstName}
               </Text>
-              <Text style={styles.mblTxt}>{item.phoneNumber}</Text>
+              <Text style={styles.mblTxt}>Mobile</Text>
             </View>
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.id}</Text>
@@ -109,12 +78,6 @@ style={{
           }}
           renderItem={this.renderItem}
         />
-        <FloatingAction
-          actions={actions}
-          onPressItem={() => {
-            props.navigation.navigate('Register Patient');
-          }}
-        />
       </View>
     );
   }
@@ -128,11 +91,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     padding: 10,
-  },
-  indicatorContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   pic: {
     borderRadius: 30,
