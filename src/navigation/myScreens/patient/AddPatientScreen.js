@@ -29,6 +29,7 @@ const AddPatientScreen = ({navigation}) => {
   const [emergencyLastName, setEmergencyLastName] = useState('');
   const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
   const [relationship, setRelationship] = useState('');
+  const [mState, setmState] = useState(false);
 
   const patientData = {
     firstName: firstName,
@@ -245,7 +246,7 @@ const AddPatientScreen = ({navigation}) => {
               }
               showToast('Successful');
               navigation.navigate('Patients', {
-                mData: await GetAllPatients.processGetAllPatients(mUser.userId),
+                mData: mState,
               });
             }}>
             <Text style={globalStyles.ButtonText}>Add Patient</Text>
