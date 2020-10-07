@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Attention from '../../components/AttentionComponent';
 import {globalStyles} from '../../styles/Global';
+import {Picker} from '@react-native-community/picker';
 
 const HomeScreen = () => {
   return (

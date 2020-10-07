@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {AuthContext} from '../../../App';
 import AsyncStorage from '@react-native-community/async-storage';
 import SessionManager from '../../httpClient/utils/SessionManager';
+import {globalStyles} from '../../styles/Global';
 
 const ProfileScreen = () => {
   const [userId, setUserId] = useState('');
@@ -44,15 +45,15 @@ const ProfileScreen = () => {
       <View style={styles.profileDetail}>
         <View style={styles.detailContent}>
           <Text style={styles.title}>Patients</Text>
-          <Text style={styles.count}>200</Text>
+          <Text style={styles.count}>10</Text>
         </View>
         <View style={styles.detailContent}>
           <Text style={styles.title}>Invites</Text>
-          <Text style={styles.count}>200</Text>
+          <Text style={styles.count}>20</Text>
         </View>
         <View style={styles.detailContent}>
           <Text style={styles.title}>Tests</Text>
-          <Text style={styles.count}>200</Text>
+          <Text style={styles.count}>2000</Text>
         </View>
       </View>
 
@@ -62,9 +63,9 @@ const ProfileScreen = () => {
           <Text style={styles.name}>{userPhone}</Text>
           <Text style={styles.name}>{userFacility}</Text>
           <TouchableOpacity
-            style={styles.buttonContainer}
+            style={globalStyles.Button}
             onPress={() => signOut()}>
-            <Text style={{color: 'white'}}>Sign Out</Text>
+            <Text style={globalStyles.ButtonText}>Sign Out</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -123,17 +124,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 20,
     color: '#696969',
-  },
-  buttonContainer: {
-    marginTop: 10,
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    width: 250,
-    borderRadius: 30,
-    backgroundColor: '#7cb63b',
   },
   description: {
     fontSize: 20,
