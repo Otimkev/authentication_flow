@@ -21,46 +21,30 @@ const AddPatientScreen = ({navigation}) => {
   const [lastName, setLastName] = useState('');
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
-  const [nationality, setNationality] = useState('');
-  const [religion, setReligion] = useState('muslim');
   const [maritalStatus, setMaritalStatus] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  // const [residency, setResidency] = useState('');
   const [address, setAddress] = useState('');
-  // const [emergencyFirstName, setEmergencyFirstName] = useState('');
-  // const [emergencyLastName, setEmergencyLastName] = useState('');
-  // const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
-  // const [relationship, setRelationship] = useState('');
+  const [emergencyFirstName, setEmergencyFirstName] = useState('');
+  const [emergencyLastName, setEmergencyLastName] = useState('');
+  const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
+  const [relationship, setRelationship] = useState('');
+  const [mState, setmState] = useState(false);
 
   const patientData = {
     firstName: firstName,
     lastName: lastName,
-    gender: gender,
+    gender: 'gender',
     dateOfBirth: dateOfBirth,
-    nationality: nationality,
-    religon: religion,
-    maritalStatus: maritalStatus,
+    maritalStatus: 'maritalStatus',
     email: email,
     phoneNumber: phoneNumber,
-    residency: address,
-    // emergencyFirstName: emergencyFirstName,
-    // emergencyLastName: emergencyLastName,
-    // emergencyPhoneNumber: emergencyPhoneNumber,
-    // relationship: relationship,
+    address: address,
+    emergencyFirstName: emergencyFirstName,
+    emergencyLastName: emergencyLastName,
+    emergencyPhoneNumber: emergencyPhoneNumber,
+    relationship: 'relationship',
   };
-
-  // let data = [
-  //   {
-  //     value: 'Banana',
-  //   },
-  //   {
-  //     value: 'Mango',
-  //   },
-  //   {
-  //     value: 'Pear',
-  //   },
-  // ];
 
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -261,7 +245,9 @@ const AddPatientScreen = ({navigation}) => {
                 return;
               }
               showToast('Successful');
-              navigation.navigate('Patients');
+              navigation.navigate('Patients', {
+                mData: mState,
+              });
             }}>
             <Text style={globalStyles.ButtonText}>Add Patient</Text>
           </TouchableOpacity>

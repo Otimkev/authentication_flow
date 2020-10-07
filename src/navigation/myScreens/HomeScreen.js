@@ -7,7 +7,7 @@ import {Picker} from '@react-native-community/picker';
 const HomeScreen = () => {
   return (
     <View style={globalStyles.container}>
-      <Attention />
+      {/*<Attention />*/}
     </View>
   );
 };

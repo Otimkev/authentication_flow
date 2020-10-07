@@ -3,7 +3,7 @@ import React, {
   useContext,
   useCallback,
   useState,
-  useEffect,
+  useEffect, useRef,
 } from 'react';
 import {ActivityIndicator} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -19,13 +19,12 @@ import {
   FlatList,
 } from 'react-native';
 import GetAllPatients from '../../httpClient/repository/patient/GetAllPatients';
-import SessionManager from '../../httpClient/utils/SessionManager';
 import {FloatingAction} from 'react-native-floating-action';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
 const PatientScreen = (props) => {
   const [patientList, setPatientList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [actions, setActions] = useState([
     {
       text: 'Accessibility',
@@ -33,24 +32,24 @@ const PatientScreen = (props) => {
       position: 2,
     },
   ]);
-  const fetchPatientData = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const user = await AsyncStorage.getItem('user');
-      const mUser = JSON.parse(user);
-      const patientData = await GetAllPatients.processGetAllPatients(
-        mUser.userId,
-      );
-      setPatientList(patientData);
-      setIsLoading(false);
-      return patientData;
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
+  const fetchPatientData = () => {
+    GetAllPatients.processGetAllPatients(6)
+      .then((data) => {
+        setIsLoading(false);
+        setPatientList(data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const change = useCallback(() => {
+    return !isLoading;
+  }, [isLoading]);
+  console.log(change());
+  const counter = useRef(0);
+
   React.useEffect(() => {
-    fetchPatientData().then((r) => setPatientList(r));
-  }, [fetchPatientData]);
+    fetchPatientData();
+  }, [setPatientList]);
 
   const renderItem = ({item}) => {
     return (
