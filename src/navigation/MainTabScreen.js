@@ -11,7 +11,10 @@ import {AddPatientScreen} from './myScreens/patient/AddPatientScreen';
 import NotificationsScreen from './myScreens/NotificationScreen';
 import GeneralTestScreen from './myScreens/patient/PatientTests/GeneralTestScreen';
 import MaternityWard from './myScreens/Wards/MaternityWard';
-import APatientScreen from './myScreens/APatientScreen';
+import {APatientScreen} from './myScreens/APatientScreen';
+import Category1Screen from './myScreens/category1';
+import TestListScreen from './myScreens/TestList';
+import {AllTestScreen} from './myScreens/AllTestsScreen';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -179,6 +182,48 @@ const PatientStackScreen = ({navigation}) => (
     <PatientsStack.Screen
       name="Patient Information"
       component={APatientScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <PatientsStack.Screen
+      name="Test List"
+      component={TestListScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <PatientsStack.Screen
+      name="category1"
+      component={Category1Screen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <PatientsStack.Screen
+      name="Tests"
+      component={AllTestScreen}
       options={{
         headerLeft: () => (
           <Icon.Button

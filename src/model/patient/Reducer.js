@@ -18,6 +18,7 @@ export const PatientReducer = (state = initialState, action) => {
       return {
         ...state,
         patients: action.payload.patients,
+        isFetching: false,
       };
     case actionType.GET_ALL_PATIENTS_FAILURE:
       return {

@@ -24,6 +24,7 @@ import {
   FlatList,
 } from 'react-native';
 import {FloatingAction} from 'react-native-floating-action';
+import {Loader} from '../../components/Loader';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
 const PatientScreenView = ({
@@ -37,7 +38,6 @@ const PatientScreenView = ({
   useEffect(() => {
     getAllPatients();
   }, [getAllPatients, createPatient]);
-
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
@@ -70,14 +70,6 @@ const PatientScreenView = ({
     );
   };
 
-  const Loader = () => {
-    return (
-      <View style={styles.indicatorContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  };
-
   return (
     <View
       style={{
@@ -87,8 +79,7 @@ const PatientScreenView = ({
         <Loader />
       ) : (
         <FlatList
-          extraData={true}
-          data={patients.patients.patients ? patients.patients.patients : []}
+          data={patients.patients}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
         />
@@ -110,7 +101,8 @@ const PatientScreenView = ({
 };
 
 const mapStateToProps = (state, props) => {
-  return {patients: state.patients, isFetching: state.isFetching};
+  const {patients, isFetching} = state.mPatients;
+  return {patients, isFetching};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({

@@ -239,7 +239,6 @@ const AddPatientScreenView = ({navigation, createPatient, responseData}) => {
               const user = await AsyncStorage.getItem('user');
               const mUser = JSON.parse(user);
               createPatient(patientData);
-              console.log(JSON.stringify(patientData));
               if (!JSON.stringify(patientData)) {
                 showToast('Unsuccessful');
                 return;
