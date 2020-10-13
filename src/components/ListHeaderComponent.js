@@ -7,9 +7,6 @@ const ListHeader = (props) => {
       <View>
         <Text>Bed Number:</Text>
         <Text>Bed Number:</Text>
-        <Text>Bed Number:</Text>
-        <Text>Bed Number:</Text>
-        <Text>Bed Number:</Text>
       </View>
     </View>
   );

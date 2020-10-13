@@ -6,11 +6,12 @@ import Icon from 'react-native-vector-icons/Fontisto';
 import HomeScreen from './myScreens/HomeScreen';
 import ProfileScreen from './myScreens/ProfileScreen';
 import ChatScreen from '././myScreens/ChatScreen';
-import PatientScreen from './myScreens/PatientScreen';
-import AddPatientScreen from './myScreens/patient/AddPatientScreen';
+import {PatientScreen} from './myScreens/PatientScreen';
+import {AddPatientScreen} from './myScreens/patient/AddPatientScreen';
 import NotificationsScreen from './myScreens/NotificationScreen';
 import GeneralTestScreen from './myScreens/patient/PatientTests/GeneralTestScreen';
 import MaternityWard from './myScreens/Wards/MaternityWard';
+import APatientScreen from './myScreens/APatientScreen';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -176,8 +177,8 @@ const PatientStackScreen = ({navigation}) => (
       }}
     />
     <PatientsStack.Screen
-      name="General Tests"
-      component={GeneralTestScreen}
+      name="Patient Information"
+      component={APatientScreen}
       options={{
         headerLeft: () => (
           <Icon.Button

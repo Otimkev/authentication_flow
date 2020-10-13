@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 import Attention from '../../components/AttentionComponent';
 import {globalStyles} from '../../styles/Global';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
     <View style={globalStyles.container}>
-      {/*<Attention />*/}
+      <Button title="Add Patient" />
     </View>
   );
 };

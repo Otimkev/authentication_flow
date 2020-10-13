@@ -3,11 +3,16 @@ import React, {
   useContext,
   useCallback,
   useState,
-  useEffect, useRef,
+  useEffect,
+  useRef,
 } from 'react';
 import {ActivityIndicator} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {connect} from 'react-redux';
+import * as actions from '../../model/patient/Actions';
+import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
+import * as actionTypes from '../../utils/Constants';
 import {
   StyleSheet,
   Text,
@@ -18,44 +23,26 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import GetAllPatients from '../../httpClient/repository/patient/GetAllPatients';
 import {FloatingAction} from 'react-native-floating-action';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
-const PatientScreen = (props) => {
-  const [patientList, setPatientList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [actions, setActions] = useState([
-    {
-      text: 'Accessibility',
-      name: 'bt_accessibility',
-      position: 2,
-    },
-  ]);
-  const fetchPatientData = () => {
-    GetAllPatients.processGetAllPatients(6)
-      .then((data) => {
-        setIsLoading(false);
-        setPatientList(data);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const change = useCallback(() => {
-    return !isLoading;
-  }, [isLoading]);
-  console.log(change());
-  const counter = useRef(0);
-
-  React.useEffect(() => {
-    fetchPatientData();
-  }, [setPatientList]);
+const PatientScreenView = ({
+  getAllPatients,
+  navigation,
+  isFetching,
+  patients,
+  createPatient,
+}) => {
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    getAllPatients();
+  }, [getAllPatients, createPatient]);
 
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate('General Tests', {patientId: item.id});
+          navigation.navigate('Patient Information', {patientId: item.id});
         }}>
         <View style={styles.row}>
           <Image
@@ -96,27 +83,51 @@ const PatientScreen = (props) => {
       style={{
         flex: 1,
       }}>
-      {isLoading ? (
+      {isFetching ? (
         <Loader />
       ) : (
         <FlatList
           extraData={true}
-          data={patientList}
+          data={patients.patients.patients ? patients.patients.patients : []}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
         />
       )}
       <FloatingAction
-        actions={actions}
+        actions={[
+          {
+            text: 'Accessibility',
+            name: 'bt_accessibility',
+            position: 2,
+          },
+        ]}
         onPressItem={() => {
-          props.navigation.navigate('Register Patient');
+          navigation.navigate('Register Patient');
         }}
       />
     </View>
   );
 };
 
-export default PatientScreen;
+const mapStateToProps = (state, props) => {
+  return {patients: state.patients, isFetching: state.isFetching};
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  getAllPatients: () => {
+    dispatch({
+      type: actionTypes.GET_ALL_PATIENTS_RESPONSE,
+    });
+  },
+  createPatient: (args) => {
+    dispatch(addPatientsResponse(args));
+  },
+});
+
+export const PatientScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PatientScreenView);
 
 const styles = StyleSheet.create({
   row: {
