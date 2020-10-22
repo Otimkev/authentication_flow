@@ -12,22 +12,24 @@ import AddPatient from '../../../httpClient/repository/patient/AddPatient';
 import CardView from 'react-native-cardview';
 import {globalStyles} from '../../../styles/Global';
 import AsyncStorage from '@react-native-community/async-storage';
-import GetAllPatients from '../../../httpClient/repository/patient/GetAllPatients';
 import {Picker} from '@react-native-community/picker';
-//import {Dropdown} from 'react-native-material-dropdown';
+import * as actionTypes from '../../../utils/Constants';
+import * as actions from '../../../model/patient/addPatient/Actions';
+import {connect} from 'react-redux';
+import {AddPatientReducer} from '../../../model/patient/addPatient/Reducer';
 
-const AddPatientScreen = ({navigation}) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+const AddPatientScreenView = ({navigation, createPatient, responseData}) => {
+  const [firstName, setFirstName] = useState('testFirstName');
+  const [lastName, setLastName] = useState('testLastName');
   const [gender, setGender] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState(90);
   const [maritalStatus, setMaritalStatus] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [address, setAddress] = useState('');
-  const [emergencyFirstName, setEmergencyFirstName] = useState('');
-  const [emergencyLastName, setEmergencyLastName] = useState('');
-  const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(9798786);
+  const [address, setAddress] = useState('Kampala');
+  const [emergencyFirstName, setEmergencyFirstName] = useState('testemgOne');
+  const [emergencyLastName, setEmergencyLastName] = useState('testemgTwo');
+  const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState(8978778);
   const [relationship, setRelationship] = useState('');
   const [mState, setmState] = useState(false);
 
@@ -236,11 +238,8 @@ const AddPatientScreen = ({navigation}) => {
             onPress={async () => {
               const user = await AsyncStorage.getItem('user');
               const mUser = JSON.parse(user);
-              const result = await AddPatient.processAddPatient(
-                patientData,
-                mUser.userId,
-              );
-              if (!result) {
+              createPatient(patientData);
+              if (!JSON.stringify(patientData)) {
                 showToast('Unsuccessful');
                 return;
               }
@@ -277,4 +276,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddPatientScreen;
+const mapStateToProps = (state, props) => {
+  return {addPatient: state.addPatient};
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  createPatient: (args) => {
+    dispatch(actions.addPatientsResponse(args));
+  },
+});
+
+export const AddPatientScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AddPatientScreenView);

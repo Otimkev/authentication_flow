@@ -15,6 +15,8 @@ import SettingsScreen from './src/navigation/myScreens/SettingsScreen';
 import SpecialistScreen from './src/navigation/myScreens/SpecialistScreen';
 import SharedPatients from './src/navigation/myScreens/SharedPatients';
 import SupportScreen from './src/navigation/myScreens/SupportScreen';
+import {Provider} from 'react-redux';
+import {Store} from './src/store/Store';
 
 export const AuthContext = React.createContext();
 
@@ -55,18 +57,12 @@ export default function App({navigation}) {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       var userToken;
-
       try {
         userToken = await AsyncStorage.getItem('user');
         dispatch({type: 'RESTORE_TOKEN', token: userToken});
       } catch (e) {
         // Restoring token failed
       }
-
-      // After restoring token, we may need to validate it in production apps
-
-      // This will switch to the App screen or Auth screen and this loading
-      // screen will be unmounted and thrown away.
     };
 
     bootstrapAsync();
@@ -114,40 +110,38 @@ export default function App({navigation}) {
         } catch (error) {
           console.log(error);
         }
-        // In a production app, we need to send user data to server and get a token
-        // We will also need to handle errors if sign up failed
-        // After getting token, we need to persist the token using `AsyncStorage`
-        // In the example, we'll use a dummy token
       },
     }),
     [],
   );
   const Drawer = createDrawerNavigator();
   return (
-    <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
-        {state.isLoading ? (
-          // We haven't finished checking for the token yet
-          <Stack.Navigator headerMode="none">
-            <Stack.Screen name="Splash" component={SplashScreen} />
-          </Stack.Navigator>
-        ) : state.userToken === null ? (
-          // No token found, user isn't signed in
-          <RootStackScreen />
-        ) : (
-          // User is signed in, token found
-          <Drawer.Navigator
-            drawerContent={(props) => <DrawerContent {...props} />}>
-            <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-            <Drawer.Screen name="Specialists" component={SpecialistScreen} />
-            <Drawer.Screen name="Wards" component={WardsScreen} />
-            <Drawer.Screen name="Notifications" component={ProfileScreen} />
-            <Drawer.Screen name="Settings" component={SettingsScreen} />
-            <Drawer.Screen name="SharedPatients" component={SharedPatients} />
-            <Drawer.Screen name="SupportScreen" component={SupportScreen} />
-          </Drawer.Navigator>
-        )}
-      </NavigationContainer>
-    </AuthContext.Provider>
+    <Provider store={Store}>
+      <AuthContext.Provider value={authContext}>
+        <NavigationContainer>
+          {state.isLoading ? (
+            // We haven't finished checking for the token yet
+            <Stack.Navigator headerMode="none">
+              <Stack.Screen name="Splash" component={SplashScreen} />
+            </Stack.Navigator>
+          ) : state.userToken !== null ? (
+            // No token found, user isn't signed in
+            <RootStackScreen />
+          ) : (
+            // User is signed in, token found
+            <Drawer.Navigator
+              drawerContent={(props) => <DrawerContent {...props} />}>
+              <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+              <Drawer.Screen name="Specialists" component={SpecialistScreen} />
+              <Drawer.Screen name="Wards" component={WardsScreen} />
+              <Drawer.Screen name="Notifications" component={ProfileScreen} />
+              <Drawer.Screen name="Settings" component={SettingsScreen} />
+              <Drawer.Screen name="SharedPatients" component={SharedPatients} />
+              <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+            </Drawer.Navigator>
+          )}
+        </NavigationContainer>
+      </AuthContext.Provider>
+    </Provider>
   );
 }
