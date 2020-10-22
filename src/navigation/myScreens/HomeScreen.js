@@ -5,11 +5,7 @@ import {globalStyles} from '../../styles/Global';
 import {Picker} from '@react-native-community/picker';
 
 const HomeScreen = () => {
-  return (
-    <View style={globalStyles.container}>
-      {/*<Attention />*/}
-    </View>
-  );
+  return <View style={globalStyles.container}>{/*<Attention />*/}</View>;
 };
 
 export default HomeScreen;
