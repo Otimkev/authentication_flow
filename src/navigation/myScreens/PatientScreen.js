@@ -34,7 +34,6 @@ const PatientScreenView = ({
   patients,
   createPatient,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     getAllPatients();
   }, [getAllPatients, createPatient]);
@@ -87,7 +86,7 @@ const PatientScreenView = ({
       <FloatingAction
         actions={[
           {
-            text: 'Accessibility',
+            text: 'Add Patient',
             name: 'bt_accessibility',
             position: 2,
           },

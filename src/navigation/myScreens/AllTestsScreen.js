@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -25,7 +25,6 @@ export const AllTestScreenView = ({
   useEffect(() => {
     getAllTests(patientId);
   }, [getAllTests, patientId]);
-  console.log(patientTestData);
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity>

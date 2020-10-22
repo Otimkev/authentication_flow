@@ -6,7 +6,12 @@ import {globalStyles} from '../../styles/Global';
 const HomeScreen = ({navigation}) => {
   return (
     <View style={globalStyles.container}>
-      <Button title="Add Patient" />
+      <Button
+        title="Graph"
+        onPress={() => {
+          navigation.navigate('Graph');
+        }}
+      />
     </View>
   );
 };

@@ -15,6 +15,7 @@ import {APatientScreen} from './myScreens/APatientScreen';
 import Category1Screen from './myScreens/category1';
 import TestListScreen from './myScreens/TestList';
 import {AllTestScreen} from './myScreens/AllTestsScreen';
+import {mGraphScreen} from './myScreens/mGraph';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -99,6 +100,21 @@ const HomeStackScreen = ({navigation}) => (
       component={HomeScreen}
       options={{
         title: 'Home',
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <HomeStack.Screen
+      name="Graph"
+      component={mGraphScreen}
+      options={{
+        title: 'Graph',
         headerLeft: () => (
           <Icon.Button
             name="nav-icon-list-a"

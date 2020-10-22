@@ -83,10 +83,6 @@ const Category1ScreenView = ({navigation, route, createTest, addTestData}) => {
           onPress={() => {
             createTest(patientId, testData);
             console.log(addTestData);
-            if (!addTestData) {
-              showToast('Unsuccessful');
-              return;
-            }
             showToast('Successful');
             navigation.navigate('Patient Information');
           }}
