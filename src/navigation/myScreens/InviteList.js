@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../model/user/Actions';
+import * as actionTypes from '../../model/patient/notifications/invite/Actions';
 import {GET_USER_RESPONSE} from '../../utils/Constants';
 import {
   StyleSheet,
@@ -19,7 +19,10 @@ const UserListScreenView = ({
   isFetching,
   inviteList,
   getAllUsers,
+  inviteUser,
+  route,
 }) => {
+  const id = route.params.patientId;
   useEffect(() => {
     getAllUsers();
   }, [getAllUsers]);
@@ -27,6 +30,8 @@ const UserListScreenView = ({
     return (
       <TouchableOpacity
         onPress={() => {
+          const mData = {userId: item.id, patientId: id};
+          inviteUser(mData);
           navigation.navigate('Patient Information', {userId: item.id});
         }}>
         <View style={styles.row}>
@@ -42,6 +47,7 @@ const UserListScreenView = ({
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.email}</Text>
             </View>
+            <Text style={styles.msgTxt}>{item.id}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -69,7 +75,8 @@ const UserListScreenView = ({
 
 const mapStateToProps = (state, props) => {
   const {inviteList, isFetching} = state.getUsers;
-  return {inviteList, isFetching};
+  const {isInviting} = state.invite;
+  return {inviteList, isFetching, isInviting};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -77,6 +84,9 @@ const mapDispatchToProps = (dispatch, props) => ({
     dispatch({
       type: GET_USER_RESPONSE,
     });
+  },
+  inviteUser: (args) => {
+    dispatch(actionTypes.invitesResponse(args));
   },
 });
 

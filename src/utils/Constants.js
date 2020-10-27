@@ -29,3 +29,11 @@ export const INVITE_FAILURE = 'inviteFailure';
 export const GET_USER_RESPONSE = 'getUserResponse';
 export const GET_USER_SUCCESS = 'getUserSuccess';
 export const GET_USER_FAILURE = 'getUserFailure';
+
+export const SIGNUP_RESONSE = 'getUserResponse';
+export const SIGNUP_SUCCESS = 'getUserSuccess';
+export const SIGNUP_FAILURE = 'getUserFailure';
+
+export const SIGNIN_RESONSE = 'getUserResponse';
+export const SIGNIN_SUCCESS = 'getUserSuccess';
+export const SIGNIN_FAILURE = 'getUserFailure';

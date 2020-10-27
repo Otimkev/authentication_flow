@@ -5,7 +5,7 @@ import * as actionCreators from './Actions';
 
 function* fetchAllInvites(actions) {
   try {
-    const vPatients = yield call(API.get, '/getshare-patient/2/');
+    const vPatients = yield call(API.get, '/getshare-patient/1/');
     console.log(vPatients);
     yield put(actionCreators.getInvitesSuccess(vPatients));
   } catch (e) {

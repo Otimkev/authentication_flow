@@ -16,7 +16,7 @@ import Category1Screen from './myScreens/category1';
 import TestListScreen from './myScreens/TestList';
 import {AllTestScreen} from './myScreens/AllTestsScreen';
 import {mGraphScreen} from './myScreens/mGraph';
-import { UserListScreen } from './myScreens/InviteList';
+import {UserListScreen} from './myScreens/InviteList';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';

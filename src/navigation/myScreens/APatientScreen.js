@@ -9,6 +9,8 @@ import {globalStyles} from '../../styles/Global';
 
 const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
   const id = route.params.patientId;
+  const userId = route.params.userId;
+  console.log(userId);
   useEffect(() => {
     getAPatient(id);
   }, [getAPatient, id]);
@@ -50,7 +52,7 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <Button
           title="Invite"
           onPress={() => {
-            navigation.navigate('inviteList');
+            navigation.navigate('inviteList', {patientId: id});
           }}
         />
       </View>
