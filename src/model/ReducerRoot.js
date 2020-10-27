@@ -4,6 +4,7 @@ import {AddPatientReducer} from './patient/addPatient/Reducer';
 import {APatientReducer} from './patient/getAPatient/Reducer';
 import {addTestReducer} from './test/addTest/Reducer';
 import {getTestReducer} from './test/loadTests/Reducer';
+import {InvitesReducer} from './patient/notifications/invites/Reducer';
 
 export const RootReducer = combineReducers({
   mPatients: PatientReducer,
@@ -11,4 +12,5 @@ export const RootReducer = combineReducers({
   aPatient: APatientReducer,
   addTest: addTestReducer,
   getTests: getTestReducer,
+  invites: InvitesReducer,
 });

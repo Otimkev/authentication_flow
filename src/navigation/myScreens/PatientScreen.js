@@ -1,14 +1,4 @@
-import React, {
-  Component,
-  useContext,
-  useCallback,
-  useState,
-  useEffect,
-  useRef,
-} from 'react';
-import {ActivityIndicator} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import React, {useEffect, useRef} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../model/patient/Actions';
 import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
@@ -19,8 +9,6 @@ import {
   View,
   TouchableOpacity,
   Image,
-  Alert,
-  ScrollView,
   FlatList,
 } from 'react-native';
 import {FloatingAction} from 'react-native-floating-action';
@@ -33,10 +21,11 @@ const PatientScreenView = ({
   isFetching,
   patients,
   createPatient,
+  isAddPatientLoading,
 }) => {
   useEffect(() => {
     getAllPatients();
-  }, [getAllPatients, createPatient]);
+  }, [getAllPatients, isAddPatientLoading]);
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
@@ -78,7 +67,7 @@ const PatientScreenView = ({
         <Loader />
       ) : (
         <FlatList
-          extra={patients.patients}
+          extra={true}
           data={patients.patients}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
@@ -102,7 +91,8 @@ const PatientScreenView = ({
 
 const mapStateToProps = (state, props) => {
   const {patients, isFetching} = state.mPatients;
-  return {patients, isFetching};
+  const {isAddPatientLoading} = state.addPatient;
+  return {patients, isFetching, isAddPatientLoading};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({

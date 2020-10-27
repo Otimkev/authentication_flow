@@ -4,9 +4,11 @@ import {addPatientSaga} from './patient/addPatient/Saga';
 import {fetchAPatientsSaga} from './patient/getAPatient/Saga';
 import {addTestSaga} from './test/addTest/Saga';
 import {getTestsSaga} from './test/loadTests/Saga';
+import {fetchAllInvitesSaga} from './patient/notifications/invites/Saga';
 
 function* RootSaga() {
   yield all([
+    fork(fetchAllInvitesSaga),
     fork(fetchAllPatientsSaga),
     fork(addPatientSaga),
     fork(fetchAPatientsSaga),

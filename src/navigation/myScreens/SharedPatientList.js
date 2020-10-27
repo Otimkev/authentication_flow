@@ -1,15 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const SharedPatients = () => {
+const SharedPatientList = () => {
   return (
     <View style={styles.container}>
-      <Text>Shared Patients</Text>
+      <Text>Call Ineza Rachel our Virtual Assistant</Text>
     </View>
   );
 };
 
-export default SharedPatients;
+export default SharedPatientList;
 
 const styles = StyleSheet.create({
   container: {

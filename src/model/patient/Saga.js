@@ -5,7 +5,7 @@ import API from '../QueryApi';
 
 function* fetchAllPatients() {
   try {
-    const vPatients = yield call(API.get, '/all-patient/1/');
+    const vPatients = yield call(API.get, '/all-patient/2/');
     yield put(actions.getAllPatientsSuccess(vPatients));
   } catch (e) {
     console.log(e);

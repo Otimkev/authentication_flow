@@ -17,3 +17,11 @@ export const ADD_TEST_FAILURE = 'addTestFailure';
 export const GET_TEST_RESPONSE = 'getTestResponse';
 export const GET_TEST_SUCCESS = 'getTestSuccess';
 export const GET_TEST_FAILURE = 'getTestFailure';
+
+export const GET_NOTIFICATIONS_RESPONSE = 'getNotificationsResponse';
+export const GET_NOTIFICATIONS_SUCCESS = 'getNotificationsSuccess';
+export const GET_NOTIFICATIONS_FAILURE = 'getNOtificationsFailure';
+
+export const INVITE_RESPONSE = 'inviteResponse';
+export const INVITE_SUCCESS = 'inviteSuccess';
+export const INVITE_FAILURE = 'inviteFailure';

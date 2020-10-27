@@ -4,6 +4,8 @@ import * as actionTypes from '../../utils/Constants';
 import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
 import {getAPatientsResponse} from '../../model/patient/getAPatient/Actions';
 import {connect} from 'react-redux';
+import {Picker} from '@react-native-community/picker';
+import {globalStyles} from '../../styles/Global';
 
 const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
   const id = route.params.patientId;
@@ -39,6 +41,14 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
       <View style={styles.button}>
         <Button
           title="Back"
+          onPress={() => {
+            navigation.navigate('Patients');
+          }}
+        />
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Invite"
           onPress={() => {
             navigation.navigate('Patients');
           }}

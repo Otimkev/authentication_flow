@@ -13,10 +13,12 @@ import LoginRepository from './src/httpClient/repository/login/LoginRepository';
 import WardsScreen from './src/navigation/myScreens/WardsScreen';
 import SettingsScreen from './src/navigation/myScreens/SettingsScreen';
 import SpecialistScreen from './src/navigation/myScreens/SpecialistScreen';
-import SharedPatients from './src/navigation/myScreens/SharedPatients';
+import SharedPatients from './src/navigation/myScreens/ShareStack';
 import SupportScreen from './src/navigation/myScreens/SupportScreen';
 import {Provider} from 'react-redux';
 import {Store} from './src/store/Store';
+import Icon from 'react-native-vector-icons/Fontisto';
+import ShareStack from './src/navigation/myScreens/ShareStack';
 
 export const AuthContext = React.createContext();
 
@@ -136,8 +138,21 @@ export default function App({navigation}) {
               <Drawer.Screen name="Wards" component={WardsScreen} />
               <Drawer.Screen name="Notifications" component={ProfileScreen} />
               <Drawer.Screen name="Settings" component={SettingsScreen} />
-              <Drawer.Screen name="SharedPatients" component={SharedPatients} />
-              <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+              <Drawer.Screen name="SharedPatients" component={ShareStack} />
+              <Drawer.Screen
+                name="SupportScreen"
+                component={SupportScreen}
+                options={{
+                  headerLeft: () => (
+                    <Icon.Button
+                      name="nav-icon-list-a"
+                      size={25}
+                      backgroundColor="#007360"
+                      onPress={() => navigation.openDrawer()}
+                    />
+                  ),
+                }}
+              />
             </Drawer.Navigator>
           )}
         </NavigationContainer>
