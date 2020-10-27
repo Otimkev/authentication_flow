@@ -50,7 +50,7 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <Button
           title="Invite"
           onPress={() => {
-            navigation.navigate('Patients');
+            navigation.navigate('inviteList');
           }}
         />
       </View>

@@ -5,6 +5,7 @@ import {fetchAPatientsSaga} from './patient/getAPatient/Saga';
 import {addTestSaga} from './test/addTest/Saga';
 import {getTestsSaga} from './test/loadTests/Saga';
 import {fetchAllInvitesSaga} from './patient/notifications/invites/Saga';
+import {fetchAllUsersSaga} from './user/Saga';
 
 function* RootSaga() {
   yield all([
@@ -14,6 +15,7 @@ function* RootSaga() {
     fork(fetchAPatientsSaga),
     fork(addTestSaga),
     fork(getTestsSaga),
+    fork(fetchAllUsersSaga),
   ]);
 }
 

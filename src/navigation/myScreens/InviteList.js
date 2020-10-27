@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../model/patient/notifications/invites/Actions';
-import {GET_NOTIFICATIONS_RESPONSE} from '../../utils/Constants';
+import * as actionTypes from '../../model/user/Actions';
+import {GET_USER_RESPONSE} from '../../utils/Constants';
 import {
   StyleSheet,
   Text,
@@ -14,21 +14,20 @@ import {
 import {FloatingAction} from 'react-native-floating-action';
 import {Loader} from '../../components/Loader';
 
-const NoticationScreenView = ({
-  getAllInvites,
+const UserListScreenView = ({
   navigation,
   isFetching,
-  invites,
-  createInvites,
+  inviteList,
+  getAllUsers,
 }) => {
   useEffect(() => {
-    getAllInvites();
-  }, [getAllInvites, createInvites]);
+    getAllUsers();
+  }, [getAllUsers]);
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Patient Information', {patientId: item.id});
+          navigation.navigate('Patient Information', {userId: item.id});
         }}>
         <View style={styles.row}>
           <View>
@@ -37,17 +36,11 @@ const NoticationScreenView = ({
                 style={styles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
-                {`${item.patient.firstName} ${item.patient.lastName}`}
+                {`${item.firstName} ${item.lastName}`}
               </Text>
-              <View style={{marginHorizontal: 8}}>
-                <Button title="Accept" />
-              </View>
-              <View>
-                <Button title="Decline" />
-              </View>
             </View>
             <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.id}</Text>
+              <Text style={styles.msgTxt}>{item.email}</Text>
             </View>
           </View>
         </View>
@@ -64,45 +57,33 @@ const NoticationScreenView = ({
         <Loader />
       ) : (
         <FlatList
-          extra={invites}
-          data={invites}
+          extra={inviteList}
+          data={inviteList}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
         />
       )}
-      <FloatingAction
-        actions={[
-          {
-            text: 'Add Patient',
-            name: 'bt_accessibility',
-            position: 2,
-          },
-        ]}
-        onPressItem={() => {
-          navigation.navigate('Register Patient');
-        }}
-      />
     </View>
   );
 };
 
 const mapStateToProps = (state, props) => {
-  const {invites, isFetching} = state.invites;
-  return {invites, isFetching};
+  const {inviteList, isFetching} = state.getUsers;
+  return {inviteList, isFetching};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  getAllInvites: () => {
+  getAllUsers: () => {
     dispatch({
-      type: GET_NOTIFICATIONS_RESPONSE,
+      type: GET_USER_RESPONSE,
     });
   },
 });
 
-export const NoticationScreen = connect(
+export const UserListScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(NoticationScreenView);
+)(UserListScreenView);
 
 const styles = StyleSheet.create({
   row: {

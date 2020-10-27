@@ -25,3 +25,7 @@ export const GET_NOTIFICATIONS_FAILURE = 'getNOtificationsFailure';
 export const INVITE_RESPONSE = 'inviteResponse';
 export const INVITE_SUCCESS = 'inviteSuccess';
 export const INVITE_FAILURE = 'inviteFailure';
+
+export const GET_USER_RESPONSE = 'getUserResponse';
+export const GET_USER_SUCCESS = 'getUserSuccess';
+export const GET_USER_FAILURE = 'getUserFailure';
