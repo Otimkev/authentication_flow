@@ -20,15 +20,15 @@ import ShareStack from './src/navigation/myScreens/ShareStack';
 
 const Stack = createStackNavigator();
 
-export default function App({navigation}) {
+export default function App({navigation, props}) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [userToken, setToken] = React.useState(null);
   React.useEffect(() => {
     const bootstrapAsync = async () => {
       var mToken;
       try {
-        const userData = await AsyncStorage.getItem('user');
-        setToken(userData);
+        // const userData = await AsyncStorage.getItem('user');
+        // setToken(userData);
       } catch (e) {
         console.log(e);
       }
@@ -46,7 +46,7 @@ export default function App({navigation}) {
           <Stack.Navigator headerMode="none">
             <Stack.Screen name="Splash" component={SplashScreen} />
           </Stack.Navigator>
-        ) : userToken === null ? (
+        ) : userToken !== null ? (
           // No token found, user isn't signed in
           <RootStackScreen />
         ) : (
