@@ -11,16 +11,17 @@ import {
 } from 'react-native';
 import {AuthContext} from '../../../App';
 import {globalStyles} from '../../styles/Global';
+import * as actionCreators from '../../model/user/authentication/Actions';
+import {SIGNUP_RESONSE} from '../../utils/Constants';
+import {connect} from 'react-redux';
 
-const SignUpScreen = ({navigation}) => {
+const SignUpScreenView = ({navigation, isLoading, token, user, signup}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hospital, setHospital] = useState('');
-
-  const {signUp} = useContext(AuthContext);
 
   const postUserData = {
     firstName: firstName,
@@ -102,7 +103,7 @@ const SignUpScreen = ({navigation}) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={globalStyles.Button}
-        onPress={() => signUp(postUserData)}>
+        onPress={() => signup(postUserData)}>
         <Text style={styles.loginText}>Sign Up</Text>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -115,6 +116,24 @@ const SignUpScreen = ({navigation}) => {
     </View>
   );
 };
+
+const mapStateToProps = (state, props) => {
+  const {isLoading, token, user} = state.authentication;
+  return {isLoading, token, user};
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  signup: (args) => {
+    dispatch(actionCreators.signupResponse(args));
+  },
+});
+
+const SignUpScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignUpScreenView);
+
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
   loginContainer: {
@@ -147,5 +166,3 @@ const styles = StyleSheet.create({
     color: '#007360',
   },
 });
-
-export default SignUpScreen;

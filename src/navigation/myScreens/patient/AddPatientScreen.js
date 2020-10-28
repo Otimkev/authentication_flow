@@ -19,26 +19,26 @@ import {connect} from 'react-redux';
 import {AddPatientReducer} from '../../../model/patient/addPatient/Reducer';
 
 const AddPatientScreenView = ({navigation, createPatient, responseData}) => {
-  const [firstName, setFirstName] = useState('testFirstName');
-  const [lastName, setLastName] = useState('testLastName');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [gender, setGender] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState(90);
+  const [dateOfBirth, setDateOfBirth] = useState('');
   const [maritalStatus, setMaritalStatus] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(9798786);
-  const [address, setAddress] = useState('Kampala');
-  const [emergencyFirstName, setEmergencyFirstName] = useState('testemgOne');
-  const [emergencyLastName, setEmergencyLastName] = useState('testemgTwo');
-  const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState(8978778);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [address, setAddress] = useState('');
+  const [emergencyFirstName, setEmergencyFirstName] = useState('');
+  const [emergencyLastName, setEmergencyLastName] = useState('');
+  const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
   const [relationship, setRelationship] = useState('');
   const [mState, setmState] = useState(false);
 
   const patientData = {
     firstName: firstName,
     lastName: lastName,
-    gender: 'gender',
+    gender: gender,
     dateOfBirth: dateOfBirth,
-    maritalStatus: 'maritalStatus',
+    maritalStatus: maritalStatus,
     email: email,
     phoneNumber: phoneNumber,
     address: address,

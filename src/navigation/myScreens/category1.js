@@ -6,7 +6,8 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
-  Button, ToastAndroid,
+  Button,
+  ToastAndroid,
 } from 'react-native';
 import {globalStyles} from '../../styles/Global';
 import * as actions from '../../model/test/addTest/Actions';

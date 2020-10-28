@@ -8,11 +8,9 @@ import {
   Image,
   TextInput,
 } from 'react-native';
-import {AuthContext} from '../../../App';
 import {globalStyles} from '../../styles/Global';
 
 const SignInScreen = ({navigation}) => {
-  const {signIn} = useContext(AuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -49,7 +47,9 @@ const SignInScreen = ({navigation}) => {
 
       <TouchableOpacity
         style={globalStyles.Button}
-        onPress={() => signIn(userCredentials)}>
+        onPress={() => {
+          console.log('hello');
+        }}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
 

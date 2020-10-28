@@ -1,8 +1,8 @@
 import * as actionTypes from '../../../utils/Constants';
 
 const initialState = {
-  isAddPatientLoading: null,
-  responseData: null,
+  isAddPatientLoading: false,
+  responseData: [],
   isAddPatientError: null,
 };
 

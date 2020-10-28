@@ -5,8 +5,7 @@ import API from '../../QueryApi';
 
 function* addPatient(action) {
   try {
-    const response = yield call(API.post, '/add-patient/1/', action.payload);
-    console.log(`============================${response}`);
+    const response = yield call(API.post, '/add-patient/2/', action.payload);
     yield put(actions.addPatientsSuccess(response));
   } catch (e) {
     console.log(e);

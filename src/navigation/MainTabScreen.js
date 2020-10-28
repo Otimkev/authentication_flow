@@ -8,7 +8,7 @@ import ProfileScreen from './myScreens/ProfileScreen';
 import ChatScreen from '././myScreens/ChatScreen';
 import {PatientScreen} from './myScreens/PatientScreen';
 import {AddPatientScreen} from './myScreens/patient/AddPatientScreen';
-import NotificationsScreen from './myScreens/NotificationScreen';
+import {NoticationScreen} from './myScreens/NotificationScreen';
 import GeneralTestScreen from './myScreens/patient/PatientTests/GeneralTestScreen';
 import MaternityWard from './myScreens/Wards/MaternityWard';
 import {APatientScreen} from './myScreens/APatientScreen';
@@ -16,6 +16,7 @@ import Category1Screen from './myScreens/category1';
 import TestListScreen from './myScreens/TestList';
 import {AllTestScreen} from './myScreens/AllTestsScreen';
 import {mGraphScreen} from './myScreens/mGraph';
+import {UserListScreen} from './myScreens/InviteList';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -251,6 +252,20 @@ const PatientStackScreen = ({navigation}) => (
         ),
       }}
     />
+    <PatientsStack.Screen
+      name="inviteList"
+      component={UserListScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
   </PatientsStack.Navigator>
 );
 
@@ -295,7 +310,7 @@ const NotificationsStackScreen = ({navigation}) => (
     }}>
     <NotificationsStack.Screen
       name="Notifications"
-      component={NotificationsScreen}
+      component={NoticationScreen}
       options={{
         headerLeft: () => (
           <Icon.Button
