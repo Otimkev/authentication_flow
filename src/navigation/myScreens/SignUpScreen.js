@@ -9,7 +9,6 @@ import {
   ToastAndroid,
   Image,
 } from 'react-native';
-import {AuthContext} from '../../../App';
 import {globalStyles} from '../../styles/Global';
 import * as actionCreators from '../../model/user/authentication/Actions';
 import {SIGNUP_RESONSE} from '../../utils/Constants';
@@ -31,7 +30,6 @@ const SignUpScreenView = ({navigation, isLoading, token, user, signup}) => {
     facility: hospital,
     password: password,
   };
-
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
   };

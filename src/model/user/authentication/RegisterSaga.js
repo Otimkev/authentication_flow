@@ -5,19 +5,20 @@ import {storeToken} from '../../../utils/SessionManager';
 import API from '../../QueryApi';
 import * as actionCreators from './Actions';
 
-function* signup(action) {
+function* RegisterSaga(action) {
   try {
     const signupResponse = yield call(API.post, '/signup/', action.payload);
-    yield put(actionCreators.signupSuccess(signupResponse));
+    console.log(action.payload);
+    console.log(signupResponse);
     yield call(storeToken, JSON.stringify(signupResponse));
   } catch (e) {
     console.log(e);
-    yield put(actionCreators.signupFailure(e));
+    yield put(actionCreators.inviteFailure(e));
   }
 }
 
 function* signupSaga() {
-  yield takeEvery(actionTypes.SIGNUP_RESONSE, signup);
+  yield takeEvery(actionTypes.SIGNUP_RESONSE, RegisterSaga);
 }
 
 export {signupSaga};

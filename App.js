@@ -24,11 +24,11 @@ export default function App({navigation}) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [userToken, setToken] = React.useState(null);
   React.useEffect(() => {
-    // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       var mToken;
       try {
         const userData = await AsyncStorage.getItem('user');
+        setToken(userData);
       } catch (e) {
         console.log(e);
       }
