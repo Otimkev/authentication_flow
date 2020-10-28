@@ -1,25 +1,24 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import {put, call, takeEvery} from 'redux-saga/effects';
-import * as actionTypes from '../../../../utils/Constants';
-import API from '../../../QueryApi';
+import * as actionTypes from '../../../utils/Constants';
+import {storeToken} from '../../../utils/SessionManager';
+import API from '../../QueryApi';
 import * as actionCreators from './Actions';
 
-function* invite(action) {
+function* signup(action) {
   try {
-    const vInvite = yield call(
-      API.post,
-      `/share-patient/2/${action.payload.userId}/${action.payload.patientId}`,
-    );
+    const signupResponse = yield call(API.post, '/signup/', action.payload);
     console.log(action.payload);
-    console.log(vInvite);
-    yield put(actionCreators.inviteSuccess(vInvite));
+    console.log(signupResponse);
+    yield call(storeToken, JSON.stringify(signupResponse));
   } catch (e) {
     console.log(e);
     yield put(actionCreators.inviteFailure(e));
   }
 }
 
-function* InviteSaga() {
-  yield takeEvery(actionTypes.INVITE_RESPONSE, invite);
+function* signupSaga() {
+  yield takeEvery(actionTypes.SIGNUP_RESONSE, signup);
 }
 
-export {InviteSaga};
+export {signupSaga};

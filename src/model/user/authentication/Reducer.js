@@ -1,25 +1,44 @@
-import * as actionType from '../../../../utils/Constants';
+import * as actionType from '../../../utils/Constants';
 
 const initialState = {
-  isInviting: false,
+  isLoading: false,
   Error: null,
-  invite: [],
+  user: [],
+  token: null,
 };
 
-export const InviteAUserReducer = (state = initialState, action) => {
+export const AuthenticationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionType.INVITE_RESPONSE:
+    case actionType.SIGNUP_RESONSE:
       return {
         ...state,
-        isInviting: true,
+        isLoading: true,
       };
-    case actionType.INVITE_SUCCESS:
+    case actionType.SIGNUP_SUCCESS:
       return {
         ...state,
         invite: action.payload.data,
-        isInviting: false,
+        token: action.payload.token,
+        isLoading: false,
       };
-    case actionType.INVITE_FAILURE:
+    case actionType.SIGNUP_FAILURE:
+      return {
+        ...state,
+        Error: action.payload.error,
+      };
+    case actionType.SIGNIN_RESONSE:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case actionType.SIGNIN_SUCCESS:
+      return {
+        ...state,
+        invite: action.payload.data,
+        token: action.payload.token,
+        isLoading: false,
+      };
+    case actionType.SIGNIN_FAILURE:
       return {
         ...state,
         Error: action.payload.error,
