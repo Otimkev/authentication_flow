@@ -39,3 +39,7 @@ export const SIGNIN_SUCCESS = 'signinUserSuccess';
 export const SIGNIN_FAILURE = 'signinUserFailure';
 
 export const LOG_OUT = 'logout';
+export const LOG_OUT_SUCCESS = 'logoutSuccess';
+
+export const CHECK_TOKEN_START = 'checkTokenStart';
+export const CHECK_TOKEN_SUCCESS = 'checkToken';

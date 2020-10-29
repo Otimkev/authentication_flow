@@ -1,47 +1,42 @@
 import * as actionType from '../../../utils/Constants';
 
 const initialState = {
+  currentUser: null,
+  error: null,
   isLoading: false,
-  Error: null,
-  user: [],
   token: null,
 };
 
 export const AuthenticationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionType.SIGNUP_RESONSE:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case actionType.SIGNUP_SUCCESS:
-      return {
-        ...state,
-        invite: action.payload.data,
-        token: action.payload.token,
-        isLoading: false,
-      };
-    case actionType.SIGNUP_FAILURE:
-      return {
-        ...state,
-        Error: action.payload.error,
-      };
-    case actionType.SIGNIN_RESONSE:
-      return {
-        ...state,
-        isLoading: true,
-      };
     case actionType.SIGNIN_SUCCESS:
       return {
         ...state,
-        invite: action.payload.data,
-        token: action.payload.token,
+        currentUser: action.payload,
+        isLoading: false,
+        token: action.payload,
+      };
+    case actionType.CHECK_TOKEN_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case actionType.CHECK_TOKEN_SUCCESS:
+      return {
+        ...state,
+        token: action.payload,
         isLoading: false,
       };
+    case actionType.SIGNUP_FAILURE:
     case actionType.SIGNIN_FAILURE:
       return {
         ...state,
-        Error: action.payload.error,
+        error: action.payload,
+      };
+    case actionType.LOG_OUT_SUCCESS:
+      return {
+        ...state,
+        token: null,
       };
     default:
       return state;

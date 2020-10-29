@@ -1,51 +1,48 @@
-import * as actionType from '../../../utils/Constants';
+import * as types from '../../../utils/Constants';
 
-export const signupResponse = (payload) => {
-  return {
-    type: actionType.SIGNUP_RESONSE,
-    payload,
-  };
-};
+export const checkTokenSuccess = (token) => ({
+  type: types.CHECK_TOKEN_SUCCESS,
+  payload: token,
+});
 
-export const signupSuccess = (data) => {
-  return {
-    type: actionType.SIGNUP_SUCCESS,
-    payload: {
-      data,
-    },
-  };
-};
+export const checkTokenStart = () => ({
+  type: types.CHECK_TOKEN_START,
+});
 
-export const signupFailure = (error) => {
-  return {
-    type: actionType.SIGNUP_FAILURE,
-    payload: {
-      error,
-    },
-  };
-};
+export const logInStart = (credentials) => ({
+  type: types.SIGNIN_RESONSE,
+  payload: credentials,
+});
 
-export const signinResponse = (payload) => {
-  return {
-    type: actionType.SIGNIN_RESONSE,
-    payload,
-  };
-};
+export const logInSuccess = (user) => ({
+  type: types.SIGNIN_SUCCESS,
+  payload: user,
+});
 
-export const signinSuccess = (data) => {
-  return {
-    type: actionType.SIGNIN_SUCCESS,
-    payload: {
-      data,
-    },
-  };
-};
+export const logInFailure = (error) => ({
+  type: types.SIGNIN_FAILURE,
+  payload: error,
+});
 
-export const signinFailure = (error) => {
-  return {
-    type: actionType.SIGNIN_FAILURE,
-    payload: {
-      error,
-    },
-  };
-};
+export const registerStart = (credentials) => ({
+  type: types.SIGNUP_RESONSE,
+  payload: credentials,
+});
+
+export const registerSuccess = (user) => ({
+  type: types.SIGNUP_SUCCESS,
+  payload: user,
+});
+
+export const registerFailure = (error) => ({
+  type: types.SIGNUP_FAILURE,
+  payload: error,
+});
+
+export const logOut = () => ({
+  type: types.LOG_OUT,
+});
+
+export const logOutSucess = () => ({
+  type: types.LOG_OUT_SUCCESS,
+});

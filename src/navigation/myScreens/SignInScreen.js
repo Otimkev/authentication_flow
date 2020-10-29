@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -9,8 +9,10 @@ import {
   TextInput,
 } from 'react-native';
 import {globalStyles} from '../../styles/Global';
+import * as actionCreators from '../../model/user/authentication/Actions';
+import {connect} from 'react-redux';
 
-const SignInScreen = ({navigation}) => {
+const SignInScreenView = ({navigation, signin, currentUser}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -48,7 +50,8 @@ const SignInScreen = ({navigation}) => {
       <TouchableOpacity
         style={globalStyles.Button}
         onPress={() => {
-          console.log('hello');
+          console.log(userCredentials);
+          signin(userCredentials);
         }}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
@@ -67,6 +70,22 @@ const SignInScreen = ({navigation}) => {
     </View>
   );
 };
+
+const mapStateToProps = (state, props) => {
+  const {isLoading, currentUser} = state.authentication;
+  return {isLoading, currentUser};
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  signin: (args) => {
+    dispatch(actionCreators.logInStart(args));
+  },
+});
+
+const SignInScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignInScreenView);
 
 const styles = StyleSheet.create({
   loginContainer: {

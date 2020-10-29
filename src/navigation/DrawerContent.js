@@ -1,13 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {
-  useTheme,
-  Avatar,
-  Title,
-  Caption,
-  Paragraph,
-  Drawer,
-} from 'react-native-paper';
+import {Avatar, Title, Caption, Paragraph, Drawer} from 'react-native-paper';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 
 // import WardsScreen from './myScreens/WardsScreen';
@@ -19,12 +12,12 @@ import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Font from 'react-native-vector-icons/FontAwesome5';
+import {destroyToken} from '../utils/SessionManager';
+import * as actionCreators from '../model/user/authentication/Actions';
+import {connect} from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 
-import {AuthContext} from '../../App';
-
-export function DrawerContent(props) {
-  const paperTheme = useTheme();
-  const {signOut} = useContext(AuthContext);
+function DrawerContentView({props, navigation, logOut}) {
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView {...props}>
@@ -118,12 +111,32 @@ export function DrawerContent(props) {
             <Ionicons name="log-out-outline" color="#007360" size={size} />
           )}
           label="Sign Out"
-          onPress={() => signOut()}
+          onPress={async () => {
+            logOut();
+          }}
         />
       </Drawer.Section>
     </View>
   );
 }
+
+const mapStateToProps = (state, props) => {
+  const {isLoading, currentUser} = state.authentication;
+  return {isLoading, currentUser};
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  logOut: () => {
+    dispatch(actionCreators.logOut());
+  },
+});
+
+const DrawerContent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DrawerContentView);
+
+export default DrawerContent;
 
 const styles = StyleSheet.create({
   drawerContent: {
