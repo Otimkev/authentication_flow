@@ -5,8 +5,7 @@ export function* storeToken(userData) {
 }
 
 export function* getToken() {
-  const token = yield AsyncStorage.getItem('user');
-  yield token.token;
+  yield AsyncStorage.getItem('user');
 }
 
 export const destroyToken = async () => {
