@@ -1,5 +1,14 @@
 import * as types from '../../../utils/Constants';
 
+export const checkTokenSuccess = (token) => ({
+  type: types.CHECK_TOKEN_SUCCESS,
+  payload: token,
+});
+
+export const checkTokenStart = () => ({
+  type: types.CHECK_TOKEN_START,
+});
+
 export const logInStart = (credentials) => ({
   type: types.SIGNIN_RESONSE,
   payload: credentials,
@@ -32,4 +41,8 @@ export const registerFailure = (error) => ({
 
 export const logOut = () => ({
   type: types.LOG_OUT,
+});
+
+export const logOutSucess = () => ({
+  type: types.LOG_OUT_SUCCESS,
 });

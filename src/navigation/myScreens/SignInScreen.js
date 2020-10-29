@@ -50,6 +50,7 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
       <TouchableOpacity
         style={globalStyles.Button}
         onPress={() => {
+          console.log(userCredentials);
           signin(userCredentials);
         }}>
         <Text style={styles.loginText}>LOGIN</Text>

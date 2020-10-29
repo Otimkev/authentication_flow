@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {DrawerContent} from './src/navigation/DrawerContent';
+import DrawerContent from './src/navigation/DrawerContent';
 import MainTabScreen from './src/navigation/MainTabScreen';
 import SplashScreen from './src/navigation/myScreens/SplashScreen';
 import ProfileScreen from './src/navigation/myScreens/ProfileScreen';
@@ -15,35 +15,25 @@ import SharedPatients from './src/navigation/myScreens/ShareStack';
 import SupportScreen from './src/navigation/myScreens/SupportScreen';
 import Icon from 'react-native-vector-icons/Fontisto';
 import ShareStack from './src/navigation/myScreens/ShareStack';
-import * as actionCreators from './src/model/user/Actions';
+import * as actionCreators from './src/model/user/authentication/Actions';
 import {connect} from 'react-redux';
-
-export const AuthContext = React.createContext();
-
 const Stack = createStackNavigator();
 
-function AppRootView({navigation, currentUser}) {
+function AppRootView({navigation, currentUser, token, checkForToken}) {
   const [userToken, setToken] = React.useState(null);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(false);
   React.useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       try {
-        const mtoken = await AsyncStorage.getItem('user');
-        if (!mtoken) {
-          setIsLoading(false);
-          return null;
-        }
-        setToken(mtoken);
-        setIsLoading(false);
+        checkForToken();
       } catch (e) {
-        // Restoring token failed
+        console.log(e);
       }
     };
-
     bootstrapAsync();
-  }, []);
-
+  }, [checkForToken]);
+  console.log(token);
   const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer>
@@ -52,7 +42,7 @@ function AppRootView({navigation, currentUser}) {
         <Stack.Navigator headerMode="none">
           <Stack.Screen name="Splash" component={SplashScreen} />
         </Stack.Navigator>
-      ) : userToken === null ? (
+      ) : token === null ? (
         // No token found, user isn't signed in
         <RootStackScreen />
       ) : (
@@ -86,13 +76,13 @@ function AppRootView({navigation, currentUser}) {
 }
 
 const mapStateToProps = (state, props) => {
-  const {isLoading, currentUser} = state.authentication;
-  return {isLoading, currentUser};
+  const {isLoading, currentUser, token} = state.authentication;
+  return {isLoading, currentUser, token};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  signin: (args) => {
-    dispatch(actionCreators.logInStart(args));
+  checkForToken: () => {
+    dispatch(actionCreators.checkTokenStart());
   },
 });
 

@@ -14,7 +14,7 @@ import * as actionCreators from '../../model/user/authentication/Actions';
 import {SIGNUP_RESONSE} from '../../utils/Constants';
 import {connect} from 'react-redux';
 
-const SignUpScreenView = ({navigation, isLoading, user, signup}) => {
+const SignUpScreenView = ({navigation, isLoading, currentUser, signup}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -101,7 +101,9 @@ const SignUpScreenView = ({navigation, isLoading, user, signup}) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={globalStyles.Button}
-        onPress={() => signup(postUserData)}>
+        onPress={() => {
+          signup(postUserData);
+        }}>
         <Text style={styles.loginText}>Sign Up</Text>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -116,8 +118,8 @@ const SignUpScreenView = ({navigation, isLoading, user, signup}) => {
 };
 
 const mapStateToProps = (state, props) => {
-  const {isLoading, user} = state.authentication;
-  return {isLoading, user};
+  const {isLoading, currentUser} = state.authentication;
+  return {isLoading, currentUser};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
