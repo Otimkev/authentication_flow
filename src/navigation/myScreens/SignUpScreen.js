@@ -14,7 +14,7 @@ import * as actionCreators from '../../model/user/authentication/Actions';
 import {SIGNUP_RESONSE} from '../../utils/Constants';
 import {connect} from 'react-redux';
 
-const SignUpScreenView = ({navigation, isLoading, token, user, signup}) => {
+const SignUpScreenView = ({navigation, isLoading, user, signup}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -116,13 +116,13 @@ const SignUpScreenView = ({navigation, isLoading, token, user, signup}) => {
 };
 
 const mapStateToProps = (state, props) => {
-  const {isLoading, token, user} = state.authentication;
-  return {isLoading, token, user};
+  const {isLoading, user} = state.authentication;
+  return {isLoading, user};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
   signup: (args) => {
-    dispatch(actionCreators.signupResponse(args));
+    dispatch(actionCreators.registerStart(args));
   },
 });
 
