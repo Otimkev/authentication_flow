@@ -23,6 +23,7 @@ import * as actionCreators from './Actions';
 export function* logInWithCredentials(action) {
   try {
     const user = yield call(API.post, '/signin/', action.payload);
+    yield (storeToken, JSON.stringify(user));
     console.log(user);
     yield put(actionCreators.logInSuccess(user));
   } catch (error) {
@@ -36,7 +37,7 @@ export function* registerWithCredentials(action) {
     console.log(user);
     yield put(actionCreators.registerSuccess(user));
   } catch (error) {
-    yield put(actionCreators.logInFailure(error));
+    yield put(actionCreators.registerFailure(error));
   }
 }
 

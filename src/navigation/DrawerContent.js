@@ -19,6 +19,7 @@ import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Font from 'react-native-vector-icons/FontAwesome5';
+import {destroyToken} from '../utils/SessionManager';
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
@@ -115,7 +116,7 @@ export function DrawerContent(props) {
             <Ionicons name="log-out-outline" color="#007360" size={size} />
           )}
           label="Sign Out"
-          onPress={() => console.log('Not implemented')}
+          onPress={() => destroyToken()}
         />
       </Drawer.Section>
     </View>
