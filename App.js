@@ -8,6 +8,8 @@ import MainTabScreen from './src/navigation/MainTabScreen';
 import SplashScreen from './src/navigation/myScreens/SplashScreen';
 import ProfileScreen from './src/navigation/myScreens/ProfileScreen';
 import RootStackScreen from './src/navigation/RootStack';
+import SignupRepository from './src/httpClient/repository/signup/SignupRepository';
+import LoginRepository from './src/httpClient/repository/login/LoginRepository';
 import WardsScreen from './src/navigation/myScreens/WardsScreen';
 import SettingsScreen from './src/navigation/myScreens/SettingsScreen';
 import SpecialistScreen from './src/navigation/myScreens/SpecialistScreen';
@@ -18,19 +20,20 @@ import {Store} from './src/store/Store';
 import Icon from 'react-native-vector-icons/Fontisto';
 import ShareStack from './src/navigation/myScreens/ShareStack';
 
+export const AuthContext = React.createContext();
+
 const Stack = createStackNavigator();
 
-export default function App({navigation, props}) {
-  const [isLoading, setIsLoading] = React.useState(false);
+export default function App({navigation}) {
   const [userToken, setToken] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(false);
   React.useEffect(() => {
+    // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
-      var mToken;
       try {
-        // const userData = await AsyncStorage.getItem('user');
-        // setToken(userData);
+        const mtoken = await AsyncStorage.getItem('user');
       } catch (e) {
-        console.log(e);
+        // Restoring token failed
       }
     };
 

@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
