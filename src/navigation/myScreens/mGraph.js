@@ -15,10 +15,29 @@ export const mGraphScreen = () => {
       <Text>Bezier Line Chart</Text>
       <LineChart
         data={{
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          labels: [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+          ],
           datasets: [
             {
               data: [
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
                 Math.random() * 100,
                 Math.random() * 100,
                 Math.random() * 100,
