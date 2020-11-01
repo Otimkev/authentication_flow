@@ -10,9 +10,26 @@ import {
 
 const TestListScreen = ({navigation, route}) => {
   const [testCategoryLabel, setTestCategory] = useState([
-    {label: 'category1', id: 1},
-    {label: 'category2', id: 2},
-    {label: 'category3', id: 3},
+    {label: 'Inflam/ Infection Markers', id: 1},
+    {label: 'General Endocrine', id: 2},
+    {label: 'Hypertension/Neuro Endocrine', id: 3},
+    {label: 'Pregnancy', id: 4},
+    {label: 'Nutrition/Iron Studies', id: 5},
+    {label: 'Bone Turnover', id: 6},
+    {label: 'Autoimmune', id: 7},
+    {label: 'Allergy', id: 8},
+    {label: 'Andrology', id: 9},
+    {label: 'Lung Kidney, Skeleton', id: 10},
+    {label: 'Glucose Metabolism', id: 11},
+    {label: 'Lipid Metabolism', id: 12},
+    {label: 'Heart and Muscle', id: 13},
+    {label: 'Liver/Pancreas/GIT', id: 14},
+    {label: 'Pharmacology', id: 15},
+    {label: 'Haematology', id: 16},
+    {label: 'Coagulation', id: 17},
+    {label: 'Hepatitis Viruses', id: 18},
+    {label: 'HIV', id: 19},
+    {label: 'Microbiology', id: 20},
   ]);
   const id = route.params.patientId;
   const renderItem = ({item}) => {
@@ -24,10 +41,7 @@ const TestListScreen = ({navigation, route}) => {
         <View style={styles.row}>
           <View>
             <View style={styles.nameContainer}>
-              <Text
-                style={styles.nameTxt}
-                numberOfLines={1}
-                ellipsizeMode="tail">
+              <Text style={styles.nameTxt} numberOfLines={1}>
                 {item.label}
               </Text>
             </View>
@@ -62,22 +76,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     padding: 10,
   },
-  pic: {
-    borderRadius: 30,
-    width: 60,
-    height: 60,
-  },
   nameContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: 280,
   },
   nameTxt: {
     marginLeft: 15,
     fontWeight: '600',
     color: '#222',
     fontSize: 18,
-    width: 170,
   },
   mblTxt: {
     fontWeight: '200',
