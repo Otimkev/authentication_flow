@@ -5,6 +5,13 @@ export function* storeToken(userData) {
 }
 
 export function* getToken() {
-  const token = yield AsyncStorage.getItem('user');
-  yield token.token;
+  yield AsyncStorage.getItem('user');
 }
+
+export const destroyToken = async () => {
+  try {
+    return await AsyncStorage.removeItem('user');
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -12,9 +12,13 @@ import {
 import {globalStyles} from '../../styles/Global';
 import * as actions from '../../model/test/addTest/Actions';
 import {connect} from 'react-redux';
-import {exp} from 'react-native-reanimated';
 
-const Category1ScreenView = ({navigation, route, createTest, addTestData}) => {
+const GlucoseMetabolismScreenView = ({
+  navigation,
+  route,
+  createTest,
+  addTestData,
+}) => {
   const [glucoseFasting, setGlucoseFasting] = useState('');
   const [glucoseRandom, setGlucoseRandom] = useState('');
   const [gtt2Hr75gStandard, setGtt2Hr75gStandard] = useState('');
@@ -112,12 +116,12 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
 });
 
-const Category1Screen = connect(
+const GlucoseMetabolismScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Category1ScreenView);
+)(GlucoseMetabolismScreenView);
 
-export default Category1Screen;
+export default GlucoseMetabolismScreen;
 
 const styles = StyleSheet.create({
   loginContainer: {

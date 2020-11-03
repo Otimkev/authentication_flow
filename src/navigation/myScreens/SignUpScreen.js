@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -9,13 +9,12 @@ import {
   ToastAndroid,
   Image,
 } from 'react-native';
-import {AuthContext} from '../../../App';
 import {globalStyles} from '../../styles/Global';
 import * as actionCreators from '../../model/user/authentication/Actions';
 import {SIGNUP_RESONSE} from '../../utils/Constants';
 import {connect} from 'react-redux';
 
-const SignUpScreenView = ({navigation, isLoading, token, user, signup}) => {
+const SignUpScreenView = ({navigation, isLoading, currentUser, signup}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -31,7 +30,6 @@ const SignUpScreenView = ({navigation, isLoading, token, user, signup}) => {
     facility: hospital,
     password: password,
   };
-
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
   };
@@ -103,7 +101,9 @@ const SignUpScreenView = ({navigation, isLoading, token, user, signup}) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={globalStyles.Button}
-        onPress={() => signup(postUserData)}>
+        onPress={() => {
+          signup(postUserData);
+        }}>
         <Text style={styles.loginText}>Sign Up</Text>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -118,13 +118,13 @@ const SignUpScreenView = ({navigation, isLoading, token, user, signup}) => {
 };
 
 const mapStateToProps = (state, props) => {
-  const {isLoading, token, user} = state.authentication;
-  return {isLoading, token, user};
+  const {isLoading, currentUser} = state.authentication;
+  return {isLoading, currentUser};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
   signup: (args) => {
-    dispatch(actionCreators.signupResponse(args));
+    dispatch(actionCreators.registerStart(args));
   },
 });
 

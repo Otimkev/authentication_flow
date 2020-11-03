@@ -7,7 +7,12 @@ import {getTestsSaga} from './test/loadTests/Saga';
 import {fetchAllInvitesSaga} from './patient/notifications/invites/Saga';
 import {fetchAllUsersSaga} from './user/Saga';
 import {InviteSaga} from './patient/notifications/invite/Saga';
-import {signupSaga} from './user/authentication/Saga';
+import {
+  authSaga,
+  authSagaLogin,
+  checkUserToken,
+  destroySession,
+} from './user/authentication/Saga';
 
 function* RootSaga() {
   yield all([
@@ -19,7 +24,10 @@ function* RootSaga() {
     fork(getTestsSaga),
     fork(fetchAllUsersSaga),
     fork(InviteSaga),
-    fork(signupSaga),
+    fork(authSaga),
+    fork(checkUserToken),
+    fork(destroySession),
+    fork(authSagaLogin),
   ]);
 }
 
