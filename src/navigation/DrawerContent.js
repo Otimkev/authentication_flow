@@ -54,7 +54,7 @@ function DrawerContentView({props, navigation, logOut}) {
               )}
               label="Specialists"
               onPress={() => {
-                props.navigation.navigate('Specialists');
+                navigation.navigate('Specialists');
               }}
             />
             <DrawerItem
@@ -63,7 +63,7 @@ function DrawerContentView({props, navigation, logOut}) {
               )}
               label="Wards"
               onPress={() => {
-                props.navigation.navigate('Wards');
+                navigation.navigate('Wards');
               }}
             />
             <DrawerItem
@@ -72,7 +72,7 @@ function DrawerContentView({props, navigation, logOut}) {
               )}
               label="Shared Patients"
               onPress={() => {
-                props.navigation.navigate('SharedPatients');
+                navigation.navigate('SharedPatients');
               }}
             />
             <DrawerItem
@@ -81,7 +81,7 @@ function DrawerContentView({props, navigation, logOut}) {
               )}
               label="Change Facility"
               onPress={() => {
-                props.navigation.navigate('SharedPatients');
+                navigation.navigate('SharedPatients');
               }}
             />
             <DrawerItem
@@ -90,7 +90,7 @@ function DrawerContentView({props, navigation, logOut}) {
               )}
               label="Settings"
               onPress={() => {
-                props.navigation.navigate('Settings');
+                navigation.navigate('Settings');
               }}
             />
             <DrawerItem
@@ -99,7 +99,7 @@ function DrawerContentView({props, navigation, logOut}) {
               )}
               label="Support"
               onPress={() => {
-                props.navigation.navigate('SupportScreen');
+                navigation.navigate('SupportScreen');
               }}
             />
           </Drawer.Section>
