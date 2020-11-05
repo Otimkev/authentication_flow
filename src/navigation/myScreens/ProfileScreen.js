@@ -1,9 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import {AuthContext} from '../../../App';
 import AsyncStorage from '@react-native-community/async-storage';
-import SessionManager from '../../httpClient/utils/SessionManager';
-import {globalStyles} from '../../styles/Global';
 
 const ProfileScreen = () => {
   const [userId, setUserId] = useState('');
@@ -27,7 +24,6 @@ const ProfileScreen = () => {
     return;
   };
   retrieveItem('user');
-  const {signOut} = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -63,9 +59,9 @@ const ProfileScreen = () => {
           <Text style={styles.name}>{userPhone}</Text>
           <Text style={styles.name}>{userFacility}</Text>
           <TouchableOpacity
-            style={globalStyles.Button}
-            onPress={() => signOut()}>
-            <Text style={globalStyles.ButtonText}>Sign Out</Text>
+            style={styles.buttonContainer}
+            onPress={() => console.log('Not implemented')}>
+            <Text style={{color: 'white'}}>Sign Out</Text>
           </TouchableOpacity>
         </View>
       </View>

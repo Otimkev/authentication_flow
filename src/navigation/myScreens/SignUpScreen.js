@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -9,18 +9,18 @@ import {
   ToastAndroid,
   Image,
 } from 'react-native';
-import {AuthContext} from '../../../App';
 import {globalStyles} from '../../styles/Global';
+import * as actionCreators from '../../model/user/authentication/Actions';
+import {SIGNUP_RESONSE} from '../../utils/Constants';
+import {connect} from 'react-redux';
 
-const SignUpScreen = ({navigation}) => {
+const SignUpScreenView = ({navigation, isLoading, currentUser, signup}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hospital, setHospital] = useState('');
-
-  const {signUp} = useContext(AuthContext);
 
   const postUserData = {
     firstName: firstName,
@@ -30,7 +30,6 @@ const SignUpScreen = ({navigation}) => {
     facility: hospital,
     password: password,
   };
-
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
   };
@@ -102,7 +101,9 @@ const SignUpScreen = ({navigation}) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={globalStyles.Button}
-        onPress={() => signUp(postUserData)}>
+        onPress={() => {
+          signup(postUserData);
+        }}>
         <Text style={styles.loginText}>Sign Up</Text>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -115,6 +116,24 @@ const SignUpScreen = ({navigation}) => {
     </View>
   );
 };
+
+const mapStateToProps = (state, props) => {
+  const {isLoading, currentUser} = state.authentication;
+  return {isLoading, currentUser};
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  signup: (args) => {
+    dispatch(actionCreators.registerStart(args));
+  },
+});
+
+const SignUpScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignUpScreenView);
+
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
   loginContainer: {
@@ -147,5 +166,3 @@ const styles = StyleSheet.create({
     color: '#007360',
   },
 });
-
-export default SignUpScreen;

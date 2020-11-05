@@ -1,19 +1,28 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 import Attention from '../../components/AttentionComponent';
 import {globalStyles} from '../../styles/Global';
 import {Picker} from '@react-native-community/picker';
 
-const HomeScreen = () => {
-  return <View style={globalStyles.container}>{/*<Attention />*/}</View>;
+const HomeScreen = ({navigation}) => {
+  return (
+    <View style={globalStyles.container}>
+      <Button
+        title="Graph"
+        onPress={() => {
+          navigation.navigate('Graph');
+        }}
+      />
+    </View>
+  );
 };
 
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

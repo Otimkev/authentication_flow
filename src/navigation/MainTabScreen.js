@@ -6,11 +6,17 @@ import Icon from 'react-native-vector-icons/Fontisto';
 import HomeScreen from './myScreens/HomeScreen';
 import ProfileScreen from './myScreens/ProfileScreen';
 import ChatScreen from '././myScreens/ChatScreen';
-import PatientScreen from './myScreens/PatientScreen';
-import AddPatientScreen from './myScreens/patient/AddPatientScreen';
-import NotificationsScreen from './myScreens/NotificationScreen';
+import {PatientScreen} from './myScreens/PatientScreen';
+import {AddPatientScreen} from './myScreens/patient/AddPatientScreen';
+import {NoticationScreen} from './myScreens/NotificationScreen';
 import GeneralTestScreen from './myScreens/patient/PatientTests/GeneralTestScreen';
 import MaternityWard from './myScreens/Wards/MaternityWard';
+import {APatientScreen} from './myScreens/APatientScreen';
+import GlucoseMetabolism from './myScreens/GlucoseMetabolism';
+import TestListScreen from './myScreens/TestList';
+import {AllTestScreen} from './myScreens/AllTestsScreen';
+import {mGraphScreen} from './myScreens/mGraph';
+import {UserListScreen} from './myScreens/InviteList';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -105,6 +111,21 @@ const HomeStackScreen = ({navigation}) => (
         ),
       }}
     />
+    <HomeStack.Screen
+      name="Graph"
+      component={mGraphScreen}
+      options={{
+        title: 'Graph',
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
   </HomeStack.Navigator>
 );
 
@@ -176,8 +197,64 @@ const PatientStackScreen = ({navigation}) => (
       }}
     />
     <PatientsStack.Screen
-      name="General Tests"
-      component={GeneralTestScreen}
+      name="Patient Information"
+      component={APatientScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <PatientsStack.Screen
+      name="Test List"
+      component={TestListScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <PatientsStack.Screen
+      name="Glucose Metabolism"
+      component={GlucoseMetabolism}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <PatientsStack.Screen
+      name="Tests"
+      component={AllTestScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <PatientsStack.Screen
+      name="inviteList"
+      component={UserListScreen}
       options={{
         headerLeft: () => (
           <Icon.Button
@@ -233,7 +310,7 @@ const NotificationsStackScreen = ({navigation}) => (
     }}>
     <NotificationsStack.Screen
       name="Notifications"
-      component={NotificationsScreen}
+      component={NoticationScreen}
       options={{
         headerLeft: () => (
           <Icon.Button
