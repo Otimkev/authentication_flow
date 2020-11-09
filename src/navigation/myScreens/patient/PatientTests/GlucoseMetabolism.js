@@ -9,8 +9,8 @@ import {
   Button,
   ToastAndroid,
 } from 'react-native';
-import {globalStyles} from '../../styles/Global';
-import * as actions from '../../model/test/addTest/Actions';
+import {globalStyles} from '../../../../styles/Global';
+import * as actions from '../../../../model/test/addTest/Actions';
 import {connect} from 'react-redux';
 
 const GlucoseMetabolismScreenView = ({
@@ -43,14 +43,14 @@ const GlucoseMetabolismScreenView = ({
     <View style={styles.loginContainer}>
       <View>
         <TextInput
-          placeholder="GlucoseFasting"
+          placeholder="Glucose - Fasting"
           style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setGlucoseFasting(text);
           }}
         />
         <TextInput
-          placeholder="GlucoseRandom"
+          placeholder="Glucose - Random"
           style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setGlucoseRandom(text);
@@ -58,7 +58,7 @@ const GlucoseMetabolismScreenView = ({
           keyboardType="phone-pad"
         />
         <TextInput
-          placeholder="Gtt2Hr75gStandard"
+          placeholder="GTT 2hr 75g - standard"
           style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setGtt2Hr75gStandard(text);
@@ -66,7 +66,7 @@ const GlucoseMetabolismScreenView = ({
           keyboardType="phone-pad"
         />
         <TextInput
-          placeholder="Hba1cGlycosylatedHB"
+          placeholder="HBA1C/Glycosylated Hb"
           style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setHba1cGlycosylatedHB(text);
@@ -74,7 +74,7 @@ const GlucoseMetabolismScreenView = ({
           keyboardType="phone-pad"
         />
         <TextInput
-          placeholder="Microalbumin"
+          placeholder="Microalbumin - urine"
           style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setMicroalbumin(text);
