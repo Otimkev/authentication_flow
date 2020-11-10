@@ -12,7 +12,7 @@ import {NoticationScreen} from './myScreens/NotificationScreen';
 import GeneralTestScreen from './myScreens/patient/PatientTests/GeneralTestScreen';
 import MaternityWard from './myScreens/Wards/MaternityWard';
 import {APatientScreen} from './myScreens/APatientScreen';
-import GlucoseMetabolism from './myScreens/GlucoseMetabolism';
+import GlucoseMetabolism from './myScreens/patient/PatientTests/GlucoseMetabolism';
 import TestListScreen from './myScreens/TestList';
 import {AllTestScreen} from './myScreens/AllTestsScreen';
 import {mGraphScreen} from './myScreens/mGraph';

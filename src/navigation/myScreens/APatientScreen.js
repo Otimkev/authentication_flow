@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet, Button, TouchableOpacity} from 'react-native';
 import * as actionTypes from '../../utils/Constants';
 import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
 import {getAPatientsResponse} from '../../model/patient/getAPatient/Actions';
@@ -16,22 +16,21 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
   }, [getAPatient, id]);
   return (
     <View style={styles.container}>
-      <View style={styles.row}>
-        <Text style={styles.nameTxt}>First name: {aPatient.firstName}</Text>
-        <Text style={styles.nameTxt}>Last name: {aPatient.lastName}</Text>
-        <Text style={styles.nameTxt}>age: {aPatient.dateOfBirth}</Text>
+      <View>
+        <Text style={styles.nameTxt}>First Name: {aPatient.firstName}</Text>
+        <Text style={styles.nameTxt}>Last Name: {aPatient.lastName}</Text>
+        <Text style={styles.nameTxt}>Age: {aPatient.dateOfBirth}</Text>
         <Text style={styles.nameTxt}>Contact:{aPatient.phoneNumber}</Text>
         <Text style={styles.nameTxt}>Gender:{aPatient.gender}</Text>
         <Text style={styles.nameTxt}>BedId: {id}</Text>
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Tests"
-          onPress={() => {
-            navigation.navigate('Tests', {patientId: id});
-          }}
-        />
-      </View>
+      <TouchableOpacity
+        style={globalStyles.Card}
+        onPress={() => {
+          navigation.navigate('Tests', {patientId: id});
+        }}>
+        <Text style={globalStyles.CardText}>Tests</Text>
+      </TouchableOpacity>
       <View style={styles.button}>
         <Button
           title="Add Test"
@@ -40,22 +39,13 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
           }}
         />
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          onPress={() => {
-            navigation.navigate('Patients');
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Invite"
-          onPress={() => {
-            navigation.navigate('inviteList', {patientId: id});
-          }}
-        />
-      </View>
+      <TouchableOpacity
+        style={styles.Card}
+        onPress={() => {
+          navigation.navigate('inviteList', {patientId: id});
+        }}>
+        <Text style={styles.CardText}>Share Patient</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -79,6 +69,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     flex: 1,
+    padding: 10,
   },
   row: {
     flexDirection: 'column',
@@ -91,10 +82,26 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginVertical: 10,
     color: '#222',
-    fontSize: 18,
-    width: 170,
+    fontSize: 20,
+    borderBottomColor: '#007360',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   button: {
     margin: 10,
+  },
+  Card: {
+    width: '100%',
+    backgroundColor: '#007360',
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  CardText: {
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });

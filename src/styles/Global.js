@@ -51,9 +51,16 @@ export const globalStyles = StyleSheet.create({
   },
   Heading: {
     flex: 1,
+    width: '60%',
+    borderRadius: 10,
+    height: 45,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
     fontWeight: 'bold',
     color: '#007360',
-    fontSize: 16,
+    fontSize: 18,
   },
   BlockHeading: {
     backgroundColor: '#007360',
@@ -65,5 +72,20 @@ export const globalStyles = StyleSheet.create({
   },
   NormalFlex: {
     marginTop: 30,
+  },
+  Card: {
+    width: '100%',
+    backgroundColor: '#007360',
+    borderRadius: 10,
+    height: 150,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  CardText: {
+    fontSize: 40,
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
