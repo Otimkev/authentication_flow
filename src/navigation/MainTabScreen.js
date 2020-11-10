@@ -12,11 +12,11 @@ import {NoticationScreen} from './myScreens/NotificationScreen';
 import GeneralTestScreen from './myScreens/patient/PatientTests/GeneralTestScreen';
 import MaternityWard from './myScreens/Wards/MaternityWard';
 import {APatientScreen} from './myScreens/APatientScreen';
-import GlucoseMetabolism from './myScreens/GlucoseMetabolism';
 import TestListScreen from './myScreens/TestList';
 import {AllTestScreen} from './myScreens/AllTestsScreen';
 import {mGraphScreen} from './myScreens/mGraph';
 import {UserListScreen} from './myScreens/InviteList';
+import GlucoseMetabolismScreen from './myScreens/patient/PatientTests/GlucoseMetabolism';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -226,7 +226,7 @@ const PatientStackScreen = ({navigation}) => (
     />
     <PatientsStack.Screen
       name="Glucose Metabolism"
-      component={GlucoseMetabolism}
+      component={GlucoseMetabolismScreen}
       options={{
         headerLeft: () => (
           <Icon.Button
