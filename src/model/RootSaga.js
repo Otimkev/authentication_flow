@@ -1,11 +1,11 @@
 import {all, fork} from 'redux-saga/effects';
-import {fetchAllPatientsSaga} from './patient/Saga';
+import {fetchAllPatientsSaga} from './patient/getAllPatients/Saga';
 import {addPatientSaga} from './patient/addPatient/Saga';
 import {fetchAPatientsSaga} from './patient/getAPatient/Saga';
 import {addTestSaga} from './test/addTest/Saga';
 import {getTestsSaga} from './test/loadTests/Saga';
 import {fetchAllInvitesSaga} from './patient/notifications/invites/Saga';
-import {fetchAllUsersSaga} from './user/Saga';
+import {fetchAllUsersSaga} from './user/getAllUsers/Saga';
 import {InviteSaga} from './patient/notifications/invite/Saga';
 import {
   authSaga,

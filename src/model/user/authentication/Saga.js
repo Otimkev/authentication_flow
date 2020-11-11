@@ -5,21 +5,6 @@ import {getToken, storeToken} from '../../../utils/SessionManager';
 import API from '../../QueryApi';
 import * as actionCreators from './Actions';
 
-// function* signup(action) {
-//   try {
-//     const signupResponse = yield call(API.post, '/signup/', action.payload);
-//     yield put(actionCreators.signupSuccess(signupResponse));
-//     yield call(storeToken, JSON.stringify(signupResponse));
-//   } catch (e) {
-//     console.log(e);
-//     yield put(actionCreators.signupFailure(e));
-//   }
-// }
-
-// function* signupSaga() {
-//   yield takeEvery(actionTypes.SIGNUP_RESONSE, signup);
-// }
-
 export function* logInWithCredentials(action) {
   try {
     const user = yield call(API.post, '/signin/', action.payload);
@@ -35,7 +20,6 @@ export function* logInWithCredentials(action) {
 export function* registerWithCredentials(action) {
   try {
     const user = yield call(API.post, '/signup/', action.payload);
-    //console.log(user);
     yield put(actionCreators.registerSuccess(user));
     yield AsyncStorage.setItem('user', JSON.stringify(user));
     yield put(actionCreators.checkTokenSuccess(JSON.stringify(user)));

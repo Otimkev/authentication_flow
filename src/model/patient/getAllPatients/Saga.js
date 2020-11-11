@@ -1,9 +1,9 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
 import * as actions from './Actions';
-import * as actionTypes from '../../utils/Constants';
-import API from '../QueryApi';
+import * as actionTypes from '../../../utils/Constants';
+import API from '../../QueryApi';
 import AsyncStorage from '@react-native-community/async-storage';
-import {getToken} from '../../utils/SessionManager';
+import {getToken} from '../../../utils/SessionManager';
 
 function* fetchAllPatients() {
   try {
