@@ -8,6 +8,7 @@ import {InvitesReducer} from './patient/notifications/invites/Reducer';
 import {getUsersReducer} from './user/getAllUsers/Reducer';
 import {InviteAUserReducer} from './patient/notifications/invite/Reducer';
 import {AuthenticationReducer} from './user/authentication/AuthReducer';
+import {registerReducer} from './user/signup/Reducer';
 
 export const RootReducer = combineReducers({
   mPatients: PatientReducer,
@@ -19,4 +20,5 @@ export const RootReducer = combineReducers({
   getUsers: getUsersReducer,
   invite: InviteAUserReducer,
   authentication: AuthenticationReducer,
+  register: registerReducer,
 });

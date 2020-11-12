@@ -33,7 +33,7 @@ function AppRootView({navigation, currentUser, token, checkForToken}) {
     };
     bootstrapAsync();
   }, [checkForToken]);
-  console.log(token);
+
   const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer>

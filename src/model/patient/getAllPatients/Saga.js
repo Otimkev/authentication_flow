@@ -9,7 +9,11 @@ function* fetchAllPatients() {
   try {
     const userData = yield AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
-    const vPatients = yield call(API.get, `/all-patient/${data.result.id}/`);
+    const vPatients = yield call(
+      API.get,
+      `/user/get-patients/${data.result.id}/`,
+    );
+    console.log(vPatients);
     yield put(actions.getAllPatientsSuccess(vPatients));
   } catch (e) {
     console.log(e);

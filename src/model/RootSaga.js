@@ -13,6 +13,7 @@ import {
   checkUserToken,
   destroySession,
 } from './user/authentication/Saga';
+import {registerSaga} from './user/signup/Saga';
 
 function* RootSaga() {
   yield all([
@@ -28,6 +29,8 @@ function* RootSaga() {
     fork(checkUserToken),
     fork(destroySession),
     fork(authSagaLogin),
+    //new saga
+    fork(registerSaga),
   ]);
 }
 

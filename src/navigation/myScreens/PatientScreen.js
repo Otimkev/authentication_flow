@@ -68,7 +68,7 @@ const PatientScreenView = ({
       ) : (
         <FlatList
           extra={true}
-          data={patients.patients}
+          data={patients}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
         />

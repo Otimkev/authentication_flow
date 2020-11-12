@@ -14,7 +14,7 @@ import * as actionCreators from '../../model/user/authentication/Actions';
 import {SIGNUP_RESONSE} from '../../utils/Constants';
 import {connect} from 'react-redux';
 
-const SignUpScreenView = ({navigation, isLoading, currentUser, signup}) => {
+const SignUpScreenView = ({navigation, signup, token}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -27,7 +27,7 @@ const SignUpScreenView = ({navigation, isLoading, currentUser, signup}) => {
     lastName: lastName,
     phoneNumber: phoneNumber,
     email: email,
-    facility: hospital,
+    hospital: hospital,
     password: password,
   };
   const showToast = (message) => {
@@ -102,7 +102,9 @@ const SignUpScreenView = ({navigation, isLoading, currentUser, signup}) => {
       <TouchableOpacity
         style={globalStyles.Button}
         onPress={() => {
+          showToast('Sign in');
           signup(postUserData);
+          console.log(`User token -> ${token}`);
         }}>
         <Text style={styles.loginText}>Sign Up</Text>
       </TouchableOpacity>
