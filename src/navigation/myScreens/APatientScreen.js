@@ -46,11 +46,23 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <Text style={styles.info}>Muyenga</Text>
       </View>
       <View style={styles.block}>
+        <Text style={styles.label}>Marital Status: </Text>
+        <Text style={styles.info}>Widowed</Text>
+      </View>
+      <View style={styles.block}>
+        <Text style={styles.label}>Next of Name: </Text>
+        <Text style={styles.info}>Otim Kevin</Text>
+      </View>
+      <View style={styles.block}>
         <Text style={styles.label}>Next of Kin Contact: </Text>
         <Text style={styles.info}>{aPatient.phoneNumber}</Text>
       </View>
       <View style={styles.block}>
-        <Text style={styles.label}>Ward: </Text>
+        <Text style={styles.label}>Relationship: </Text>
+        <Text style={styles.info}>Friend</Text>
+      </View>
+      <View style={styles.block}>
+        <Text style={styles.label}>Patient's Ward: </Text>
         <Text style={styles.info}>General Ward</Text>
       </View>
       <View style={styles.block}>
