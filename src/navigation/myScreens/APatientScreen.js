@@ -69,7 +69,7 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <Text style={styles.label}>Ward Bed: </Text>
         <Text style={styles.info}>{id}</Text>
       </View>
-      <View style={styles.direction}>
+      <View style={globalStyles.DirectionRow}>
         <TouchableOpacity
           style={styles.Card}
           onPress={() => {
@@ -188,11 +188,5 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontWeight: 'bold',
     alignItems: 'center',
-  },
-  direction: {
-    flexDirection: 'row',
-    padding: 10,
-    justifyContent: 'space-around',
-    marginTop: 50,
   },
 });

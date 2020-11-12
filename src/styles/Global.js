@@ -7,8 +7,7 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   inputContainer: {
-    width: 340,
-    height: 45,
+    // height: 45,
     borderColor: '#007360',
     backgroundColor: '#fff',
     padding: 10,
@@ -40,12 +39,11 @@ export const globalStyles = StyleSheet.create({
   },
   Row: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    height: 70,
+    justifyContent: 'space-between',
   },
   InputBorderBottom: {
     fontSize: 18,
-    padding: 10,
+    padding: 5,
     borderBottomColor: '#007360',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
@@ -87,5 +85,11 @@ export const globalStyles = StyleSheet.create({
     fontSize: 40,
     color: '#fff',
     fontWeight: 'bold',
+  },
+  DirectionRow: {
+    flexDirection: 'row',
+    padding: 10,
+    justifyContent: 'space-around',
+    marginTop: 50,
   },
 });

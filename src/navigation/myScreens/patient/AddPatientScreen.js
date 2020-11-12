@@ -16,7 +16,7 @@ import {Picker} from '@react-native-community/picker';
 import * as actionTypes from '../../../utils/Constants';
 import * as actions from '../../../model/patient/addPatient/Actions';
 import {connect} from 'react-redux';
-import {AddPatientReducer} from '../../../model/patient/addPatient/Reducer';
+import { AddPatientReducer } from '../../../model/patient/addPatient/Reducer';
 
 const AddPatientScreenView = ({navigation, createPatient, responseData}) => {
   const [firstName, setFirstName] = useState('');
@@ -233,30 +233,32 @@ const AddPatientScreenView = ({navigation, createPatient, responseData}) => {
             </View>
           </View>
           {/* Submit Button Section */}
-          <TouchableOpacity
-            style={globalStyles.Button}
-            onPress={async () => {
-              const user = await AsyncStorage.getItem('user');
-              const mUser = JSON.parse(user);
-              createPatient(patientData);
-              if (!JSON.stringify(patientData)) {
-                showToast('Unsuccessful');
-                return;
-              }
-              showToast('Successful');
-              navigation.navigate('Patients', {
-                mData: mState,
-              });
-            }}>
-            <Text style={globalStyles.ButtonText}>Add Patient</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={globalStyles.Button}
-            onPress={async () => {
-              navigation.navigate('Patients');
-            }}>
-            <Text style={globalStyles.ButtonText}>Cancel</Text>
-          </TouchableOpacity>
+          <View style={globalStyles.DirectionRow}>
+            <TouchableOpacity
+              style={styles.Card}
+              onPress={async () => {
+                const user = await AsyncStorage.getItem('user');
+                const mUser = JSON.parse(user);
+                createPatient(patientData);
+                if (!JSON.stringify(patientData)) {
+                  showToast('Unsuccessful');
+                  return;
+                }
+                showToast('Successful');
+                navigation.navigate('Patients', {
+                  mData: mState,
+                });
+              }}>
+              <Text style={globalStyles.ButtonText}>Add Patient</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.cancel}
+              onPress={async () => {
+                navigation.navigate('Patients');
+              }}>
+              <Text style={globalStyles.ButtonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </CardView>
     </ScrollView>
@@ -274,6 +276,31 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'column',
   },
+  Card: {
+    width: '45%',
+    backgroundColor: '#007360',
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  CardText: {
+    fontSize: 15,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  cancel: {
+    width: '45%',
+    backgroundColor: 'red',
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  }
 });
 
 const mapStateToProps = (state, props) => {
