@@ -7,8 +7,7 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   inputContainer: {
-    width: 340,
-    height: 45,
+    // height: 45,
     borderColor: '#007360',
     backgroundColor: '#fff',
     padding: 10,
@@ -40,20 +39,26 @@ export const globalStyles = StyleSheet.create({
   },
   Row: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    height: 70,
+    justifyContent: 'space-between',
   },
   InputBorderBottom: {
     fontSize: 18,
-    padding: 10,
+    padding: 5,
     borderBottomColor: '#007360',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   Heading: {
     flex: 1,
+    width: '60%',
+    borderRadius: 10,
+    height: 45,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
     fontWeight: 'bold',
     color: '#007360',
-    fontSize: 16,
+    fontSize: 18,
   },
   BlockHeading: {
     backgroundColor: '#007360',
@@ -65,5 +70,26 @@ export const globalStyles = StyleSheet.create({
   },
   NormalFlex: {
     marginTop: 30,
+  },
+  Card: {
+    width: '100%',
+    backgroundColor: '#007360',
+    borderRadius: 10,
+    height: 150,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  CardText: {
+    fontSize: 40,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  DirectionRow: {
+    flexDirection: 'row',
+    padding: 10,
+    justifyContent: 'space-around',
+    marginTop: 50,
   },
 });
