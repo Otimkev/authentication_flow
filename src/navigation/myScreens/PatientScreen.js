@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import {FloatingAction} from 'react-native-floating-action';
 import {Loader} from '../../components/Loader';
+import {color} from 'react-native-reanimated';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
 const PatientScreenView = ({
@@ -47,7 +48,7 @@ const PatientScreenView = ({
                 ellipsizeMode="tail">
                 {`${item.firstName} ${item.lastName}`}
               </Text>
-              <Text style={styles.mblTxt}> BED03 </Text>
+              <Text style={styles.mblTxt}> General Ward BED03 </Text>
             </View>
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.id}</Text>
@@ -115,9 +116,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#DCDCDC',
     backgroundColor: '#fff',
-    borderBottomWidth: 1,
+    borderBottomColor: '#007360',
+    borderBottomWidth: StyleSheet.hairlineWidth,
     padding: 10,
   },
   pic: {
@@ -132,9 +133,9 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    fontWeight: '600',
-    color: '#222',
-    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#007360',
+    fontSize: 20,
     width: 170,
   },
   mblTxt: {
