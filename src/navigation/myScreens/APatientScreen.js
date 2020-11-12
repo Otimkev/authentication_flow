@@ -17,12 +17,17 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.nameTxt}>First Name: {aPatient.firstName}</Text>
-        <Text style={styles.nameTxt}>Last Name: {aPatient.lastName}</Text>
+        <Text>Name:</Text>
+        <Text>{aPatient.firstName + aPatient.lastName}</Text>
+        {/* <Text style={styles.nameTxt}>Last Name: {aPatient.lastName}</Text>
         <Text style={styles.nameTxt}>Age: {aPatient.dateOfBirth}</Text>
         <Text style={styles.nameTxt}>Contact:{aPatient.phoneNumber}</Text>
         <Text style={styles.nameTxt}>Gender:{aPatient.gender}</Text>
-        <Text style={styles.nameTxt}>BedId: {id}</Text>
+        <Text style={styles.nameTxt}>BedId: {id}</Text> */}
+      </View>
+      <View>
+        <Text>Contact:</Text>
+        <Text>{aPatient.phoneNumber}</Text>
       </View>
       <TouchableOpacity
         style={globalStyles.Card}
