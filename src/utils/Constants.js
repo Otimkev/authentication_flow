@@ -43,3 +43,7 @@ export const LOG_OUT_SUCCESS = 'logoutSuccess';
 
 export const CHECK_TOKEN_START = 'checkTokenStart';
 export const CHECK_TOKEN_SUCCESS = 'checkToken';
+
+export const GET_CATEGORY_RESONSE = 'getCategoryResponse';
+export const GET_CATEGORY_SUCESS = 'getCategorySuccess';
+export const GET_CATEGORY_FAILURE = 'getCategoryFailure';

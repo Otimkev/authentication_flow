@@ -6,7 +6,7 @@ import * as actionCreators from './Actions';
 
 function* fetchAllUsers(actions) {
   try {
-    const vUsers = yield call(API.get, '/users/');
+    const vUsers = yield call(API.get, '/user/');
     console.log(vUsers);
     yield put(actionCreators.getUsersSuccess(vUsers));
   } catch (e) {

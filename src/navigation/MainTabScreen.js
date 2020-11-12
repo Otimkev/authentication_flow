@@ -18,6 +18,7 @@ import {AllTestScreen} from './myScreens/AllTestsScreen';
 import {mGraphScreen} from './myScreens/mGraph';
 import {UserListScreen} from './myScreens/InviteList';
 import GlucoseMetabolismScreen from './myScreens/patient/PatientTests/GlucoseMetabolism';
+import {TestCategoryScreen} from './myScreens/TestCategories';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -240,8 +241,8 @@ const PatientStackScreen = ({navigation}) => (
       }}
     />
     <PatientsStack.Screen
-      name="Tests"
-      component={AllTestScreen}
+      name="Test Category"
+      component={TestCategoryScreen}
       options={{
         headerLeft: () => (
           <Icon.Button
@@ -257,6 +258,21 @@ const PatientStackScreen = ({navigation}) => (
       name="inviteList"
       component={UserListScreen}
       options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="nav-icon-list-a"
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <PatientsStack.Screen
+      name="Test Graph"
+      component={mGraphScreen}
+      options={{
+        title: 'Graph',
         headerLeft: () => (
           <Icon.Button
             name="nav-icon-list-a"

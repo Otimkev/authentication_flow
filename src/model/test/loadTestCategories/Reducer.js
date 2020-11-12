@@ -1,28 +1,28 @@
 import * as actionType from '../../../utils/Constants';
 
 const initialState = {
-  isFetching: false,
+  isFetching: null,
   isError: null,
-  patientTestData: [],
+  testCategoryList: [],
 };
 
-export const getTestReducer = (state = initialState, action) => {
+export const getTestCategoryReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionType.GET_TEST_RESPONSE:
+    case actionType.GET_CATEGORY_RESONSE:
       return {
         ...state,
         isFetching: true,
       };
-    case actionType.GET_TEST_SUCCESS:
+    case actionType.GET_CATEGORY_SUCESS:
       return {
         ...state,
-        patientTestData: action.payload.data,
+        testCategoryList: action.payload,
         isFetching: false,
       };
-    case actionType.GET_TEST_FAILURE:
+    case actionType.GET_CATEGORY_FAILURE:
       return {
         ...state,
-        isError: action.payload.error,
+        isError: action.payload,
       };
     default:
       return state;

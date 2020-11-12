@@ -73,7 +73,7 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <TouchableOpacity
           style={styles.Card}
           onPress={() => {
-            navigation.navigate('Tests', {patientId: id});
+            navigation.navigate('Test Category', {patientId: id});
           }}>
           <Text style={styles.CardText}>Tests</Text>
         </TouchableOpacity>

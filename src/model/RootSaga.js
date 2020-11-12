@@ -14,6 +14,7 @@ import {
   destroySession,
 } from './user/authentication/Saga';
 import {registerSaga} from './user/signup/Saga';
+import {getTestCategorySaga} from './test/loadTestCategories/Saga';
 
 function* RootSaga() {
   yield all([
@@ -31,6 +32,7 @@ function* RootSaga() {
     fork(authSagaLogin),
     //new saga
     fork(registerSaga),
+    fork(getTestCategorySaga),
   ]);
 }
 
