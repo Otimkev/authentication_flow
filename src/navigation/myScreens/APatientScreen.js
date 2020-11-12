@@ -24,45 +24,63 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.block}>
-        <Text style={styles.label}>Name:</Text>
+        <Text style={styles.label}>Name: </Text>
         <Text style={styles.info}>
           {aPatient.firstName + aPatient.lastName}
         </Text>
-        {/* <Text style={styles.nameTxt}>Last Name: {aPatient.lastName}</Text>
-        <Text style={styles.nameTxt}>Age: {aPatient.dateOfBirth}</Text>
-        <Text style={styles.nameTxt}>Contact:{aPatient.phoneNumber}</Text>
-        <Text style={styles.nameTxt}>Gender:{aPatient.gender}</Text>
-        <Text style={styles.nameTxt}>BedId: {id}</Text> */}
       </View>
       <View style={styles.block}>
-        <Text style={styles.label}>Age:</Text>
+        <Text style={styles.label}>Age: </Text>
         <Text style={styles.info}>{aPatient.dateOfBirth}</Text>
       </View>
       <View style={styles.block}>
-        <Text style={styles.label}>Contact:</Text>
+        <Text style={styles.label}>Contact: </Text>
         <Text style={styles.info}>{aPatient.phoneNumber}</Text>
       </View>
       <View style={styles.block}>
-        <Text style={styles.label}>Gender:</Text>
+        <Text style={styles.label}>Gender: </Text>
         <Text style={styles.info}>Male</Text>
       </View>
       <View style={styles.block}>
-        <Text style={styles.label}>Address</Text>
+        <Text style={styles.label}>Address: </Text>
         <Text style={styles.info}>Muyenga</Text>
       </View>
       <View style={styles.block}>
-        <Text style={styles.label}>Next of Kin Contact:</Text>
+        <Text style={styles.label}>Next of Kin Contact: </Text>
         <Text style={styles.info}>{aPatient.phoneNumber}</Text>
       </View>
       <View style={styles.block}>
-        <Text style={styles.label}>Ward:</Text>
+        <Text style={styles.label}>Ward: </Text>
         <Text style={styles.info}>General Ward</Text>
       </View>
       <View style={styles.block}>
-        <Text style={styles.label}>Ward Bed:</Text>
+        <Text style={styles.label}>Ward Bed: </Text>
         <Text style={styles.info}>{id}</Text>
       </View>
-      <TouchableOpacity
+      <View style={styles.direction}>
+        <TouchableOpacity
+          style={styles.Card}
+          onPress={() => {
+            navigation.navigate('Tests', {patientId: id});
+          }}>
+          <Text style={styles.CardText}>Tests</Text>
+        </TouchableOpacity>
+        {/* <TouchableOpacity
+          style={styles.Card}
+          onPress={() => {
+            navigation.navigate('Test List', {patientId: id});
+          }}>
+          <Text style={styles.CardText}>Add Tests</Text>
+        </TouchableOpacity> */}
+        <TouchableOpacity
+          style={styles.Card}
+          onPress={() => {
+            navigation.navigate('inviteList', {patientId: id});
+          }}>
+          <Text style={styles.CardText}>Share Patient</Text>
+        </TouchableOpacity>
+      </View>
+      {/* <TouchableOpacity
         style={globalStyles.Card}
         onPress={() => {
           navigation.navigate('Tests', {patientId: id});
@@ -82,7 +100,7 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
           navigation.navigate('inviteList', {patientId: id});
         }}>
         <Text style={styles.CardText}>Share Patient</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </ScrollView>
   );
 };
@@ -127,7 +145,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   Card: {
-    width: '100%',
+    width: '45%',
     backgroundColor: '#007360',
     borderRadius: 10,
     height: 50,
@@ -137,7 +155,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   CardText: {
-    fontSize: 20,
+    fontSize: 15,
     color: '#fff',
     fontWeight: 'bold',
   },
@@ -145,14 +163,24 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomColor: '#007360',
     borderBottomWidth: StyleSheet.hairlineWidth,
+    flexDirection: 'row',
   },
   label: {
     fontSize: 15,
     color: '#007360',
   },
   info: {
-    fontSize: 20,
-    color: '#7f0000',
+    fontSize: 17,
+    // color: '#7f0000',
+    color: 'black',
     textTransform: 'uppercase',
+    fontWeight: 'bold',
+    alignItems: 'center',
+  },
+  direction: {
+    flexDirection: 'row',
+    padding: 10,
+    justifyContent: 'space-around',
+    marginTop: 50,
   },
 });
