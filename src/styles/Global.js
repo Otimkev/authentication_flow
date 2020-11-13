@@ -7,14 +7,15 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   inputContainer: {
-    // height: 45,
+    height: 45,
+    width: 350,
     borderColor: '#007360',
     backgroundColor: '#fff',
     padding: 10,
     borderBottomColor: '#007360',
     borderBottomWidth: StyleSheet.hairlineWidth,
     margin: 5,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     fontSize: 16,
   },
   TextInput: {

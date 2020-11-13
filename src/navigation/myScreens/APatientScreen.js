@@ -26,7 +26,7 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
       <View style={styles.block}>
         <Text style={styles.label}>Name: </Text>
         <Text style={styles.info}>
-          {aPatient.firstName + aPatient.lastName}
+          {aPatient.firstName} {aPatient.lastName}
         </Text>
       </View>
       <View style={styles.block}>
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   },
   Card: {
     width: '45%',
-    backgroundColor: '#007360',
+    backgroundColor: '#78af38',
     borderRadius: 10,
     height: 50,
     alignItems: 'center',
