@@ -227,7 +227,7 @@ const PatientStackScreen = ({navigation}) => (
       }}
     />
     <PatientsStack.Screen
-      name="Glucose Metabolism"
+      name="glucose metabolism"
       component={GlucoseMetabolismScreen}
       options={{
         headerLeft: () => (

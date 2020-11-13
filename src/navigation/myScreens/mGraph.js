@@ -9,6 +9,7 @@ import {
   Image,
   FlatList,
   Dimensions,
+  Button,
 } from 'react-native';
 import {LineChart} from 'react-native-chart-kit';
 import {Loader} from '../../components/Loader';
@@ -30,63 +31,80 @@ const GraphScreenView = ({
     {id: 5, labeled: 'Microalbumin_urine'},
   ];
   const [isLoading, setIsLoading] = useState(false);
-  const [testLabel, setTestLabel] = useState('');
+  const [CategoryLabel, setCategoryLabel] = useState('');
   const [testLabels, setTestLabels] = useState(allTestLables);
   const [test, setTest] = useState('glucose_random');
-  const [value, setValue] = useState([]);
+  const [dataSet, setDataSet] = useState([{value: 1, createAt: 'jan'}]);
   const {patientId, label} = route.params;
   useEffect(() => {
     getAllTests({patientId, category: label, test});
-    setValue(patientTestData);
   }, [getAllTests, label, patientId, test]);
-  const mangoes = value ? value.map((item) => item.id) : [1, 2, 4, 5];
-  console.log('----------------------------');
-  console.log(mangoes);
+  const mangoes = dataSet.map((item) => item.value);
+  const oranges = dataSet.map((item) => item.createAt);
+  const changeTests = (vLabel) => {
+    setTest(vLabel);
+    //getAllTests({patientId, category: label, test});
+    setDataSet(patientTestData);
+  };
+  console.log(test);
   const graphItem = () => {
     return (
-      <ScrollView horizontal={true}>
-        {!patientTestData ? (
-          <Loader />
-        ) : (
-          <View>
-            <LineChart
-              data={{
-                labels: ['jan', 'feb', 'mar'],
-                datasets: [
-                  {
-                    data: [1, 2, 3],
+      <View>
+        <ScrollView horizontal={true}>
+          {!patientTestData ? (
+            <Loader />
+          ) : (
+            <View>
+              <LineChart
+                data={{
+                  labels: oranges,
+                  datasets: [
+                    {
+                      data: mangoes,
+                    },
+                  ],
+                }}
+                width={500} // from react-native
+                height={300}
+                yAxisLabel={'mm '}
+                chartConfig={{
+                  backgroundColor: '#1cc910',
+                  backgroundGradientFrom: '#eff3ff',
+                  backgroundGradientTo: '#efefef',
+                  decimalPlaces: 0, // optional, defaults to 2dp
+                  color: (opacity = 255) => `rgba(0, 0, 0, ${opacity})`,
+                  style: {
+                    borderRadius: 16,
                   },
-                ],
-              }}
-              width={500} // from react-native
-              height={300}
-              yAxisLabel={'Rs'}
-              chartConfig={{
-                backgroundColor: '#1cc910',
-                backgroundGradientFrom: '#eff3ff',
-                backgroundGradientTo: '#efefef',
-                decimalPlaces: 2, // optional, defaults to 2dp
-                color: (opacity = 255) => `rgba(0, 0, 0, ${opacity})`,
-                style: {
+                }}
+                bezier
+                style={{
+                  marginVertical: 8,
                   borderRadius: 16,
-                },
-              }}
-              bezier
-              style={{
-                marginVertical: 8,
-                borderRadius: 16,
-              }}
-            />
-          </View>
-        )}
-      </ScrollView>
+                }}
+              />
+            </View>
+          )}
+        </ScrollView>
+        <View style={styles.button}>
+          <Button
+            title="Add Test"
+            onPress={() => {
+              navigation.navigate(label, {
+                category: label,
+                patientId: patientId,
+              });
+            }}
+          />
+        </View>
+      </View>
     );
   };
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Patient Information', {patientId: item.id});
+          changeTests(item.labeled);
         }}>
         <View style={styles.row}>
           <View>
@@ -117,7 +135,7 @@ const GraphScreenView = ({
           data={testLabels}
           keyExtractor={(item) => item.id.toString()}
           ListHeaderComponent={graphItem}
-          ListFooterComponent={() => <Text>1231312</Text>}
+          //ListFooterComponent={}
           renderItem={renderItem}
         />
       )}
@@ -181,5 +199,9 @@ const styles = StyleSheet.create({
     color: '#008B8B',
     fontSize: 12,
     marginLeft: 15,
+  },
+  button: {
+    marginHorizontal: 16,
+    marginVertical: 8,
   },
 });
