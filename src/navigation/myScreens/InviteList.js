@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import {FloatingAction} from 'react-native-floating-action';
 import {Loader} from '../../components/Loader';
+import {globalStyles} from '../../styles/Global';
 
 const UserListScreenView = ({
   navigation,
@@ -38,7 +39,7 @@ const UserListScreenView = ({
           <View>
             <View style={styles.nameContainer}>
               <Text
-                style={styles.nameTxt}
+                style={globalStyles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
                 {`${item.firstName} ${item.lastName}`}
@@ -47,7 +48,8 @@ const UserListScreenView = ({
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.email}</Text>
             </View>
-            <Text style={styles.msgTxt}>{item.id}</Text>
+            <Text style={styles.msgTxt}>Mulago Hospital</Text>
+            <Text style={styles.msgTxt}>0705432558</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
   },
   msgTxt: {
     fontWeight: '400',
-    color: '#008B8B',
+    color: 'grey',
     fontSize: 12,
     marginLeft: 15,
   },

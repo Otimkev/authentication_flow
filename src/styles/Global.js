@@ -93,4 +93,12 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 50,
   },
+  nameTxt: {
+    marginLeft: 15,
+    fontWeight: 'bold',
+    color: '#007360',
+    fontSize: 20,
+    width: 170,
+    textTransform: 'capitalize',
+  },
 });

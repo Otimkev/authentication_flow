@@ -183,8 +183,8 @@ const styles = StyleSheet.create({
   },
   info: {
     fontSize: 17,
-    // color: '#7f0000',
-    color: 'black',
+    color: '#7f0000',
+    //color: 'black',
     textTransform: 'uppercase',
     fontWeight: 'bold',
     alignItems: 'center',

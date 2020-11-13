@@ -14,6 +14,7 @@ import {
 import {FloatingAction} from 'react-native-floating-action';
 import {Loader} from '../../components/Loader';
 import {color} from 'react-native-reanimated';
+import {globalStyles} from '../../styles/Global';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
 const PatientScreenView = ({
@@ -43,7 +44,7 @@ const PatientScreenView = ({
           <View>
             <View style={styles.nameContainer}>
               <Text
-                style={styles.nameTxt}
+                style={globalStyles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
                 {`${item.firstName} ${item.lastName}`}
@@ -130,13 +131,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: 280,
-  },
-  nameTxt: {
-    marginLeft: 15,
-    fontWeight: 'bold',
-    color: '#007360',
-    fontSize: 20,
-    width: 170,
   },
   mblTxt: {
     fontWeight: '200',
