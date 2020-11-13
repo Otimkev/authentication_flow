@@ -47,8 +47,7 @@ const NoticationScreenView = ({
               </View>
             </View>
             <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.id}</Text>
-              <Text style={styles.msgTxt}>Dr. Senabulya</Text>
+              <Text style={styles.msgTxt2}>{item.id}   (Dr. Jamal)</Text>
             </View>
           </View>
         </View>
@@ -143,6 +142,12 @@ const styles = StyleSheet.create({
   msgTxt: {
     fontWeight: '400',
     color: '#008B8B',
+    fontSize: 12,
+    marginLeft: 15,
+  },
+  msgTxt2: {
+    fontWeight: '400',
+    color: 'grey',
     fontSize: 12,
     marginLeft: 15,
   },
