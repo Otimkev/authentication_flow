@@ -40,14 +40,14 @@ const NoticationScreenView = ({
                 {`${item.patient.firstName} ${item.patient.lastName}`}
               </Text>
               <View style={{marginHorizontal: 8}}>
-                <Button title="Accept" />
+                <Button title="Accept" color="#78af38" />
               </View>
               <View>
-                <Button title="Decline" />
+                <Button title="Decline" color="red" />
               </View>
             </View>
             <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.id}</Text>
+              <Text style={styles.msgTxt2}>{item.id}   (Dr. Jamal)</Text>
             </View>
           </View>
         </View>
@@ -70,7 +70,7 @@ const NoticationScreenView = ({
           renderItem={renderItem}
         />
       )}
-      <FloatingAction
+      {/* <FloatingAction
         actions={[
           {
             text: 'Add Patient',
@@ -81,7 +81,7 @@ const NoticationScreenView = ({
         onPressItem={() => {
           navigation.navigate('Register Patient');
         }}
-      />
+      /> */}
     </View>
   );
 };
@@ -125,9 +125,9 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    fontWeight: '600',
-    color: '#222',
-    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#007360',
+    fontSize: 20,
     width: 170,
   },
   mblTxt: {
@@ -142,6 +142,12 @@ const styles = StyleSheet.create({
   msgTxt: {
     fontWeight: '400',
     color: '#008B8B',
+    fontSize: 12,
+    marginLeft: 15,
+  },
+  msgTxt2: {
+    fontWeight: '400',
+    color: 'grey',
     fontSize: 12,
     marginLeft: 15,
   },

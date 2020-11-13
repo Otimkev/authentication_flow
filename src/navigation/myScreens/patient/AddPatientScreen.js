@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
   },
   Card: {
     width: '45%',
-    backgroundColor: '#007360',
+    backgroundColor: '#78af38',
     borderRadius: 10,
     height: 50,
     alignItems: 'center',
