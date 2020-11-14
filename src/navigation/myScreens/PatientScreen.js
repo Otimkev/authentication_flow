@@ -13,6 +13,8 @@ import {
 } from 'react-native';
 import {FloatingAction} from 'react-native-floating-action';
 import {Loader} from '../../components/Loader';
+import {color} from 'react-native-reanimated';
+import {globalStyles} from '../../styles/Global';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
 const PatientScreenView = ({
@@ -42,12 +44,12 @@ const PatientScreenView = ({
           <View>
             <View style={styles.nameContainer}>
               <Text
-                style={styles.nameTxt}
+                style={globalStyles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
                 {`${item.firstName} ${item.lastName}`}
               </Text>
-              <Text style={styles.mblTxt}> BED03 </Text>
+              <Text style={styles.mblTxt}> General Ward BED03 </Text>
             </View>
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.id}</Text>
@@ -115,9 +117,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#DCDCDC',
     backgroundColor: '#fff',
-    borderBottomWidth: 1,
+    borderBottomColor: '#007360',
+    borderBottomWidth: StyleSheet.hairlineWidth,
     padding: 10,
   },
   pic: {
@@ -129,13 +131,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: 280,
-  },
-  nameTxt: {
-    marginLeft: 15,
-    fontWeight: '600',
-    color: '#222',
-    fontSize: 18,
-    width: 170,
   },
   mblTxt: {
     fontWeight: '200',
