@@ -28,7 +28,9 @@ const NoticationScreenView = ({
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Patient Information', {patientId: item.id});
+          navigation.navigate('Patient Information', {
+            patientId: item.patient.id,
+          });
         }}>
         <View style={styles.row}>
           <View>
@@ -47,7 +49,10 @@ const NoticationScreenView = ({
               </View>
             </View>
             <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt2}>{item.id}   (Dr. Jamal)</Text>
+              <Text
+                style={
+                  styles.msgTxt2
+                }>{`Dr.${item.sender.firstName} ${item.sender.lastName}`}</Text>
             </View>
           </View>
         </View>

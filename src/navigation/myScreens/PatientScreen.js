@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../model/patient/Actions';
+import * as actions from '../../model/patient/getAllPatients/Actions';
 import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
 import * as actionTypes from '../../utils/Constants';
 import {
@@ -35,12 +35,6 @@ const PatientScreenView = ({
           navigation.navigate('Patient Information', {patientId: item.id});
         }}>
         <View style={styles.row}>
-          <Image
-            source={{
-              uri: item.image,
-            }}
-            style={styles.pic}
-          />
           <View>
             <View style={styles.nameContainer}>
               <Text
@@ -70,7 +64,7 @@ const PatientScreenView = ({
       ) : (
         <FlatList
           extra={true}
-          data={patients.patients}
+          data={patients}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
         />

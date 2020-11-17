@@ -19,9 +19,13 @@ import * as actionCreators from './src/model/user/authentication/Actions';
 import {connect} from 'react-redux';
 const Stack = createStackNavigator();
 
-function AppRootView({navigation, currentUser, token, checkForToken}) {
-  const [userToken, setToken] = React.useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+function AppRootView({
+  navigation,
+  currentUser,
+  token,
+  checkForToken,
+  isLoading,
+}) {
   React.useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
@@ -33,7 +37,7 @@ function AppRootView({navigation, currentUser, token, checkForToken}) {
     };
     bootstrapAsync();
   }, [checkForToken]);
-  console.log(token);
+
   const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer>

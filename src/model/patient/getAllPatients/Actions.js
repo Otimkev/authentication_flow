@@ -1,4 +1,4 @@
-import * as actionType from '../../utils/Constants';
+import * as actionType from '../../../utils/Constants';
 
 export const getAllPatientsResponse = () => {
   return {

@@ -1,11 +1,9 @@
 import * as actionType from '../../../utils/Constants';
 
-export const getTestResponse = (id) => {
+export const getTestResponse = (payload) => {
   return {
     type: actionType.GET_TEST_RESPONSE,
-    payload: {
-      id,
-    },
+    payload: payload,
   };
 };
 

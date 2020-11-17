@@ -10,9 +10,10 @@ function* addPatient(action) {
     const data = JSON.parse(userData);
     const response = yield call(
       API.post,
-      `/add-patient/${data.result.id}/`,
+      `/user/add-patient/${data.result.id}/`,
       action.payload,
     );
+    console.log(response);
     yield put(actions.addPatientsSuccess(response));
   } catch (e) {
     console.log(e);

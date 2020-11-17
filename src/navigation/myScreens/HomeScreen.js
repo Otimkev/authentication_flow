@@ -7,12 +7,7 @@ import {Picker} from '@react-native-community/picker';
 const HomeScreen = ({navigation}) => {
   return (
     <View style={globalStyles.container}>
-      <Button
-        title="Graph"
-        onPress={() => {
-          navigation.navigate('Graph');
-        }}
-      />
+      <Text>Home</Text>
     </View>
   );
 };

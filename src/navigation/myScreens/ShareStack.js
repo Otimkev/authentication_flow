@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import SharedPatientList from './SharedPatientList';
+import {SharedPatientList} from './SharedPatientList';
 import Icon from 'react-native-vector-icons/Fontisto';
 
 const shareStack = createStackNavigator();
