@@ -10,6 +10,8 @@ import {InviteAUserReducer} from './patient/notifications/invite/Reducer';
 import {AuthenticationReducer} from './user/authentication/AuthReducer';
 import {registerReducer} from './user/signup/Reducer';
 import {getTestCategoryReducer} from './test/loadTestCategories/Reducer';
+import {sharePatientReducer} from './patient/sharePatient/Reducer';
+import {sharedPatientReducer} from './patient/getSharedPatients/Reducer';
 
 export const RootReducer = combineReducers({
   mPatients: PatientReducer,
@@ -23,4 +25,6 @@ export const RootReducer = combineReducers({
   authentication: AuthenticationReducer,
   register: registerReducer,
   getTestCategory: getTestCategoryReducer,
+  sharePatient: sharePatientReducer,
+  sharedPatients: sharedPatientReducer,
 });

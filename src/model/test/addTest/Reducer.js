@@ -1,9 +1,9 @@
 import * as actionType from '../../../utils/Constants';
 
 const initialState = {
-  isFetching: null,
+  isFetching: false,
   isError: null,
-  addTestData: null,
+  addTestData: [],
 };
 
 export const addTestReducer = (state = initialState, action) => {

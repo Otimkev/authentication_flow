@@ -1,25 +1,26 @@
+import * as actions from './Actions';
 import * as actionType from '../../../utils/Constants';
 
 const initialState = {
   isFetching: false,
   isError: null,
-  testCategoryList: [],
+  sharedList: [],
 };
 
-export const getTestCategoryReducer = (state = initialState, action) => {
+export const sharedPatientReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionType.GET_CATEGORY_RESONSE:
+    case actionType.GET_SHARED_PATIENTS_RESONSE:
       return {
         ...state,
         isFetching: true,
       };
-    case actionType.GET_CATEGORY_SUCESS:
+    case actionType.GET_SHARED_PATIENTS_SUCESS:
       return {
         ...state,
-        testCategoryList: action.payload,
+        sharedList: action.payload,
         isFetching: false,
       };
-    case actionType.GET_CATEGORY_FAILURE:
+    case actionType.GET_SHARED_PATIENTS_FAILURE:
       return {
         ...state,
         isError: action.payload,

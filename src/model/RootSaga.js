@@ -15,6 +15,8 @@ import {
 } from './user/authentication/Saga';
 import {registerSaga} from './user/signup/Saga';
 import {getTestCategorySaga} from './test/loadTestCategories/Saga';
+import {sharePatientSaga} from './patient/sharePatient/Saga';
+import {getSharedPatientsSaga} from './patient/getSharedPatients/Saga';
 
 function* RootSaga() {
   yield all([
@@ -33,6 +35,8 @@ function* RootSaga() {
     //new saga
     fork(registerSaga),
     fork(getTestCategorySaga),
+    fork(sharePatientSaga),
+    fork(getSharedPatientsSaga),
   ]);
 }
 

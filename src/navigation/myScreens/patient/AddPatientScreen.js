@@ -8,29 +8,31 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import AddPatient from '../../../httpClient/repository/patient/AddPatient';
 import CardView from 'react-native-cardview';
 import {globalStyles} from '../../../styles/Global';
-import AsyncStorage from '@react-native-community/async-storage';
 import {Picker} from '@react-native-community/picker';
-import * as actionTypes from '../../../utils/Constants';
-import * as actions from '../../../model/patient/addPatient/Actions';
+import * as actionCreators from '../../../model/patient/addPatient/Actions';
 import {connect} from 'react-redux';
-import { AddPatientReducer } from '../../../model/patient/addPatient/Reducer';
+import {Loader} from '../../../components/Loader';
 
-const AddPatientScreenView = ({navigation, createPatient, responseData}) => {
+const AddPatientScreenView = ({
+  navigation,
+  createPatient,
+  responseData,
+  isAddPatientLoading,
+}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState('male');
   const [dateOfBirth, setDateOfBirth] = useState('');
-  const [maritalStatus, setMaritalStatus] = useState('');
+  const [maritalStatus, setMaritalStatus] = useState('single');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
   const [emergencyFirstName, setEmergencyFirstName] = useState('');
   const [emergencyLastName, setEmergencyLastName] = useState('');
   const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
-  const [relationship, setRelationship] = useState('');
+  const [relationship, setRelationship] = useState('friend');
   const [mState, setmState] = useState(false);
 
   const patientData = {
@@ -236,18 +238,13 @@ const AddPatientScreenView = ({navigation, createPatient, responseData}) => {
           <View style={globalStyles.DirectionRow}>
             <TouchableOpacity
               style={styles.Card}
-              onPress={async () => {
-                const user = await AsyncStorage.getItem('user');
-                const mUser = JSON.parse(user);
+              onPress={() => {
                 createPatient(patientData);
-                if (!JSON.stringify(patientData)) {
-                  showToast('Unsuccessful');
-                  return;
+                if (!responseData) {
+                  showToast('Unsccessful');
                 }
                 showToast('Successful');
-                navigation.navigate('Patients', {
-                  mData: mState,
-                });
+                navigation.goBack();
               }}>
               <Text style={globalStyles.ButtonText}>Add Patient</Text>
             </TouchableOpacity>
@@ -300,16 +297,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
     marginBottom: 10,
-  }
+  },
 });
 
 const mapStateToProps = (state, props) => {
-  return {addPatient: state.addPatient};
+  const {isAddPatientLoading, responseData} = state.addPatient;
+  return {isAddPatientLoading, responseData};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
   createPatient: (args) => {
-    dispatch(actions.addPatientsResponse(args));
+    dispatch(actionCreators.addPatientsResponse(args));
   },
 });
 

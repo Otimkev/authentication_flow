@@ -20,7 +20,7 @@ const TestListScreen = ({navigation, route}) => {
     {label: 'Allergy', id: 8},
     {label: 'Andrology', id: 9},
     {label: 'Lung Kidney, Skeleton', id: 10},
-    {label: 'Glucose Metabolism', id: 11},
+    {label: 'glucose metabolism', id: 11},
     {label: 'Lipid Metabolism', id: 12},
     {label: 'Heart and Muscle', id: 13},
     {label: 'Liver/Pancreas/GIT', id: 14},

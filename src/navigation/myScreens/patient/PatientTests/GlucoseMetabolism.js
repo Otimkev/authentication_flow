@@ -26,14 +26,13 @@ const GlucoseMetabolismScreenView = ({
   const [microalbumin, setMicroalbumin] = useState('');
   const label = route.params.category;
   const patientId = route.params.patientId;
-  console.log(patientId);
   const testData = {
     glucoseFasting,
     glucoseRandom,
     gtt2Hr75gStandard,
     hba1cGlycosylatedHB,
     microalbumin,
-    category: label,
+    category: 'glucose metabolism',
   };
 
   const showToast = (message) => {
@@ -88,9 +87,12 @@ const GlucoseMetabolismScreenView = ({
           title="Submit"
           onPress={() => {
             createTest(patientId, testData);
-            console.log(addTestData);
+            console.log(testData);
             showToast('Successful');
-            navigation.goBack();
+            navigation.navigate('Test Graph', {
+              patientId: patientId,
+              label: testData.category,
+            });
           }}
         />
       </View>

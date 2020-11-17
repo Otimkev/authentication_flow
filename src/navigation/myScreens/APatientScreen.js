@@ -39,27 +39,30 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
       </View>
       <View style={styles.block}>
         <Text style={styles.label}>Gender: </Text>
-        <Text style={styles.info}>Male</Text>
+        <Text style={styles.info}>{aPatient.gender}</Text>
       </View>
       <View style={styles.block}>
         <Text style={styles.label}>Address: </Text>
-        <Text style={styles.info}>Muyenga</Text>
+        <Text style={styles.info}>{aPatient.address}</Text>
       </View>
       <View style={styles.block}>
         <Text style={styles.label}>Marital Status: </Text>
-        <Text style={styles.info}>Widowed</Text>
+        <Text style={styles.info}>{aPatient.maritalStatus}</Text>
       </View>
       <View style={styles.block}>
         <Text style={styles.label}>Next of Name: </Text>
-        <Text style={styles.info}>Otim Kevin</Text>
+        <Text
+          style={
+            styles.info
+          }>{`${aPatient.emergencyFirstName} ${aPatient.emergencyLastName}`}</Text>
       </View>
       <View style={styles.block}>
         <Text style={styles.label}>Next of Kin Contact: </Text>
-        <Text style={styles.info}>{aPatient.phoneNumber}</Text>
+        <Text style={styles.info}>{aPatient.emergencyPhoneNumber}</Text>
       </View>
       <View style={styles.block}>
         <Text style={styles.label}>Relationship: </Text>
-        <Text style={styles.info}>Friend</Text>
+        <Text style={styles.info}>{aPatient.relationship}</Text>
       </View>
       <View style={styles.block}>
         <Text style={styles.label}>Patient's Ward: </Text>
@@ -87,7 +90,7 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <TouchableOpacity
           style={styles.Card}
           onPress={() => {
-            navigation.navigate('inviteList', {patientId: id});
+            navigation.navigate('Specialists', {patientId: id});
           }}>
           <Text style={styles.CardText}>Share Patient</Text>
         </TouchableOpacity>
@@ -179,6 +182,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 15,
+    width: 150,
     color: '#007360',
   },
   info: {

@@ -4,7 +4,7 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
+  Button,
   Alert,
   ScrollView,
   FlatList,
@@ -12,6 +12,7 @@ import {
 import {connect} from 'react-redux';
 import {getTestCategoryResponse} from '../../model/test/loadTestCategories/Actions';
 import {Loader} from '../../components/Loader';
+import {FloatingAction} from 'react-native-floating-action';
 
 export const TestCategoryScreenView = ({
   navigation,
@@ -20,10 +21,12 @@ export const TestCategoryScreenView = ({
   route,
   isFetching,
 }) => {
+  const [state, setState] = useState([]);
   const patientId = route.params.patientId;
   useEffect(() => {
     getTestCategory(patientId);
   }, [getTestCategory, patientId]);
+  console.log(testCategoryList);
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
@@ -50,10 +53,29 @@ export const TestCategoryScreenView = ({
     );
   };
 
+  const IsTest = () => {
+    return (
+      <View
+        style={{
+          flex: 1,
+          alignContent: 'center',
+          justifyContent: 'center',
+          marginHorizontal: 16,
+        }}>
+        <Button
+          title="Add Test"
+          onPress={() =>
+            navigation.navigate('Test List', {patientId: patientId})
+          }
+        />
+      </View>
+    );
+  };
+
   return (
     <View style={{flex: 1}}>
-      {isFetching ? (
-        <Loader />
+      {testCategoryList.length === 0 ? (
+        <IsTest />
       ) : (
         <FlatList
           data={testCategoryList}
@@ -63,6 +85,18 @@ export const TestCategoryScreenView = ({
           renderItem={renderItem}
         />
       )}
+      <FloatingAction
+        actions={[
+          {
+            text: 'Add Test Category',
+            name: 'bt_accessibility',
+            position: 2,
+          },
+        ]}
+        onPressItem={() => {
+          navigation.navigate('Test List', {patientId: patientId});
+        }}
+      />
     </View>
   );
 };

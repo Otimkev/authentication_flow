@@ -47,3 +47,11 @@ export const CHECK_TOKEN_SUCCESS = 'checkToken';
 export const GET_CATEGORY_RESONSE = 'getCategoryResponse';
 export const GET_CATEGORY_SUCESS = 'getCategorySuccess';
 export const GET_CATEGORY_FAILURE = 'getCategoryFailure';
+
+export const SHARE_PATIENT_RESONSE = 'sharePatientResponse';
+export const SHARE_PATIENT_SUCESS = 'sharePatientSuccess';
+export const SHARE_PATIENT_FAILURE = 'sharePatientFailure';
+
+export const GET_SHARED_PATIENTS_RESONSE = 'getSharedPatientsResponse';
+export const GET_SHARED_PATIENTS_SUCESS = 'getSharedPatientsSuccess';
+export const GET_SHARED_PATIENTS_FAILURE = 'getSharedPatientsFailure';

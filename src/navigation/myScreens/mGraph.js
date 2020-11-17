@@ -24,16 +24,16 @@ const GraphScreenView = ({
   patientTestData,
 }) => {
   const allTestLables = [
-    {id: 1, labeled: 'glucose_fasting'},
-    {id: 2, labeled: 'glucose_random'},
-    {id: 3, labeled: 'GTT2hr75_standard'},
-    {id: 4, labeled: 'HBA1C_Glycosylated_HB'},
-    {id: 5, labeled: 'Microalbumin_urine'},
+    {id: 1, labeled: 'glucoseFasting'},
+    {id: 2, labeled: 'glucoseRandom'},
+    {id: 3, labeled: 'gtt2Hr75gStandard'},
+    {id: 4, labeled: 'hba1cGlycosylatedHB'},
+    {id: 5, labeled: 'microalbumin'},
   ];
   const [isLoading, setIsLoading] = useState(false);
   const [CategoryLabel, setCategoryLabel] = useState('');
   const [testLabels, setTestLabels] = useState(allTestLables);
-  const [test, setTest] = useState('glucose_random');
+  const [test, setTest] = useState('glucoseFasting');
   const [dataSet, setDataSet] = useState([{value: 1, createAt: 'jan'}]);
   const {patientId, label} = route.params;
   useEffect(() => {
@@ -46,7 +46,6 @@ const GraphScreenView = ({
     //getAllTests({patientId, category: label, test});
     setDataSet(patientTestData);
   };
-  console.log(test);
   const graphItem = () => {
     return (
       <View>

@@ -1,27 +1,24 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../model/patient/notifications/invite/Actions';
+import {sharePatientsResponse} from '../../model/patient/sharePatient/Actions';
+import {getSharedPatientsResponse} from '../../model/patient/getSharedPatients/Actions';
 import {GET_USER_RESPONSE} from '../../utils/Constants';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  Button,
-} from 'react-native';
-import {FloatingAction} from 'react-native-floating-action';
+import {StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {Loader} from '../../components/Loader';
 import {globalStyles} from '../../styles/Global';
+import {showToast} from '../../components/Toast';
 
 const UserListScreenView = ({
   navigation,
   isFetching,
   inviteList,
   getAllUsers,
-  inviteUser,
+  sharePatient,
+  isLoading,
+  responseData,
   route,
+  getSharedPatients,
 }) => {
   const id = route.params.patientId;
   useEffect(() => {
@@ -31,9 +28,13 @@ const UserListScreenView = ({
     return (
       <TouchableOpacity
         onPress={() => {
-          const mData = {userId: item.id, patientId: id};
-          inviteUser(mData);
-          navigation.navigate('Patient Information', {userId: item.id});
+          sharePatient({targetId: item.id, patientId: id});
+          if (!responseData) {
+            showToast('Error Sharing');
+          }
+          getSharedPatients();
+          showToast(`Shared with ${item.firstName} ${item.lastName}`);
+          navigation.goBack();
         }}>
         <View style={styles.row}>
           <View>
@@ -48,7 +49,7 @@ const UserListScreenView = ({
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.email}</Text>
             </View>
-            <Text style={styles.msgTxt}>Mulago Hospital</Text>
+            <Text style={styles.msgTxt}>{item.hospital}</Text>
             <Text style={styles.msgTxt}>0705432558</Text>
           </View>
         </View>
@@ -77,8 +78,9 @@ const UserListScreenView = ({
 
 const mapStateToProps = (state, props) => {
   const {inviteList, isFetching} = state.getUsers;
-  const {isInviting} = state.invite;
-  return {inviteList, isFetching, isInviting};
+  const {isLoading, responseData} = state.sharePatient;
+  const {sharedList} = state.sharedPatients;
+  return {inviteList, isFetching, isLoading, responseData, sharedList};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -87,8 +89,11 @@ const mapDispatchToProps = (dispatch, props) => ({
       type: GET_USER_RESPONSE,
     });
   },
-  inviteUser: (args) => {
-    dispatch(actionTypes.invitesResponse(args));
+  sharePatient: (args) => {
+    dispatch(sharePatientsResponse(args));
+  },
+  getSharedPatients: () => {
+    dispatch(getSharedPatientsResponse());
   },
 });
 

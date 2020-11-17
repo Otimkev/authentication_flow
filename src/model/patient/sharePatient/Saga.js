@@ -4,25 +4,24 @@ import * as actionTypes from '../../../utils/Constants';
 import API from '../../QueryApi';
 import AsyncStorage from '@react-native-community/async-storage';
 
-function* addPatient(action) {
+function* sharePatient(action) {
   try {
     const userData = yield AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
     const response = yield call(
       API.post,
-      `/user/add-patient/${data.result.id}/`,
+      `/user/share/${data.result.id}/`,
       action.payload,
     );
-    console.log(response);
-    yield put(actions.addPatientsSuccess(response));
+    yield put(actions.sharePatientsSuccess(response));
   } catch (e) {
     console.log(e);
-    yield put(actions.addPatientsFailure(e));
+    yield put(actions.sharePatientsFailure(e));
   }
 }
 
-function* addPatientSaga() {
-  yield takeEvery(actionTypes.ADD_PATIENT_RESPONSE, addPatient);
+function* sharePatientSaga() {
+  yield takeEvery(actionTypes.SHARE_PATIENT_RESONSE, sharePatient);
 }
 
-export {addPatientSaga};
+export {sharePatientSaga};

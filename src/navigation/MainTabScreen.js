@@ -255,7 +255,7 @@ const PatientStackScreen = ({navigation}) => (
       }}
     />
     <PatientsStack.Screen
-      name="inviteList"
+      name="Specialists"
       component={UserListScreen}
       options={{
         headerLeft: () => (

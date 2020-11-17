@@ -8,10 +8,7 @@ function* fetchAllInvites(actions) {
   try {
     const userData = yield AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
-    const vPatients = yield call(
-      API.get,
-      `/getshare-patient/${data.result.id}/`,
-    );
+    const vPatients = yield call(API.get, `/user/share/${data.result.id}/`);
     console.log(vPatients);
     yield put(actionCreators.getInvitesSuccess(vPatients));
   } catch (e) {

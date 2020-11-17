@@ -35,12 +35,6 @@ const PatientScreenView = ({
           navigation.navigate('Patient Information', {patientId: item.id});
         }}>
         <View style={styles.row}>
-          <Image
-            source={{
-              uri: item.image,
-            }}
-            style={styles.pic}
-          />
           <View>
             <View style={styles.nameContainer}>
               <Text
