@@ -17,6 +17,8 @@ import {registerSaga} from './user/signup/Saga';
 import {getTestCategorySaga} from './test/loadTestCategories/Saga';
 import {sharePatientSaga} from './patient/sharePatient/Saga';
 import {getSharedPatientsSaga} from './patient/getSharedPatients/Saga';
+import {createChatRoomSaga} from './chat/createChatRoom/Saga';
+import {fetchChatRoomsSaga} from './chat/loadChatRooms/Saga';
 
 function* RootSaga() {
   yield all([
@@ -37,6 +39,8 @@ function* RootSaga() {
     fork(getTestCategorySaga),
     fork(sharePatientSaga),
     fork(getSharedPatientsSaga),
+    fork(createChatRoomSaga),
+    fork(fetchChatRoomsSaga),
   ]);
 }
 

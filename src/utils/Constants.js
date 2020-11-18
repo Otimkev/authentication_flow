@@ -55,3 +55,11 @@ export const SHARE_PATIENT_FAILURE = 'sharePatientFailure';
 export const GET_SHARED_PATIENTS_RESONSE = 'getSharedPatientsResponse';
 export const GET_SHARED_PATIENTS_SUCESS = 'getSharedPatientsSuccess';
 export const GET_SHARED_PATIENTS_FAILURE = 'getSharedPatientsFailure';
+
+export const CREATE_CHAT_ROOM_RESONSE = 'createChatRoomResponse';
+export const CREATE_CHAT_ROOM_SUCESS = 'createChatRoomSuccess';
+export const CREATE_CHAT_ROOM_FAILURE = 'createChatRoomFailure';
+
+export const GET_CHAT_ROOM_RESONSE = 'getChatRoomResponse';
+export const GET_CHAT_ROOM_SUCESS = 'getChatRoomSuccess';
+export const GET_CHAT_ROOM_FAILURE = 'getChatRoomFailure';

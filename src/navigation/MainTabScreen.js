@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Fontisto';
 
 import HomeScreen from './myScreens/HomeScreen';
 import ProfileScreen from './myScreens/ProfileScreen';
-import ChatScreen from '././myScreens/ChatScreen';
+import {ChatScreen} from '././myScreens/ChatScreen';
 import {PatientScreen} from './myScreens/PatientScreen';
 import {AddPatientScreen} from './myScreens/patient/AddPatientScreen';
 import {NoticationScreen} from './myScreens/NotificationScreen';
@@ -19,6 +19,8 @@ import {mGraphScreen} from './myScreens/mGraph';
 import {UserListScreen} from './myScreens/InviteList';
 import GlucoseMetabolismScreen from './myScreens/patient/PatientTests/GlucoseMetabolism';
 import {TestCategoryScreen} from './myScreens/TestCategories';
+import ConversationScreenView from './ConversationScreen';
+import {NewChatListScreen} from './myScreens/NewChatList';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -142,20 +144,15 @@ const ChatsStackScreen = ({navigation}) => (
         fontWeight: 'bold',
       },
     }}>
+    <ChatsStack.Screen name="Chats" component={ChatScreen} />
     <ChatsStack.Screen
-      name="Chats"
-      component={ChatScreen}
-      options={{
-        headerLeft: () => (
-          <Icon.Button
-            name="nav-icon-list-a"
-            size={25}
-            backgroundColor="#007360"
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
-      }}
+      name="talk"
+      component={ConversationScreenView}
+      options={({route}) => ({
+        title: route.params.mangoes,
+      })}
     />
+    <ChatsStack.Screen name="new_chat_list" component={NewChatListScreen} />
   </ChatsStack.Navigator>
 );
 
@@ -255,9 +252,10 @@ const PatientStackScreen = ({navigation}) => (
       }}
     />
     <PatientsStack.Screen
-      name="Specialists"
+      name="SpecialistList"
       component={UserListScreen}
       options={{
+        title: 'Specialists',
         headerLeft: () => (
           <Icon.Button
             name="nav-icon-list-a"
