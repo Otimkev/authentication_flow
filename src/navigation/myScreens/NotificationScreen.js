@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../model/patient/notifications/invites/Actions';
 import {GET_NOTIFICATIONS_RESPONSE} from '../../utils/Constants';
+import {Modal, Portal, Provider} from 'react-native-paper';
 import {
   StyleSheet,
   Text,
@@ -10,6 +11,7 @@ import {
   Image,
   FlatList,
   Button,
+  Dimensions,
 } from 'react-native';
 import {FloatingAction} from 'react-native-floating-action';
 import {Loader} from '../../components/Loader';
@@ -24,13 +26,21 @@ const NoticationScreenView = ({
   useEffect(() => {
     getAllInvites();
   }, [getAllInvites, createInvites]);
+  const [visible, setVisible] = useState(false);
+  const [modalContent, setModalContent] = useState('');
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = {
+    backgroundColor: 'white',
+    padding: 16,
+    height: 0.5 * Dimensions.get('window').height,
+  };
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Patient Information', {
-            patientId: item.patient.id,
-          });
+          setModalContent(item);
+          showModal();
         }}>
         <View style={styles.row}>
           <View>
@@ -61,33 +71,48 @@ const NoticationScreenView = ({
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-      }}>
-      {isFetching ? (
-        <Loader />
-      ) : (
-        <FlatList
-          extra={invites}
-          data={invites}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={renderItem}
-        />
-      )}
-      {/* <FloatingAction
-        actions={[
-          {
-            text: 'Add Patient',
-            name: 'bt_accessibility',
-            position: 2,
-          },
-        ]}
-        onPressItem={() => {
-          navigation.navigate('Register Patient');
-        }}
-      /> */}
-    </View>
+    <Provider>
+      <Portal>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={visible}
+          onDismiss={hideModal}
+          contentContainerStyle={containerStyle}>
+          <View style={{flex: 2}}>
+            <Text style={styles.modalTitle}>
+              {modalContent
+                ? `From Dr.${modalContent.sender.firstName} ${modalContent.sender.lastName}`
+                : undefined}
+            </Text>
+          </View>
+          <View
+            style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+            <View style={{marginHorizontal: 8}}>
+              <Button title="Accept" color="#78af38" />
+            </View>
+            <View>
+              <Button title="Decline" color="red" />
+            </View>
+          </View>
+        </Modal>
+      </Portal>
+      <View
+        style={{
+          flex: 1,
+        }}>
+        {isFetching ? (
+          <Loader />
+        ) : (
+          <FlatList
+            extra={invites}
+            data={invites}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={renderItem}
+          />
+        )}
+      </View>
+    </Provider>
   );
 };
 
@@ -154,6 +179,16 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: 'grey',
     fontSize: 12,
+    marginLeft: 15,
+  },
+  modalTitle: {
+    alignContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+    fontWeight: '400',
+    color: 'grey',
+    fontSize: 28,
     marginLeft: 15,
   },
 });

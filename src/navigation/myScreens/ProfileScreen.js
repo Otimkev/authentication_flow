@@ -1,27 +1,17 @@
-import React, {useContext, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const ProfileScreen = () => {
-  const [userId, setUserId] = useState('');
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [userPhone, setUserPhone] = useState('');
-  const [userFacility, setUserFacility] = useState('');
-  const retrieveItem = async (key) => {
-    try {
-      const retrievedItem = await AsyncStorage.getItem(key);
-      const item = JSON.parse(retrievedItem);
-      console.log(item);
-      setUserId(item.userId);
-      setUserName(item.userName);
-      setUserEmail(item.email);
-      setUserPhone(item.phoneNumber);
-      setUserFacility(item.facility);
-    } catch (error) {
-      console.log(error.message);
-    }
-    return;
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+    retrieveItem();
+  }, []);
+  const retrieveItem = async () => {
+    const retrievedItem = await AsyncStorage.getItem('user');
+    const item = JSON.parse(retrievedItem);
+    setUser(item.result);
   };
   retrieveItem('user');
   return (
@@ -34,30 +24,16 @@ const ProfileScreen = () => {
               uri: 'https://bootdey.com/img/Content/avatar/avatar2.png',
             }}
           />
-          <Text style={styles.name}>{userName}</Text>
-        </View>
-      </View>
-
-      <View style={styles.profileDetail}>
-        <View style={styles.detailContent}>
-          <Text style={styles.title}>Patients</Text>
-          <Text style={styles.count}>10</Text>
-        </View>
-        <View style={styles.detailContent}>
-          <Text style={styles.title}>Invites</Text>
-          <Text style={styles.count}>20</Text>
-        </View>
-        <View style={styles.detailContent}>
-          <Text style={styles.title}>Tests</Text>
-          <Text style={styles.count}>2000</Text>
+          <Text
+            style={styles.name}>{`${user.firstName} ${user.lastName}`}</Text>
+          <Text style={styles.name}>{`${user.hospital}`}</Text>
         </View>
       </View>
 
       <View style={styles.body}>
         <View style={styles.bodyContent}>
-          <Text style={styles.name}>{userEmail}</Text>
-          <Text style={styles.name}>{userPhone}</Text>
-          <Text style={styles.name}>{userFacility}</Text>
+          <Text style={styles.name}>Email: {user.email}</Text>
+          <Text style={styles.name}>Phone: {user.contact}</Text>
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={() => console.log('Not implemented')}>
@@ -87,8 +63,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   name: {
-    fontSize: 22,
-    color: 'grey',
+    fontSize: 20,
+    color: 'black',
     fontWeight: '600',
   },
   profileDetail: {
@@ -112,9 +88,7 @@ const styles = StyleSheet.create({
   },
   bodyContent: {
     flex: 1,
-    alignItems: 'center',
     padding: 30,
-    marginTop: 40,
   },
   textInfo: {
     fontSize: 18,

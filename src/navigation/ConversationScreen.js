@@ -13,7 +13,6 @@ const ConversationScreenView = ({navigation, route, vMessages, vUsers}) => {
   useEffect(() => {
     openChat({roomId, recipientId: memberId, userId: senderId});
   }, [memberId, roomId, senderId]);
-
   const messageHistory = vMessages.map((msg) => ({
     _id: msg.id,
     text: msg.message,
@@ -32,7 +31,7 @@ const ConversationScreenView = ({navigation, route, vMessages, vUsers}) => {
       system: true,
     },
     // example of chat message
-    ...messageHistory.sort((a, b) => b.createdAt - a.createdAt),
+    ...messageHistory.reverse(),
   ]);
 
   const handleSend = (newMessage) => {

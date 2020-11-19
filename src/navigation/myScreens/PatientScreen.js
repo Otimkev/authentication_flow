@@ -32,7 +32,10 @@ const PatientScreenView = ({
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Patient Information', {patientId: item.id});
+          navigation.navigate('Patient Information', {
+            patientId: item.id,
+            patientNames: `${item.firstName} ${item.lastName} data`,
+          });
         }}>
         <View style={styles.row}>
           <View>
@@ -64,7 +67,7 @@ const PatientScreenView = ({
       ) : (
         <FlatList
           extra={true}
-          data={patients}
+          data={patients.reverse()}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
         />
