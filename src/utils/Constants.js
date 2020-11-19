@@ -63,3 +63,15 @@ export const CREATE_CHAT_ROOM_FAILURE = 'createChatRoomFailure';
 export const GET_CHAT_ROOM_RESONSE = 'getChatRoomResponse';
 export const GET_CHAT_ROOM_SUCESS = 'getChatRoomSuccess';
 export const GET_CHAT_ROOM_FAILURE = 'getChatRoomFailure';
+
+export const CREATE_CONVERSATION_RESONSE = 'ceateConvesationResponse';
+export const CREATE_CONVERSATION_SUCESS = 'ceateConvesationSuccess';
+export const CREATE_CONVERSATION_FAILURE = 'ceateConvesationFailure';
+export const SEND_MESSAGE = 'sendMessage';
+
+//Messages
+export const GOT_MESSAGES = 'GOT_MESSAGES';
+export const GOT_NEW_MESSAGE = 'GOT_NEW_MESSAGE';
+
+export const GOT_USERS = 'GOT_USERS';
+export const GOT_NEW_USER = 'GOT_NEW_USER';

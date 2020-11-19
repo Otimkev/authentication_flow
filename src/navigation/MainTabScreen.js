@@ -19,7 +19,7 @@ import {mGraphScreen} from './myScreens/mGraph';
 import {UserListScreen} from './myScreens/InviteList';
 import GlucoseMetabolismScreen from './myScreens/patient/PatientTests/GlucoseMetabolism';
 import {TestCategoryScreen} from './myScreens/TestCategories';
-import ConversationScreenView from './ConversationScreen';
+import {ConversationScreen} from './ConversationScreen';
 import {NewChatListScreen} from './myScreens/NewChatList';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
@@ -147,7 +147,7 @@ const ChatsStackScreen = ({navigation}) => (
     <ChatsStack.Screen name="Chats" component={ChatScreen} />
     <ChatsStack.Screen
       name="talk"
-      component={ConversationScreenView}
+      component={ConversationScreen}
       options={({route}) => ({
         title: route.params.mangoes,
       })}

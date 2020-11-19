@@ -1,26 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {GiftedChat, Send, Bubble} from 'react-native-gifted-chat';
 import {ActivityIndicator, IconButton} from 'react-native-paper';
 import {Loader} from '../components/Loader';
 import socketIO from 'socket.io-client';
+import {openChat, sendMessage} from '../utils/SocketEvents';
+import {connect} from 'react-redux';
 
-const ConversationScreenView = ({navigation, route}) => {
-  const {roomId, memberId} = route.params;
-  const [sockets, setsockets] = useState(null);
+const ConversationScreenView = ({navigation, route, vMessages, vUsers}) => {
+  const {roomId, memberId, senderId} = route.params;
+  const [state, setState] = useState([]);
   useEffect(() => {
-    const socket = socketIO('http://192.168.3.101:3001/', {
-      transports: ['websocket'],
-      jsonp: false,
-      rejectUnauthorized: '-',
-      perMessageDeflate: '-',
-    });
-    socket.connect();
-    setsockets(socket);
-    socket.on('new_message', (data) => {
-      addNewMessage(data);
-    });
-  }, []);
+    openChat({roomId, recipientId: memberId, userId: senderId});
+  }, [memberId, roomId, senderId]);
+
+  const messageHistory = vMessages.map((msg) => ({
+    _id: msg.id,
+    text: msg.message,
+    createdAt: msg.timeStamp,
+    user: {
+      _id: msg.senderId,
+      name: 'Test User',
+    },
+  }));
+
   const [messages, setMessages] = useState([
     {
       _id: 0,
@@ -29,19 +32,14 @@ const ConversationScreenView = ({navigation, route}) => {
       system: true,
     },
     // example of chat message
-    {
-      _id: 1,
-      text: 'Henlo!',
-      createdAt: new Date().getTime(),
-      user: {
-        _id: 2,
-        name: 'Test User',
-      },
-    },
+    ...messageHistory.sort((a, b) => b.createdAt - a.createdAt),
   ]);
 
-  const handleSend = (newMessage = []) => {
-    sockets.emit('new_message', {message: newMessage});
+  const handleSend = (newMessage) => {
+    const plainText = newMessage.map((msg) => msg.text);
+    console.log(plainText);
+    sendMessage(senderId, memberId, roomId, plainText[0]);
+    console.log(state);
     setMessages(GiftedChat.append(messages, newMessage));
   };
 
@@ -54,9 +52,6 @@ const ConversationScreenView = ({navigation, route}) => {
       </Send>
     );
   }
-  const addNewMessage = (data) => {
-    console.log(data);
-  };
 
   function renderBubble(props) {
     return (
@@ -87,19 +82,37 @@ const ConversationScreenView = ({navigation, route}) => {
   }
 
   return (
-    <GiftedChat
-      messages={messages}
-      onSend={(newMessage) => handleSend(newMessage)}
-      user={{_id: 1, name: 'user test'}}
-      alwaysShowSend
-      renderSend={renderSend}
-      renderBubble={renderBubble}
-      showUserAvatar
-      scrollToBottomComponent={scrollToBottomComponent}
-      renderLoading={Loader}
-    />
+    <View style={{flex: 1}}>
+      {!vMessages ? (
+        <Loader />
+      ) : (
+        <GiftedChat
+          messages={messages}
+          onSend={(newMessage) => handleSend(newMessage)}
+          user={{_id: senderId}}
+          alwaysShowSend
+          renderSend={renderSend}
+          renderBubble={renderBubble}
+          showUserAvatar
+          scrollToBottomComponent={scrollToBottomComponent}
+          renderLoading={Loader}
+        />
+      )}
+    </View>
   );
 };
+
+const mapStateToProps = (state, props) => ({
+  vMessages: state.messages,
+  vUsers: state.chatUsers,
+});
+
+const mapDispatchToProps = (dispatch, props) => ({});
+
+export const ConversationScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ConversationScreenView);
 
 export default ConversationScreenView;
 
