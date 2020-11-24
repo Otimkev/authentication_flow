@@ -1,80 +1,41 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Button,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
-import {FloatingAction} from 'react-native-floating-action';
-import Icon from 'react-native-vector-icons/Fontisto';
-import socketIO from 'socket.io-client';
-import {API_URL} from '../../utils/config/Urls';
+import {connect} from 'react-redux';
+import * as actionTypes from '../../model/patient/notifications/invite/Actions';
+import {createChatRoomResponse} from '../../model/chat/createChatRoom/Actions';
+import {getChatRoomsResponse} from '../../model/chat/loadChatRooms/Actions';
+import {GET_USER_RESPONSE} from '../../utils/Constants';
+import {StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
+import {Loader} from '../../components/Loader';
 import {globalStyles} from '../../styles/Global';
 import {showToast} from '../../components/Toast';
-import {connect} from 'react-redux';
-import {getChatRoomsResponse} from '../../model/chat/loadChatRooms/Actions';
-import {Loader} from '../../components/Loader';
 import AsyncStorage from '@react-native-community/async-storage';
-import {gotMessagesResponse} from '../../model/chat/loadMessages/Actions';
 
-const actions = [
-  {
-    text: 'Broadcast',
-    // icon: <Icon name="home" color="#007360" />,
-    name: 'bt_accessibility',
-    position: 2,
-  },
-  {
-    text: 'New Group',
-    icon: require('../../assets/img/Crit.png'),
-    name: 'bt_language',
-    position: 1,
-  },
-  {
-    text: 'Specialists',
-    // icon: require('./images/ic_room_white.png'),
-    name: 'room',
-    position: 3,
-  },
-  {
-    text: 'New Chat',
-    name: 'new_chat_list',
-    position: 4,
-  },
-];
-
-const ChatScreenView = ({
+const NewChatListScreenView = ({
   navigation,
   isFetching,
-  chatRooms,
+  inviteList,
+  getAllUsers,
+  makeChatRoom,
   getChatRooms,
-  getHistory,
 }) => {
-  const [currentUserId, setcurrentUserId] = useState(0);
+  const [currentUser, setCurrentUser] = useState(0);
   useEffect(() => {
-    getChatRooms();
+    getAllUsers();
     filterUser();
-  }, [getChatRooms]);
+  }, [getAllUsers]);
   const filterUser = async () => {
     const userData = await AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
-    setcurrentUserId(data.result.id);
+    setCurrentUser(data.result.id);
   };
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         onPress={() => {
+          showToast(`${item.lastName}`);
+          makeChatRoom({memberId: item.id});
           getChatRooms();
-          getHistory(item.id);
-          navigation.navigate('talk', {
-            mangoes: `${item.chatRoomMember.firstName} ${item.chatRoomMember.lastName}`,
-            roomId: item.id,
-            memberId: item.createdByUserId,
-            senderId: currentUserId,
-          });
+          navigation.goBack();
         }}>
         <View style={styles.row}>
           <View>
@@ -83,12 +44,14 @@ const ChatScreenView = ({
                 style={globalStyles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
-                {`${item.chatRoomMember.firstName} ${item.chatRoomMember.lastName}`}
+                {`${item.firstName} ${item.lastName}`}
               </Text>
             </View>
             <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.id}</Text>
+              <Text style={styles.msgTxt}>{item.email}</Text>
             </View>
+            <Text style={styles.msgTxt}>{item.hospital}</Text>
+            <Text style={styles.msgTxt}>0705432558</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -104,40 +67,40 @@ const ChatScreenView = ({
         <Loader />
       ) : (
         <FlatList
-          extra={chatRooms}
-          data={chatRooms}
+          extra={inviteList}
+          data={inviteList.filter((user) => user.id !== currentUser)}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
         />
       )}
-      <FloatingAction
-        actions={actions}
-        onPressItem={(name) => {
-          navigation.navigate(name);
-        }}
-      />
     </View>
   );
 };
 
 const mapStateToProps = (state, props) => {
-  const {chatRooms, isFetching} = state.getChatRooms;
-  return {chatRooms, isFetching};
+  const {inviteList, isFetching} = state.getUsers;
+  const {isLoading, responseData} = state.sharePatient;
+  return {inviteList, isFetching, isLoading, responseData};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
+  getAllUsers: () => {
+    dispatch({
+      type: GET_USER_RESPONSE,
+    });
+  },
+  makeChatRoom: (args) => {
+    dispatch(createChatRoomResponse(args));
+  },
   getChatRooms: () => {
     dispatch(getChatRoomsResponse());
   },
-  getHistory: (args) => {
-    dispatch(gotMessagesResponse(args));
-  },
 });
 
-export const ChatScreen = connect(
+export const NewChatListScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ChatScreenView);
+)(NewChatListScreenView);
 
 const styles = StyleSheet.create({
   row: {

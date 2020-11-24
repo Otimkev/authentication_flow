@@ -8,7 +8,6 @@ import * as actionCreators from './Actions';
 export function* logInWithCredentials(action) {
   try {
     const user = yield call(API.post, '/user/signin/', action.payload);
-    console.log(action.payload);
     yield AsyncStorage.setItem('user', JSON.stringify(user));
     yield put(actionCreators.checkTokenSuccess(JSON.stringify(user)));
     yield put(actionCreators.logInSuccess(user));

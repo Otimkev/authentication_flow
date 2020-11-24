@@ -2,14 +2,14 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SharedPatientList} from './SharedPatientList';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {BARS} from '../../styles/icons';
+import Icon from 'react-native-vector-icons/Fontisto';
+import ConversationScreenView from '../ConversationScreen';
 
-const shareStack = createStackNavigator();
+const ChatStack = createStackNavigator();
 
-const ShareStack = ({navigation}) => {
+const ChatStackScreenView = ({navigation}) => {
   return (
-    <shareStack.Navigator
+    <ChatStack.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor: '#007360',
@@ -19,14 +19,14 @@ const ShareStack = ({navigation}) => {
           fontWeight: 'bold',
         },
       }}>
-      <shareStack.Screen
-        component={SharedPatientList}
-        name="sharedList"
+      <ChatStack.Screen
+        component={ConversationScreenView}
+        name="dialogue"
         options={{
-          title: 'Shared Patients',
+          title: 'Chats',
           headerLeft: () => (
             <Icon.Button
-              name={BARS}
+              name="nav-icon-list-a"
               size={25}
               backgroundColor="#007360"
               onPress={() => navigation.openDrawer()}
@@ -34,8 +34,8 @@ const ShareStack = ({navigation}) => {
           ),
         }}
       />
-    </shareStack.Navigator>
+    </ChatStack.Navigator>
   );
 };
 
-export default ShareStack;
+export default ChatStackScreenView;

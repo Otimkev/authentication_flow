@@ -1,11 +1,11 @@
 import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/Fontisto';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import HomeScreen from './myScreens/HomeScreen';
 import ProfileScreen from './myScreens/ProfileScreen';
-import ChatScreen from '././myScreens/ChatScreen';
+import {ChatScreen} from '././myScreens/ChatScreen';
 import {PatientScreen} from './myScreens/PatientScreen';
 import {AddPatientScreen} from './myScreens/patient/AddPatientScreen';
 import {NoticationScreen} from './myScreens/NotificationScreen';
@@ -19,6 +19,9 @@ import {mGraphScreen} from './myScreens/mGraph';
 import {UserListScreen} from './myScreens/InviteList';
 import GlucoseMetabolismScreen from './myScreens/patient/PatientTests/GlucoseMetabolism';
 import {TestCategoryScreen} from './myScreens/TestCategories';
+import {ConversationScreen} from './ConversationScreen';
+import {NewChatListScreen} from './myScreens/NewChatList';
+import {BARS} from '../styles/icons';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -52,7 +55,7 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Patients',
         tabBarColor: '#007360',
-        tabBarIcon: () => <Icon name="first-aid-alt" color={color} size={20} />,
+        tabBarIcon: () => <Icon name="user" color={color} size={20} />,
       }}
     />
     <Tab.Screen
@@ -79,7 +82,7 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Profile',
         tabBarColor: '#007360',
-        tabBarIcon: () => <Icon name="doctor" color={color} size={22} />,
+        tabBarIcon: () => <Icon name="user-md" color={color} size={30} />,
       }}
     />
   </Tab.Navigator>
@@ -105,22 +108,7 @@ const HomeStackScreen = ({navigation}) => (
         title: 'Home',
         headerLeft: () => (
           <Icon.Button
-            name="nav-icon-list-a"
-            size={25}
-            backgroundColor="#007360"
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
-      }}
-    />
-    <HomeStack.Screen
-      name="Graph"
-      component={mGraphScreen}
-      options={{
-        title: 'Graph',
-        headerLeft: () => (
-          <Icon.Button
-            name="nav-icon-list-a"
+            name={BARS}
             size={25}
             backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
@@ -148,7 +136,7 @@ const ChatsStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="nav-icon-list-a"
+            name={BARS}
             size={25}
             backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
@@ -156,6 +144,14 @@ const ChatsStackScreen = ({navigation}) => (
         ),
       }}
     />
+    <ChatsStack.Screen
+      name="talk"
+      component={ConversationScreen}
+      options={({route}) => ({
+        title: route.params.mangoes,
+      })}
+    />
+    <ChatsStack.Screen name="new_chat_list" component={NewChatListScreen} />
   </ChatsStack.Navigator>
 );
 
@@ -176,7 +172,7 @@ const PatientStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="nav-icon-list-a"
+            name={BARS}
             size={25}
             backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
@@ -190,7 +186,7 @@ const PatientStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="nav-icon-list-a"
+            name={BARS}
             size={25}
             backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
@@ -201,16 +197,9 @@ const PatientStackScreen = ({navigation}) => (
     <PatientsStack.Screen
       name="Patient Information"
       component={APatientScreen}
-      options={{
-        headerLeft: () => (
-          <Icon.Button
-            name="nav-icon-list-a"
-            size={25}
-            backgroundColor="#007360"
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
-      }}
+      options={({route}) => ({
+        title: route.params.patientNames,
+      })}
     />
     <PatientsStack.Screen
       name="Test List"
@@ -218,7 +207,7 @@ const PatientStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="nav-icon-list-a"
+            name={BARS}
             size={25}
             backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
@@ -232,7 +221,7 @@ const PatientStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="nav-icon-list-a"
+            name={BARS}
             size={25}
             backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
@@ -243,45 +232,23 @@ const PatientStackScreen = ({navigation}) => (
     <PatientsStack.Screen
       name="Test Category"
       component={TestCategoryScreen}
-      options={{
-        headerLeft: () => (
-          <Icon.Button
-            name="nav-icon-list-a"
-            size={25}
-            backgroundColor="#007360"
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
-      }}
+      options={({route}) => ({
+        title: 'Test Categories',
+      })}
     />
     <PatientsStack.Screen
-      name="Specialists"
+      name="SpecialistList"
       component={UserListScreen}
-      options={{
-        headerLeft: () => (
-          <Icon.Button
-            name="nav-icon-list-a"
-            size={25}
-            backgroundColor="#007360"
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
-      }}
+      options={({route}) => ({
+        title: 'Contacts',
+      })}
     />
     <PatientsStack.Screen
       name="Test Graph"
       component={mGraphScreen}
-      options={{
-        title: 'Graph',
-        headerLeft: () => (
-          <Icon.Button
-            name="nav-icon-list-a"
-            size={25}
-            backgroundColor="#007360"
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
-      }}
+      options={({route}) => ({
+        title: route.params.label,
+      })}
     />
   </PatientsStack.Navigator>
 );
@@ -303,7 +270,7 @@ const ProfileStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="nav-icon-list-a"
+            name={BARS}
             size={25}
             backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
@@ -331,7 +298,7 @@ const NotificationsStackScreen = ({navigation}) => (
       options={{
         headerLeft: () => (
           <Icon.Button
-            name="nav-icon-list-a"
+            name={BARS}
             size={25}
             backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
@@ -359,7 +326,7 @@ const NotificationsStackScreen = ({navigation}) => (
 //       options={{
 //         headerLeft: () => (
 //           <Icon.Button
-//             name="nav-icon-list-a"
+//             name={BARS}
 //             size={25}
 //             backgroundColor="#007360"
 //             onPress={() => navigation.openDrawer()}

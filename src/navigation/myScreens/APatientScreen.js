@@ -90,7 +90,7 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <TouchableOpacity
           style={styles.Card}
           onPress={() => {
-            navigation.navigate('Specialists', {patientId: id});
+            navigation.navigate('SpecialistList', {patientId: id});
           }}>
           <Text style={styles.CardText}>Share Patient</Text>
         </TouchableOpacity>

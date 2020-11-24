@@ -1,10 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import Attention from '../../components/AttentionComponent';
 import {globalStyles} from '../../styles/Global';
 import {Picker} from '@react-native-community/picker';
+import AsyncStorage from '@react-native-community/async-storage';
+import {login} from '../../utils/SocketEvents';
 
 const HomeScreen = ({navigation}) => {
+  const [cureentUserID, setcureentUserID] = useState(null);
+  useEffect(() => {
+    filterUser();
+    login({userId: cureentUserID});
+  }, [cureentUserID]);
+  const filterUser = async () => {
+    const userData = await AsyncStorage.getItem('user');
+    const data = JSON.parse(userData);
+    setcureentUserID(data.result.id);
+  };
   return (
     <View style={globalStyles.container}>
       <Text>Home</Text>

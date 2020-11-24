@@ -11,6 +11,7 @@ import {
 import {globalStyles} from '../../styles/Global';
 import * as actionCreators from '../../model/user/authentication/Actions';
 import {connect} from 'react-redux';
+import {login} from '../../utils/SocketEvents';
 
 const SignInScreenView = ({navigation, signin, currentUser}) => {
   const [username, setUsername] = useState('');
@@ -50,8 +51,8 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
       <TouchableOpacity
         style={globalStyles.Button}
         onPress={() => {
-          console.log(userCredentials);
           signin(userCredentials);
+          //login(userCredentials);
         }}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>

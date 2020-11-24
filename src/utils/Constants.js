@@ -55,3 +55,26 @@ export const SHARE_PATIENT_FAILURE = 'sharePatientFailure';
 export const GET_SHARED_PATIENTS_RESONSE = 'getSharedPatientsResponse';
 export const GET_SHARED_PATIENTS_SUCESS = 'getSharedPatientsSuccess';
 export const GET_SHARED_PATIENTS_FAILURE = 'getSharedPatientsFailure';
+
+export const CREATE_CHAT_ROOM_RESONSE = 'createChatRoomResponse';
+export const CREATE_CHAT_ROOM_SUCESS = 'createChatRoomSuccess';
+export const CREATE_CHAT_ROOM_FAILURE = 'createChatRoomFailure';
+
+export const GET_CHAT_ROOM_RESONSE = 'getChatRoomResponse';
+export const GET_CHAT_ROOM_SUCESS = 'getChatRoomSuccess';
+export const GET_CHAT_ROOM_FAILURE = 'getChatRoomFailure';
+
+export const CREATE_CONVERSATION_RESONSE = 'ceateConvesationResponse';
+export const CREATE_CONVERSATION_SUCESS = 'ceateConvesationSuccess';
+export const CREATE_CONVERSATION_FAILURE = 'ceateConvesationFailure';
+export const SEND_MESSAGE = 'sendMessage';
+
+//Messages
+export const GOT_MESSAGES_RESPONSE = 'GOT_MESSAGES_RESPONSE';
+export const GOT_MESSAGES_SUCCESS = 'GOT_MESSAGES_SUCCESS';
+export const GOT_MESSAGE_FAILURE = 'GOT_MESSAGE_FAILURE';
+export const GOT_NEW_MESSAGE = 'GOT_NEW_MESSAGE';
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+
+export const GOT_USERS = 'GOT_USERS';
+export const GOT_NEW_USER = 'GOT_NEW_USER';

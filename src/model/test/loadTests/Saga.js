@@ -20,7 +20,7 @@ function* getTests(action) {
 
 const mF = async (action, data) => {
   return await axios.get(
-    `http://localhost:3001/api/v1/patient/tests/${data.result.id}`,
+    `http://192.168.3.101:3001/api/v1/patient/tests/${data.result.id}`,
     {
       params: action.payload,
     },

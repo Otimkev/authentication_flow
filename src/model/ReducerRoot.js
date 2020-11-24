@@ -12,6 +12,10 @@ import {registerReducer} from './user/signup/Reducer';
 import {getTestCategoryReducer} from './test/loadTestCategories/Reducer';
 import {sharePatientReducer} from './patient/sharePatient/Reducer';
 import {sharedPatientReducer} from './patient/getSharedPatients/Reducer';
+import {createChatRoomReducer} from './chat/createChatRoom/Reducer';
+import {loadChatRoomsReducer} from './chat/loadChatRooms/Reducer';
+import {messagesReducer} from './chat/loadMessages/Reducer';
+import {chatUsersReducer} from './chat/users/Reducer';
 
 export const RootReducer = combineReducers({
   mPatients: PatientReducer,
@@ -27,4 +31,9 @@ export const RootReducer = combineReducers({
   getTestCategory: getTestCategoryReducer,
   sharePatient: sharePatientReducer,
   sharedPatients: sharedPatientReducer,
+  createChatRoom: createChatRoomReducer,
+  getChatRooms: loadChatRoomsReducer,
+  messages: messagesReducer,
+  chatUsers: chatUsersReducer,
+  // f: messagesReducerResponse,
 });
