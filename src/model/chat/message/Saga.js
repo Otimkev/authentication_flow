@@ -6,10 +6,9 @@ import API from '../../QueryApi';
 function* getChatRoomMessages(actions) {
   try {
     const messages = yield call(API.get, `/chat/${actions.payload}/room/`);
-    yield put(actionCreators.gotMessagesSuccess(messages));
+    yield put(actionCreators.gotMessages(messages));
   } catch (e) {
     console.log(e);
-    //yield put(actionCreators.gotMessagesFailure(e));
   }
 }
 

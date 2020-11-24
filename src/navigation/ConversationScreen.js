@@ -1,45 +1,41 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {GiftedChat, Send, Bubble} from 'react-native-gifted-chat';
 import {ActivityIndicator, IconButton} from 'react-native-paper';
 import {Loader} from '../components/Loader';
 import socketIO from 'socket.io-client';
 import {openChat, sendMessage} from '../utils/SocketEvents';
 import {connect} from 'react-redux';
+import {gotMessagesResponse} from '../model/chat/loadMessages/Actions';
+import {globalStyles} from '../styles/Global';
+//import {FlatList} from 'react-native-gesture-handler';
 
-const ConversationScreenView = ({navigation, route, vMessages, vUsers}) => {
+const ConversationScreenView = ({
+  navigation,
+  route,
+  historymessages,
+  isLoading,
+  getHistory,
+  vUsers,
+}) => {
   const {roomId, memberId, senderId} = route.params;
-  const [state, setState] = useState([]);
+  const [messages, setMessages] = useState([]);
   useEffect(() => {
-    openChat({roomId, recipientId: memberId, userId: senderId});
-  }, [memberId, roomId, senderId]);
-  const messageHistory = vMessages.map((msg) => ({
-    _id: msg.id,
-    text: msg.message,
-    createdAt: msg.timeStamp,
-    user: {
-      _id: msg.senderId,
-      name: 'Test User',
-    },
-  }));
-
-  const [messages, setMessages] = useState([
+    getHistory(roomId);
+  }, [getHistory, roomId]);
+  const m = [
     {
       _id: 0,
-      text: 'New room created.',
-      createdAt: new Date().getTime(),
+      text: 'New chat created',
+      createdAt: new Date(),
       system: true,
+      // Any additional custom parameters are passed through
     },
-    // example of chat message
-    ...messageHistory.reverse(),
-  ]);
-
-  const handleSend = (newMessage) => {
-    const plainText = newMessage.map((msg) => msg.text);
-    console.log(plainText);
+  ];
+  const onSend = (newMessages = []) => {
+    const plainText = newMessages.map((msg) => msg.text);
     sendMessage(senderId, memberId, roomId, plainText[0]);
-    console.log(state);
-    setMessages(GiftedChat.append(messages, newMessage));
+    setMessages(GiftedChat.append(messages, newMessages));
   };
 
   function renderSend(props) {
@@ -79,34 +75,45 @@ const ConversationScreenView = ({navigation, route, vMessages, vUsers}) => {
       </View>
     );
   }
-
   return (
     <View style={{flex: 1}}>
-      {!vMessages ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <GiftedChat
-          messages={messages}
-          onSend={(newMessage) => handleSend(newMessage)}
+          messages={[...m, ...messages, ...historymessages]}
+          onSend={(newMessage) => onSend(newMessage)}
           user={{_id: senderId}}
           alwaysShowSend
           renderSend={renderSend}
           renderBubble={renderBubble}
           showUserAvatar
           scrollToBottomComponent={scrollToBottomComponent}
-          renderLoading={Loader}
         />
       )}
     </View>
+
+    // <View>
+    //   <FlatList
+    //     extra={true}
+    //     data={historymessages}
+    //     keyExtractor={(item) => item._id.toString()}
+    //     renderItem={renderItem}
+    //   />
+    // </View>
   );
 };
 
-const mapStateToProps = (state, props) => ({
-  vMessages: state.messages,
-  vUsers: state.chatUsers,
-});
+const mapStateToProps = (state, props) => {
+  const {historymessages, isLoading} = state.messages;
+  return {historymessages};
+};
 
-const mapDispatchToProps = (dispatch, props) => ({});
+const mapDispatchToProps = (dispatch, props) => ({
+  getHistory: (args) => {
+    dispatch(gotMessagesResponse(args));
+  },
+});
 
 export const ConversationScreen = connect(
   mapStateToProps,
@@ -124,5 +131,38 @@ const styles = StyleSheet.create({
   sendingContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderBottomColor: '#007360',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    padding: 10,
+  },
+  pic: {
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+  },
+  nameContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 280,
+  },
+  mblTxt: {
+    fontWeight: '200',
+    color: '#777',
+    fontSize: 13,
+  },
+  indicatorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  msgTxt: {
+    fontWeight: '400',
+    color: '#008B8B',
+    fontSize: 12,
+    marginLeft: 15,
   },
 });

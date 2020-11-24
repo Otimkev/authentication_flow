@@ -70,8 +70,11 @@ export const CREATE_CONVERSATION_FAILURE = 'ceateConvesationFailure';
 export const SEND_MESSAGE = 'sendMessage';
 
 //Messages
-export const GOT_MESSAGES = 'GOT_MESSAGES';
+export const GOT_MESSAGES_RESPONSE = 'GOT_MESSAGES_RESPONSE';
+export const GOT_MESSAGES_SUCCESS = 'GOT_MESSAGES_SUCCESS';
+export const GOT_MESSAGE_FAILURE = 'GOT_MESSAGE_FAILURE';
 export const GOT_NEW_MESSAGE = 'GOT_NEW_MESSAGE';
+export const ADD_MESSAGE = 'ADD_MESSAGE';
 
 export const GOT_USERS = 'GOT_USERS';
 export const GOT_NEW_USER = 'GOT_NEW_USER';

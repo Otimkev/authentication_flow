@@ -14,7 +14,7 @@ import {sharePatientReducer} from './patient/sharePatient/Reducer';
 import {sharedPatientReducer} from './patient/getSharedPatients/Reducer';
 import {createChatRoomReducer} from './chat/createChatRoom/Reducer';
 import {loadChatRoomsReducer} from './chat/loadChatRooms/Reducer';
-import {messagesReducer} from './chat/message/Reducer';
+import {messagesReducer} from './chat/loadMessages/Reducer';
 import {chatUsersReducer} from './chat/users/Reducer';
 
 export const RootReducer = combineReducers({
@@ -35,4 +35,5 @@ export const RootReducer = combineReducers({
   getChatRooms: loadChatRoomsReducer,
   messages: messagesReducer,
   chatUsers: chatUsersReducer,
+  // f: messagesReducerResponse,
 });

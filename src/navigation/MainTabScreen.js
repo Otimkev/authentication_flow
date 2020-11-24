@@ -130,7 +130,20 @@ const ChatsStackScreen = ({navigation}) => (
         fontWeight: 'bold',
       },
     }}>
-    <ChatsStack.Screen name="Chats" component={ChatScreen} />
+    <ChatsStack.Screen
+      name="Chats"
+      component={ChatScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name={BARS}
+            size={25}
+            backgroundColor="#007360"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
     <ChatsStack.Screen
       name="talk"
       component={ConversationScreen}

@@ -18,6 +18,7 @@ import {connect} from 'react-redux';
 import {getChatRoomsResponse} from '../../model/chat/loadChatRooms/Actions';
 import {Loader} from '../../components/Loader';
 import AsyncStorage from '@react-native-community/async-storage';
+import {gotMessagesResponse} from '../../model/chat/loadMessages/Actions';
 
 const actions = [
   {
@@ -45,7 +46,13 @@ const actions = [
   },
 ];
 
-const ChatScreenView = ({navigation, isFetching, chatRooms, getChatRooms}) => {
+const ChatScreenView = ({
+  navigation,
+  isFetching,
+  chatRooms,
+  getChatRooms,
+  getHistory,
+}) => {
   const [currentUserId, setcurrentUserId] = useState(0);
   useEffect(() => {
     getChatRooms();
@@ -60,8 +67,8 @@ const ChatScreenView = ({navigation, isFetching, chatRooms, getChatRooms}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          showToast(`${item.id}`);
           getChatRooms();
+          getHistory(item.id);
           navigation.navigate('talk', {
             mangoes: `${item.chatRoomMember.firstName} ${item.chatRoomMember.lastName}`,
             roomId: item.id,
@@ -121,6 +128,9 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => ({
   getChatRooms: () => {
     dispatch(getChatRoomsResponse());
+  },
+  getHistory: (args) => {
+    dispatch(gotMessagesResponse(args));
   },
 });
 

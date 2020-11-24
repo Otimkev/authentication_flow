@@ -1,10 +1,10 @@
 import {Store} from '../store/Store';
 import socket from './SocketIo';
-import * as messageactionCreator from '../model/chat/message/Actions';
+import * as messageactionCreator from '../model/chat/loadMessages/Actions';
 import * as userActionCreator from '../model/chat/users/Actions';
 
-socket.on('priorMessages', (messages) => {
-  Store.dispatch(messageactionCreator.gotMessages(messages));
+socket.on('priorMessages', async (messages) => {
+  await Store.dispatch(messageactionCreator.gotMessages(messages));
 });
 socket.on('userCreated', (response) => {
   const {user, users} = response;

@@ -2,7 +2,8 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SharedPatientList} from './SharedPatientList';
-import Icon from 'react-native-vector-icons/Fontisto';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {BARS} from '../../styles/icons';
 
 const shareStack = createStackNavigator();
 
@@ -25,7 +26,7 @@ const ShareStack = ({navigation}) => {
           title: 'Shared Patients',
           headerLeft: () => (
             <Icon.Button
-              name="nav-icon-list-a"
+              name={BARS}
               size={25}
               backgroundColor="#007360"
               onPress={() => navigation.openDrawer()}
