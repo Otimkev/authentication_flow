@@ -22,6 +22,13 @@ import {TestCategoryScreen} from './myScreens/TestCategories';
 import {ConversationScreen} from './ConversationScreen';
 import {NewChatListScreen} from './myScreens/NewChatList';
 import {BARS} from '../styles/icons';
+import AllergyScreen from './myScreens/patient/PatientTests/Allergy';
+import AndrologyScreen from './myScreens/patient/PatientTests/Andrology';
+import GeneralEndocrineScreen from './myScreens/patient/PatientTests/generalEndocrine';
+import Heart_MuscleScreen from './myScreens/patient/PatientTests/Heart&Muscle';
+import HypertensionNeuroEndocrineScreen from './myScreens/patient/PatientTests/hypertensionNeuroEndocrine';
+import InflamInfectionMarkersScreen from './myScreens/patient/PatientTests/inflamInfectionMarkers';
+import LipidMetabolismScreen from './myScreens/patient/PatientTests/lipidMetabolism';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -218,17 +225,60 @@ const PatientStackScreen = ({navigation}) => (
     <PatientsStack.Screen
       name="glucose metabolism"
       component={GlucoseMetabolismScreen}
-      options={{
-        headerLeft: () => (
-          <Icon.Button
-            name={BARS}
-            size={25}
-            backgroundColor="#007360"
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
-      }}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
     />
+    <PatientsStack.Screen
+      name="Allergy"
+      component={AllergyScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    <PatientsStack.Screen
+      name="Andrology"
+      component={AndrologyScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    <PatientsStack.Screen
+      name="General Endocrine"
+      component={GeneralEndocrineScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    <PatientsStack.Screen
+      name="Heart and Muscle"
+      component={Heart_MuscleScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    <PatientsStack.Screen
+      name="Hypertension/Neuro Endocrine"
+      component={HypertensionNeuroEndocrineScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    <PatientsStack.Screen
+      name="Inflam/ Infection Markers"
+      component={InflamInfectionMarkersScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    <PatientsStack.Screen
+      name="Lipid Metabolism"
+      component={LipidMetabolismScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+
     <PatientsStack.Screen
       name="Test Category"
       component={TestCategoryScreen}

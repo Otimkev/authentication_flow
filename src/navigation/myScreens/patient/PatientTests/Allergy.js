@@ -13,12 +13,7 @@ import {globalStyles} from '../../../../styles/Global';
 import * as actions from '../../../../model/test/addTest/Actions';
 import {connect} from 'react-redux';
 
-const GlucoseMetabolismScreenView = ({
-  navigation,
-  route,
-  createTest,
-  addTestData,
-}) => {
+const AllergyScreenView = ({navigation, route, createTest, addTestData}) => {
   const [glucoseFasting, setGlucoseFasting] = useState('');
   const [glucoseRandom, setGlucoseRandom] = useState('');
   const [gtt2Hr75gStandard, setGtt2Hr75gStandard] = useState('');
@@ -116,12 +111,12 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
 });
 
-const GlucoseMetabolismScreen = connect(
+const AllergyScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(GlucoseMetabolismScreenView);
+)(AllergyScreenView);
 
-export default GlucoseMetabolismScreen;
+export default AllergyScreen;
 
 const styles = StyleSheet.create({
   loginContainer: {

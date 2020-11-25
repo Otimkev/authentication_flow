@@ -26,7 +26,6 @@ export const TestCategoryScreenView = ({
   useEffect(() => {
     getTestCategory(patientId);
   }, [getTestCategory, patientId]);
-  console.log(testCategoryList);
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
@@ -53,38 +52,15 @@ export const TestCategoryScreenView = ({
     );
   };
 
-  const IsTest = () => {
-    return (
-      <View
-        style={{
-          flex: 1,
-          alignContent: 'center',
-          justifyContent: 'center',
-          marginHorizontal: 16,
-        }}>
-        <Button
-          title="Add Test"
-          onPress={() =>
-            navigation.navigate('Test List', {patientId: patientId})
-          }
-        />
-      </View>
-    );
-  };
-
   return (
     <View style={{flex: 1}}>
-      {testCategoryList.length === 0 ? (
-        <IsTest />
-      ) : (
-        <FlatList
-          data={testCategoryList}
-          keyExtractor={(item) => {
-            return item.id.toString();
-          }}
-          renderItem={renderItem}
-        />
-      )}
+      <FlatList
+        data={testCategoryList}
+        keyExtractor={(item) => {
+          return item.id.toString();
+        }}
+        renderItem={renderItem}
+      />
       <FloatingAction
         actions={[
           {
