@@ -29,6 +29,7 @@ import Heart_MuscleScreen from './myScreens/patient/PatientTests/Heart&Muscle';
 import HypertensionNeuroEndocrineScreen from './myScreens/patient/PatientTests/hypertensionNeuroEndocrine';
 import InflamInfectionMarkersScreen from './myScreens/patient/PatientTests/inflamInfectionMarkers';
 import LipidMetabolismScreen from './myScreens/patient/PatientTests/lipidMetabolism';
+import LKS_Screen from './myScreens/patient/PatientTests/lung,kidney,skeleton';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -278,6 +279,14 @@ const PatientStackScreen = ({navigation}) => (
         title: 'Add Tests',
       })}
     />
+    <PatientsStack.Screen
+      name="Lung Kidney, Skeleton"
+      component={LKS_Screen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    
 
     <PatientsStack.Screen
       name="Test Category"
