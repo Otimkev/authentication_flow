@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Button,
   ToastAndroid,
+  ScrollView,
 } from 'react-native';
 import {globalStyles} from '../../../../styles/Global';
 import * as actions from '../../../../model/test/addTest/Actions';
@@ -55,124 +56,126 @@ const PharmacologyScreenView = ({
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <View>
-        <TextInput
-          placeholder="Drug of abuse screen"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setDrugOfAbuseScreen(text);
-          }}
-        />
-        <TextInput
-          placeholder="Overdose drug screen"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setOverdoseDrugScreen(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Carbamazepine"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setCarbamazepine(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Digoxin"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setDigoxin(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Empilim - valproic acid"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setEpilimValproicAcid(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Ethanol - alcohol"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setEthanolAchohol(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Lamictin"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setLamictin(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Paracetamol"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setParacetamol(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Phenytoin"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setPhenytoin(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Lithium"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setLithium(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Sirolimus levels"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setSirolimuslevels(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Tacrolimus"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setTacrolimus(text);
-          }}
-          keyboardType="phone-pad"
-        />
+    <ScrollView>
+      <View style={styles.loginContainer}>
+        <View>
+          <TextInput
+            placeholder="Drug of abuse screen"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setDrugOfAbuseScreen(text);
+            }}
+          />
+          <TextInput
+            placeholder="Overdose drug screen"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setOverdoseDrugScreen(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Carbamazepine"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setCarbamazepine(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Digoxin"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setDigoxin(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Empilim - valproic acid"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setEpilimValproicAcid(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Ethanol - alcohol"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setEthanolAchohol(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Lamictin"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setLamictin(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Paracetamol"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setParacetamol(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Phenytoin"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setPhenytoin(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Lithium"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setLithium(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Sirolimus levels"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setSirolimuslevels(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Tacrolimus"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setTacrolimus(text);
+            }}
+            keyboardType="phone-pad"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Submit"
+            onPress={() => {
+              createTest(patientId, testData);
+              console.log(addTestData);
+              showToast('Successful');
+              navigation.navigate('Patient Information');
+            }}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Back"
+            onPress={() => {
+              navigation.navigate('Test List');
+            }}
+          />
+        </View>
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Submit"
-          onPress={() => {
-            createTest(patientId, testData);
-            console.log(addTestData);
-            showToast('Successful');
-            navigation.navigate('Patient Information');
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          onPress={() => {
-            navigation.navigate('Test List');
-          }}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 

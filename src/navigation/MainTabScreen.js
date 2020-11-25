@@ -30,6 +30,8 @@ import HypertensionNeuroEndocrineScreen from './myScreens/patient/PatientTests/h
 import InflamInfectionMarkersScreen from './myScreens/patient/PatientTests/inflamInfectionMarkers';
 import LipidMetabolismScreen from './myScreens/patient/PatientTests/lipidMetabolism';
 import LKS_Screen from './myScreens/patient/PatientTests/lung,kidney,skeleton';
+import NutritionIronStudiesScreen from './myScreens/patient/PatientTests/NutritionIronStudies';
+import PharmacologyScreen from './myScreens/patient/PatientTests/Pharmacology';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -286,7 +288,20 @@ const PatientStackScreen = ({navigation}) => (
         title: 'Add Tests',
       })}
     />
-    
+    <PatientsStack.Screen
+      name="Nutrition/Iron Studies"
+      component={NutritionIronStudiesScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    <PatientsStack.Screen
+      name="Pharmacology"
+      component={PharmacologyScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
 
     <PatientsStack.Screen
       name="Test Category"
