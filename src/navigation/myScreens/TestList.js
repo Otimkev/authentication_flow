@@ -30,6 +30,8 @@ const TestListScreen = ({navigation, route}) => {
     {label: 'Hepatitis Viruses', id: 18},
     {label: 'HIV', id: 19},
     {label: 'Microbiology', id: 20},
+    {label: 'Thyroid', id: 21},
+    {label: 'Tumor Makers', id: 22},
   ]);
   const id = route.params.patientId;
   const renderItem = ({item}) => {

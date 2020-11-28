@@ -32,6 +32,9 @@ import LipidMetabolismScreen from './myScreens/patient/PatientTests/lipidMetabol
 import LKS_Screen from './myScreens/patient/PatientTests/lung,kidney,skeleton';
 import NutritionIronStudiesScreen from './myScreens/patient/PatientTests/NutritionIronStudies';
 import PharmacologyScreen from './myScreens/patient/PatientTests/Pharmacology';
+import PregnancyScreen from './myScreens/patient/PatientTests/Pregnancy';
+import ThyroidScreen from './myScreens/patient/PatientTests/Thyroid';
+import TumourMarkersScreen from './myScreens/patient/PatientTests/TumorMarkers';
 // import WardsScreen from './myScreens/WardsScreen';
 // import SpecialistScreen from './myScreens/SpecialistScreen';
 // import SettingsScreen from './myScreens/SettingsScreen';
@@ -214,16 +217,9 @@ const PatientStackScreen = ({navigation}) => (
     <PatientsStack.Screen
       name="Test List"
       component={TestListScreen}
-      options={{
-        headerLeft: () => (
-          <Icon.Button
-            name={BARS}
-            size={25}
-            backgroundColor="#007360"
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
-      }}
+      options={({route}) => ({
+        title: 'Test Categories',
+      })}
     />
     <PatientsStack.Screen
       name="glucose metabolism"
@@ -298,6 +294,27 @@ const PatientStackScreen = ({navigation}) => (
     <PatientsStack.Screen
       name="Pharmacology"
       component={PharmacologyScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    <PatientsStack.Screen
+      name="Pregnancy"
+      component={PregnancyScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    <PatientsStack.Screen
+      name="Thyroid"
+      component={ThyroidScreen}
+      options={({route}) => ({
+        title: 'Add Tests',
+      })}
+    />
+    <PatientsStack.Screen
+      name="Tumor Makers"
+      component={TumourMarkersScreen}
       options={({route}) => ({
         title: 'Add Tests',
       })}
