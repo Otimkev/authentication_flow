@@ -12,6 +12,7 @@ import {
 import {globalStyles} from '../../../../styles/Global';
 import * as actions from '../../../../model/test/addTest/Actions';
 import {connect} from 'react-redux';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const LKS_ScreenView = ({navigation, route, createTest, addTestData}) => {
   const [UECreatinine, setUECreatinine] = useState('');
@@ -54,140 +55,142 @@ const LKS_ScreenView = ({navigation, route, createTest, addTestData}) => {
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <View>
-        <TextInput
-          placeholder="U and E/Creatinine"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setUECreatinine(text);
-          }}
-        />
-        <TextInput
-          placeholder="Urea and Creatinine"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setUreaCreatinine(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Creatinine Clearance"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setCreatinineClearance(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Potassium"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setPotassium(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Sodium"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setSodium(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Calcium"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setCalcium(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Phosphate"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setPhosphate(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Magnesium (Serum)"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setMagnesiumSerum(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Magnesium (RBC)"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setMagnesiumRbc(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Uric Acid"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setUricAcid(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Protein - 24hr urine"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setProtein24hrUrine(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Protein/Creatinine ratio"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setProteinCreatinineRatio(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Alpha-1 Antitrypsin"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setAlpha1Antitrypsin(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Ace"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setAce(text);
-          }}
-          keyboardType="phone-pad"
-        />
+    <ScrollView>
+      <View style={styles.loginContainer}>
+        <View>
+          <TextInput
+            placeholder="U and E/Creatinine"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setUECreatinine(text);
+            }}
+          />
+          <TextInput
+            placeholder="Urea and Creatinine"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setUreaCreatinine(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Creatinine Clearance"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setCreatinineClearance(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Potassium"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setPotassium(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Sodium"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setSodium(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Calcium"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setCalcium(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Phosphate"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setPhosphate(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Magnesium (Serum)"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setMagnesiumSerum(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Magnesium (RBC)"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setMagnesiumRbc(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Uric Acid"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setUricAcid(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Protein - 24hr urine"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setProtein24hrUrine(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Protein/Creatinine ratio"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setProteinCreatinineRatio(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Alpha-1 Antitrypsin"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setAlpha1Antitrypsin(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Ace"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setAce(text);
+            }}
+            keyboardType="phone-pad"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Submit"
+            onPress={() => {
+              createTest(patientId, testData);
+              console.log(addTestData);
+              showToast('Successful');
+              navigation.navigate('Patient Information');
+            }}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Back"
+            onPress={() => {
+              navigation.navigate('Test List');
+            }}
+          />
+        </View>
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Submit"
-          onPress={() => {
-            createTest(patientId, testData);
-            console.log(addTestData);
-            showToast('Successful');
-            navigation.navigate('Patient Information');
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          onPress={() => {
-            navigation.navigate('Test List');
-          }}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 

@@ -12,6 +12,7 @@ import {
 import {globalStyles} from '../../../../styles/Global';
 import * as actions from '../../../../model/test/addTest/Actions';
 import {connect} from 'react-redux';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const ThyroidScreenView = ({navigation, route, createTest, addTestData}) => {
   const [TSH_T4_T3, setTSH_T4_T3] = useState('');
@@ -36,68 +37,70 @@ const ThyroidScreenView = ({navigation, route, createTest, addTestData}) => {
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <View>
-        <TextInput
-          placeholder="TSH/T4 and T3"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setTSH_T4_T3(text);
-          }}
-        />
-        <TextInput
-          placeholder="TSH"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setTSH(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="T4"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setT4(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="T3 (free tri-iodothyronine)"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setT3(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Thyroid Ab"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setThyroidAb(text);
-          }}
-          keyboardType="phone-pad"
-        />
+    <ScrollView>
+      <View style={styles.loginContainer}>
+        <View>
+          <TextInput
+            placeholder="TSH/T4 and T3"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setTSH_T4_T3(text);
+            }}
+          />
+          <TextInput
+            placeholder="TSH"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setTSH(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="T4"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setT4(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="T3 (free tri-iodothyronine)"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setT3(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Thyroid Ab"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setThyroidAb(text);
+            }}
+            keyboardType="phone-pad"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Submit"
+            onPress={() => {
+              createTest(patientId, testData);
+              console.log(addTestData);
+              showToast('Successful');
+              navigation.navigate('Patient Information');
+            }}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Back"
+            onPress={() => {
+              navigation.navigate('Test List');
+            }}
+          />
+        </View>
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Submit"
-          onPress={() => {
-            createTest(patientId, testData);
-            console.log(addTestData);
-            showToast('Successful');
-            navigation.navigate('Patient Information');
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          onPress={() => {
-            navigation.navigate('Test List');
-          }}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 

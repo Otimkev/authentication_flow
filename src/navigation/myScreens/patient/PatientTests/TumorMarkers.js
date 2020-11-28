@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Button,
   ToastAndroid,
+  ScrollView,
 } from 'react-native';
 import {globalStyles} from '../../../../styles/Global';
 import * as actions from '../../../../model/test/addTest/Actions';
@@ -55,124 +56,126 @@ const TumourMarkersScreenView = ({
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <View>
-        <TextInput
-          placeholder="AFP"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setAFP(text);
-          }}
-        />
-        <TextInput
-          placeholder="βHCG quantitative"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setbHCGQuantitative(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="CEA"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setCEA(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="CA 153 - breast"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setCA153Breast(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="CA 125 - ovary"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setCA125Ovary(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="CA 199"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setCA199(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="CA 724"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setCA724(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="PSA only - monitoring"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setPSAonly(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="PSA (+Free PSA)"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setPSAfree(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="PSA - complexed"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setPSAcomplexed(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Malignant Melanoma S-100B"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setMalignantMelanoma(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="B2 microglobulin"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setB2Microglobulin(text);
-          }}
-          keyboardType="phone-pad"
-        />
+    <ScrollView>
+      <View style={styles.loginContainer}>
+        <View>
+          <TextInput
+            placeholder="AFP"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setAFP(text);
+            }}
+          />
+          <TextInput
+            placeholder="βHCG quantitative"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setbHCGQuantitative(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="CEA"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setCEA(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="CA 153 - breast"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setCA153Breast(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="CA 125 - ovary"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setCA125Ovary(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="CA 199"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setCA199(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="CA 724"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setCA724(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="PSA only - monitoring"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setPSAonly(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="PSA (+Free PSA)"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setPSAfree(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="PSA - complexed"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setPSAcomplexed(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Malignant Melanoma S-100B"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setMalignantMelanoma(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="B2 microglobulin"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setB2Microglobulin(text);
+            }}
+            keyboardType="phone-pad"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Submit"
+            onPress={() => {
+              createTest(patientId, testData);
+              console.log(addTestData);
+              showToast('Successful');
+              navigation.navigate('Patient Information');
+            }}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Back"
+            onPress={() => {
+              navigation.navigate('Test List');
+            }}
+          />
+        </View>
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Submit"
-          onPress={() => {
-            createTest(patientId, testData);
-            console.log(addTestData);
-            showToast('Successful');
-            navigation.navigate('Patient Information');
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          onPress={() => {
-            navigation.navigate('Test List');
-          }}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 

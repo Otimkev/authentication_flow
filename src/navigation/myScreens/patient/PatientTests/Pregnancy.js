@@ -6,6 +6,7 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
+  ScrollView,
   Button,
   ToastAndroid,
 } from 'react-native';
@@ -34,60 +35,62 @@ const PregnancyScreenView = ({navigation, route, createTest, addTestData}) => {
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <View>
-        <TextInput
-          placeholder="Ante natal Screen with HIV (*samples: 2×E,2×B)"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setAnteNatalScreenHIV(text);
-          }}
-        />
-        <TextInput
-          placeholder="Ante natal screen no HIV (*samples: 2×E,1×B)"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setAnteNatalScreenNoHIV(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="βHCG qualitative (Pos/Neg)"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setbHCGQualitative(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="βHCG quantitative"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setbHCGQuantitative(text);
-          }}
-          keyboardType="phone-pad"
-        />
+    <ScrollView>
+      <View style={styles.loginContainer}>
+        <View>
+          <TextInput
+            placeholder="Ante natal Screen with HIV (*samples: 2×E,2×B)"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setAnteNatalScreenHIV(text);
+            }}
+          />
+          <TextInput
+            placeholder="Ante natal screen no HIV (*samples: 2×E,1×B)"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setAnteNatalScreenNoHIV(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="βHCG qualitative (Pos/Neg)"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setbHCGQualitative(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="βHCG quantitative"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setbHCGQuantitative(text);
+            }}
+            keyboardType="phone-pad"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Submit"
+            onPress={() => {
+              createTest(patientId, testData);
+              console.log(addTestData);
+              showToast('Successful');
+              navigation.navigate('Patient Information');
+            }}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Back"
+            onPress={() => {
+              navigation.navigate('Test List');
+            }}
+          />
+        </View>
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Submit"
-          onPress={() => {
-            createTest(patientId, testData);
-            console.log(addTestData);
-            showToast('Successful');
-            navigation.navigate('Patient Information');
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          onPress={() => {
-            navigation.navigate('Test List');
-          }}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 

@@ -12,6 +12,7 @@ import {
 import {globalStyles} from '../../../../styles/Global';
 import * as actions from '../../../../model/test/addTest/Actions';
 import {connect} from 'react-redux';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const GeneralEndocrineScreenView = ({
   navigation,
@@ -71,188 +72,190 @@ const GeneralEndocrineScreenView = ({
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <View>
-        <TextInput
-          placeholder="Hirsutism Profile"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setHirsutismProfile(text);
-          }}
-        />
-        <TextInput
-          placeholder="Testosterone/FTI"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setTestosteroneFTI(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="DHEA"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setDHEA(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Androstenedione"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setAndrostenedione(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="17-OH Progesterone"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setOHProgesterone(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Infertility Screen (M or F)"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setInfertilityScreen(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="E2"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setE2(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Progesterone"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setProgesterone(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="FSH"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setFSH(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="LH"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setLH(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Prolactin"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setProlactin(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Anti-Mullerian Hormone"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setAntiMullerianHormone(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="ACTH - on ice"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setACTH(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Cortisol"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setCortisol(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Cortisol - 24hr urine"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setCortisol24hrUrine(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Gastrin - fasting on ice"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setGastrin(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Parathyroid Hormone"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setParathyroidHormone(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="IGF1 + IGFBP3"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setIGF1_IGFBP3(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Insulin"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setInsulin(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Growth Hormone"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setGrowthHormone(text);
-          }}
-          keyboardType="phone-pad"
-        />
+    <ScrollView>
+      <View style={styles.loginContainer}>
+        <View>
+          <TextInput
+            placeholder="Hirsutism Profile"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setHirsutismProfile(text);
+            }}
+          />
+          <TextInput
+            placeholder="Testosterone/FTI"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setTestosteroneFTI(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="DHEA"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setDHEA(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Androstenedione"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setAndrostenedione(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="17-OH Progesterone"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setOHProgesterone(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Infertility Screen (M or F)"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setInfertilityScreen(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="E2"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setE2(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Progesterone"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setProgesterone(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="FSH"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setFSH(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="LH"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setLH(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Prolactin"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setProlactin(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Anti-Mullerian Hormone"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setAntiMullerianHormone(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="ACTH - on ice"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setACTH(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Cortisol"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setCortisol(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Cortisol - 24hr urine"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setCortisol24hrUrine(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Gastrin - fasting on ice"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setGastrin(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Parathyroid Hormone"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setParathyroidHormone(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="IGF1 + IGFBP3"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setIGF1_IGFBP3(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Insulin"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setInsulin(text);
+            }}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            placeholder="Growth Hormone"
+            style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setGrowthHormone(text);
+            }}
+            keyboardType="phone-pad"
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Submit"
+            onPress={() => {
+              createTest(patientId, testData);
+              console.log(addTestData);
+              showToE2('Successful');
+              navigation.navigate('Patient Information');
+            }}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Back"
+            onPress={() => {
+              navigation.navigate('Test List');
+            }}
+          />
+        </View>
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Submit"
-          onPress={() => {
-            createTest(patientId, testData);
-            console.log(addTestData);
-            showToE2('Successful');
-            navigation.navigate('Patient Information');
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          onPress={() => {
-            navigation.navigate('Test List');
-          }}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 

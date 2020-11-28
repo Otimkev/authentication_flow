@@ -89,6 +89,7 @@ const ConversationScreenView = ({
           renderBubble={renderBubble}
           showUserAvatar
           scrollToBottomComponent={scrollToBottomComponent}
+          renderLoading={Loader}
         />
       )}
     </View>

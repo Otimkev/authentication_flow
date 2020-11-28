@@ -147,7 +147,7 @@ export default HypertensionNeuroEndocrineScreen;
 const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
-    baaldosteronegroundColor: '#fff',
+    backgroundColor: '#fff',
     padding: 8,
   },
   header: {
