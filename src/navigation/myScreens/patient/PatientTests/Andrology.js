@@ -18,11 +18,12 @@ const AndrologyScreenView = ({navigation, route, createTest, addTestData}) => {
   const [postVascetomy, setPostVascetomy] = useState('');
 
   const label = route.params.label;
+  console.log(label);
   const patientId = route.params.patientId;
   const testData = {
     routineSemenAnalysis,
     postVascetomy,
-    testCategory: label,
+    category: label,
   };
 
   const showToast = (message) => {
