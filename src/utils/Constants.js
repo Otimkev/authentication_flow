@@ -78,3 +78,11 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 
 export const GOT_USERS = 'GOT_USERS';
 export const GOT_NEW_USER = 'GOT_NEW_USER';
+
+export const GET_ALL_TEST_CATEGORIES_RESONSE = 'getAllTestCategoriesResponse';
+export const GET_ALL_TEST_CATEGORIES_SUCESS = 'getAllTestCategoriesSuccess';
+export const GET_ALL_TEST_CATEGORIES_FAILURE = 'getAllTestCategoriesFailure';
+
+export const GET_ALL_CATEGORY_TEST_RESPONSE = 'getCategoryTestResponse';
+export const GET_ALL_CATEGORY_TEST_SUCESS = 'getCategoryTestsSuccess';
+export const GET_ALL_CATEGORY_TEST_FAILURE = 'getCategoryTestsFailure';

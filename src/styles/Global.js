@@ -88,10 +88,8 @@ export const globalStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
   DirectionRow: {
-    flexDirection: 'row',
-    padding: 10,
-    justifyContent: 'space-around',
-    marginTop: 50,
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   nameTxt: {
     marginLeft: 15,

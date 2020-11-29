@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,32 +7,18 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-
-const TestListScreen = ({navigation, route}) => {
-  const [testCategoryLabel, setTestCategory] = useState([
-    {label: 'Inflam/ Infection Markers', id: 1},
-    {label: 'General Endocrine', id: 2},
-    {label: 'Hypertension/Neuro Endocrine', id: 3},
-    {label: 'Pregnancy', id: 4},
-    {label: 'Nutrition/Iron Studies', id: 5},
-    {label: 'Bone Turnover', id: 6},
-    {label: 'Autoimmune', id: 7},
-    {label: 'Allergy', id: 8},
-    {label: 'Andrology', id: 9},
-    {label: 'Lung Kidney, Skeleton', id: 10},
-    {label: 'glucose metabolism', id: 11},
-    {label: 'Lipid Metabolism', id: 12},
-    {label: 'Heart and Muscle', id: 13},
-    {label: 'Liver/Pancreas/GIT', id: 14},
-    {label: 'Pharmacology', id: 15},
-    {label: 'Haematology', id: 16},
-    {label: 'Coagulation', id: 17},
-    {label: 'Hepatitis Viruses', id: 18},
-    {label: 'HIV', id: 19},
-    {label: 'Microbiology', id: 20},
-    {label: 'Thyroid', id: 21},
-    {label: 'Tumor Makers', id: 22},
-  ]);
+import {getAllTestCategory} from '../../model/patient/getAllTestCategories/Actions';
+import {connect} from 'react-redux';
+import {Loader} from '../../components/Loader';
+const TestListScreenView = ({
+  navigation,
+  route,
+  testCategories,
+  getTestCategories,
+}) => {
+  useEffect(() => {
+    getTestCategories();
+  }, [getTestCategories]);
   const id = route.params.patientId;
   const renderItem = ({item}) => {
     return (
@@ -56,16 +42,36 @@ const TestListScreen = ({navigation, route}) => {
 
   return (
     <View style={{flex: 1}}>
-      <FlatList
-        data={testCategoryLabel}
-        keyExtractor={(item) => {
-          return item.id.toString();
-        }}
-        renderItem={renderItem}
-      />
+      {!testCategories ? (
+        <Loader />
+      ) : (
+        <FlatList
+          data={testCategories}
+          keyExtractor={(item) => {
+            return item.id.toString();
+          }}
+          renderItem={renderItem}
+        />
+      )}
     </View>
   );
 };
+
+const mapStateToProps = (state, props) => {
+  const {testCategories} = state.getAllTestCategories;
+  return {testCategories};
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  getTestCategories: (args) => {
+    dispatch(getAllTestCategory(args));
+  },
+});
+
+const TestListScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TestListScreenView);
 
 export default TestListScreen;
 

@@ -13,6 +13,7 @@ import {getAPatientsResponse} from '../../model/patient/getAPatient/Actions';
 import {connect} from 'react-redux';
 import {Picker} from '@react-native-community/picker';
 import {globalStyles} from '../../styles/Global';
+import {primary_color} from '../../styles/color';
 
 const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
   const id = route.params.patientId;
@@ -72,50 +73,26 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <Text style={styles.label}>Ward Bed: </Text>
         <Text style={styles.info}>{id}</Text>
       </View>
-      <View style={globalStyles.DirectionRow}>
-        <TouchableOpacity
-          style={styles.Card}
-          onPress={() => {
-            navigation.navigate('Test Category', {patientId: id});
-          }}>
-          <Text style={styles.CardText}>Tests</Text>
-        </TouchableOpacity>
-        {/* <TouchableOpacity
-          style={styles.Card}
-          onPress={() => {
-            navigation.navigate('Test List', {patientId: id});
-          }}>
-          <Text style={styles.CardText}>Add Tests</Text>
-        </TouchableOpacity> */}
-        <TouchableOpacity
-          style={styles.Card}
-          onPress={() => {
-            navigation.navigate('SpecialistList', {patientId: id});
-          }}>
-          <Text style={styles.CardText}>Share Patient</Text>
-        </TouchableOpacity>
+      <View style={globalStyles.row}>
+        <View style={{marginVertical: 8}}>
+          <Button
+            color={primary_color}
+            title="View Tests"
+            onPress={() => {
+              navigation.navigate('Test Category', {patientId: id});
+            }}
+          />
+        </View>
+        <View>
+          <Button
+            color={primary_color}
+            title="Share"
+            onPress={() => {
+              navigation.navigate('SpecialistList', {patientId: id});
+            }}
+          />
+        </View>
       </View>
-      {/* <TouchableOpacity
-        style={globalStyles.Card}
-        onPress={() => {
-          navigation.navigate('Tests', {patientId: id});
-        }}>
-        <Text style={globalStyles.CardText}>Tests</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.Card}
-        onPress={() => {
-          navigation.navigate('Test List', {patientId: id});
-        }}>
-        <Text style={styles.CardText}>Add Tests</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.Card}
-        onPress={() => {
-          navigation.navigate('inviteList', {patientId: id});
-        }}>
-        <Text style={styles.CardText}>Share Patient</Text>
-      </TouchableOpacity> */}
     </ScrollView>
   );
 };
@@ -160,7 +137,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   Card: {
-    width: '45%',
+    width: '100%',
     backgroundColor: '#78af38',
     borderRadius: 10,
     height: 50,
