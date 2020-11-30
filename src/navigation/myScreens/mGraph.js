@@ -26,16 +26,21 @@ const GraphScreenView = ({
   categoryTests,
   getCategoryTests,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [CategoryLabel, setCategoryLabel] = useState('');
-  const [title, setTitle] = useState('');
-  const [test, setTest] = useState('');
-  const [dataSet, setDataSet] = useState([{value: 1, createAt: 'jan'}]);
-  const {patientId, label} = route.params;
   useEffect(() => {
     getAllTests({patientId, category: label, test});
     getCategoryTests(label);
   }, [getAllTests, getCategoryTests, label, patientId, test]);
+  const m = () => {
+    if (categoryTests.length > 0) {
+      return categoryTests[0].value;
+    }
+  };
+  const [isLoading, setIsLoading] = useState(false);
+  const [CategoryLabel, setCategoryLabel] = useState('');
+  const [title, setTitle] = useState(m());
+  const [test, setTest] = useState('');
+  const [dataSet, setDataSet] = useState([{value: 1, createAt: 'jan'}]);
+  const {patientId, label} = route.params;
   const mangoes = dataSet.map((item) => item.value);
   const oranges = dataSet.map((item) =>
     new Date(Date.parse(item.createAt)).toDateString(),
