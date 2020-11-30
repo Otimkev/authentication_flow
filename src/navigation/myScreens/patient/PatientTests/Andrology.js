@@ -17,7 +17,7 @@ const AndrologyScreenView = ({navigation, route, createTest, addTestData}) => {
   const [routineSemenAnalysis, setRoutineSemenAnalysis] = useState('');
   const [postVascetomy, setPostVascetomy] = useState('');
 
-  const label = route.params.label;
+  const label = route.params.category;
   console.log(label);
   const patientId = route.params.patientId;
   const testData = {
@@ -56,7 +56,7 @@ const AndrologyScreenView = ({navigation, route, createTest, addTestData}) => {
             createTest(patientId, testData);
             console.log(addTestData);
             showToast('Successful');
-            navigation.navigate('Patient Information');
+            navigation.navigate('Test Graph');
           }}
         />
       </View>
