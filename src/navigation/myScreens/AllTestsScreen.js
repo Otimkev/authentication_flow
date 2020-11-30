@@ -13,6 +13,7 @@ import {connect} from 'react-redux';
 import {addTestSuccess} from '../../model/test/addTest/Actions';
 import {getTestResponse} from '../../model/test/loadTests/Actions';
 import {Loader} from '../../components/Loader';
+import {globalStyles} from '../../styles/Global';
 
 export const AllTestScreenView = ({
   navigation,
@@ -32,7 +33,7 @@ export const AllTestScreenView = ({
           <View>
             <View style={styles.nameContainer}>
               <Text
-                style={styles.nameTxt}
+                style={globalStyles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
                 {item.attribute.label}

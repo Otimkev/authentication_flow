@@ -13,6 +13,7 @@ import {connect} from 'react-redux';
 import {getTestCategoryResponse} from '../../model/test/loadTestCategories/Actions';
 import {Loader} from '../../components/Loader';
 import {FloatingAction} from 'react-native-floating-action';
+import {globalStyles} from '../../styles/Global';
 
 export const TestCategoryScreenView = ({
   navigation,
@@ -39,7 +40,7 @@ export const TestCategoryScreenView = ({
           <View>
             <View style={styles.nameContainer}>
               <Text
-                style={styles.nameTxt}
+                style={globalStyles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
                 {item.category.label}
@@ -106,32 +107,5 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: 60,
     height: 60,
-  },
-  nameContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: 280,
-  },
-  nameTxt: {
-    marginLeft: 15,
-    fontWeight: '600',
-    color: '#222',
-    fontSize: 18,
-    width: 170,
-  },
-  mblTxt: {
-    fontWeight: '200',
-    color: '#777',
-    fontSize: 13,
-  },
-  msgContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  msgTxt: {
-    fontWeight: '400',
-    color: '#008B8B',
-    fontSize: 12,
-    marginLeft: 15,
   },
 });
