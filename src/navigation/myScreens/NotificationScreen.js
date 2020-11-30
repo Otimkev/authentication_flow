@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../model/patient/notifications/invites/Actions';
 import {GET_NOTIFICATIONS_RESPONSE} from '../../utils/Constants';
 import {Modal, Portal, Provider} from 'react-native-paper';
 import {
@@ -8,12 +7,10 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
   FlatList,
   Button,
   Dimensions,
 } from 'react-native';
-import {FloatingAction} from 'react-native-floating-action';
 import {Loader} from '../../components/Loader';
 
 const NoticationScreenView = ({
@@ -89,7 +86,7 @@ const NoticationScreenView = ({
           <View
             style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
             <View style={{marginHorizontal: 8}}>
-              <Button title="Accept" color="#78af38" />
+              <Button title="Comfirm" color="#78af38" />
             </View>
             <View>
               <Button title="Decline" color="red" />

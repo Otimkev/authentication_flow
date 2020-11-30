@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {getTestResponse} from '../../model/test/loadTests/Actions';
+import {getTestCategoriesResponse} from '../../model/test/getCategoryTests/Actions';
 import {
   StyleSheet,
   Text,
@@ -22,33 +23,36 @@ const GraphScreenView = ({
   isFetching,
   route,
   patientTestData,
+  categoryTests,
+  getCategoryTests,
 }) => {
-  const allTestLables = [
-    {id: 1, labeled: 'glucoseFasting'},
-    {id: 2, labeled: 'glucoseRandom'},
-    {id: 3, labeled: 'gtt2Hr75gStandard'},
-    {id: 4, labeled: 'hba1cGlycosylatedHB'},
-    {id: 5, labeled: 'microalbumin'},
-  ];
-  const [isLoading, setIsLoading] = useState(false);
-  const [CategoryLabel, setCategoryLabel] = useState('');
-  const [testLabels, setTestLabels] = useState(allTestLables);
-  const [test, setTest] = useState('glucoseFasting');
-  const [dataSet, setDataSet] = useState([{value: 1, createAt: 'jan'}]);
-  const {patientId, label} = route.params;
   useEffect(() => {
     getAllTests({patientId, category: label, test});
-  }, [getAllTests, label, patientId, test]);
+    getCategoryTests(label);
+  }, [getAllTests, getCategoryTests, label, patientId, test]);
+  const m = () => {
+    if (categoryTests.length > 0) {
+      return categoryTests[0].value;
+    }
+  };
+  const [isLoading, setIsLoading] = useState(false);
+  const [CategoryLabel, setCategoryLabel] = useState('');
+  const [title, setTitle] = useState(m());
+  const [test, setTest] = useState('');
+  const [dataSet, setDataSet] = useState([{value: 1, createAt: 'jan'}]);
+  const {patientId, label} = route.params;
   const mangoes = dataSet.map((item) => item.value);
-  const oranges = dataSet.map((item) => item.createAt);
+  const oranges = dataSet.map((item) =>
+    new Date(Date.parse(item.createAt)).toDateString(),
+  );
   const changeTests = (vLabel) => {
     setTest(vLabel);
-    //getAllTests({patientId, category: label, test});
     setDataSet(patientTestData);
   };
   const graphItem = () => {
     return (
       <View>
+        <Text style={styles.title}>{`Graph of ${title} against time`}</Text>
         <ScrollView horizontal={true}>
           {!patientTestData ? (
             <Loader />
@@ -63,7 +67,7 @@ const GraphScreenView = ({
                     },
                   ],
                 }}
-                width={500} // from react-native
+                width={Dimensions.get('window').width * 2} // from react-native
                 height={300}
                 yAxisLabel={'mm '}
                 chartConfig={{
@@ -103,7 +107,8 @@ const GraphScreenView = ({
     return (
       <TouchableOpacity
         onPress={() => {
-          changeTests(item.labeled);
+          setTitle(item.value);
+          changeTests(item.value);
         }}>
         <View style={styles.row}>
           <View>
@@ -112,7 +117,7 @@ const GraphScreenView = ({
                 style={styles.nameTxt}
                 numberOfLines={1}
                 ellipsizeMode="tail">
-                {item.labeled}
+                {item.value}
               </Text>
             </View>
           </View>
@@ -126,30 +131,34 @@ const GraphScreenView = ({
       style={{
         flex: 1,
       }}>
-      {isLoading ? (
+      {/* {isLoading ? (
         <Loader />
-      ) : (
-        <FlatList
-          extra={true}
-          data={testLabels}
-          keyExtractor={(item) => item.id.toString()}
-          ListHeaderComponent={graphItem}
-          //ListFooterComponent={}
-          renderItem={renderItem}
-        />
-      )}
+      ) : ( */}
+      <FlatList
+        extra={true}
+        data={categoryTests}
+        keyExtractor={(item) => item.id.toString()}
+        ListHeaderComponent={graphItem}
+        //ListFooterComponent={}
+        renderItem={renderItem}
+      />
+      {/* )} */}
     </View>
   );
 };
 
 const mapStateToProps = (state, props) => {
   const {patientTestData, isFetching} = state.getTests;
-  return {patientTestData, isFetching};
+  const {categoryTests} = state.getCategoryTests;
+  return {patientTestData, isFetching, categoryTests};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
   getAllTests: (args) => {
     dispatch(getTestResponse(args));
+  },
+  getCategoryTests: (args) => {
+    dispatch(getTestCategoriesResponse(args));
   },
 });
 
@@ -200,7 +209,16 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   button: {
-    marginHorizontal: 16,
+    margin: 8,
+  },
+  title: {
+    marginLeft: 15,
+    fontWeight: '600',
+    color: '#222',
+    fontSize: 18,
+    alignContent: 'center',
+    textAlign: 'center',
+    textDecorationLine: 'underline',
     marginVertical: 8,
   },
 });

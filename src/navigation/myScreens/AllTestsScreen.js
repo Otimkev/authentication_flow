@@ -48,16 +48,6 @@ export const AllTestScreenView = ({
     );
   };
 
-  {
-    /* <TouchableOpacity
-        style={styles.Card}
-        onPress={() => {
-          navigation.navigate('Test List', {patientId: id});
-        }}>
-        <Text style={styles.CardText}>Add Tests</Text>
-      </TouchableOpacity> */
-  }
-
   return (
     <View style={{flex: 1}}>
       {isFetching ? (

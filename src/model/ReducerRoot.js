@@ -16,6 +16,8 @@ import {createChatRoomReducer} from './chat/createChatRoom/Reducer';
 import {loadChatRoomsReducer} from './chat/loadChatRooms/Reducer';
 import {messagesReducer} from './chat/loadMessages/Reducer';
 import {chatUsersReducer} from './chat/users/Reducer';
+import {testCategoriesReducer} from './patient/getAllTestCategories/Reducer';
+import {getCategoryTestsReducer} from './test/getCategoryTests/Reducer';
 
 export const RootReducer = combineReducers({
   mPatients: PatientReducer,
@@ -35,5 +37,7 @@ export const RootReducer = combineReducers({
   getChatRooms: loadChatRoomsReducer,
   messages: messagesReducer,
   chatUsers: chatUsersReducer,
+  getAllTestCategories: testCategoriesReducer,
+  getCategoryTests: getCategoryTestsReducer,
   // f: messagesReducerResponse,
 });
