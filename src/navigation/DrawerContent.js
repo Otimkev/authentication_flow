@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Avatar, Title, Caption, Paragraph, Drawer} from 'react-native-paper';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
@@ -18,6 +18,17 @@ import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 
 function DrawerContentView({props, navigation, logOut}) {
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+    retrieveItem();
+  }, []);
+  const retrieveItem = async () => {
+    const retrievedItem = await AsyncStorage.getItem('user');
+    const item = JSON.parse(retrievedItem);
+    setUser(item.result);
+  };
+  retrieveItem('user');
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView {...props}>
@@ -32,7 +43,9 @@ function DrawerContentView({props, navigation, logOut}) {
                 size={50}
               />
               <View style={{marginLeft: 15, flexDirection: 'column'}}>
-                <Title style={styles.title}>Dr. Yusuf Mugagga</Title>
+                <Title style={styles.title}>
+                  Dr. {`${user.firstName} ${user.lastName}`}
+                </Title>
                 <Caption style={styles.caption}>Cardiologist</Caption>
               </View>
             </View>

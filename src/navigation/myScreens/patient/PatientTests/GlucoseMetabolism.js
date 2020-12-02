@@ -28,7 +28,7 @@ const GlucoseMetabolismScreenView = ({
   const patientId = route.params.patientId;
   const testData = {
     glucoseFasting,
-    glucoseRandom,marginBottom: 30,
+    glucoseRandom,
     gtt2Hr75gStandard,
     hba1cGlycosylatedHB,
     microalbumin,

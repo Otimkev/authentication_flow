@@ -21,20 +21,20 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {gotMessagesResponse} from '../../model/chat/loadMessages/Actions';
 
 const actions = [
-  {
-    text: 'Broadcast',
-    // icon: <Icon name="home" color="#007360" />,
-    name: 'bt_accessibility',
-    position: 2,
-    color: '#007360',
-  },
-  {
-    text: 'New Group',
-    icon: require('../../assets/img/Crit.png'),
-    name: 'bt_language',
-    position: 1,
-    color: '#007360',
-  },
+  // {
+  //   text: 'Broadcast',
+  //   // icon: <Icon name="home" color="#007360" />,
+  //   name: 'bt_accessibility',
+  //   position: 2,
+  //   color: '#007360',
+  // },
+  // {
+  //   text: 'New Group',
+  //   icon: require('../../assets/img/Crit.png'),
+  //   name: 'bt_language',
+  //   position: 1,
+  //   color: '#007360',
+  // },
   {
     text: 'Specialists',
     // icon: require('./images/ic_room_white.png'),
