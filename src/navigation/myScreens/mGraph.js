@@ -1,13 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {connect} from 'react-redux';
 import {getTestResponse} from '../../model/test/loadTests/Actions';
-import {getTestCategoriesResponse} from '../../model/test/getCategoryTests/Actions';
+import {getTestCategories} from '../../model/test/getCategoryTests/Actions';
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
-  Image,
   FlatList,
   Dimensions,
   Button,
@@ -15,100 +14,35 @@ import {
 import {LineChart} from 'react-native-chart-kit';
 import {Loader} from '../../components/Loader';
 import {ScrollView} from 'react-native-gesture-handler';
-// import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
-
 const GraphScreenView = ({
   getAllTests,
   navigation,
   isFetching,
+  isLoading,
   route,
   patientTestData,
   categoryTests,
   getCategoryTests,
 }) => {
+  const {patientId, label} = route.params;
+  const [test, setTest] = useState('');
+  const [testData, setTestData] = useState([]);
+  const [title, setTitle] = useState('');
   useEffect(() => {
     getAllTests({patientId, category: label, test});
-    getCategoryTests(label);
+    getCategoryTests(label, null);
   }, [getAllTests, getCategoryTests, label, patientId, test]);
+
   const m = () => {
-    if (categoryTests.length > 0) {
-      return categoryTests[0].value;
-    }
+    const result = categoryTests.map((item) => item.value);
+    return result[0];
   };
-  const [isLoading, setIsLoading] = useState(false);
-  const [CategoryLabel, setCategoryLabel] = useState('');
-  const [title, setTitle] = useState(m());
-  const [test, setTest] = useState('');
-  const [dataSet, setDataSet] = useState([{value: 1, createAt: 'jan'}]);
-  const {patientId, label} = route.params;
-  const mangoes = dataSet.map((item) => item.value);
-  const oranges = dataSet.map((item) =>
-    new Date(Date.parse(item.createAt)).toDateString(),
-  );
-  const changeTests = (vLabel) => {
-    setTest(vLabel);
-    setDataSet(patientTestData);
-  };
-  const graphItem = () => {
-    return (
-      <View>
-        <Text style={styles.title}>{`Graph of ${title} against time`}</Text>
-        <ScrollView horizontal={true}>
-          {!patientTestData ? (
-            <Loader />
-          ) : (
-            <View>
-              <LineChart
-                data={{
-                  labels: oranges,
-                  datasets: [
-                    {
-                      data: mangoes,
-                    },
-                  ],
-                }}
-                width={Dimensions.get('window').width * 2} // from react-native
-                height={300}
-                yAxisLabel={'mm '}
-                chartConfig={{
-                  backgroundColor: '#1cc910',
-                  backgroundGradientFrom: '#eff3ff',
-                  backgroundGradientTo: '#efefef',
-                  decimalPlaces: 0, // optional, defaults to 2dp
-                  color: (opacity = 255) => `rgba(0, 0, 0, ${opacity})`,
-                  style: {
-                    borderRadius: 16,
-                  },
-                }}
-                bezier
-                style={{
-                  marginVertical: 8,
-                  borderRadius: 16,
-                }}
-              />
-            </View>
-          )}
-        </ScrollView>
-        <View style={styles.button}>
-          <Button
-            title="Add Test"
-            onPress={() => {
-              navigation.navigate(label, {
-                category: label,
-                patientId: patientId,
-              });
-            }}
-          />
-        </View>
-      </View>
-    );
-  };
+  console.log(`this is it${m()}`);
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          setTitle(item.value);
-          changeTests(item.value);
+          console.log('Not implemented');
         }}>
         <View style={styles.row}>
           <View>
@@ -131,34 +65,31 @@ const GraphScreenView = ({
       style={{
         flex: 1,
       }}>
-      {/* {isLoading ? (
-        <Loader />
-      ) : ( */}
+      <Text>{}</Text>
       <FlatList
         extra={true}
         data={categoryTests}
         keyExtractor={(item) => item.id.toString()}
-        ListHeaderComponent={graphItem}
+        //ListHeaderComponent={graphItem}
         //ListFooterComponent={}
         renderItem={renderItem}
       />
-      {/* )} */}
     </View>
   );
 };
 
 const mapStateToProps = (state, props) => {
   const {patientTestData, isFetching} = state.getTests;
-  const {categoryTests} = state.getCategoryTests;
-  return {patientTestData, isFetching, categoryTests};
+  const {categoryTests, isLoading} = state.getCategoryTests;
+  return {patientTestData, isFetching, categoryTests, isLoading};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
   getAllTests: (args) => {
     dispatch(getTestResponse(args));
   },
-  getCategoryTests: (args) => {
-    dispatch(getTestCategoriesResponse(args));
+  getCategoryTests: (data, mangoes) => {
+    dispatch(getTestCategories(data, mangoes));
   },
 });
 

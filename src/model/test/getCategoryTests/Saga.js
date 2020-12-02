@@ -6,7 +6,7 @@ import API from '../../QueryApi';
 function* getCategoryTests(action) {
   try {
     const result = yield call(API.get, `/patient/category/${action.payload}`);
-    yield put(actions.getTestCategoriesSuccess(result));
+    yield put(actions.getTestCategories(null, result));
   } catch (e) {
     console.log(e);
     yield put(actions.getTestCategoriesFailure(e));
@@ -14,10 +14,7 @@ function* getCategoryTests(action) {
 }
 
 function* getCategoryTestsSaga() {
-  yield takeLatest(
-    actionTypes.GET_ALL_CATEGORY_TEST_RESPONSE,
-    getCategoryTests,
-  );
+  yield takeLatest(actionTypes.GET_ALL_CATEGORY_TEST_SUCESS, getCategoryTests);
 }
 
 export {getCategoryTestsSaga};
