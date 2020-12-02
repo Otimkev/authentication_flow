@@ -100,4 +100,21 @@ export const globalStyles = StyleSheet.create({
     width: 170,
     textTransform: 'capitalize',
   },
+  testContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 10,
+  },
+  testInput: {
+    height: 45,
+    width: 350,
+    borderColor: '#007360',
+    backgroundColor: '#fff',
+    padding: 10,
+    borderBottomColor: '#007360',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    margin: 5,
+    // justifyContent: 'center',
+    fontSize: 16,
+  },
 });

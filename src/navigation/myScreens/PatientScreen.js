@@ -34,7 +34,7 @@ const PatientScreenView = ({
         onPress={() => {
           navigation.navigate('Patient Information', {
             patientId: item.id,
-            patientNames: `${item.firstName} ${item.lastName} data`,
+            patientNames: `${item.firstName} ${item.lastName}`,
           });
         }}>
         <View style={styles.row}>
@@ -77,9 +77,11 @@ const PatientScreenView = ({
           {
             text: 'Add Patient',
             name: 'bt_accessibility',
+            color: '#007360',
             position: 2,
           },
         ]}
+        color="#007360"
         onPressItem={() => {
           navigation.navigate('Register Patient');
         }}

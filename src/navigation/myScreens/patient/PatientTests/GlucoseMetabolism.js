@@ -40,18 +40,18 @@ const GlucoseMetabolismScreenView = ({
   };
 
   return (
-    <View style={styles.loginContainer}>
+    <View style={globalStyles.testContainer}>
       <View>
         <TextInput
           placeholder="Glucose - Fasting"
-          style={globalStyles.inputContainer}
+          style={globalStyles.testInput}
           onChangeText={(text) => {
             setGlucoseFasting(text);
           }}
         />
         <TextInput
           placeholder="Glucose - Random"
-          style={globalStyles.inputContainer}
+          style={globalStyles.testInput}
           onChangeText={(text) => {
             setGlucoseRandom(text);
           }}
@@ -59,7 +59,7 @@ const GlucoseMetabolismScreenView = ({
         />
         <TextInput
           placeholder="GTT 2hr 75g - standard"
-          style={globalStyles.inputContainer}
+          style={globalStyles.testInput}
           onChangeText={(text) => {
             setGtt2Hr75gStandard(text);
           }}
@@ -67,7 +67,7 @@ const GlucoseMetabolismScreenView = ({
         />
         <TextInput
           placeholder="HBA1C/Glycosylated Hb"
-          style={globalStyles.inputContainer}
+          style={globalStyles.testInput}
           onChangeText={(text) => {
             setHba1cGlycosylatedHB(text);
           }}
@@ -75,7 +75,7 @@ const GlucoseMetabolismScreenView = ({
         />
         <TextInput
           placeholder="Microalbumin - urine"
-          style={globalStyles.inputContainer}
+          style={globalStyles.testInput}
           onChangeText={(text) => {
             setMicroalbumin(text);
           }}
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 8,
+    padding: 10,
   },
   header: {
     width: 300,

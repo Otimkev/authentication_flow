@@ -26,23 +26,27 @@ const actions = [
     // icon: <Icon name="home" color="#007360" />,
     name: 'bt_accessibility',
     position: 2,
+    color: '#007360',
   },
   {
     text: 'New Group',
     icon: require('../../assets/img/Crit.png'),
     name: 'bt_language',
     position: 1,
+    color: '#007360',
   },
   {
     text: 'Specialists',
     // icon: require('./images/ic_room_white.png'),
     name: 'room',
     position: 3,
+    color: '#007360',
   },
   {
     text: 'New Chat',
     name: 'new_chat_list',
     position: 4,
+    color: '#007360',
   },
 ];
 
@@ -112,6 +116,7 @@ const ChatScreenView = ({
       )}
       <FloatingAction
         actions={actions}
+        color="#007360"
         onPressItem={(name) => {
           navigation.navigate(name);
         }}
