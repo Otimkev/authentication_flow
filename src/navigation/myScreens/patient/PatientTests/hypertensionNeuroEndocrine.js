@@ -117,6 +117,7 @@ const HypertensionNeuroEndocrineScreenView = ({
       <View style={styles.button}>
         <Button
           title="Baaldosterone"
+          color="#007360"
           onPress={() => {
             navigation.navigate('Test List');
           }}

@@ -173,6 +173,7 @@ const LKS_ScreenView = ({navigation, route, createTest, addTestData}) => {
         <View style={styles.button}>
           <Button
             title="Submit"
+            color="#007360"
             onPress={() => {
               createTest(patientId, testData);
               console.log(addTestData);
@@ -181,14 +182,14 @@ const LKS_ScreenView = ({navigation, route, createTest, addTestData}) => {
             }}
           />
         </View>
-        <View style={styles.button}>
+        {/* <View style={styles.button}>
           <Button
             title="Back"
             onPress={() => {
               navigation.navigate('Test List');
             }}
           />
-        </View>
+        </View> */}
       </View>
     </ScrollView>
   );

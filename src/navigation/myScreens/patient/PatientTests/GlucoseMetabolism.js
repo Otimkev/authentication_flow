@@ -28,7 +28,7 @@ const GlucoseMetabolismScreenView = ({
   const patientId = route.params.patientId;
   const testData = {
     glucoseFasting,
-    glucoseRandom,
+    glucoseRandom,marginBottom: 30,
     gtt2Hr75gStandard,
     hba1cGlycosylatedHB,
     microalbumin,
@@ -85,6 +85,7 @@ const GlucoseMetabolismScreenView = ({
       <View style={styles.button}>
         <Button
           title="Submit"
+          color="#007360"
           onPress={() => {
             createTest(patientId, testData);
             console.log(testData);
@@ -93,14 +94,6 @@ const GlucoseMetabolismScreenView = ({
               patientId: patientId,
               label: testData.category,
             });
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          onPress={() => {
-            navigation.goBack();
           }}
         />
       </View>

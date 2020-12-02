@@ -52,19 +52,12 @@ const AndrologyScreenView = ({navigation, route, createTest, addTestData}) => {
       <View style={styles.button}>
         <Button
           title="Submit"
+          color="#007360"
           onPress={() => {
             createTest(patientId, testData);
             console.log(addTestData);
             showToast('Successful');
             navigation.navigate('Test Graph');
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          onPress={() => {
-            navigation.navigate('Test List');
           }}
         />
       </View>
