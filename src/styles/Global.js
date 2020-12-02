@@ -93,7 +93,7 @@ export const globalStyles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    // fontWeight: 'bold',
+    fontWeight: 'bold',
     color: '#007360',
     fontSize: 20,
     width: 170,

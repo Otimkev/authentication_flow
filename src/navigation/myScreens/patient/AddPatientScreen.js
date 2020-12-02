@@ -33,6 +33,8 @@ const AddPatientScreenView = ({
   const [emergencyLastName, setEmergencyLastName] = useState('');
   const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
   const [relationship, setRelationship] = useState('friend');
+  const [ward, setWard] = useState('ICU');
+  const [bed, setBed] = useState('05');
   const [mState, setmState] = useState(false);
 
   const patientData = {
@@ -48,6 +50,8 @@ const AddPatientScreenView = ({
     emergencyLastName: emergencyLastName,
     emergencyPhoneNumber: emergencyPhoneNumber,
     relationship: 'relationship',
+    ward: 'ward',
+    bed: 'bed',
   };
 
   const showToast = (message) => {
@@ -172,6 +176,32 @@ const AddPatientScreenView = ({
               />
             </View>
           </View>
+          <View style={globalStyles.Row}>
+            <View style={styles.inputWrap}>
+              <Text style={globalStyles.Heading}>Ward</Text>
+              <Picker>
+                <Picker.Item label="General Ward" value="General Ward" />
+                <Picker.Item label="Cardiology" value="Cardiology" />
+                <Picker.Item label="ICU" value="ICU" />
+                <Picker.Item label="Orthopaedics" value="Orthopaedics" />
+                <Picker.Item label="Neurology" value="Neurology" />
+                <Picker.Item label="Maternity" value="Maternity" />
+                <Picker.Item label="Oncology" value="Oncology" />
+                <Picker.Item label="Opothalmology" value="Opothalmology" />
+              </Picker>
+            </View>
+            <View style={styles.inputWrap}>
+              <Text style={globalStyles.Heading}>Bed</Text>
+              <TextInput
+                style={globalStyles.InputBorderBottom}
+                placeholder="Bed"
+                onChangeText={(text) => {
+                  setBed(text);
+                }}
+                keyboardType="phone-pad"
+              />
+            </View>
+          </View>
           {/* Emergency Contact section */}
           <Text style={globalStyles.BlockHeading}>
             Emergency contact Information
@@ -225,13 +255,6 @@ const AddPatientScreenView = ({
                 <Picker.Item label="Friend" value="Friend" />
                 <Picker.Item label="Other" value="Other" />
               </Picker>
-              {/* <TextInput
-                style={globalStyles.InputBorderBottom}
-                placeholder="eg. Mother, Father"
-                onChangeText={(text) => {
-                  setRelationship(text);
-                }}
-              /> */}
             </View>
           </View>
           {/* Submit Button Section */}
@@ -266,12 +289,12 @@ const styles = StyleSheet.create({
   cardContainer: {
     width: '100%',
     height: '100%',
-    padding: 8,
+    padding: 0,
   },
   inputWrap: {
     flex: 1,
     justifyContent: 'space-between',
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
   Card: {
     width: '45%',
