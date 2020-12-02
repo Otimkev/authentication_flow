@@ -57,9 +57,9 @@ const MainTabScreen = () => (
       name="Home"
       component={PatientStackScreen}
       options={{
-        tabBarLabel: 'Home',
+        tabBarLabel: 'Patients',
         tabBarColor: '#007360',
-        tabBarIcon: () => <Icon name="home" color={color} size={22} />,
+        tabBarIcon: () => <Icon name="user" color={color} size={22} />,
       }}
     />
     {/* <Tab.Screen

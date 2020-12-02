@@ -68,6 +68,7 @@ export const globalStyles = StyleSheet.create({
     fontWeight: 'bold',
     borderRadius: 2,
     marginTop: 50,
+    marginBottom: 30,
   },
   NormalFlex: {
     marginTop: 30,
@@ -88,8 +89,8 @@ export const globalStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
   DirectionRow: {
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   nameTxt: {
     marginLeft: 15,

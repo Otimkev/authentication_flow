@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
   inputWrap: {
     flex: 1,
     justifyContent: 'space-between',
-    flexDirection: 'row',
+    flexDirection: 'column',
   },
   Card: {
     width: '45%',
@@ -303,8 +303,8 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 50,
+    marginBottom: 30,
   },
   CardText: {
     fontSize: 15,
@@ -318,8 +318,8 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 50,
+    marginBottom: 30,
   },
 });
 
