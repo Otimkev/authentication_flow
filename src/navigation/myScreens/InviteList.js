@@ -57,7 +57,7 @@ const UserListScreenView = ({
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.email}</Text>
             </View>
-            <Text style={styles.msgTxt}>{item.hospital}</Text>
+            <Text style={styles.msgTxt}>{item.hospital.name}</Text>
             <Text style={styles.msgTxt}>0705432558</Text>
           </View>
         </View>

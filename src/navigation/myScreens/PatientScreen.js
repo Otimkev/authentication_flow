@@ -58,9 +58,7 @@ const PatientScreenView = ({
               </Text>
               <Text style={styles.mblTxt}> General Ward BED03 </Text>
             </View>
-            <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.id}</Text>
-            </View>
+            <View style={styles.msgContainer} />
           </View>
         </View>
       </TouchableOpacity>
