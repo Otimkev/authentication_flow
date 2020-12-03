@@ -71,6 +71,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
             setPhoneNumber(text);
           }}
           keyboardType="phone-pad"
+          maxLength={10}
         />
         <TextInput
           placeholder="Facility"
@@ -86,11 +87,13 @@ const SignUpScreenView = ({navigation, signup, token}) => {
             setPassword(text);
           }}
           keyboardType="visible-password"
+          maxLength={10}
         />
         <TextInput
           placeholder="Retype Password"
           style={globalStyles.inputContainer}
           keyboardType="visible-password"
+          maxLength={10}
         />
       </View>
       <TouchableOpacity>

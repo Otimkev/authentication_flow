@@ -159,6 +159,7 @@ const AddPatientScreenView = ({
                   setPhoneNumber(text);
                 }}
                 keyboardType="phone-pad"
+                maxLength={10}
               />
             </View>
           </View>
@@ -238,6 +239,7 @@ const AddPatientScreenView = ({
                   setEmergencyPhoneNumber(text);
                 }}
                 keyboardType="phone-pad"
+                maxLength={10}
               />
             </View>
           </View>
