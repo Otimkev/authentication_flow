@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../model/patient/getAllPatients/Actions';
 import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
@@ -15,6 +15,8 @@ import {FloatingAction} from 'react-native-floating-action';
 import {Loader} from '../../components/Loader';
 import {color} from 'react-native-reanimated';
 import {globalStyles} from '../../styles/Global';
+import {login} from '../../utils/SocketEvents';
+import AsyncStorage from '@react-native-community/async-storage';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
 const PatientScreenView = ({
@@ -25,9 +27,17 @@ const PatientScreenView = ({
   createPatient,
   isAddPatientLoading,
 }) => {
+  const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
+    filterUser();
+    login({userId: currentUser});
     getAllPatients();
-  }, [getAllPatients, isAddPatientLoading]);
+  }, [currentUser, getAllPatients, isAddPatientLoading]);
+  const filterUser = async () => {
+    const userData = await AsyncStorage.getItem('user');
+    const data = JSON.parse(userData);
+    setCurrentUser(data.result.id);
+  };
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
@@ -54,6 +64,14 @@ const PatientScreenView = ({
           </View>
         </View>
       </TouchableOpacity>
+    );
+  };
+
+  const isEmpty = () => {
+    return (
+      <View style={{flex: 1}}>
+        <Text>Add Patients!</Text>
+      </View>
     );
   };
 

@@ -53,11 +53,12 @@ const ChatScreenView = ({
   getChatRooms,
   getHistory,
 }) => {
-  const [currentUserId, setcurrentUserId] = useState(0);
+  const [currentUserId, setcurrentUserId] = useState(null);
   useEffect(() => {
     getChatRooms();
     filterUser();
   }, [getChatRooms]);
+  console.log(chatRooms);
   const filterUser = async () => {
     const userData = await AsyncStorage.getItem('user');
     const data = JSON.parse(userData);

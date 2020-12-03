@@ -1,7 +1,10 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {connect} from 'react-redux';
 import {getTestResponse} from '../../model/test/loadTests/Actions';
-import {getTestCategories} from '../../model/test/getCategoryTests/Actions';
+import {
+  getTestCategories,
+  getTestCategoriesResponse,
+} from '../../model/test/getCategoryTests/Actions';
 import {
   StyleSheet,
   Text,
@@ -11,6 +14,7 @@ import {
   Dimensions,
   Button,
 } from 'react-native';
+import {primary_color} from '../../styles/color';
 import {LineChart} from 'react-native-chart-kit';
 import {Loader} from '../../components/Loader';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -28,21 +32,89 @@ const GraphScreenView = ({
   const [test, setTest] = useState('');
   const [testData, setTestData] = useState([]);
   const [title, setTitle] = useState('');
+  const [isGraph, setIsGraph] = useState(false);
   useEffect(() => {
-    getAllTests({patientId, category: label, test});
-    getCategoryTests(label, null);
+    getCategoryTests(label);
   }, [getAllTests, getCategoryTests, label, patientId, test]);
+  const dt = patientTestData.map((item) =>
+    new Date().toDateString(item.createAt),
+  );
+  const val = patientTestData.map((item) => item.value);
 
-  const m = () => {
-    const result = categoryTests.map((item) => item.value);
-    return result[0];
+  const testGraph = () => {
+    return (
+      <View style={{flex: 1}}>
+        {isFetching ? (
+          <Loader />
+        ) : (
+          <View>
+            <Text style={styles.title}>{`Graph of time against ${title}`}</Text>
+            <ScrollView horizontal={true}>
+              <View style={{margin: 8}}>
+                <LineChart
+                  data={{
+                    labels: dt,
+                    datasets: [
+                      {
+                        data: val,
+                      },
+                    ],
+                  }}
+                  width={Dimensions.get('window').width * 1.5} // from react-native
+                  height={300}
+                  yAxisLabel="values"
+                  yAxisSuffix="mm "
+                  yAxisInterval={1} // optional, defaults to 1
+                  chartConfig={{
+                    backgroundColor: '#e26a00',
+                    backgroundGradientFrom: '#fb8c00',
+                    backgroundGradientTo: '#ffa726',
+                    decimalPlaces: 0, // optional, defaults to 2dp
+                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    labelColor: (opacity = 1) =>
+                      `rgba(255, 255, 255, ${opacity})`,
+                    style: {
+                      borderRadius: 16,
+                    },
+                    propsForDots: {
+                      r: '6',
+                      strokeWidth: '2',
+                      stroke: '#ffa726',
+                    },
+                  }}
+                  bezier
+                  style={{
+                    marginVertical: 8,
+                    borderRadius: 16,
+                  }}
+                />
+              </View>
+            </ScrollView>
+          </View>
+        )}
+        <View style={styles.button}>
+          <Button
+            color={primary_color}
+            title="Add Test"
+            onPress={() =>
+              navigation.navigate(`${label}`, {
+                patientId,
+                category: label,
+              })
+            }
+          />
+        </View>
+      </View>
+    );
   };
-  console.log(`this is it${m()}`);
+
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          console.log('Not implemented');
+          setTitle(item.value);
+          setIsGraph(true);
+          getAllTests({patientId, category: label, test: item.value});
         }}>
         <View style={styles.row}>
           <View>
@@ -65,13 +137,12 @@ const GraphScreenView = ({
       style={{
         flex: 1,
       }}>
-      <Text>{}</Text>
       <FlatList
         extra={true}
         data={categoryTests}
         keyExtractor={(item) => item.id.toString()}
-        //ListHeaderComponent={graphItem}
-        //ListFooterComponent={}
+        ListHeaderComponent={isGraph ? testGraph : null}
+        //ListFooterComponent={mButton}
         renderItem={renderItem}
       />
     </View>
@@ -88,8 +159,8 @@ const mapDispatchToProps = (dispatch, props) => ({
   getAllTests: (args) => {
     dispatch(getTestResponse(args));
   },
-  getCategoryTests: (data, mangoes) => {
-    dispatch(getTestCategories(data, mangoes));
+  getCategoryTests: (args) => {
+    dispatch(getTestCategoriesResponse(args));
   },
 });
 
