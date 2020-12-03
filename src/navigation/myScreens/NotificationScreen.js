@@ -76,7 +76,7 @@ const NoticationScreenView = ({
           visible={visible}
           onDismiss={hideModal}
           contentContainerStyle={containerStyle}>
-          <View style={{flex: 6}}>
+          <View style={styles.modal}>
             <Text style={styles.modalTitle}>
               {modalContent
                 ? `From Dr. ${modalContent.sender.firstName} ${modalContent.sender.lastName}`
@@ -189,8 +189,10 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     textTransform: 'capitalize',
     backgroundColor: '#007360',
+    borderRadius: 10,
   },
   modal: {
-    padding: '20',
+    flex: 6,
+    borderRadius: 10,
   },
 });

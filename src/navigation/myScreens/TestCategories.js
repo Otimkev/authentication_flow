@@ -68,8 +68,10 @@ export const TestCategoryScreenView = ({
             text: 'Add Test Category',
             name: 'bt_accessibility',
             position: 2,
+            color: '#007360',
           },
         ]}
+        color="#007360"
         onPressItem={() => {
           navigation.navigate('Test List', {patientId: patientId});
         }}
