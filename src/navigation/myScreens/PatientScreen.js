@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../model/patient/getAllPatients/Actions';
 import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
 import * as actionTypes from '../../utils/Constants';
+import Icon from 'react-native-vector-icons/Fontisto';
 import {
   StyleSheet,
   Text,
@@ -47,7 +48,12 @@ const PatientScreenView = ({
                 ellipsizeMode="tail">
                 {`${item.firstName} ${item.lastName}`}
               </Text>
-              <Text style={styles.mblTxt}> GW 03 </Text>
+              {/* <Text style={styles.mblTxt}>
+                <Icon name="test-tube" color="#007360" size={24} />
+              </Text> */}
+              <Text style={styles.mblTxt}>
+                <Icon name="share-a" color="#007360" size={24} />
+              </Text>
             </View>
             {/* <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.id}</Text>
