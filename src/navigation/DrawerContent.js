@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
     fontWeight: 'bold',
     color: '#007360',
+    textTransform: 'capitalize',
   },
   caption: {
     fontSize: 14,

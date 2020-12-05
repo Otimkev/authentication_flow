@@ -37,6 +37,17 @@ export const globalStyles = StyleSheet.create({
   ButtonText: {
     fontSize: 18,
     color: '#fff',
+    fontWeight: 'bold',
+  },
+  ButtonRow: {
+    width: '47%',
+    backgroundColor: '#007360',
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 50,
+    marginBottom: 10,
   },
   Row: {
     flexDirection: 'row',
@@ -94,7 +105,7 @@ export const globalStyles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    fontWeight: 'bold',
+    fontWeight: 'normal',
     color: '#007360',
     fontSize: 20,
     width: 170,
@@ -116,5 +127,19 @@ export const globalStyles = StyleSheet.create({
     margin: 5,
     // justifyContent: 'center',
     fontSize: 16,
+  },
+  mainContent: {
+    marginBottom: 3,
+    marginTop: 1,
+    // borderTopColor: '#007360',
+    // borderTopWidth: StyleSheet.hairlineWidth,
+    borderRadius: 10,
+    //width: 100,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#007360',
+    backgroundColor: '#fff',
   },
 });

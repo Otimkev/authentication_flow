@@ -31,6 +31,7 @@ const PatientScreenView = ({
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
+        style={globalStyles.mainContent}
         onPress={() => {
           navigation.navigate('Patient Information', {
             patientId: item.id,
@@ -46,11 +47,11 @@ const PatientScreenView = ({
                 ellipsizeMode="tail">
                 {`${item.firstName} ${item.lastName}`}
               </Text>
-              <Text style={styles.mblTxt}> General Ward BED03 </Text>
+              <Text style={styles.mblTxt}> GW 03 </Text>
             </View>
-            <View style={styles.msgContainer}>
+            {/* <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.id}</Text>
-            </View>
+            </View> */}
           </View>
         </View>
       </TouchableOpacity>
@@ -113,14 +114,6 @@ export const PatientScreen = connect(
 )(PatientScreenView);
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderBottomColor: '#007360',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    padding: 10,
-  },
   pic: {
     borderRadius: 30,
     width: 60,

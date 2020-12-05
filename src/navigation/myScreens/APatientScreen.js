@@ -73,25 +73,21 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <Text style={styles.label}>Ward Bed: </Text>
         <Text style={styles.info}>{id}</Text>
       </View>
-      <View style={globalStyles.row}>
-        <View style={{marginVertical: 8}}>
-          <Button
-            color={primary_color}
-            title="View Tests"
-            onPress={() => {
-              navigation.navigate('Test Category', {patientId: id});
-            }}
-          />
-        </View>
-        <View>
-          <Button
-            color={primary_color}
-            title="Share"
-            onPress={() => {
-              navigation.navigate('SpecialistList', {patientId: id});
-            }}
-          />
-        </View>
+      <View style={globalStyles.Row}>
+        <TouchableOpacity
+          style={globalStyles.ButtonRow}
+          onPress={() => {
+            navigation.navigate('Test Category', {patientId: id});
+          }}>
+          <Text style={globalStyles.ButtonText}>VIEW TESTS</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={globalStyles.ButtonRow}
+          onPress={() => {
+            navigation.navigate('SpecialistList', {patientId: id});
+          }}>
+          <Text style={globalStyles.ButtonText}>SHARE</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -117,6 +113,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
     padding: 10,
+    borderWidth: 2,
+    borderColor: '#78af38',
   },
   row: {
     flexDirection: 'column',

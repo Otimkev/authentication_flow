@@ -36,10 +36,10 @@ const SignUpScreenView = ({navigation, signup, token}) => {
 
   return (
     <View style={styles.loginContainer}>
-      <Image
+      {/* <Image
         source={require('../../assets/img/Criticare_Logo.jpg')}
         style={styles.header}
-      />
+      /> */}
       <View>
         <TextInput
           placeholder="First Name"
