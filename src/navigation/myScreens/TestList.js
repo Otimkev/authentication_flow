@@ -24,6 +24,7 @@ const TestListScreenView = ({
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
+        style={globalStyles.mainContent}
         onPress={() => {
           navigation.navigate(item.label, {label: item.label, patientId: id});
         }}>
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#DCDCDC',
     backgroundColor: '#fff',
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     padding: 10,
   },
 });

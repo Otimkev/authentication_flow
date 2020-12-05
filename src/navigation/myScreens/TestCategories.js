@@ -30,6 +30,7 @@ export const TestCategoryScreenView = ({
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
+        style={globalStyles.mainContent}
         onPress={() => {
           navigation.navigate('Test Graph', {
             patientId: patientId,
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#DCDCDC',
     backgroundColor: '#fff',
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     padding: 10,
   },
   pic: {

@@ -13,7 +13,7 @@ import {getAPatientsResponse} from '../../model/patient/getAPatient/Actions';
 import {connect} from 'react-redux';
 import {Picker} from '@react-native-community/picker';
 import {globalStyles} from '../../styles/Global';
-import { primary_color } from '../../styles/color';
+import {primary_color} from '../../styles/color';
 import Icon from 'react-native-vector-icons/Fontisto';
 
 const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
@@ -152,11 +152,10 @@ const styles = StyleSheet.create({
   },
   block: {
     padding: 10,
-    // borderBottomColor: '#007360',
-    // borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
     backgroundColor: '#fff',
     marginBottom: 4,
+    borderRadius: 10,
   },
   label: {
     fontSize: 15,
