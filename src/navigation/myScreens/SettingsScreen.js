@@ -5,6 +5,7 @@ const SettingsScreen = () => {
   return (
     <View style={styles.container}>
       <Text>Settings screen</Text>
+      <Text>Not implemented!</Text>
     </View>
   );
 };
