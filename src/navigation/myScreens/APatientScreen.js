@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   },
   info: {
     fontSize: 17,
-    color: '#7f0000',
+    color: '#007360',
     //color: 'black',
     textTransform: 'uppercase',
     fontWeight: 'bold',
