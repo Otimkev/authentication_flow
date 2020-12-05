@@ -111,7 +111,7 @@ export const APatientScreen = connect(
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    //backgroundColor: '#fff',
     flex: 1,
     padding: 10,
     borderWidth: 2,
@@ -152,9 +152,11 @@ const styles = StyleSheet.create({
   },
   block: {
     padding: 10,
-    borderBottomColor: '#007360',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    // borderBottomColor: '#007360',
+    // borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
+    backgroundColor: '#fff',
+    marginBottom: 4,
   },
   label: {
     fontSize: 15,
