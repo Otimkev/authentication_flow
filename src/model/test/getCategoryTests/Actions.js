@@ -14,6 +14,16 @@ export const getTestCategoriesSuccess = (data) => {
   };
 };
 
+export const getTestCategories = (data, mangoes) => {
+  return {
+    type: types.GET_ALL_CATEGORY_TEST_SUCESS,
+    payload: {
+      data,
+      mangoes,
+    },
+  };
+};
+
 export const getTestCategoriesFailure = (error) => {
   return {
     type: types.GET_ALL_CATEGORY_TEST_FAILURE,
