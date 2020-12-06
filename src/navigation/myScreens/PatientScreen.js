@@ -48,14 +48,13 @@ const PatientScreenView = ({
                 ellipsizeMode="tail">
                 {`${item.firstName} ${item.lastName}`}
               </Text>
-              <Text style={styles.mblTxt}>6 daysgit  ago</Text>
+              <Text style={styles.mblTxt}>6 days ago</Text>
               <TouchableOpacity
+                style={styles.share}
                 onPress={() => {
                   navigation.navigate('SpecialistList', {patientId: id});
                 }}>
-                <Text style={styles.share}>
-                  <Icon name="share-a" color="#007360" size={24} />
-                </Text>
+                <Icon name="share-a" color="#007360" size={24} />
               </TouchableOpacity>
               {/* <Text style={styles.mblTxt}>
                 <Icon name="share-a" color="#007360" size={24} />
