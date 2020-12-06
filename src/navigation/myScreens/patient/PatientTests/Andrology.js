@@ -12,13 +12,13 @@ import {
 import {globalStyles} from '../../../../styles/Global';
 import * as actions from '../../../../model/test/addTest/Actions';
 import {connect} from 'react-redux';
+import {primary_color} from '../../../../styles/color';
 
 const AndrologyScreenView = ({navigation, route, createTest, addTestData}) => {
   const [routineSemenAnalysis, setRoutineSemenAnalysis] = useState('');
   const [postVascetomy, setPostVascetomy] = useState('');
 
-  const label = route.params.category;
-  console.log(label);
+  const label = route.params.label;
   const patientId = route.params.patientId;
   const testData = {
     routineSemenAnalysis,
@@ -52,17 +52,18 @@ const AndrologyScreenView = ({navigation, route, createTest, addTestData}) => {
       <View style={styles.button}>
         <Button
           title="Submit"
+          color={primary_color}
           onPress={() => {
             createTest(patientId, testData);
-            console.log(addTestData);
             showToast('Successful');
-            navigation.navigate('Test Graph');
+            navigation.navigate('Test Graph', {label, patientId});
           }}
         />
       </View>
       <View style={styles.button}>
         <Button
           title="Back"
+          color={primary_color}
           onPress={() => {
             navigation.navigate('Test List');
           }}
