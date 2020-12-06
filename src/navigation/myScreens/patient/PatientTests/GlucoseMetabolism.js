@@ -12,6 +12,7 @@ import {
 import {globalStyles} from '../../../../styles/Global';
 import * as actions from '../../../../model/test/addTest/Actions';
 import {connect} from 'react-redux';
+import {primary_color} from '../../../../styles/color';
 
 const GlucoseMetabolismScreenView = ({
   navigation,
@@ -85,7 +86,7 @@ const GlucoseMetabolismScreenView = ({
       <View style={styles.button}>
         <Button
           title="Submit"
-          color="#007360"
+          color={primary_color}
           onPress={() => {
             createTest(patientId, testData);
             console.log(testData);
@@ -94,6 +95,15 @@ const GlucoseMetabolismScreenView = ({
               patientId: patientId,
               label: testData.category,
             });
+          }}
+        />
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Back"
+          color={primary_color}
+          onPress={() => {
+            navigation.goBack();
           }}
         />
       </View>

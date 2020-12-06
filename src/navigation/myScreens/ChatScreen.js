@@ -19,6 +19,7 @@ import {getChatRoomsResponse} from '../../model/chat/loadChatRooms/Actions';
 import {Loader} from '../../components/Loader';
 import AsyncStorage from '@react-native-community/async-storage';
 import {gotMessagesResponse} from '../../model/chat/loadMessages/Actions';
+import {primary_color} from '../../styles/color';
 
 const actions = [
   // {
@@ -57,11 +58,12 @@ const ChatScreenView = ({
   getChatRooms,
   getHistory,
 }) => {
-  const [currentUserId, setcurrentUserId] = useState(0);
+  const [currentUserId, setcurrentUserId] = useState(null);
   useEffect(() => {
     getChatRooms();
     filterUser();
   }, [getChatRooms]);
+  console.log(chatRooms);
   const filterUser = async () => {
     const userData = await AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
@@ -90,12 +92,22 @@ const ChatScreenView = ({
                 {`${item.chatRoomMember.firstName} ${item.chatRoomMember.lastName}`}
               </Text>
             </View>
-            <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.id}</Text>
-            </View>
+            <View style={styles.msgContainer} />
           </View>
         </View>
       </TouchableOpacity>
+    );
+  };
+
+  const mButton = () => {
+    return (
+      <View style={{marginHorizontal: 8, marginVertical: 8}}>
+        <Button
+          title="Refresh"
+          color={primary_color}
+          onPress={() => getChatRooms()}
+        />
+      </View>
     );
   };
 
@@ -112,6 +124,7 @@ const ChatScreenView = ({
           data={chatRooms}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
+          ListFooterComponent={mButton}
         />
       )}
       <FloatingAction

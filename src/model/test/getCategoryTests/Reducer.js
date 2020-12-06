@@ -1,7 +1,7 @@
 import * as actionType from '../../../utils/Constants';
 
 const initialState = {
-  isFetching: false,
+  isLoading: false,
   error: null,
   categoryTests: [],
 };
@@ -11,13 +11,13 @@ export const getCategoryTestsReducer = (state = initialState, action) => {
     case actionType.GET_ALL_CATEGORY_TEST_RESPONSE:
       return {
         ...state,
-        isFetching: true,
+        isLoading: true,
       };
     case actionType.GET_ALL_CATEGORY_TEST_SUCESS:
       return {
         ...state,
         categoryTests: action.payload,
-        isFetching: false,
+        isLoading: false,
       };
     case actionType.GET_ALL_CATEGORY_TEST_FAILURE:
       return {

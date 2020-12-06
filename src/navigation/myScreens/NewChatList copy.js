@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../model/patient/notifications/invite/Actions';
 import {sharePatientsResponse} from '../../model/patient/sharePatient/Actions';
 import {getSharedPatientsResponse} from '../../model/patient/getSharedPatients/Actions';
 import {GET_USER_RESPONSE} from '../../utils/Constants';

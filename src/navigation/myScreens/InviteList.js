@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../model/patient/notifications/invite/Actions';
 import {sharePatientsResponse} from '../../model/patient/sharePatient/Actions';
@@ -8,6 +8,7 @@ import {StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {Loader} from '../../components/Loader';
 import {globalStyles} from '../../styles/Global';
 import {showToast} from '../../components/Toast';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const UserListScreenView = ({
   navigation,
@@ -21,9 +22,16 @@ const UserListScreenView = ({
   getSharedPatients,
 }) => {
   const id = route.params.patientId;
+  const [currentUser, setCurrentUser] = useState('');
   useEffect(() => {
+    filterUser();
     getAllUsers();
   }, [getAllUsers]);
+  const filterUser = async () => {
+    const userData = await AsyncStorage.getItem('user');
+    const data = JSON.parse(userData);
+    setCurrentUser(data.result.id);
+  };
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
@@ -50,7 +58,7 @@ const UserListScreenView = ({
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.email}</Text>
             </View>
-            <Text style={styles.msgTxt}>{item.hospital}</Text>
+            <Text style={styles.msgTxt}>{item.hospital.name}</Text>
             <Text style={styles.msgTxt}>0705432558</Text>
           </View>
         </View>
@@ -68,7 +76,7 @@ const UserListScreenView = ({
       ) : (
         <FlatList
           extra={inviteList}
-          data={inviteList}
+          data={inviteList.filter((user) => user.id !== currentUser)}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
         />
