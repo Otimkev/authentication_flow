@@ -55,7 +55,7 @@ export const TestCategoryScreenView = ({
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={globalStyles.loader}>
       <FlatList
         data={testCategoryList}
         keyExtractor={(item) => {
