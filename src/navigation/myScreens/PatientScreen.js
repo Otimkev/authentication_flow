@@ -52,7 +52,7 @@ const PatientScreenView = ({
               <TouchableOpacity
                 style={styles.share}
                 onPress={() => {
-                  navigation.navigate('SpecialistList', {patientId: id});
+                  navigation.navigate('SpecialistList');
                 }}>
                 <Icon name="share-a" color="#007360" size={24} />
               </TouchableOpacity>

@@ -70,6 +70,7 @@ export const TestCategoryScreenView = ({
             name: 'bt_accessibility',
             position: 2,
             color: '#007360',
+            icon: require('../../assets/img/test.png'),
           },
         ]}
         color="#007360"
