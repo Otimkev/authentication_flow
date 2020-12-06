@@ -12,7 +12,7 @@ import {
 import {globalStyles} from '../../../../styles/Global';
 import * as actions from '../../../../model/test/addTest/Actions';
 import {connect} from 'react-redux';
-import { primary_color } from '../../../../styles/color';
+import {primary_color} from '../../../../styles/color';
 
 const GlucoseMetabolismScreenView = ({
   navigation,

@@ -4,6 +4,7 @@ import * as actionTypes from '../../../utils/Constants';
 import API from '../../QueryApi';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
+import {API_URL} from '../../../utils/config/Urls';
 
 function* getTests(action) {
   try {
@@ -11,6 +12,7 @@ function* getTests(action) {
     const data = JSON.parse(userData);
 
     const response = yield call(mF, action, data);
+    console.log(response.data);
     yield put(actions.getTestSuccess(response.data));
   } catch (e) {
     console.log(e);
@@ -19,12 +21,9 @@ function* getTests(action) {
 }
 
 const mF = async (action, data) => {
-  return await axios.get(
-    `http://192.168.3.101:3001/api/v1/patient/tests/${data.result.id}`,
-    {
-      params: action.payload,
-    },
-  );
+  return await axios.get(`${API_URL}patient/tests/${data.result.id}`, {
+    params: action.payload,
+  });
 };
 
 function* getTestsSaga() {

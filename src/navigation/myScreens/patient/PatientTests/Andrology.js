@@ -56,7 +56,10 @@ const AndrologyScreenView = ({navigation, route, createTest, addTestData}) => {
           onPress={() => {
             createTest(patientId, testData);
             showToast('Successful');
-            navigation.navigate('Test Graph', {label, patientId});
+            navigation.navigate('Test Graph', {
+              patientId: patientId,
+              label: testData.category,
+            });
           }}
         />
       </View>
