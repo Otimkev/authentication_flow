@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
@@ -13,8 +12,8 @@ import {getAPatientsResponse} from '../../model/patient/getAPatient/Actions';
 import {connect} from 'react-redux';
 import {Picker} from '@react-native-community/picker';
 import {globalStyles} from '../../styles/Global';
-import {primary_color} from '../../styles/color';
-import Icon from 'react-native-vector-icons/Fontisto';
+//import {primary_color} from '../../styles/color';
+//import Icon from 'react-native-vector-icons/Fontisto';
 
 const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
   const id = route.params.patientId;

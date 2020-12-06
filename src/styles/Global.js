@@ -138,4 +138,7 @@ export const globalStyles = StyleSheet.create({
     borderColor: '#007360',
     backgroundColor: '#fff',
   },
+  loader: {
+    flex: 1,
+  },
 });
