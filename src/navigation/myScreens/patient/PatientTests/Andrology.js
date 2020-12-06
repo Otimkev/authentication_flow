@@ -23,9 +23,8 @@ const AndrologyScreenView = ({navigation, route, createTest, addTestData}) => {
   const testData = {
     routineSemenAnalysis,
     postVascetomy,
-    category: label,
+    category: 'Andrology',
   };
-
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
   };
