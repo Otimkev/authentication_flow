@@ -26,7 +26,7 @@ const ProfileScreen = () => {
           />
           <Text
             style={styles.name}>{`${user.firstName} ${user.lastName}`}</Text>
-          <Text style={styles.name}>{`mulago`}</Text>
+          <Text style={styles.name}>{`mulago hospital`}</Text>
         </View>
       </View>
 

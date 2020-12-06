@@ -135,7 +135,6 @@ const GraphScreenView = ({
         data={categoryTests}
         keyExtractor={(item) => item.id.toString()}
         ListHeaderComponent={isGraph ? testGraph : null}
-        //ListFooterComponent={mButton}
         renderItem={renderItem}
       />
     </View>
