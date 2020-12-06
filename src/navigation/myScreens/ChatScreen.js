@@ -28,22 +28,23 @@ const actions = [
   //   position: 2,
   //   color: '#007360',
   // },
-  // {
-  //   text: 'New Group',
-  //   icon: require('../../assets/img/Crit.png'),
-  //   name: 'bt_language',
-  //   position: 1,
-  //   color: '#007360',
-  // },
+  {
+    text: 'New Group',
+    icon: require('../../assets/img/group1.png'),
+    name: 'bt_language',
+    position: 1,
+    color: '#007360',
+  },
   {
     text: 'Specialists',
-    // icon: require('./images/ic_room_white.png'),
+    icon: require('../../assets/img/doctor3.png'),
     name: 'room',
     position: 3,
     color: '#007360',
   },
   {
     text: 'New Chat',
+    icon: require('../../assets/img/chat2.png'),
     name: 'new_chat_list',
     position: 4,
     color: '#007360',
@@ -70,6 +71,7 @@ const ChatScreenView = ({
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
+        style={globalStyles.mainContent}
         onPress={() => {
           getChatRooms();
           getHistory(item.id);
@@ -90,9 +92,9 @@ const ChatScreenView = ({
                 {`${item.chatRoomMember.firstName} ${item.chatRoomMember.lastName}`}
               </Text>
             </View>
-            <View style={styles.msgContainer}>
+            {/* <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.id}</Text>
-            </View>
+            </View> */}
           </View>
         </View>
       </TouchableOpacity>
@@ -100,10 +102,7 @@ const ChatScreenView = ({
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-      }}>
+    <View style={globalStyles.loader}>
       {isFetching ? (
         <Loader />
       ) : (
@@ -148,9 +147,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#DCDCDC',
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
+    // borderColor: '#DCDCDC',
+    // backgroundColor: '#fff',
+    // borderBottomWidth: 1,
     padding: 10,
   },
   pic: {

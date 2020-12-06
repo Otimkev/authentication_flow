@@ -48,12 +48,18 @@ const PatientScreenView = ({
                 ellipsizeMode="tail">
                 {`${item.firstName} ${item.lastName}`}
               </Text>
+              <Text style={styles.mblTxt}>6 daysgit  ago</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('SpecialistList', {patientId: id});
+                }}>
+                <Text style={styles.share}>
+                  <Icon name="share-a" color="#007360" size={24} />
+                </Text>
+              </TouchableOpacity>
               {/* <Text style={styles.mblTxt}>
-                <Icon name="test-tube" color="#007360" size={24} />
-              </Text> */}
-              <Text style={styles.mblTxt}>
                 <Icon name="share-a" color="#007360" size={24} />
-              </Text>
+              </Text> */}
             </View>
             {/* <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.id}</Text>
@@ -65,10 +71,7 @@ const PatientScreenView = ({
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-      }}>
+    <View style={globalStyles.loader}>
       {isFetching ? (
         <Loader />
       ) : (
@@ -86,6 +89,7 @@ const PatientScreenView = ({
             name: 'bt_accessibility',
             color: '#007360',
             position: 2,
+            icon: require('../../assets/img/patient2.jpg'),
           },
         ]}
         color="#007360"
@@ -144,5 +148,8 @@ const styles = StyleSheet.create({
     color: '#008B8B',
     fontSize: 12,
     marginLeft: 15,
+  },
+  share: {
+    left: 80,
   },
 });
