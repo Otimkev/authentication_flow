@@ -35,6 +35,7 @@ const UserListScreenView = ({
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
+        style={globalStyles.mainContent}
         onPress={() => {
           sharePatient({targetId: item.id, patientId: id});
           if (!responseData) {
@@ -114,9 +115,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#DCDCDC',
+    //borderColor: '#DCDCDC',
     backgroundColor: '#fff',
-    borderBottomWidth: 1,
+    //borderBottomWidth: 1,
     padding: 10,
   },
   pic: {
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
   nameContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: 280,
+    // width: 280,
   },
   nameTxt: {
     marginLeft: 15,

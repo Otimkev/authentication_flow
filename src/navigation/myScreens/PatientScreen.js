@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../model/patient/getAllPatients/Actions';
 import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
 import * as actionTypes from '../../utils/Constants';
+import Icon from 'react-native-vector-icons/Fontisto';
 import {
   StyleSheet,
   Text,
@@ -41,10 +42,11 @@ const PatientScreenView = ({
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
+        style={globalStyles.mainContent}
         onPress={() => {
           navigation.navigate('Patient Information', {
             patientId: item.id,
-            patientNames: `${item.firstName} ${item.lastName} data`,
+            patientNames: `${item.firstName} ${item.lastName}`,
           });
         }}>
         <View style={styles.row}>
@@ -56,7 +58,12 @@ const PatientScreenView = ({
                 ellipsizeMode="tail">
                 {`${item.firstName} ${item.lastName}`}
               </Text>
-              <Text style={styles.mblTxt}> General Ward BED03 </Text>
+              {/* <Text style={styles.mblTxt}>
+                <Icon name="test-tube" color="#007360" size={24} />
+              </Text> */}
+              <Text style={styles.mblTxt}>
+                <Icon name="share-a" color="#007360" size={24} />
+              </Text>
             </View>
             <View style={styles.msgContainer} />
           </View>
@@ -93,9 +100,11 @@ const PatientScreenView = ({
           {
             text: 'Add Patient',
             name: 'bt_accessibility',
+            color: '#007360',
             position: 2,
           },
         ]}
+        color="#007360"
         onPressItem={() => {
           navigation.navigate('Register Patient');
         }}
@@ -127,14 +136,6 @@ export const PatientScreen = connect(
 )(PatientScreenView);
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderBottomColor: '#007360',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    padding: 10,
-  },
   pic: {
     borderRadius: 30,
     width: 60,

@@ -10,6 +10,7 @@ import {
 import {getAllTestCategory} from '../../model/patient/getAllTestCategories/Actions';
 import {connect} from 'react-redux';
 import {Loader} from '../../components/Loader';
+import {globalStyles} from '../../styles/Global';
 const TestListScreenView = ({
   navigation,
   route,
@@ -23,13 +24,14 @@ const TestListScreenView = ({
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
+        style={globalStyles.mainContent}
         onPress={() => {
           navigation.navigate(item.label, {label: item.label, patientId: id});
         }}>
         <View style={styles.row}>
           <View>
             <View style={styles.nameContainer}>
-              <Text style={styles.nameTxt} numberOfLines={1}>
+              <Text style={globalStyles.nameTxt} numberOfLines={1}>
                 {item.label}
               </Text>
             </View>
@@ -81,32 +83,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#DCDCDC',
     backgroundColor: '#fff',
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     padding: 10,
-  },
-  nameContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  nameTxt: {
-    marginLeft: 15,
-    fontWeight: '600',
-    color: '#222',
-    fontSize: 18,
-  },
-  mblTxt: {
-    fontWeight: '200',
-    color: '#777',
-    fontSize: 13,
-  },
-  indicatorContainer: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  msgTxt: {
-    fontWeight: '400',
-    color: '#008B8B',
-    fontSize: 12,
-    marginLeft: 15,
   },
 });

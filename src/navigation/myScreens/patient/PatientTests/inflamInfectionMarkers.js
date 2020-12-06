@@ -56,19 +56,12 @@ const InflamInfectionMarkersScreenView = ({
       <View style={styles.button}>
         <Button
           title="Submit"
+          color="#007360"
           onPress={() => {
             createTest(patientId, testData);
             console.log(addTestData);
             showToast('Successful');
             navigation.navigate('Patient Information');
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          onPress={() => {
-            navigation.navigate('Test List');
           }}
         />
       </View>

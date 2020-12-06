@@ -76,10 +76,10 @@ const NoticationScreenView = ({
           visible={visible}
           onDismiss={hideModal}
           contentContainerStyle={containerStyle}>
-          <View style={{flex: 2}}>
+          <View style={styles.modal}>
             <Text style={styles.modalTitle}>
               {modalContent
-                ? `From Dr.${modalContent.sender.firstName} ${modalContent.sender.lastName}`
+                ? `From Dr. ${modalContent.sender.firstName} ${modalContent.sender.lastName}`
                 : undefined}
             </Text>
           </View>
@@ -182,10 +182,17 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    textDecorationLine: 'underline',
-    fontWeight: '400',
-    color: 'grey',
+    // textDecorationLine: 'underline',
+    fontWeight: '500',
+    color: '#fff',
     fontSize: 28,
     marginLeft: 15,
+    textTransform: 'capitalize',
+    backgroundColor: '#007360',
+    borderRadius: 10,
+  },
+  modal: {
+    flex: 6,
+    borderRadius: 10,
   },
 });
