@@ -59,7 +59,7 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Patients',
         tabBarColor: '#007360',
-        tabBarIcon: () => <Icon name="user" color={color} size={22} />,
+        tabBarIcon: () => <Icon name="medkit" color={color} size={22} />,
       }}
     />
     {/* <Tab.Screen

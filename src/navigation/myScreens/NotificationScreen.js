@@ -12,6 +12,7 @@ import {
   Dimensions,
 } from 'react-native';
 import {Loader} from '../../components/Loader';
+import {globalStyles} from '../../styles/Global';
 
 const NoticationScreenView = ({
   getAllInvites,
@@ -35,6 +36,7 @@ const NoticationScreenView = ({
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
+        style={globalStyles.mainContent}
         onPress={() => {
           setModalContent(item);
           showModal();
@@ -135,9 +137,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#DCDCDC',
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
     padding: 10,
   },
   pic: {
