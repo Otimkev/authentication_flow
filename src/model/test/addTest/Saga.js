@@ -12,7 +12,6 @@ function* addTest(action) {
       `/patient/add-test/${data.result.id}/${action.payload.id}/`,
       action.payload.data,
     );
-    console.log(response);
     yield put(actions.addTestSuccess(response));
   } catch (e) {
     console.log(e);
