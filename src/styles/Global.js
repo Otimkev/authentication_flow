@@ -20,7 +20,7 @@ export const globalStyles = StyleSheet.create({
   },
   TextInput: {
     paddingHorizontal: 10,
-    color: 'grey',
+    color: '#696969',
     fontWeight: 'normal',
     fontSize: 20,
   },

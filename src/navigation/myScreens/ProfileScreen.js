@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import {globalStyles} from '../../styles/Global';
+import {primary_color} from '../../styles/color';
+import Icon from 'react-native-vector-icons/Fontisto';
 
 const ProfileScreen = () => {
   const [user, setUser] = useState('');
@@ -26,19 +29,20 @@ const ProfileScreen = () => {
           />
           <Text
             style={styles.name}>{`${user.firstName} ${user.lastName}`}</Text>
-          <Text style={styles.name}>{`mulago hospital`}</Text>
         </View>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.hospital}>{'mulago hospital'}</Text>
       </View>
 
       <View style={styles.body}>
         <View style={styles.bodyContent}>
-          <Text style={styles.name}>Email: {user.email}</Text>
-          <Text style={styles.name}>Phone: {user.contact}</Text>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => console.log('Not implemented')}>
-            <Text style={{color: 'white'}}>Sign Out</Text>
-          </TouchableOpacity>
+          <Text style={styles.email}>{user.email}</Text>
+          <Icon name="email" color="#007360" size={24} />
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.contact}>{user.contact}</Text>
+          <Icon name="phone" color="#007360" size={24} />
         </View>
       </View>
     </View>
@@ -48,7 +52,9 @@ export default ProfileScreen;
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#fff',
+    backgroundColor: '#83f881',
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
   },
   headerContent: {
     padding: 30,
@@ -63,8 +69,24 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   name: {
+    fontSize: 30,
+    color: primary_color,
+    fontWeight: 'bold',
+  },
+  hospital: {
     fontSize: 20,
-    color: 'black',
+    color: '#fff',
+    //fontWeight: '600',
+    textTransform: 'capitalize',
+  },
+  email: {
+    fontSize: 20,
+    color: primary_color,
+    fontWeight: '600',
+  },
+  contact: {
+    fontSize: 20,
+    color: primary_color,
     fontWeight: '600',
   },
   profileDetail: {
@@ -100,5 +122,17 @@ const styles = StyleSheet.create({
     color: '#7cb63b',
     marginTop: 10,
     textAlign: 'center',
+  },
+  card: {
+    width: '50%',
+    backgroundColor: primary_color,
+    borderRadius: 30,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+    top: -30,
+    left: 90,
   },
 });

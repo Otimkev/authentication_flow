@@ -354,7 +354,7 @@ const PatientStackScreen = ({navigation}) => (
   </PatientsStack.Navigator>
 );
 
-const ProfileStackScreen = ({navigation}) => (
+const ProfileStackScreen = ({navigation, logOut}) => (
   <ProfilesStack.Navigator
     screenOptions={{
       headerStyle: {
@@ -375,6 +375,16 @@ const ProfileStackScreen = ({navigation}) => (
             size={25}
             backgroundColor="#007360"
             onPress={() => navigation.openDrawer()}
+          />
+        ),
+        headerRight: () => (
+          <Icon.Button
+            name="sign-out"
+            size={30}
+            backgroundColor="#007360"
+            onPress={async () => {
+              logOut();
+            }}
           />
         ),
       }}
