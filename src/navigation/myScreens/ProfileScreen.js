@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {globalStyles} from '../../styles/Global';
 import {primary_color} from '../../styles/color';
 import Icon from 'react-native-vector-icons/Fontisto';
+import {Title} from 'react-native-paper';
 
 const ProfileScreen = () => {
   const [user, setUser] = useState('');
@@ -36,18 +37,25 @@ const ProfileScreen = () => {
       <View style={styles.card}>
         <Text style={styles.hospital}>{'mulago hospital'}</Text>
       </View>
-      <View style={styles.bodyContent}>
-        <Text style={styles.email}>
-          <Icon name="email" color={primary_color} size={24} /> {user.email}
-        </Text>
-      </View>
-      <View style={styles.bodyContent}>
-        <Text style={styles.contact}>
-          <Icon name="phone" color={primary_color} size={24} /> +256
-          {user.contact}
-        </Text>
+      <View style={styles.Row}>
+        <View>
+          <Icon name="email" color={primary_color} size={30} />
+        </View>
+        <View>
+          <Title style={styles.title}>Email</Title>
+          <Text style={styles.email}>{user.email}</Text>
+        </View>
       </View>
       <View style={styles.Row}>
+        <View>
+          <Icon name="phone" color={primary_color} size={30} />
+        </View>
+        <View>
+          <Title style={styles.title}>Phone</Title>
+          <Text style={styles.contact}> +256 {user.contact}</Text>
+        </View>
+      </View>
+      <View style={styles.Row2}>
         <View>
           <View style={styles.circle}>
             <Text style={styles.circleText}>13</Text>
@@ -106,11 +114,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: primary_color,
     fontWeight: '600',
+    top: -25,
+    left: 20,
   },
   contact: {
     fontSize: 20,
     color: primary_color,
     fontWeight: '600',
+    top: -23,
+    left: 12,
   },
   profileDetail: {
     alignSelf: 'center',
@@ -125,8 +137,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 20,
-    color: '#00CED1',
+    fontSize: 15,
+    color: 'grey',
+    top: -20,
+    left: 20,
   },
   count: {
     fontSize: 18,
@@ -158,10 +172,10 @@ const styles = StyleSheet.create({
     top: -30,
     left: 90,
   },
-  Row: {
+  Row2: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 60,
+    marginTop: 30,
     padding: 30,
   },
   circle: {
@@ -181,5 +195,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: primary_color,
     fontWeight: '600',
+  },
+  Row: {
+    flexDirection: 'row',
+    //justifyContent: 'space-around',
+    padding: 10,
+    // borderBottomColor: primary_color,
+    // borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
