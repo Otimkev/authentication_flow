@@ -25,7 +25,7 @@ export const globalStyles = StyleSheet.create({
     fontSize: 20,
   },
   Button: {
-    width: '90%',
+    width: '100%',
     backgroundColor: primary_color,
     borderRadius: 10,
     height: 50,

@@ -73,22 +73,20 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <Text style={styles.label}>Ward Bed: </Text>
         <Text style={styles.info}>{id}</Text>
       </View>
-      <View style={globalStyles.Row}>
-        <TouchableOpacity
-          style={globalStyles.ButtonRow}
-          onPress={() => {
-            navigation.navigate('Test Category', {patientId: id});
-          }}>
-          <Text style={globalStyles.ButtonText}>VIEW TESTS</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={globalStyles.ButtonRow}
-          onPress={() => {
-            navigation.navigate('SpecialistList', {patientId: id});
-          }}>
-          <Text style={globalStyles.ButtonText}>SHARE</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={globalStyles.Button}
+        onPress={() => {
+          navigation.navigate('Test Category', {patientId: id});
+        }}>
+        <Text style={globalStyles.ButtonText}>VIEW TESTS</Text>
+      </TouchableOpacity>
+      {/* <TouchableOpacity
+        style={globalStyles.ButtonRow}
+        onPress={() => {
+          navigation.navigate('SpecialistList', {patientId: id});
+        }}>
+        <Text style={globalStyles.ButtonText}>SHARE</Text>
+      </TouchableOpacity> */}
     </ScrollView>
   );
 };

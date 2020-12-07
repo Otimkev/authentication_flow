@@ -45,7 +45,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           <Text style={globalStyles.legend}>First Name</Text>
           <TextInput
             //placeholder="First Name"
-            // style={globalStyles.inputContainer}
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setFirstName(text);
             }}
@@ -56,7 +56,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           <Text style={globalStyles.legend}>Last Name</Text>
           <TextInput
             //placeholder="Last Name"
-            // style={globalStyles.inputContainer}
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setLastName(text);
             }}
@@ -66,7 +66,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           <Text style={globalStyles.legend}>Email Address</Text>
           <TextInput
             //placeholder="Email Address"
-            // style={globalStyles.inputContainer}
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setEmail(text);
             }}
@@ -77,7 +77,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           <Text style={globalStyles.legend}>Phone</Text>
           <TextInput
             //placeholder="Phone"
-            // style={globalStyles.inputContainer}
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setPhoneNumber(text);
             }}
@@ -89,7 +89,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           <Text style={globalStyles.legend}>Speciality</Text>
           <TextInput
             //placeholder="Facility"
-            // style={globalStyles.inputContainer}
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setSpeciality(text);
             }}
@@ -99,7 +99,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           <Text style={globalStyles.legend}>Facility</Text>
           <TextInput
             //placeholder="Facility"
-            // style={globalStyles.inputContainer}
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setHospital(text);
             }}
@@ -109,7 +109,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           <Text style={globalStyles.legend}>Password</Text>
           <TextInput
             //placeholder="Password"
-            // style={globalStyles.inputContainer}
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setPassword(text);
             }}
@@ -121,7 +121,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           <Text style={globalStyles.legend}>Retype Password</Text>
           <TextInput
             //placeholder="Retype Password"
-            // style={globalStyles.inputContainer}
+            style={globalStyles.TextInput}
             keyboardType="visible-password"
             maxLength={10}
           />

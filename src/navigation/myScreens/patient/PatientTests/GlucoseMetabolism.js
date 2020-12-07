@@ -43,47 +43,62 @@ const GlucoseMetabolismScreenView = ({
   return (
     <View style={globalStyles.testContainer}>
       <View>
-        <TextInput
-          placeholder="Glucose - Fasting"
-          style={globalStyles.testInput}
-          onChangeText={(text) => {
-            setGlucoseFasting(text);
-          }}
-        />
-        <TextInput
-          placeholder="Glucose - Random"
-          style={globalStyles.testInput}
-          onChangeText={(text) => {
-            setGlucoseRandom(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="GTT 2hr 75g - standard"
-          style={globalStyles.testInput}
-          onChangeText={(text) => {
-            setGtt2Hr75gStandard(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="HBA1C/Glycosylated Hb"
-          style={globalStyles.testInput}
-          onChangeText={(text) => {
-            setHba1cGlycosylatedHB(text);
-          }}
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          placeholder="Microalbumin - urine"
-          style={globalStyles.testInput}
-          onChangeText={(text) => {
-            setMicroalbumin(text);
-          }}
-          keyboardType="phone-pad"
-        />
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Glucose - Fasting</Text>
+          <TextInput
+            //placeholder="Glucose - Fasting"
+            style={globalStyles.TextInput}
+            onChangeText={(text) => {
+              setGlucoseFasting(text);
+            }}
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Glucose - Random</Text>
+          <TextInput
+            //placeholder="Glucose - Random"
+            style={globalStyles.TextInput}
+            onChangeText={(text) => {
+              setGlucoseRandom(text);
+            }}
+            keyboardType="phone-pad"
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>GTT 2hr 75g - standard</Text>
+          <TextInput
+            //placeholder="GTT 2hr 75g - standard"
+            style={globalStyles.TextInput}
+            onChangeText={(text) => {
+              setGtt2Hr75gStandard(text);
+            }}
+            keyboardType="phone-pad"
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>HBA1C/Glycosylated Hb</Text>
+          <TextInput
+            //placeholder="HBA1C/Glycosylated Hb"
+            style={globalStyles.TextInput}
+            onChangeText={(text) => {
+              setHba1cGlycosylatedHB(text);
+            }}
+            keyboardType="phone-pad"
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Microalbumin - urine</Text>
+          <TextInput
+            //placeholder="Microalbumin - urine"
+            style={globalStyles.TextInput}
+            onChangeText={(text) => {
+              setMicroalbumin(text);
+            }}
+            keyboardType="phone-pad"
+          />
+        </View>
       </View>
-      <View style={styles.button}>
+      {/* <View style={styles.button}>
         <Button
           title="Submit"
           color={primary_color}
@@ -97,16 +112,20 @@ const GlucoseMetabolismScreenView = ({
             });
           }}
         />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Back"
-          color={primary_color}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      </View>
+      </View> */}
+      <TouchableOpacity
+        style={globalStyles.Button}
+        onPress={() => {
+          createTest(patientId, testData);
+          console.log(testData);
+          showToast('Successful');
+          navigation.navigate('Test Graph', {
+            patientId: patientId,
+            label: testData.category,
+          });
+        }}>
+        <Text style={styles.loginText}>SUBMIT</Text>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -36,7 +36,7 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
         <Text style={globalStyles.legend}>Username</Text>
         <TextInput
           //placeholder="Username"
-          // style={globalStyles.inputContainer}
+          style={globalStyles.TextInput}
           onChangeText={(text) => {
             setUsername(text);
           }}
@@ -46,7 +46,7 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
         <Text style={globalStyles.legend}>Password</Text>
         <TextInput
           //placeholder="Password"
-          // style={globalStyles.inputContainer}
+          style={globalStyles.TextInput}
           onChangeText={(text) => {
             setPassword(text);
           }}
