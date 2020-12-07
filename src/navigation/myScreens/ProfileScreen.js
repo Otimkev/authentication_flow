@@ -194,7 +194,9 @@ const styles = StyleSheet.create({
   outCircleText: {
     fontSize: 15,
     color: primary_color,
-    fontWeight: '600',
+    fontWeight: 'bold',
+    backgroundColor: '#fff',
+    borderRadius: 10,
   },
   Row: {
     flexDirection: 'row',
