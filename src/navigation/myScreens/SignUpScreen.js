@@ -8,6 +8,8 @@ import {
   TextInput,
   ToastAndroid,
   Image,
+  ScrollView,
+  _ScrollView,
 } from 'react-native';
 import {globalStyles} from '../../styles/Global';
 import * as actionCreators from '../../model/user/authentication/Actions';
@@ -21,6 +23,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hospital, setHospital] = useState('');
+  const [speciality, setSpeciality] = useState('Optician');
 
   const postUserData = {
     firstName: firstName,
@@ -29,96 +32,124 @@ const SignUpScreenView = ({navigation, signup, token}) => {
     email: email,
     hospital: hospital,
     password: password,
+    speciality: speciality,
   };
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
   };
 
   return (
-    <View style={styles.loginContainer}>
-      {/* <Image
-        source={require('../../assets/img/Criticare_Logo.jpg')}
-        style={styles.header}
-      /> */}
-      <View>
-        <TextInput
-          placeholder="First Name"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setFirstName(text);
-          }}
-          value={firstName}
-        />
-        <TextInput
-          placeholder="Last Name"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setLastName(text);
-          }}
-        />
-        <TextInput
-          placeholder="Email Address"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setEmail(text);
-          }}
-          keyboardType="email-address"
-        />
-        <TextInput
-          placeholder="Phone"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setPhoneNumber(text);
-          }}
-          keyboardType="phone-pad"
-          maxLength={10}
-        />
-        <TextInput
-          placeholder="Facility"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setHospital(text);
-          }}
-        />
-        <TextInput
-          placeholder="Password"
-          style={globalStyles.inputContainer}
-          onChangeText={(text) => {
-            setPassword(text);
-          }}
-          keyboardType="visible-password"
-          maxLength={10}
-        />
-        <TextInput
-          placeholder="Retype Password"
-          style={globalStyles.inputContainer}
-          keyboardType="visible-password"
-          maxLength={10}
-        />
+    <ScrollView>
+      <View style={styles.loginContainer}>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>First Name</Text>
+          <TextInput
+            //placeholder="First Name"
+            // style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setFirstName(text);
+            }}
+            value={firstName}
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Last Name</Text>
+          <TextInput
+            //placeholder="Last Name"
+            // style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setLastName(text);
+            }}
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Email Address</Text>
+          <TextInput
+            //placeholder="Email Address"
+            // style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setEmail(text);
+            }}
+            keyboardType="email-address"
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Phone</Text>
+          <TextInput
+            //placeholder="Phone"
+            // style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setPhoneNumber(text);
+            }}
+            keyboardType="phone-pad"
+            maxLength={10}
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Speciality</Text>
+          <TextInput
+            //placeholder="Facility"
+            // style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setSpeciality(text);
+            }}
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Facility</Text>
+          <TextInput
+            //placeholder="Facility"
+            // style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setHospital(text);
+            }}
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Password</Text>
+          <TextInput
+            //placeholder="Password"
+            // style={globalStyles.inputContainer}
+            onChangeText={(text) => {
+              setPassword(text);
+            }}
+            keyboardType="visible-password"
+            maxLength={10}
+          />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Retype Password</Text>
+          <TextInput
+            //placeholder="Retype Password"
+            // style={globalStyles.inputContainer}
+            keyboardType="visible-password"
+            maxLength={10}
+          />
+        </View>
+        <TouchableOpacity>
+          <Text style={styles.forgot}>
+            By tapping the SignUp button, You have agreed to our Terms and
+            Conditions.
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={globalStyles.Button}
+          onPress={() => {
+            showToast('Sign in');
+            signup(postUserData);
+            console.log(`User token -> ${token}`);
+          }}>
+          <Text style={styles.loginText}>Sign Up</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={styles.text}
+            onPress={() => navigation.navigate('SignInScreen')}>
+            Have an account Already? Sign In Here.
+          </Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity>
-        <Text style={styles.forgot}>
-          By tapping the SignUp button, You have agreed to our Terms and
-          Conditions.
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={globalStyles.Button}
-        onPress={() => {
-          showToast('Sign in');
-          signup(postUserData);
-          console.log(`User token -> ${token}`);
-        }}>
-        <Text style={styles.loginText}>Sign Up</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text
-          style={styles.text}
-          onPress={() => navigation.navigate('SignInScreen')}>
-          Have an account Already? Sign In Here.
-        </Text>
-      </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 

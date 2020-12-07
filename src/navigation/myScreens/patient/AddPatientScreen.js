@@ -67,197 +67,180 @@ const AddPatientScreenView = ({
         cornerRadius={5}>
         <View style={globalStyles.container}>
           {/* Patient Name Section */}
-          <Text style={globalStyles.Heading}>Name</Text>
-          <View style={globalStyles.Row}>
-            <View style={styles.inputWrap}>
-              <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="First name"
-                onChangeText={(text) => {
-                  setFirstName(text);
-                }}
-              />
-            </View>
-            <View style={styles.inputWrap}>
-              <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="Last name"
-                onChangeText={(text) => {
-                  setLastName(text);
-                }}
-              />
-            </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>First Name</Text>
+            <TextInput
+              style={globalStyles.TextInput}
+              //placeholder="First name"
+              onChangeText={(text) => {
+                setFirstName(text);
+              }}
+            />
+          </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Last Name</Text>
+            <TextInput
+              style={globalStyles.TextInput}
+              //placeholder="Last name"
+              onChangeText={(text) => {
+                setLastName(text);
+              }}
+            />
           </View>
           {/*Patient Age and Sex Section*/}
-          <View style={globalStyles.Row}>
-            <View style={styles.inputWrap}>
-              <Text style={globalStyles.Heading}>Gender</Text>
-              <Picker style={globalStyles.pickerContainer}>
-                <Picker.Item label="Male" value="Male" />
-                <Picker.Item label="Female" value="Female" />
-              </Picker>
-              {/* <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="Gender"
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Gender</Text>
+            <Picker style={globalStyles.pickerContainer}>
+              <Picker.Item label="Male" value="Male" />
+              <Picker.Item label="Female" value="Female" />
+            </Picker>
+            {/* <TextInput
+                style={globalStyles.TextInput}
+                //placeholder="Gender"
                 onChangeText={(text) => {
                   setGender(text);
                 }}
               /> */}
-            </View>
-            <View style={styles.inputWrap}>
-              <Text style={globalStyles.Heading}>Age</Text>
-              <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="Age"
-                onChangeText={(text) => {
-                  setDateOfBirth(text);
-                }}
-                keyboardType="phone-pad"
-              />
-            </View>
+          </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Age</Text>
+            <TextInput
+              style={globalStyles.TextInput}
+              //placeholder="Age"
+              onChangeText={(text) => {
+                setDateOfBirth(text);
+              }}
+              keyboardType="phone-pad"
+            />
           </View>
           {/* Patient Address Section */}
-          <View style={globalStyles.NormalFlex}>
-            <View style={styles.inputWrap}>
-              <Text style={globalStyles.Heading}>Address</Text>
-              <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="Address"
-                onChangeText={(text) => {
-                  setAddress(text);
-                }}
-              />
-            </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Address</Text>
+            <TextInput
+              style={globalStyles.TextInput}
+              //placeholder="Address"
+              onChangeText={(text) => {
+                setAddress(text);
+              }}
+            />
           </View>
           {/* Patient Marital Status Section */}
-          <View style={globalStyles.NormalFlex}>
-            <View style={styles.inputWrap}>
-              <Text style={globalStyles.Heading}>Marital Status</Text>
-              <Picker style={globalStyles.pickerContainer}>
-                <Picker.Item label="Single" value="Single" />
-                <Picker.Item label="Married" value="Married" />
-                <Picker.Item label="Divorced" value="Divorced" />
-                <Picker.Item label="Widowed" value="Widowed" />
-              </Picker>
-              {/* <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="Marital Status"
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Marital Status</Text>
+            <Picker style={globalStyles.pickerContainer}>
+              <Picker.Item label="Single" value="Single" />
+              <Picker.Item label="Married" value="Married" />
+              <Picker.Item label="Divorced" value="Divorced" />
+              <Picker.Item label="Widowed" value="Widowed" />
+            </Picker>
+            {/* <TextInput
+                style={globalStyles.TextInput}
+                //placeholder="Marital Status"
                 onChangeText={(text) => {
                   setMaritalStatus(text);
                 }}
               /> */}
-            </View>
           </View>
           {/* Patient Phone Number Section */}
-          <View style={globalStyles.NormalFlex}>
-            <View style={styles.inputWrap}>
-              <Text style={globalStyles.Heading}>Phone Number</Text>
-              <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="Phone Number"
-                onChangeText={(text) => {
-                  setPhoneNumber(text);
-                }}
-                keyboardType="phone-pad"
-                maxLength={10}
-              />
-            </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Phone Number</Text>
+            <TextInput
+              style={globalStyles.TextInput}
+              //placeholder="Phone Number"
+              onChangeText={(text) => {
+                setPhoneNumber(text);
+              }}
+              keyboardType="phone-pad"
+              maxLength={10}
+            />
           </View>
           {/* Patient Email Address Section */}
-          <View style={globalStyles.NormalFlex}>
-            <View style={styles.inputWrap}>
-              <Text style={globalStyles.Heading}>Email Address</Text>
-              <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="Email"
-                onChangeText={(text) => {
-                  setEmail(text);
-                }}
-                keyboardType="email-address"
-              />
-            </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Email</Text>
+            <TextInput
+              style={globalStyles.TextInput}
+              //placeholder="Email"
+              onChangeText={(text) => {
+                setEmail(text);
+              }}
+              keyboardType="email-address"
+            />
           </View>
-          <View style={globalStyles.Row}>
-            <View style={styles.inputWrap}>
-              <Text style={globalStyles.Heading}>Ward</Text>
-              <Picker style={globalStyles.pickerContainer}>
-                <Picker.Item label="General Ward" value="General Ward" />
-                <Picker.Item label="Cardiology" value="Cardiology" />
-                <Picker.Item label="ICU" value="ICU" />
-                <Picker.Item label="Orthopaedics" value="Orthopaedics" />
-                <Picker.Item label="Neurology" value="Neurology" />
-                <Picker.Item label="Maternity" value="Maternity" />
-                <Picker.Item label="Oncology" value="Oncology" />
-                <Picker.Item label="Opothalmology" value="Opothalmology" />
-              </Picker>
-            </View>
-            <View style={styles.inputWrap}>
-              <Text style={globalStyles.Heading}>Bed</Text>
-              <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="Bed"
-                onChangeText={(text) => {
-                  setBed(text);
-                }}
-                keyboardType="phone-pad"
-              />
-            </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Ward</Text>
+            <Picker style={globalStyles.pickerContainer}>
+              <Picker.Item label="General Ward" value="General Ward" />
+              <Picker.Item label="Cardiology" value="Cardiology" />
+              <Picker.Item label="ICU" value="ICU" />
+              <Picker.Item label="Orthopaedics" value="Orthopaedics" />
+              <Picker.Item label="Neurology" value="Neurology" />
+              <Picker.Item label="Maternity" value="Maternity" />
+              <Picker.Item label="Oncology" value="Oncology" />
+              <Picker.Item label="Opothalmology" value="Opothalmology" />
+            </Picker>
+          </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Bed Number</Text>
+            <TextInput
+              style={globalStyles.TextInput}
+              //placeholder="Bed"
+              onChangeText={(text) => {
+                setBed(text);
+              }}
+              keyboardType="phone-pad"
+            />
           </View>
           {/* Emergency Contact section */}
           <Text style={globalStyles.BlockHeading}>
             Emergency contact Information
           </Text>
-          <View style={globalStyles.Row}>
-            <View style={styles.inputWrap}>
-              <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="First name"
-                onChangeText={(text) => {
-                  setEmergencyFirstName(text);
-                }}
-              />
-            </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>First Name</Text>
+            <TextInput
+              style={globalStyles.TextInput}
+              //placeholder="First name"
+              onChangeText={(text) => {
+                setEmergencyFirstName(text);
+              }}
+            />
+          </View>
 
-            <View style={styles.inputWrap}>
-              <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="Last name"
-                onChangeText={(text) => {
-                  setEmergencyLastName(text);
-                }}
-              />
-            </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Last Name</Text>
+            <TextInput
+              style={globalStyles.TextInput}
+              //placeholder="Last name"
+              onChangeText={(text) => {
+                setEmergencyLastName(text);
+              }}
+            />
           </View>
           {/* Emergency Phone Number Section */}
-          <View style={globalStyles.NormalFlex}>
-            <View style={styles.inputWrap}>
-              <Text style={globalStyles.Heading}>Phone Number</Text>
-              <TextInput
-                style={globalStyles.inputContainer}
-                placeholder="eg. 0777..."
-                onChangeText={(text) => {
-                  setEmergencyPhoneNumber(text);
-                }}
-                keyboardType="phone-pad"
-                maxLength={10}
-              />
-            </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Phone Number</Text>
+            <TextInput
+              style={globalStyles.TextInput}
+              //placeholder="eg. 0777..."
+              onChangeText={(text) => {
+                setEmergencyPhoneNumber(text);
+              }}
+              keyboardType="phone-pad"
+              maxLength={10}
+            />
           </View>
           {/* Emergency Relationship Section */}
-          <View style={globalStyles.NormalFlex}>
-            <View style={styles.inputWrap}>
-              <Text style={globalStyles.Heading}>Relationship</Text>
-              <Picker style={globalStyles.pickerContainer}>
-                <Picker.Item label="Mother" value="Mother" />
-                <Picker.Item label="Father" value="Father" />
-                <Picker.Item label="Sister" value="Sister" />
-                <Picker.Item label="Brother" value="Brother" />
-                <Picker.Item label="Wife" value="Wife" />
-                <Picker.Item label="Husband" value="Husband" />
-                <Picker.Item label="Friend" value="Friend" />
-                <Picker.Item label="Other" value="Other" />
-              </Picker>
-            </View>
+          <View style={globalStyles.fieldSet}>
+            <Text style={globalStyles.legend2}>Relationship</Text>
+            <Picker style={globalStyles.pickerContainer}>
+              <Picker.Item label="Mother" value="Mother" />
+              <Picker.Item label="Father" value="Father" />
+              <Picker.Item label="Sister" value="Sister" />
+              <Picker.Item label="Brother" value="Brother" />
+              <Picker.Item label="Wife" value="Wife" />
+              <Picker.Item label="Husband" value="Husband" />
+              <Picker.Item label="Friend" value="Friend" />
+              <Picker.Item label="Other" value="Other" />
+            </Picker>
           </View>
           {/* Submit Button Section */}
           <View style={globalStyles.DirectionRow}>
@@ -299,10 +282,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   Card: {
-    width: '45%',
+    width: '60%',
     backgroundColor: '#78af38',
     borderRadius: 10,
-    height: 50,
+    height: 60,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 50,
@@ -314,10 +297,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cancel: {
-    width: '45%',
+    width: '35%',
     backgroundColor: 'red',
     borderRadius: 10,
-    height: 50,
+    height: 60,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 50,

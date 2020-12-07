@@ -12,6 +12,7 @@ import {globalStyles} from '../../styles/Global';
 import * as actionCreators from '../../model/user/authentication/Actions';
 import {connect} from 'react-redux';
 import {login} from '../../utils/SocketEvents';
+import {Icon} from 'react-native-vector-icons/FontAwesome';
 
 const SignInScreenView = ({navigation, signin, currentUser}) => {
   const [username, setUsername] = useState('');
@@ -31,17 +32,21 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
         />
       </View>
 
-      <View>
+      <View style={globalStyles.fieldSet}>
+        <Text style={globalStyles.legend}>Username</Text>
         <TextInput
-          placeholder="Username"
-          style={globalStyles.inputContainer}
+          //placeholder="Username"
+          // style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setUsername(text);
           }}
         />
+      </View>
+      <View style={globalStyles.fieldSet}>
+        <Text style={globalStyles.legend}>Password</Text>
         <TextInput
-          placeholder="Password"
-          style={globalStyles.inputContainer}
+          //placeholder="Password"
+          // style={globalStyles.inputContainer}
           onChangeText={(text) => {
             setPassword(text);
           }}
@@ -102,16 +107,6 @@ const styles = StyleSheet.create({
   loginText: {
     fontSize: 24,
     color: '#fff',
-  },
-  inputContainer: {
-    color: '#000',
-    width: 300,
-    height: 40,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#CCC',
-    marginVertical: 5,
-    borderRadius: 5,
   },
   text: {
     color: '#aaae',
