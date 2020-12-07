@@ -212,6 +212,16 @@ const PatientStackScreen = ({navigation}) => (
       component={APatientScreen}
       options={({route}) => ({
         title: route.params.patientNames,
+        headerRight: () => (
+          <Icon.Button
+            name="share"
+            size={20}
+            backgroundColor="#007360"
+            onPress={() => {
+              navigation.navigate('SpecialistList');
+            }}
+          />
+        ),
       })}
     />
     <PatientsStack.Screen

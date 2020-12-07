@@ -49,7 +49,7 @@ const NewChatListScreenView = ({
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.email}</Text>
             </View>
-            <Text style={styles.msgTxt}>{item.hospital.name}</Text>
+            <Text style={styles.msgTxt}>Mulago</Text>
             <Text style={styles.msgTxt}>0705432558</Text>
           </View>
         </View>
@@ -58,10 +58,7 @@ const NewChatListScreenView = ({
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-      }}>
+    <View style={globalStyles.loader}>
       {isFetching ? (
         <Loader />
       ) : (

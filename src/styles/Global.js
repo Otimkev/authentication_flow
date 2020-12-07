@@ -1,22 +1,22 @@
 import {StyleSheet} from 'react-native';
+import {primary_color, body_color} from '../styles/color';
 
 export const globalStyles = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: body_color,
   },
   inputContainer: {
     height: 45,
     width: 350,
-    borderColor: '#007360',
-    backgroundColor: '#fff',
-    padding: 10,
-    borderBottomColor: '#007360',
+    fontSize: 18,
+    padding: 5,
+    borderBottomColor: primary_color,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    margin: 5,
-    // justifyContent: 'center',
-    fontSize: 16,
+    backgroundColor: '#fff',
+    borderRadius: 10,
   },
   TextInput: {
     paddingHorizontal: 10,
@@ -26,7 +26,7 @@ export const globalStyles = StyleSheet.create({
   },
   Button: {
     width: '60%',
-    backgroundColor: '#007360',
+    backgroundColor: primary_color,
     borderRadius: 10,
     height: 45,
     alignItems: 'center',
@@ -41,7 +41,7 @@ export const globalStyles = StyleSheet.create({
   },
   ButtonRow: {
     width: '47%',
-    backgroundColor: '#007360',
+    backgroundColor: primary_color,
     borderRadius: 10,
     height: 50,
     alignItems: 'center',
@@ -53,12 +53,6 @@ export const globalStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  InputBorderBottom: {
-    fontSize: 18,
-    padding: 5,
-    borderBottomColor: '#007360',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
   Heading: {
     flex: 1,
     width: '60%',
@@ -69,11 +63,11 @@ export const globalStyles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     fontWeight: 'bold',
-    color: '#007360',
+    color: primary_color,
     fontSize: 18,
   },
   BlockHeading: {
-    backgroundColor: '#007360',
+    backgroundColor: primary_color,
     padding: 10,
     color: '#fff',
     fontWeight: 'bold',
@@ -86,7 +80,7 @@ export const globalStyles = StyleSheet.create({
   },
   Card: {
     width: '100%',
-    backgroundColor: '#007360',
+    backgroundColor: primary_color,
     borderRadius: 10,
     height: 150,
     alignItems: 'center',
@@ -106,7 +100,7 @@ export const globalStyles = StyleSheet.create({
   nameTxt: {
     marginLeft: 15,
     fontWeight: 'normal',
-    color: '#007360',
+    color: primary_color,
     fontSize: 20,
     width: 170,
     textTransform: 'capitalize',
@@ -119,10 +113,10 @@ export const globalStyles = StyleSheet.create({
   testInput: {
     height: 45,
     width: 350,
-    borderColor: '#007360',
+    borderColor: primary_color,
     backgroundColor: '#fff',
     padding: 10,
-    borderBottomColor: '#007360',
+    borderBottomColor: primary_color,
     borderBottomWidth: StyleSheet.hairlineWidth,
     margin: 5,
     // justifyContent: 'center',
@@ -135,10 +129,21 @@ export const globalStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    borderColor: '#007360',
+    borderColor: primary_color,
     backgroundColor: '#fff',
   },
   loader: {
     flex: 1,
+  },
+  pickerContainer: {
+    // height: 45,
+    // width: 350,
+    //fontSize: 18,
+    //padding: 5,
+    // borderBottomColor: primary_color,
+    // borderBottomWidth: StyleSheet.hairlineWidth,
+    backgroundColor: '#fff',
+    //borderRadius: 10,
+    color: primary_color,
   },
 });

@@ -71,7 +71,7 @@ const AddPatientScreenView = ({
           <View style={globalStyles.Row}>
             <View style={styles.inputWrap}>
               <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="First name"
                 onChangeText={(text) => {
                   setFirstName(text);
@@ -80,7 +80,7 @@ const AddPatientScreenView = ({
             </View>
             <View style={styles.inputWrap}>
               <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="Last name"
                 onChangeText={(text) => {
                   setLastName(text);
@@ -92,12 +92,12 @@ const AddPatientScreenView = ({
           <View style={globalStyles.Row}>
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Gender</Text>
-              <Picker>
+              <Picker style={globalStyles.pickerContainer}>
                 <Picker.Item label="Male" value="Male" />
                 <Picker.Item label="Female" value="Female" />
               </Picker>
               {/* <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="Gender"
                 onChangeText={(text) => {
                   setGender(text);
@@ -107,7 +107,7 @@ const AddPatientScreenView = ({
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Age</Text>
               <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="Age"
                 onChangeText={(text) => {
                   setDateOfBirth(text);
@@ -121,7 +121,7 @@ const AddPatientScreenView = ({
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Address</Text>
               <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="Address"
                 onChangeText={(text) => {
                   setAddress(text);
@@ -133,14 +133,14 @@ const AddPatientScreenView = ({
           <View style={globalStyles.NormalFlex}>
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Marital Status</Text>
-              <Picker>
+              <Picker style={globalStyles.pickerContainer}>
                 <Picker.Item label="Single" value="Single" />
                 <Picker.Item label="Married" value="Married" />
                 <Picker.Item label="Divorced" value="Divorced" />
                 <Picker.Item label="Widowed" value="Widowed" />
               </Picker>
               {/* <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="Marital Status"
                 onChangeText={(text) => {
                   setMaritalStatus(text);
@@ -153,7 +153,7 @@ const AddPatientScreenView = ({
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Phone Number</Text>
               <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="Phone Number"
                 onChangeText={(text) => {
                   setPhoneNumber(text);
@@ -168,7 +168,7 @@ const AddPatientScreenView = ({
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Email Address</Text>
               <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="Email"
                 onChangeText={(text) => {
                   setEmail(text);
@@ -180,7 +180,7 @@ const AddPatientScreenView = ({
           <View style={globalStyles.Row}>
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Ward</Text>
-              <Picker>
+              <Picker style={globalStyles.pickerContainer}>
                 <Picker.Item label="General Ward" value="General Ward" />
                 <Picker.Item label="Cardiology" value="Cardiology" />
                 <Picker.Item label="ICU" value="ICU" />
@@ -194,7 +194,7 @@ const AddPatientScreenView = ({
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Bed</Text>
               <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="Bed"
                 onChangeText={(text) => {
                   setBed(text);
@@ -210,7 +210,7 @@ const AddPatientScreenView = ({
           <View style={globalStyles.Row}>
             <View style={styles.inputWrap}>
               <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="First name"
                 onChangeText={(text) => {
                   setEmergencyFirstName(text);
@@ -220,7 +220,7 @@ const AddPatientScreenView = ({
 
             <View style={styles.inputWrap}>
               <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="Last name"
                 onChangeText={(text) => {
                   setEmergencyLastName(text);
@@ -233,7 +233,7 @@ const AddPatientScreenView = ({
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Phone Number</Text>
               <TextInput
-                style={globalStyles.InputBorderBottom}
+                style={globalStyles.inputContainer}
                 placeholder="eg. 0777..."
                 onChangeText={(text) => {
                   setEmergencyPhoneNumber(text);
@@ -247,7 +247,7 @@ const AddPatientScreenView = ({
           <View style={globalStyles.NormalFlex}>
             <View style={styles.inputWrap}>
               <Text style={globalStyles.Heading}>Relationship</Text>
-              <Picker>
+              <Picker style={globalStyles.pickerContainer}>
                 <Picker.Item label="Mother" value="Mother" />
                 <Picker.Item label="Father" value="Father" />
                 <Picker.Item label="Sister" value="Sister" />
