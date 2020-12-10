@@ -18,7 +18,6 @@ import {globalStyles} from '../../styles/Global';
 const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
   const id = route.params.patientId;
   const userId = route.params.userId;
-  console.log(aPatient);
   useEffect(() => {
     getAPatient(id);
   }, [getAPatient, id]);
@@ -74,19 +73,12 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
         <Text style={styles.info}>{id}</Text>
       </View>
       <TouchableOpacity
-        style={globalStyles.Button}
+        style={globalStyles.ButtonViewTests}
         onPress={() => {
           navigation.navigate('Test Category', {patientId: id});
         }}>
         <Text style={globalStyles.ButtonText}>VIEW TESTS</Text>
       </TouchableOpacity>
-      {/* <TouchableOpacity
-        style={globalStyles.ButtonRow}
-        onPress={() => {
-          navigation.navigate('SpecialistList', {patientId: id});
-        }}>
-        <Text style={globalStyles.ButtonText}>SHARE</Text>
-      </TouchableOpacity> */}
     </ScrollView>
   );
 };

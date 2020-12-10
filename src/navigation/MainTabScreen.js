@@ -35,20 +35,13 @@ import PharmacologyScreen from './myScreens/patient/PatientTests/Pharmacology';
 import PregnancyScreen from './myScreens/patient/PatientTests/Pregnancy';
 import ThyroidScreen from './myScreens/patient/PatientTests/Thyroid';
 import TumourMarkersScreen from './myScreens/patient/PatientTests/TumorMarkers';
-// import WardsScreen from './myScreens/WardsScreen';
-// import SpecialistScreen from './myScreens/SpecialistScreen';
-// import SettingsScreen from './myScreens/SettingsScreen';
-
+import InvitationStack from './myScreens/NotificationStack';
 const HomeStack = createStackNavigator();
 const ChatsStack = createStackNavigator();
 const PatientsStack = createStackNavigator();
 const ProfilesStack = createStackNavigator();
 const NotificationsStack = createStackNavigator();
 const MaternityWardStack = createStackNavigator();
-// const WardsStack = createStackNavigator();
-// const SpecialistStack = createStackNavigator();
-// const SettingsStack = createStackNavigator();
-
 const Tab = createMaterialBottomTabNavigator();
 const color = '#fff';
 const MainTabScreen = () => (
@@ -82,7 +75,7 @@ const MainTabScreen = () => (
     />
     <Tab.Screen
       name="Notifications"
-      component={NotificationsStackScreen}
+      component={InvitationStack}
       options={{
         tabBarLabel: 'Notifications',
         tabBarColor: '#007360',
@@ -218,7 +211,9 @@ const PatientStackScreen = ({navigation}) => (
             size={20}
             backgroundColor="#007360"
             onPress={() => {
-              navigation.navigate('SpecialistList');
+              navigation.navigate('SpecialistList', {
+                patientId: route.params.patientId,
+              });
             }}
           />
         ),
@@ -405,7 +400,7 @@ const NotificationsStackScreen = ({navigation}) => (
     }}>
     <NotificationsStack.Screen
       name="Notifications"
-      component={NoticationScreen}
+      component={NotificationsStackScreen}
       options={{
         headerLeft: () => (
           <Icon.Button

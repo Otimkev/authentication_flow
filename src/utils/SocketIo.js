@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
-import {API_URL} from './config/Urls';
-const socket = io(`${API_URL}`, {
+import {BASE_URL} from './config/Urls';
+const socket = io(`${BASE_URL}`, {
   transports: ['websocket'],
   jsonp: false,
   rejectUnauthorized: '-',
