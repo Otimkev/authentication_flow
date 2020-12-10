@@ -31,7 +31,11 @@ const TestListScreenView = ({
         <View style={styles.row}>
           <View>
             <View style={styles.nameContainer}>
-              <Text style={globalStyles.nameTxt} >
+              <Text
+                style={globalStyles.nameTxt}
+                // numberOfLines={2}
+              // ellipsizeMode="head"
+              >
                 {item.label}
               </Text>
             </View>
