@@ -50,12 +50,6 @@ const NoticationScreenView = ({
                 ellipsizeMode="tail">
                 {`${item.patient.firstName} ${item.patient.lastName}`}
               </Text>
-              <View style={{marginHorizontal: 8}}>
-                <Button title="Accept" color="#78af38" />
-              </View>
-              <View>
-                <Button title="Decline" color="red" />
-              </View>
             </View>
             <View style={styles.msgContainer}>
               <Text
@@ -88,7 +82,15 @@ const NoticationScreenView = ({
           <View
             style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
             <View style={{marginHorizontal: 8}}>
-              <Button title="Comfirm" color="#78af38" />
+              <Button
+                title="Comfirm"
+                color="#78af38"
+                onPress={() =>
+                  navigation.navigate('view', {
+                    patientId: modalContent.patient.id,
+                  })
+                }
+              />
             </View>
             <View>
               <Button title="Decline" color="red" />

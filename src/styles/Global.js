@@ -34,10 +34,17 @@ export const globalStyles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 10,
   },
+  ButtonViewTests: {
+    backgroundColor: primary_color,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 8,
+    height: 40,
+  },
   ButtonText: {
-    fontSize: 18,
+    // fontSize: 18,
     color: '#fff',
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
   },
   ButtonRow: {
     width: '47%',
