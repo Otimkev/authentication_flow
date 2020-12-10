@@ -37,6 +37,7 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
         <TextInput
           //placeholder="Username"
           style={globalStyles.TextInput}
+          autoCompleteType="email"
           onChangeText={(text) => {
             setUsername(text);
           }}

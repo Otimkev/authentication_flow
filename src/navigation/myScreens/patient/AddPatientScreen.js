@@ -71,6 +71,7 @@ const AddPatientScreenView = ({
             <Text style={globalStyles.legend2}>First Name</Text>
             <TextInput
               style={globalStyles.TextInput}
+              autoCapitalize="words"
               //placeholder="First name"
               onChangeText={(text) => {
                 setFirstName(text);
@@ -81,6 +82,7 @@ const AddPatientScreenView = ({
             <Text style={globalStyles.legend2}>Last Name</Text>
             <TextInput
               style={globalStyles.TextInput}
+              autoCapitalize="words"
               //placeholder="Last name"
               onChangeText={(text) => {
                 setLastName(text);
@@ -118,6 +120,7 @@ const AddPatientScreenView = ({
             <Text style={globalStyles.legend2}>Address</Text>
             <TextInput
               style={globalStyles.TextInput}
+              autoCompleteType="street-address"
               //placeholder="Address"
               onChangeText={(text) => {
                 setAddress(text);
