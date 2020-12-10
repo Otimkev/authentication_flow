@@ -31,7 +31,7 @@ const TestListScreenView = ({
         <View style={styles.row}>
           <View>
             <View style={styles.nameContainer}>
-              <Text style={globalStyles.nameTxt} numberOfLines={1}>
+              <Text style={globalStyles.nameTxt} >
                 {item.label}
               </Text>
             </View>
