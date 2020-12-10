@@ -46,6 +46,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           <TextInput
             //placeholder="First Name"
             style={globalStyles.TextInput}
+            autoCapitalize="words"
             onChangeText={(text) => {
               setFirstName(text);
             }}
@@ -57,6 +58,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           <TextInput
             //placeholder="Last Name"
             style={globalStyles.TextInput}
+            autoCapitalize="words"
             onChangeText={(text) => {
               setLastName(text);
             }}

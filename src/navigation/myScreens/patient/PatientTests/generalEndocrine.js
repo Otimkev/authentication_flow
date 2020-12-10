@@ -74,168 +74,226 @@ const GeneralEndocrineScreenView = ({
   return (
     <ScrollView>
       <View style={styles.loginContainer}>
-        <View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Hirsutism Profile</Text>
           <TextInput
-            placeholder="Hirsutism Profile"
-            style={globalStyles.inputContainer}
+            // placeholder="Hirsutism Profile"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setHirsutismProfile(text);
             }}
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Testosterone/FTI</Text>
           <TextInput
-            placeholder="Testosterone/FTI"
-            style={globalStyles.inputContainer}
+            //placeholder="Testosterone/FTI"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setTestosteroneFTI(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>DHEA</Text>
           <TextInput
-            placeholder="DHEA"
-            style={globalStyles.inputContainer}
+            //placeholder="DHEA"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setDHEA(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Androstenedione</Text>
           <TextInput
-            placeholder="Androstenedione"
-            style={globalStyles.inputContainer}
+            //placeholder="Androstenedione"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setAndrostenedione(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>17-OH Progesterone</Text>
           <TextInput
-            placeholder="17-OH Progesterone"
-            style={globalStyles.inputContainer}
+            //placeholder="17-OH Progesterone"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setOHProgesterone(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Infertility Screen (M or F)</Text>
           <TextInput
-            placeholder="Infertility Screen (M or F)"
-            style={globalStyles.inputContainer}
+            //placeholder="Infertility Screen (M or F)"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setInfertilityScreen(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>E2</Text>
           <TextInput
-            placeholder="E2"
-            style={globalStyles.inputContainer}
+            //placeholder="E2"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setE2(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Progesterone</Text>
           <TextInput
-            placeholder="Progesterone"
-            style={globalStyles.inputContainer}
+            //placeholder="Progesterone"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setProgesterone(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>FSH</Text>
           <TextInput
-            placeholder="FSH"
-            style={globalStyles.inputContainer}
+            //placeholder="FSH"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setFSH(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>LH</Text>
           <TextInput
-            placeholder="LH"
-            style={globalStyles.inputContainer}
+            //placeholder="LH"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setLH(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Prolactin</Text>
           <TextInput
-            placeholder="Prolactin"
-            style={globalStyles.inputContainer}
+            //placeholder="Prolactin"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setProlactin(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Anti-Mullerian Hormone</Text>
           <TextInput
-            placeholder="Anti-Mullerian Hormone"
-            style={globalStyles.inputContainer}
+            //placeholder="Anti-Mullerian Hormone"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setAntiMullerianHormone(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>ACTH - on ice</Text>
           <TextInput
-            placeholder="ACTH - on ice"
-            style={globalStyles.inputContainer}
+            //placeholder="ACTH - on ice"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setACTH(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Cortisol</Text>
           <TextInput
-            placeholder="Cortisol"
-            style={globalStyles.inputContainer}
+            //placeholder="Cortisol"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setCortisol(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Cortisol - 24hr urine</Text>
           <TextInput
-            placeholder="Cortisol - 24hr urine"
-            style={globalStyles.inputContainer}
+            //placeholder="Cortisol - 24hr urine"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setCortisol24hrUrine(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Gastrin - fasting on ice</Text>
           <TextInput
-            placeholder="Gastrin - fasting on ice"
-            style={globalStyles.inputContainer}
+            //placeholder="Gastrin - fasting on ice"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setGastrin(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Parathyroid Hormone</Text>
           <TextInput
-            placeholder="Parathyroid Hormone"
-            style={globalStyles.inputContainer}
+            //placeholder="Parathyroid Hormone"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setParathyroidHormone(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>IGF1 + IGFBP3</Text>
           <TextInput
-            placeholder="IGF1 + IGFBP3"
-            style={globalStyles.inputContainer}
+            //placeholder="IGF1 + IGFBP3"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setIGF1_IGFBP3(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Insulin</Text>
           <TextInput
-            placeholder="Insulin"
-            style={globalStyles.inputContainer}
+            //placeholder="Insulin"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setInsulin(text);
             }}
             keyboardType="phone-pad"
           />
+        </View>
+        <View style={globalStyles.fieldSet}>
+          <Text style={globalStyles.legend}>Growth Hormone</Text>
           <TextInput
-            placeholder="Growth Hormone"
-            style={globalStyles.inputContainer}
+            //placeholder="Growth Hormone"
+            style={globalStyles.TextInput}
             onChangeText={(text) => {
               setGrowthHormone(text);
             }}
             keyboardType="phone-pad"
           />
         </View>
-        <View style={styles.button}>
+        {/* <View style={styles.button}>
           <Button
             title="Submit"
             color="#007360"
@@ -246,7 +304,17 @@ const GeneralEndocrineScreenView = ({
               navigation.navigate('Patient Information');
             }}
           />
-        </View>
+        </View> */}
+        <TouchableOpacity
+          style={globalStyles.Button}
+          onPress={() => {
+            createTest(patientId, testData);
+            console.log(addTestData);
+            showToE2('Successful');
+            navigation.navigate('Patient Information');
+          }}>
+          <Text style={styles.loginText}>SUBMIT</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
