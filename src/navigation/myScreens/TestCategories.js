@@ -40,10 +40,7 @@ export const TestCategoryScreenView = ({
         <View style={styles.row}>
           <View>
             <View style={styles.nameContainer}>
-              <Text
-                style={globalStyles.nameTxt}
-                numberOfLines={1}
-                ellipsizeMode="tail">
+              <Text style={globalStyles.nameTxt} numberOfLines={1}>
                 {item.category.label}
               </Text>
             </View>
