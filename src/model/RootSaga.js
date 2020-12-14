@@ -22,6 +22,8 @@ import {fetchChatRoomsSaga} from './chat/loadChatRooms/Saga';
 import {getChatRoomMessagesSaga} from './chat/loadMessages/Saga';
 import {fetchAllTestCategoriesSaga} from './patient/getAllTestCategories/Saga';
 import {getCategoryTestsSaga} from './test/getCategoryTests/Saga';
+import {getInvitedPatientTestSaga} from './test/loadTestsInvitedPatientTests/Saga';
+import {getComfiredPatientInvitesSaga} from './patient/getComfirmedInvites/Saga';
 
 function* RootSaga() {
   yield all([
@@ -47,6 +49,8 @@ function* RootSaga() {
     fork(getChatRoomMessagesSaga),
     fork(fetchAllTestCategoriesSaga),
     fork(getCategoryTestsSaga),
+    fork(getInvitedPatientTestSaga),
+    fork(getComfiredPatientInvitesSaga),
   ]);
 }
 

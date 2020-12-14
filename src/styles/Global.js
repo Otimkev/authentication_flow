@@ -110,7 +110,6 @@ export const globalStyles = StyleSheet.create({
     fontWeight: 'normal',
     color: primary_color,
     fontSize: 20,
-    width: 170,
     textTransform: 'capitalize',
   },
   testContainer: {

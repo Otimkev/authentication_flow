@@ -18,6 +18,8 @@ import {messagesReducer} from './chat/loadMessages/Reducer';
 import {chatUsersReducer} from './chat/users/Reducer';
 import {testCategoriesReducer} from './patient/getAllTestCategories/Reducer';
 import {getCategoryTestsReducer} from './test/getCategoryTests/Reducer';
+import {getInvitedPatientTestsReducer} from './test/loadTestsInvitedPatientTests/Reducer';
+import {getComfiredPatientsReducer} from './patient/getComfirmedInvites/Reducer';
 
 export const RootReducer = combineReducers({
   mPatients: PatientReducer,
@@ -39,5 +41,7 @@ export const RootReducer = combineReducers({
   chatUsers: chatUsersReducer,
   getAllTestCategories: testCategoriesReducer,
   getCategoryTests: getCategoryTestsReducer,
+  getInvitedPatientsTests: getInvitedPatientTestsReducer,
+  getComfiredPatientInvites: getComfiredPatientsReducer,
   // f: messagesReducerResponse,
 });

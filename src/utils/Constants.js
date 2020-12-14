@@ -86,3 +86,14 @@ export const GET_ALL_TEST_CATEGORIES_FAILURE = 'getAllTestCategoriesFailure';
 export const GET_ALL_CATEGORY_TEST_RESPONSE = 'getCategoryTestResponse';
 export const GET_ALL_CATEGORY_TEST_SUCESS = 'getCategoryTestsSuccess';
 export const GET_ALL_CATEGORY_TEST_FAILURE = 'getCategoryTestsFailure';
+
+export const GET_INVITED_PATIENT_TESTS_RESPONSE =
+  'getInvitedPatientTestsResponse';
+export const GET_INVITED_PATIENT_TESTS_SUCESS =
+  'getInvitedPatientTestssSuccess';
+export const GET_INVITED_PATIENT_TESTS_FAILURE =
+  'getInvitedPatientTestssFailure';
+
+export const GET_COMFIRMED_INVITES_RESPONSE = 'getComfiredInvitesResponse';
+export const GET_COMFIRMED_INVITES_SUCESS = 'getComfiredInvitessSuccess';
+export const GET_COMFIRMED_INVITES_FAILURE = 'getComfiredInvitessFailure';
