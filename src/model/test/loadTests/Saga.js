@@ -1,7 +1,6 @@
 import {put, call, takeEvery, takeLatest} from 'redux-saga/effects';
 import * as actions from './Actions';
 import * as actionTypes from '../../../utils/Constants';
-import API from '../../QueryApi';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import {API_URL} from '../../../utils/config/Urls';

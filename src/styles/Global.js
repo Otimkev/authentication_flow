@@ -38,7 +38,8 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: primary_color,
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 8,
+    marginVertical: 16,
+    marginHorizontal: 8,
     height: 40,
   },
   ButtonText: {
@@ -109,7 +110,6 @@ export const globalStyles = StyleSheet.create({
     fontWeight: 'normal',
     color: primary_color,
     fontSize: 20,
-    width: 170,
     textTransform: 'capitalize',
   },
   testContainer: {

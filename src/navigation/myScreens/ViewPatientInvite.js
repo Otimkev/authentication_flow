@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {
   View,
   Text,
@@ -11,9 +11,17 @@ import {
 import {Modal, Portal, Provider} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {OPTIONS} from '../../styles/icons';
-import globalStyles from '../../styles/Global';
+import {globalStyles} from '../../styles/Global';
+import {connect} from 'react-redux';
+import {getTestCategoryResponse} from '../../model/test/loadTestCategories/Actions';
 
-const ViewPatientInviteScreenView = ({navigation, route}) => {
+const ViewPatientInviteScreenView = ({
+  navigation,
+  route,
+  getTestCategory,
+  testCategoryList,
+  isFetching,
+}) => {
   const [visible, setVisible] = useState(false);
   //const [modalContent, setModalContent] = useState('');
   const showModal = () => setVisible(true);
@@ -22,8 +30,11 @@ const ViewPatientInviteScreenView = ({navigation, route}) => {
     {id: 1, label: 'chat', screen: 'consult'},
     {id: 2, label: 'patient Info', screen: 'patient_info'},
   ]);
-  const id = route.params.patientId;
-  console.log(`view ==> ${id}`);
+  const {patientId, senderId} = route.params;
+
+  useEffect(() => {
+    getTestCategory(patientId);
+  }, [getTestCategory, patientId]);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -47,7 +58,7 @@ const ViewPatientInviteScreenView = ({navigation, route}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate(item.screen, {patientId: id});
+          navigation.navigate(item.screen, {patientId, senderId});
           hideModal();
         }}>
         <View>
@@ -60,6 +71,31 @@ const ViewPatientInviteScreenView = ({navigation, route}) => {
       </TouchableOpacity>
     );
   };
+
+  const renderCategoryItem = ({item}) => {
+    return (
+      <TouchableOpacity
+        style={globalStyles.mainContent}
+        onPress={() => {
+          navigation.navigate('invited_patient_test_graph', {
+            patientId,
+            label: item.category.label,
+            senderId,
+          });
+        }}>
+        <View style={styles.row}>
+          <View>
+            <View style={styles.nameContainer}>
+              <Text style={globalStyles.nameTxt} numberOfLines={1}>
+                {item.category.label}
+              </Text>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <Provider>
       <Portal>
@@ -81,15 +117,36 @@ const ViewPatientInviteScreenView = ({navigation, route}) => {
           </View>
         </Modal>
       </Portal>
-      <View style={styles.container}>
-        <Text>Settings screen</Text>
-        <Text>Not implemented!</Text>
+      <View style={globalStyles.loader}>
+        <FlatList
+          data={testCategoryList}
+          keyExtractor={(item) => {
+            return item.id.toString();
+          }}
+          renderItem={renderCategoryItem}
+        />
       </View>
     </Provider>
   );
 };
 
-export default ViewPatientInviteScreenView;
+const mapStateToProps = (state, props) => {
+  const {testCategoryList, isFetching} = state.getTestCategory;
+  return {testCategoryList, isFetching};
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  getTestCategory: (args) => {
+    dispatch(getTestCategoryResponse(args));
+  },
+});
+
+const ViewPatientInviteScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ViewPatientInviteScreenView);
+
+export default ViewPatientInviteScreen;
 
 const styles = StyleSheet.create({
   container: {
