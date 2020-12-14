@@ -17,12 +17,14 @@ import {Loader} from '../../components/Loader';
 import {globalStyles} from '../../styles/Global';
 import {acceptInvitation} from '../../model/patient/acceptInvite/AcceptInvite';
 import {showToast} from '../../components/Toast';
+import {getComfiredPatientsResponse} from '../../model/patient/getComfirmedInvites/Actions';
 const NoticationScreenView = ({
   getAllInvites,
   navigation,
   isFetching,
   invites,
   createInvites,
+  getAcceptedPatients,
 }) => {
   useEffect(() => {
     getAllInvites();
@@ -113,6 +115,7 @@ const NoticationScreenView = ({
                     hideModal();
                   } else {
                     getAllInvites();
+                    getAcceptedPatients();
                     navigation.navigate('view', {
                       patientId: modalContent.patient.id,
                       senderId: modalContent.sender.id,
@@ -163,6 +166,9 @@ const mapDispatchToProps = (dispatch, props) => ({
     dispatch({
       type: GET_NOTIFICATIONS_RESPONSE,
     });
+  },
+  getAcceptedPatients: () => {
+    dispatch(getComfiredPatientsResponse());
   },
 });
 
