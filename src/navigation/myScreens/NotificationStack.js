@@ -7,15 +7,12 @@ import ViewPatientInviteScreenView from './ViewPatientInvite';
 import {NoticationScreen} from './NotificationScreen';
 import ConsultScreenView from './Consultscreen';
 import {ViewPatientInviteDataScreen} from './ViewPatientInviteData';
+import {ApatientsTestCategoryScreen} from './APatientsTestCategories';
+import {InvitedPatientTestGraphScreen} from './InvitedPatientTestGraph';
 
 const invitationStack = createStackNavigator();
 
 const InvitationStack = ({navigation}) => {
-  const mView = () => {
-    <View style={{flex: 1}}>
-      <Text>tests</Text>
-    </View>;
-  };
   return (
     <invitationStack.Navigator
       screenOptions={{
@@ -62,6 +59,20 @@ const InvitationStack = ({navigation}) => {
         options={{
           title: 'Patient Info',
         }}
+      />
+      <invitationStack.Screen
+        component={ApatientsTestCategoryScreen}
+        name="patient_test_category"
+        options={{
+          title: 'Test Category',
+        }}
+      />
+      <invitationStack.Screen
+        component={InvitedPatientTestGraphScreen}
+        name="invited_patient_test_graph"
+        options={({route}) => ({
+          title: route.params.label,
+        })}
       />
     </invitationStack.Navigator>
   );

@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../model/patient/getAllPatients/Actions';
 import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
+import {getComfiredPatientsResponse} from '../../model/patient/getComfirmedInvites/Actions';
 import * as actionTypes from '../../utils/Constants';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {
@@ -18,6 +19,7 @@ import {color} from 'react-native-reanimated';
 import {globalStyles} from '../../styles/Global';
 import {login} from '../../utils/SocketEvents';
 import AsyncStorage from '@react-native-community/async-storage';
+import {primary_color} from '../../styles/color';
 // import AddPatientScreen from '../myScreens/patient/AddPatientScreen';
 
 const PatientScreenView = ({
@@ -27,19 +29,23 @@ const PatientScreenView = ({
   patients,
   createPatient,
   isAddPatientLoading,
+  responseData,
+  getAcceptedPatients,
 }) => {
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
     filterUser();
     login({userId: currentUser});
     getAllPatients();
-  }, [currentUser, getAllPatients, isAddPatientLoading]);
+    getAcceptedPatients();
+  }, [currentUser, getAcceptedPatients, getAllPatients, isAddPatientLoading]);
   const filterUser = async () => {
     const userData = await AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
     setCurrentUser(data.result.id);
   };
-  const renderItem = ({item}) => {
+  console.log(responseData);
+  const renderItem = (item) => {
     return (
       <TouchableOpacity
         style={globalStyles.mainContent}
@@ -59,9 +65,6 @@ const PatientScreenView = ({
                 {`${item.firstName} ${item.lastName}`}
               </Text>
               <Text style={styles.mblTxt}>6 days ago</Text>
-              {/* <Text style={styles.mblTxt}>
-                <Icon name="share-a" color="#007360" size={24} />
-              </Text> */}
             </View>
             <View style={styles.msgContainer} />
           </View>
@@ -70,6 +73,49 @@ const PatientScreenView = ({
     );
   };
 
+  const renderItemShared = (item) => {
+    return (
+      <TouchableOpacity
+        style={globalStyles.mainContent}
+        onPress={() => {
+          navigation.navigate('Patient Information', {
+            patientId: item.patient.id,
+            patientNames: `${item.patient.firstName} ${item.patient.lastName}`,
+          });
+        }}>
+        <View style={styles.row}>
+          <View>
+            <View style={styles.nameContainer}>
+              <Text style={globalStyles.nameTxt} numberOfLines={1}>
+                {`${item.patient.firstName} ${item.patient.lastName}`}
+              </Text>
+              <Text style={styles.mblTxt}>0 minutes ago</Text>
+            </View>
+            <View style={styles.msgContainer}>
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: `${primary_color}`,
+                  marginLeft: 15,
+                  fontWeight: 'normal',
+                }}
+                numberOfLines={1}>
+                {`Received from Dr. ${item.sender.firstName} ${item.sender.lastName}`}
+              </Text>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  const renderFactory = ({item}) => {
+    if (item.isAccepted === true) {
+      return renderItemShared(item);
+    } else {
+      return renderItem(item);
+    }
+  };
   const isEmpty = () => {
     return (
       <View style={{flex: 1}}>
@@ -85,9 +131,9 @@ const PatientScreenView = ({
       ) : (
         <FlatList
           extra={true}
-          data={patients.reverse()}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={renderItem}
+          data={[...patients.reverse(), ...responseData]}
+          keyExtractor={(item) => Math.random()}
+          renderItem={renderFactory}
         />
       )}
       <FloatingAction
@@ -112,7 +158,8 @@ const PatientScreenView = ({
 const mapStateToProps = (state, props) => {
   const {patients, isFetching} = state.mPatients;
   const {isAddPatientLoading} = state.addPatient;
-  return {patients, isFetching, isAddPatientLoading};
+  const {responseData} = state.getComfiredPatientInvites;
+  return {patients, isFetching, isAddPatientLoading, responseData};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -123,6 +170,9 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
   createPatient: (args) => {
     dispatch(addPatientsResponse(args));
+  },
+  getAcceptedPatients: () => {
+    dispatch(getComfiredPatientsResponse());
   },
 });
 

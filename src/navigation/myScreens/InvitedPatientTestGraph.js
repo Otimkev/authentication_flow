@@ -1,10 +1,7 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {getTestResponse} from '../../model/test/loadTests/Actions';
-import {
-  getTestCategories,
-  getTestCategoriesResponse,
-} from '../../model/test/getCategoryTests/Actions';
+import {getInvitedPatientTestsResponse} from '../../model/test/loadTestsInvitedPatientTests/Actions';
+import {getTestCategoriesResponse} from '../../model/test/getCategoryTests/Actions';
 import {
   StyleSheet,
   Text,
@@ -18,7 +15,7 @@ import {primary_color} from '../../styles/color';
 import {LineChart} from 'react-native-chart-kit';
 import {Loader} from '../../components/Loader';
 import {ScrollView} from 'react-native-gesture-handler';
-const GraphScreenView = ({
+const InvitedPatientTestGraphScreenView = ({
   getAllTests,
   navigation,
   isFetching,
@@ -28,7 +25,7 @@ const GraphScreenView = ({
   categoryTests,
   getCategoryTests,
 }) => {
-  const {patientId, label} = route.params;
+  const {patientId, label, senderId} = route.params;
   const [test, setTest] = useState('');
   const [testData, setTestData] = useState([]);
   const [title, setTitle] = useState('');
@@ -40,7 +37,7 @@ const GraphScreenView = ({
     new Date().toDateString(item.createAt),
   );
   const val = patientTestData.map((item) => item.value);
-
+  console.log(label);
   const testGraph = () => {
     return (
       <View style={{flex: 1}}>
@@ -85,18 +82,6 @@ const GraphScreenView = ({
             </ScrollView>
           </View>
         )}
-        <View style={styles.button}>
-          <Button
-            color={primary_color}
-            title="Add Test"
-            onPress={() =>
-              navigation.navigate(`${label}`, {
-                patientId,
-                category: label,
-              })
-            }
-          />
-        </View>
       </View>
     );
   };
@@ -107,7 +92,7 @@ const GraphScreenView = ({
         onPress={() => {
           setTitle(item.value);
           setIsGraph(true);
-          getAllTests({patientId, category: label, test: item.value});
+          getAllTests({patientId, category: label, test: item.value}, senderId);
         }}>
         <View style={styles.row}>
           <View>
@@ -139,24 +124,24 @@ const GraphScreenView = ({
 };
 
 const mapStateToProps = (state, props) => {
-  const {patientTestData, isFetching} = state.getTests;
+  const {patientTestData, isFetching} = state.getInvitedPatientsTests;
   const {categoryTests, isLoading} = state.getCategoryTests;
   return {patientTestData, isFetching, categoryTests, isLoading};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  getAllTests: (args) => {
-    dispatch(getTestResponse(args));
+  getAllTests: (args, senderId) => {
+    dispatch(getInvitedPatientTestsResponse(args, senderId));
   },
   getCategoryTests: (args) => {
     dispatch(getTestCategoriesResponse(args));
   },
 });
 
-export const mGraphScreen = connect(
+export const InvitedPatientTestGraphScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(GraphScreenView);
+)(InvitedPatientTestGraphScreenView);
 
 const styles = StyleSheet.create({
   row: {
