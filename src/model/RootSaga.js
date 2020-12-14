@@ -39,7 +39,6 @@ function* RootSaga() {
     fork(checkUserToken),
     fork(destroySession),
     fork(authSagaLogin),
-    //new saga
     fork(registerSaga),
     fork(getTestCategorySaga),
     fork(sharePatientSaga),
