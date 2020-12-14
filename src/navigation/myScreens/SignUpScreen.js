@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#fff',
-    padding: 8,
+    padding: 10,
     justifyContent: 'center',
   },
   header: {

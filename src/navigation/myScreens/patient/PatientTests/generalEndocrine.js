@@ -306,7 +306,7 @@ const GeneralEndocrineScreenView = ({
           />
         </View> */}
         <TouchableOpacity
-          style={globalStyles.Button}
+          style={globalStyles.ButtonSmall}
           onPress={() => {
             createTest(patientId, testData);
             console.log(addTestData);

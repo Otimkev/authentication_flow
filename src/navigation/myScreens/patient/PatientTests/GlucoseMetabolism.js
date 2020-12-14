@@ -44,7 +44,7 @@ const GlucoseMetabolismScreenView = ({
     <View style={globalStyles.testContainer}>
       <View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>Glucose - Fasting</Text>
+          <Text style={globalStyles.legend2}>Glucose - Fasting</Text>
           <TextInput
             //placeholder="Glucose - Fasting"
             style={globalStyles.TextInput}
@@ -54,7 +54,7 @@ const GlucoseMetabolismScreenView = ({
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>Glucose - Random</Text>
+          <Text style={globalStyles.legend2}>Glucose - Random</Text>
           <TextInput
             //placeholder="Glucose - Random"
             style={globalStyles.TextInput}
@@ -65,7 +65,7 @@ const GlucoseMetabolismScreenView = ({
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>GTT 2hr 75g - standard</Text>
+          <Text style={globalStyles.legend2}>GTT 2hr 75g - standard</Text>
           <TextInput
             //placeholder="GTT 2hr 75g - standard"
             style={globalStyles.TextInput}
@@ -76,7 +76,7 @@ const GlucoseMetabolismScreenView = ({
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>HBA1C/Glycosylated Hb</Text>
+          <Text style={globalStyles.legend2}>HBA1C/Glycosylated Hb</Text>
           <TextInput
             //placeholder="HBA1C/Glycosylated Hb"
             style={globalStyles.TextInput}
@@ -87,7 +87,7 @@ const GlucoseMetabolismScreenView = ({
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>Microalbumin - urine</Text>
+          <Text style={globalStyles.legend2}>Microalbumin - urine</Text>
           <TextInput
             //placeholder="Microalbumin - urine"
             style={globalStyles.TextInput}
@@ -114,7 +114,7 @@ const GlucoseMetabolismScreenView = ({
         />
       </View> */}
       <TouchableOpacity
-        style={globalStyles.Button}
+        style={globalStyles.ButtonSmall}
         onPress={() => {
           createTest(patientId, testData);
           console.log(testData);

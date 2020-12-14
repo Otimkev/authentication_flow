@@ -23,62 +23,64 @@ const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
   }, [getAPatient, id]);
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.block}>
-        <Text style={styles.label}>Name: </Text>
-        <Text style={styles.info}>
-          {aPatient.firstName} {aPatient.lastName}
-        </Text>
+      <View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Name: </Text>
+          <Text style={styles.info}>
+            {aPatient.firstName} {aPatient.lastName}
+          </Text>
+        </View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Age: </Text>
+          <Text style={styles.info}>{aPatient.dateOfBirth}</Text>
+        </View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Contact: </Text>
+          <Text style={styles.info}>{aPatient.phoneNumber}</Text>
+        </View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Gender: </Text>
+          <Text style={styles.info}>{aPatient.gender}</Text>
+        </View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Address: </Text>
+          <Text style={styles.info}>{aPatient.address}</Text>
+        </View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Marital Status: </Text>
+          <Text style={styles.info}>{aPatient.maritalStatus}</Text>
+        </View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Next of Name: </Text>
+          <Text
+            style={
+              styles.info
+            }>{`${aPatient.emergencyFirstName} ${aPatient.emergencyLastName}`}</Text>
+        </View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Next of Kin Contact: </Text>
+          <Text style={styles.info}>{aPatient.emergencyPhoneNumber}</Text>
+        </View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Relationship: </Text>
+          <Text style={styles.info}>{aPatient.relationship}</Text>
+        </View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Patient's Ward: </Text>
+          <Text style={styles.info}>General Ward</Text>
+        </View>
+        <View style={styles.block}>
+          <Text style={styles.label}>Ward Bed: </Text>
+          <Text style={styles.info}>{id}</Text>
+        </View>
+        <TouchableOpacity
+          style={globalStyles.ButtonSmall}
+          onPress={() => {
+            navigation.navigate('Test Category', {patientId: id});
+          }}>
+          <Text style={globalStyles.ButtonText}>VIEW TESTS</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.block}>
-        <Text style={styles.label}>Age: </Text>
-        <Text style={styles.info}>{aPatient.dateOfBirth}</Text>
-      </View>
-      <View style={styles.block}>
-        <Text style={styles.label}>Contact: </Text>
-        <Text style={styles.info}>{aPatient.phoneNumber}</Text>
-      </View>
-      <View style={styles.block}>
-        <Text style={styles.label}>Gender: </Text>
-        <Text style={styles.info}>{aPatient.gender}</Text>
-      </View>
-      <View style={styles.block}>
-        <Text style={styles.label}>Address: </Text>
-        <Text style={styles.info}>{aPatient.address}</Text>
-      </View>
-      <View style={styles.block}>
-        <Text style={styles.label}>Marital Status: </Text>
-        <Text style={styles.info}>{aPatient.maritalStatus}</Text>
-      </View>
-      <View style={styles.block}>
-        <Text style={styles.label}>Next of Name: </Text>
-        <Text
-          style={
-            styles.info
-          }>{`${aPatient.emergencyFirstName} ${aPatient.emergencyLastName}`}</Text>
-      </View>
-      <View style={styles.block}>
-        <Text style={styles.label}>Next of Kin Contact: </Text>
-        <Text style={styles.info}>{aPatient.emergencyPhoneNumber}</Text>
-      </View>
-      <View style={styles.block}>
-        <Text style={styles.label}>Relationship: </Text>
-        <Text style={styles.info}>{aPatient.relationship}</Text>
-      </View>
-      <View style={styles.block}>
-        <Text style={styles.label}>Patient's Ward: </Text>
-        <Text style={styles.info}>General Ward</Text>
-      </View>
-      <View style={styles.block}>
-        <Text style={styles.label}>Ward Bed: </Text>
-        <Text style={styles.info}>{id}</Text>
-      </View>
-      <TouchableOpacity
-        style={globalStyles.ButtonViewTests}
-        onPress={() => {
-          navigation.navigate('Test Category', {patientId: id});
-        }}>
-        <Text style={globalStyles.ButtonText}>VIEW TESTS</Text>
-      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -102,7 +104,7 @@ const styles = StyleSheet.create({
   container: {
     //backgroundColor: '#fff',
     flex: 1,
-    padding: 10,
+    padding: 15,
     borderWidth: 2,
     borderColor: '#78af38',
   },

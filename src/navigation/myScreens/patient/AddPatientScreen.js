@@ -14,6 +14,7 @@ import {Picker} from '@react-native-community/picker';
 import * as actionCreators from '../../../model/patient/addPatient/Actions';
 import {connect} from 'react-redux';
 import {Loader} from '../../../components/Loader';
+import {primary_color} from '../../../styles/color';
 
 const AddPatientScreenView = ({
   navigation,
@@ -286,7 +287,7 @@ const styles = StyleSheet.create({
   },
   Card: {
     width: '60%',
-    backgroundColor: '#78af38',
+    backgroundColor: primary_color,
     borderRadius: 10,
     height: 60,
     alignItems: 'center',

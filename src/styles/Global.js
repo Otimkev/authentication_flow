@@ -34,12 +34,14 @@ export const globalStyles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 10,
   },
-  ButtonViewTests: {
+  ButtonSmall: {
+    borderRadius: 10,
     backgroundColor: primary_color,
     alignItems: 'center',
     justifyContent: 'center',
     margin: 8,
     height: 40,
+    marginTop: 30,
   },
   ButtonText: {
     // fontSize: 18,
@@ -114,7 +116,7 @@ export const globalStyles = StyleSheet.create({
   },
   testContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    //backgroundColor: '#fff',
     padding: 10,
   },
   testInput: {
@@ -161,7 +163,7 @@ export const globalStyles = StyleSheet.create({
     borderWidth: 1,
     //alignItems: 'center',
     borderColor: primary_color,
-    width: 300,
+    width: '95%',
   },
   legend: {
     position: 'absolute',

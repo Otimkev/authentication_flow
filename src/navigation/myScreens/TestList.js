@@ -34,7 +34,7 @@ const TestListScreenView = ({
               <Text
                 style={globalStyles.nameTxt}
                 // numberOfLines={2}
-              // ellipsizeMode="head"
+                // ellipsizeMode="head"
               >
                 {item.label}
               </Text>
