@@ -132,7 +132,7 @@ const PatientScreenView = ({
         <FlatList
           extra={true}
           data={[...patients.reverse(), ...responseData]}
-          keyExtractor={(item) => Math.random()}
+          keyExtractor={(item) => Math.random().toString()}
           renderItem={renderFactory}
         />
       )}

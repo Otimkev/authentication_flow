@@ -43,5 +43,4 @@ export const RootReducer = combineReducers({
   getCategoryTests: getCategoryTestsReducer,
   getInvitedPatientsTests: getInvitedPatientTestsReducer,
   getComfiredPatientInvites: getComfiredPatientsReducer,
-  // f: messagesReducerResponse,
 });
