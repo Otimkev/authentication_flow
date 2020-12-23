@@ -25,15 +25,15 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
 
   return (
     <View style={styles.loginContainer}>
-      <View>
+      <View style={styles.headerView}>
         <Image
-          source={require('../../assets/img/Criticare_Logo.jpg')}
+          source={require('../../assets/img/Crit.png')}
           style={styles.header}
         />
       </View>
 
       <View style={globalStyles.fieldSet}>
-        <Text style={globalStyles.legend}>Username</Text>
+        <Text style={globalStyles.legend2}>Username</Text>
         <TextInput
           //placeholder="Username"
           style={globalStyles.TextInput}
@@ -44,7 +44,7 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
         />
       </View>
       <View style={globalStyles.fieldSet}>
-        <Text style={globalStyles.legend}>Password</Text>
+        <Text style={globalStyles.legend2}>Password</Text>
         <TextInput
           //placeholder="Password"
           style={globalStyles.TextInput}
@@ -98,11 +98,11 @@ const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#fff',
+    //backgroundColor: '#fff',
     justifyContent: 'center',
   },
   header: {
-    width: 300,
+    width: 500,
     marginBottom: 60,
   },
   loginText: {

@@ -4,7 +4,7 @@ import * as actions from '../../model/patient/getAllPatients/Actions';
 import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
 import {getComfiredPatientsResponse} from '../../model/patient/getComfirmedInvites/Actions';
 import * as actionTypes from '../../utils/Constants';
-import Icon from 'react-native-vector-icons/Fontisto';
+//import Icon from 'react-native-vector-icons/Fontisto';
 import {
   StyleSheet,
   Text,

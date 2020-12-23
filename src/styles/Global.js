@@ -163,7 +163,7 @@ export const globalStyles = StyleSheet.create({
     borderWidth: 1,
     //alignItems: 'center',
     borderColor: primary_color,
-    width: '95%',
+    width: '90%',
   },
   legend: {
     position: 'absolute',
