@@ -1,18 +1,12 @@
 import 'react-native-gesture-handler';
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  TextInput,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {globalStyles} from '../../styles/Global';
 import * as actionCreators from '../../model/user/authentication/Actions';
 import {connect} from 'react-redux';
-import {login} from '../../utils/SocketEvents';
-import {Icon} from 'react-native-vector-icons/FontAwesome';
+import {Formik, Field} from 'formik';
+import * as yup from 'yup';
+import CustomInput from '../../components/CustomInput';
 
 const SignInScreenView = ({navigation, signin, currentUser}) => {
   const [username, setUsername] = useState('');
@@ -23,50 +17,65 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
     password: password,
   };
 
+  const loginValidationSchema = yup.object().shape({
+    username: yup
+      .string()
+      .min(4, 'Minimum Length of 4')
+      .required('Username is required'),
+    password: yup
+      .string()
+      .min(8, ({min}) => `Password must be at least ${min} characters`)
+      .required('Password is required'),
+  });
+
   return (
-    <View style={styles.loginContainer}>
-      <View>
+    <View style={globalStyles.container}>
+      <View style={styles.headerView}>
         <Image
-          source={require('../../assets/img/Criticare_Logo.jpg')}
+          source={require('../../assets/img/Crit.png')}
           style={styles.header}
         />
       </View>
-
-      <View style={globalStyles.fieldSet}>
-        <Text style={globalStyles.legend}>Username</Text>
-        <TextInput
-          //placeholder="Username"
-          style={globalStyles.TextInput}
-          autoCompleteType="email"
-          onChangeText={(text) => {
-            setUsername(text);
-          }}
-        />
-      </View>
-      <View style={globalStyles.fieldSet}>
-        <Text style={globalStyles.legend}>Password</Text>
-        <TextInput
-          //placeholder="Password"
-          style={globalStyles.TextInput}
-          onChangeText={(text) => {
-            setPassword(text);
-          }}
-        />
-      </View>
-
-      <TouchableOpacity
-        style={globalStyles.Button}
-        onPress={() => {
-          signin(userCredentials);
-          //login(userCredentials);
-        }}>
-        <Text style={styles.loginText}>LOGIN</Text>
-      </TouchableOpacity>
-
+      <Formik
+        validationSchema={loginValidationSchema}
+        initialValues={{
+          fullName: '',
+          confirmPassword: '',
+        }}
+        onSubmit={(values) => console.log(values)}>
+        {({isValid}) => (
+          <>
+            <Field
+              component={CustomInput}
+              name="username"
+              placeholder="Username"
+              onChange={(text) => {
+                setUsername(text);
+              }}
+            />
+            <Field
+              component={CustomInput}
+              name="password"
+              placeholder="Password"
+              secureTextEntry
+              onChange={(text) => {
+                setPassword(text);
+              }}
+            />
+            <TouchableOpacity
+              style={globalStyles.Button}
+              onPress={() => {
+                signin(userCredentials);
+              }}
+              disabled={!isValid}>
+              <Text style={styles.loginText}>LOGIN</Text>
+            </TouchableOpacity>
+          </>
+        )}
+      </Formik>
       <TouchableOpacity>
         <Text style={styles.forgot}>Forgot Password?</Text>
       </TouchableOpacity>
-
       <TouchableOpacity>
         <Text
           style={styles.text}
@@ -95,14 +104,8 @@ const SignInScreen = connect(
 )(SignInScreenView);
 
 const styles = StyleSheet.create({
-  loginContainer: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
   header: {
-    width: 300,
+    width: 500,
     marginBottom: 60,
   },
   loginText: {
