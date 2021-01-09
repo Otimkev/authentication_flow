@@ -9,7 +9,7 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import GetAPatient from '../../../../httpClient/repository/patient/GetAPatient';
+//import GetAPatient from '../../../../httpClient/repository/patient/GetAPatient';
 import ListHeader from '../../../../components/ListHeaderComponent';
 
 export default class Contacts extends Component {
@@ -20,16 +20,16 @@ export default class Contacts extends Component {
     };
   }
 
-  async componentDidMount() {
-    try {
-      const result = await GetAPatient.processGetAPatientTests(
-        this.props.route.params.patientId,
-      );
-      this.setState({calls: result});
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  // async componentDidMount() {
+  //   try {
+  //     const result = await GetAPatient.processGetAPatientTests(
+  //       this.props.route.params.patientId,
+  //     );
+  //     this.setState({calls: result});
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
   renderItem = ({item}) => {
     return (

@@ -7,6 +7,7 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: body_color,
+    alignItems: 'center',
   },
   inputContainer: {
     height: 45,
@@ -163,7 +164,7 @@ export const globalStyles = StyleSheet.create({
     borderWidth: 1,
     //alignItems: 'center',
     borderColor: primary_color,
-    width: '95%',
+    width: '90%',
   },
   legend: {
     position: 'absolute',

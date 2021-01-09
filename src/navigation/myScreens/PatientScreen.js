@@ -4,7 +4,7 @@ import * as actions from '../../model/patient/getAllPatients/Actions';
 import {addPatientsResponse} from '../../model/patient/addPatient/Actions';
 import {getComfiredPatientsResponse} from '../../model/patient/getComfirmedInvites/Actions';
 import * as actionTypes from '../../utils/Constants';
-import Icon from 'react-native-vector-icons/Fontisto';
+//import Icon from 'react-native-vector-icons/Fontisto';
 import {
   StyleSheet,
   Text,
@@ -92,15 +92,10 @@ const PatientScreenView = ({
               <Text style={styles.mblTxt}>0 minutes ago</Text>
             </View>
             <View style={styles.msgContainer}>
-              <Text
-                style={{
-                  fontSize: 16,
-                  color: `${primary_color}`,
-                  marginLeft: 15,
-                  fontWeight: 'normal',
-                }}
-                numberOfLines={1}>
-                {`Received from Dr. ${item.sender.firstName} ${item.sender.lastName}`}
+              <Text style={styles.sender} numberOfLines={1}>
+                {responseData
+                  ? `Received from Dr. ${item.sender.firstName} ${item.sender.lastName}`
+                  : ''}
               </Text>
             </View>
           </View>
@@ -209,5 +204,12 @@ const styles = StyleSheet.create({
   },
   share: {
     left: 80,
+  },
+  sender: {
+    fontSize: 12,
+    color: 'grey',
+    marginLeft: 15,
+    fontWeight: 'normal',
+    textTransform: 'capitalize',
   },
 });

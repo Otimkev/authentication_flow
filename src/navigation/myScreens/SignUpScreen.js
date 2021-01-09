@@ -42,7 +42,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
     <ScrollView>
       <View style={styles.loginContainer}>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>First Name</Text>
+          <Text style={globalStyles.legend2}>First Name</Text>
           <TextInput
             //placeholder="First Name"
             style={globalStyles.TextInput}
@@ -54,7 +54,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>Last Name</Text>
+          <Text style={globalStyles.legend2}>Last Name</Text>
           <TextInput
             //placeholder="Last Name"
             style={globalStyles.TextInput}
@@ -65,7 +65,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>Email Address</Text>
+          <Text style={globalStyles.legend2}>Email Address</Text>
           <TextInput
             //placeholder="Email Address"
             style={globalStyles.TextInput}
@@ -76,7 +76,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>Phone</Text>
+          <Text style={globalStyles.legend2}>Phone</Text>
           <TextInput
             //placeholder="Phone"
             style={globalStyles.TextInput}
@@ -88,7 +88,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>Speciality</Text>
+          <Text style={globalStyles.legend2}>Speciality</Text>
           <TextInput
             //placeholder="Facility"
             style={globalStyles.TextInput}
@@ -98,7 +98,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>Facility</Text>
+          <Text style={globalStyles.legend2}>Facility</Text>
           <TextInput
             //placeholder="Facility"
             style={globalStyles.TextInput}
@@ -108,7 +108,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>Password</Text>
+          <Text style={globalStyles.legend2}>Password</Text>
           <TextInput
             //placeholder="Password"
             style={globalStyles.TextInput}
@@ -120,7 +120,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
           />
         </View>
         <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend}>Retype Password</Text>
+          <Text style={globalStyles.legend2}>Retype Password</Text>
           <TextInput
             //placeholder="Retype Password"
             style={globalStyles.TextInput}
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#fff',
+    //backgroundColor: '#fff',
     padding: 10,
     justifyContent: 'center',
   },

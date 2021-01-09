@@ -24,7 +24,7 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
       .required('Username is required'),
     password: yup
       .string()
-      .min(8, ({min}) => `Password must be at least ${min} characters`)
+      .min(4, ({min}) => `Password must be at least ${min} characters`)
       .required('Password is required'),
   });
 
@@ -39,8 +39,8 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
       <Formik
         validationSchema={loginValidationSchema}
         initialValues={{
-          fullName: '',
-          confirmPassword: '',
+          username: '',
+          password: '',
         }}
         onSubmit={(values) => console.log(values)}>
         {({isValid}) => (
