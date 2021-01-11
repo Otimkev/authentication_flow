@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, TextInput, StyleSheet} from 'react-native';
+import {primary_color, body_color, input_color} from '../styles/color';
 
 const CustomInput = (props) => {
   const {
@@ -29,17 +30,18 @@ const CustomInput = (props) => {
 
 const styles = StyleSheet.create({
   textInput: {
+    padding: 10,
     height: 40,
-    width: '100%',
+    width: '95%',
     margin: 10,
-    backgroundColor: 'white',
-    borderColor: 'gray',
-    borderWidth: StyleSheet.hairlineWidth,
+    backgroundColor: input_color,
     borderRadius: 10,
   },
   errorText: {
-    fontSize: 10,
+    fontSize: 13,
     color: 'red',
+    margin: 0,
+    left: 120,
   },
   errorInput: {
     borderColor: 'red',

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
-import Attention from '../../components/AttentionComponent';
 import {globalStyles} from '../../styles/Global';
 import {Picker} from '@react-native-community/picker';
 import AsyncStorage from '@react-native-community/async-storage';

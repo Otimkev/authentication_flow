@@ -3,11 +3,10 @@ import {primary_color, body_color} from '../styles/color';
 
 export const globalStyles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 10,
     flex: 1,
     justifyContent: 'center',
     backgroundColor: body_color,
-    alignItems: 'center',
   },
   inputContainer: {
     height: 45,
@@ -34,6 +33,16 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 30,
     marginBottom: 10,
+  },
+  SubmitButton: {
+    width: 100,
+    height: 100,
+    borderRadius: 100 / 2,
+    backgroundColor: primary_color,
+    justifyContent: 'center',
+    alignItems: 'center',
+    left: 120,
+    marginTop: 10,
   },
   ButtonSmall: {
     borderRadius: 10,
@@ -63,6 +72,7 @@ export const globalStyles = StyleSheet.create({
   Row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    //alignSelf: 'flex-end',
   },
   Heading: {
     flex: 1,

@@ -1,24 +1,18 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import React from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {globalStyles} from '../../styles/Global';
 import * as actionCreators from '../../model/user/authentication/Actions';
 import {connect} from 'react-redux';
 import {Formik, Field} from 'formik';
 import * as yup from 'yup';
 import CustomInput from '../../components/CustomInput';
+import CustomButton from '../../components/CustomButton';
+import {primary_color, secondary_color} from '../../styles/color';
 
-const SignInScreenView = ({navigation, signin, currentUser}) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const userCredentials = {
-    email: username,
-    password: password,
-  };
-
+const SignInScreenView = ({navigation, signin}) => {
   const loginValidationSchema = yup.object().shape({
-    username: yup
+    email: yup
       .string()
       .min(4, 'Minimum Length of 4')
       .required('Username is required'),
@@ -30,59 +24,54 @@ const SignInScreenView = ({navigation, signin, currentUser}) => {
 
   return (
     <View style={globalStyles.container}>
+      {/* <View style={styles.header}>
+        <Text style={styles.headerText}>Criticare</Text>
+      </View> */}
       <View style={styles.headerView}>
-        <Image
-          source={require('../../assets/img/Crit.png')}
-          style={styles.header}
-        />
+        <Text style={styles.headerViewText}>Welcome Back</Text>
       </View>
       <Formik
         validationSchema={loginValidationSchema}
         initialValues={{
-          username: '',
+          email: '',
           password: '',
         }}
-        onSubmit={(values) => console.log(values)}>
-        {({isValid}) => (
+        onSubmit={(values) => signin(values)}>
+        {({isValid, handleSubmit}) => (
           <>
             <Field
               component={CustomInput}
-              name="username"
+              name="email"
               placeholder="Username"
-              onChange={(text) => {
-                setUsername(text);
-              }}
             />
             <Field
               component={CustomInput}
               name="password"
               placeholder="Password"
               secureTextEntry
-              onChange={(text) => {
-                setPassword(text);
-              }}
             />
-            <TouchableOpacity
-              style={globalStyles.Button}
-              onPress={() => {
-                signin(userCredentials);
-              }}
-              disabled={!isValid}>
-              <Text style={styles.loginText}>LOGIN</Text>
-            </TouchableOpacity>
+            <View>
+              <CustomButton onPress={handleSubmit} disabled={!isValid} />
+            </View>
           </>
         )}
       </Formik>
-      <TouchableOpacity>
-        <Text style={styles.forgot}>Forgot Password?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text
-          style={styles.text}
-          onPress={() => navigation.navigate('SignUpScreen')}>
-          Don't have an account? Sign up Here.
-        </Text>
-      </TouchableOpacity>
+      <View style={styles.Row}>
+        <View>
+          <TouchableOpacity>
+            <Text style={styles.forgot}>Forgot Password?</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity>
+            <Text
+              style={styles.text}
+              onPress={() => navigation.navigate('SignUpScreen')}>
+              New? <Text style={styles.span}>Sign Up</Text>
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };
@@ -104,22 +93,43 @@ const SignInScreen = connect(
 )(SignInScreenView);
 
 const styles = StyleSheet.create({
-  header: {
-    width: 500,
-    marginBottom: 60,
+  // header: {
+  //   width: 150,
+  //   height: 10,
+  //   borderRadius: 50,
+  //   backgroundColor: 'red',
+  //   transform: [{scaleX: 2}],
+  // },
+  headerView: {
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 30,
+    textAlign: 'center',
   },
-  loginText: {
-    fontSize: 24,
-    color: '#fff',
+  headerViewText: {
+    width: 200,
+    fontSize: 30,
+    color: primary_color,
+    textTransform: 'capitalize',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    left: 120,
   },
   text: {
-    color: '#aaae',
-    marginTop: 10,
+    color: secondary_color,
   },
   forgot: {
-    color: '#aaae',
-    fontSize: 11,
-    marginTop: 40,
+    color: primary_color,
+  },
+  Row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    padding: 20,
+  },
+  span: {
+    color: primary_color,
   },
 });
 
