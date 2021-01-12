@@ -33,6 +33,7 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 30,
     marginBottom: 10,
+   // padding: 0,
   },
   SubmitButton: {
     width: 100,
