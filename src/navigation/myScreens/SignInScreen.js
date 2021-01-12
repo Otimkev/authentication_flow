@@ -24,8 +24,15 @@ const SignInScreenView = ({navigation, signin}) => {
 
   return (
     <View style={globalStyles.container}>
-      {/* <View style={styles.header}>
-        <Text style={styles.headerText}>Criticare</Text>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>
+          inovate.<Text>Inform</Text>.inspire
+        </Text>
+      </View>
+      {/* <View>
+        <Text style={styles.headerText}>
+          inovate.<Text>Inform</Text>.inspire
+        </Text>
       </View> */}
       <View style={styles.headerView}>
         <Text style={styles.headerViewText}>Welcome Back</Text>
@@ -93,13 +100,22 @@ const SignInScreen = connect(
 )(SignInScreenView);
 
 const styles = StyleSheet.create({
-  // header: {
-  //   width: 150,
-  //   height: 10,
-  //   borderRadius: 50,
-  //   backgroundColor: 'red',
-  //   transform: [{scaleX: 2}],
-  // },
+  header: {
+    width: 170,
+    height: 170,
+    borderRadius: 120,
+    left: 100,
+    backgroundColor: 'red',
+    transform: [{scaleX: 2}, {rotate: '15deg'}],
+    marginBottom: 80,
+  },
+  headerText: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: 10,
+    transform: [{rotate: '-15deg'}],
+    fontStyle: 'normal',
+  },
   headerView: {
     width: 100,
     alignItems: 'center',
@@ -118,6 +134,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: secondary_color,
+    fontWeight: 'bold',
   },
   forgot: {
     color: primary_color,
@@ -130,6 +147,7 @@ const styles = StyleSheet.create({
   },
   span: {
     color: primary_color,
+    fontWeight: 'bold',
   },
 });
 

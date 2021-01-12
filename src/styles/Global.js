@@ -43,6 +43,7 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     left: 120,
     marginTop: 10,
+    marginBottom: 10,
   },
   ButtonSmall: {
     borderRadius: 10,

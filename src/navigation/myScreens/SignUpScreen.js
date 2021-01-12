@@ -6,10 +6,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  SafeAreaView,
   ToastAndroid,
   Image,
   ScrollView,
-  _ScrollView,
 } from 'react-native';
 import {globalStyles} from '../../styles/Global';
 import * as actionCreators from '../../model/user/authentication/Actions';
@@ -19,7 +19,7 @@ import {Formik, Field} from 'formik';
 import * as yup from 'yup';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
-import {primary_color, secondary_color} from '../../styles/color';
+import {secondary_color, primary_color} from '../../styles/color';
 
 const SignUpScreenView = ({navigation, signup, token}) => {
   // const [firstName, setFirstName] = useState('');
@@ -56,24 +56,17 @@ const SignUpScreenView = ({navigation, signup, token}) => {
       .required('Last Name is required'),
     phoneNumber: yup
       .string()
-      .matches(/(01)(\d){8}\b/, 'Enter a valid phone number')
+      .matches(/^[0-9]*$/, 'Enter a valid phone number')
+      .min(10, ({min}) => `Phone Number must be at least ${min} characters`)
+      .max(14, ({max}) => `Phone Number Shouldnt exceed ${max} characters`)
       .required('Phone number is required'),
     email: yup
       .string()
       .email('Please enter valid email')
       .required('Email is required'),
-    address: yup
-      .string()
-      .matches(/(\w.+\s).+/, 'Enter at least 2 Characters')
-      .required('Full name is required'),
-    speciality: yup
-      .string()
-      .matches(/(\w.+\s).+/, 'Enter at least 2 Characters')
-      .required('Full name is required'),
-    facility: yup
-      .string()
-      .matches(/(\w.+\s).+/, 'Enter at least 2 Characters')
-      .required('Full name is required'),
+    address: yup.string().required('Your Address is required'),
+    speciality: yup.string().required('What is your speciality?'),
+    facility: yup.string().required('Your Facility or Hospital is required'),
     password: yup
       .string()
       .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
@@ -85,97 +78,107 @@ const SignUpScreenView = ({navigation, signup, token}) => {
       )
       .min(8, ({min}) => `Password must be at least ${min} characters`)
       .required('Password is required'),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref('password')], 'Passwords do not match')
-      .required('Confirm password is required'),
+    // confirmPassword: yup
+    //   .string()
+    //   .oneOf([yup.ref('password')], 'Passwords do not match')
+    //   .required('Please repeat your Password'),
   });
 
   return (
-    <ScrollView>
-      <View style={globalStyles.container}>
-        <Formik
-          validationSchema={signUpValidationSchema}
-          initialValues={{
-            firstName: '',
-            lastName: '',
-            email: '',
-            phoneNumber: '',
-            address: 'Muyenga, Kampala',
-            speciality: '',
-            facility: '',
-            password: '',
-            confirmPassword: '',
-          }}
-          onSubmit={(values) => signup(values)}>
-          {({handleSubmit, isValid}) => (
-            <>
-              <Field
-                component={CustomInput}
-                name="firstName"
-                placeholder="First Name"
-              />
-              <Field
-                component={CustomInput}
-                name="lastName"
-                placeholder="Last Name"
-              />
-              <Field
-                component={CustomInput}
-                name="email"
-                placeholder="Email Address"
-                keyboardType="email-address"
-              />
-              <Field
-                component={CustomInput}
-                name="phoneNumber"
-                placeholder="Phone Number"
-                keyboardType="numeric"
-              />
-              <Field
-                component={CustomInput}
-                name="Address"
-                placeholder="Address"
-              />
-              <Field
-                component={CustomInput}
-                name="speciality"
-                placeholder="Speciality"
-              />
-              <Field
-                component={CustomInput}
-                name="facility"
-                placeholder="Facility"
-              />
-              <Field
-                component={CustomInput}
-                name="passowrd"
-                placeholder="Password"
-                secureTextEntry
-              />
-              <Field
-                component={CustomInput}
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                secureTextEntry
-              />
-
-              <View>
-                <CustomButton onPress={handleSubmit} disabled={!isValid} />
-              </View>
-            </>
-          )}
-        </Formik>
-        <TouchableOpacity style={styles.lowerText}>
-          <Text
-            style={styles.text}
-            onPress={() => navigation.navigate('SignInScreen')}>
-            <Text style={styles.span}>Have an account Already? </Text>
-            Sign In.
-          </Text>
-        </TouchableOpacity>
+    <SafeAreaView style={globalStyles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>
+          inovate.<Text style={styles.span}>Inform</Text>.inspire
+        </Text>
       </View>
-    </ScrollView>
+      <View style={styles.headerView}>
+        <Text style={styles.headerViewText}>Get Started</Text>
+      </View>
+      <ScrollView>
+        <View>
+          <Formik
+            validationSchema={signUpValidationSchema}
+            initialValues={{
+              firstName: '',
+              lastName: '',
+              email: '',
+              phoneNumber: '',
+              address: 'Muyenga, Kampala',
+              speciality: 'Cardiologist',
+              facility: '',
+              password: '',
+              confirmPassword: '',
+            }}
+            onSubmit={(values) => signup(values)}>
+            {({handleSubmit, isValid}) => (
+              <>
+                <Field
+                  component={CustomInput}
+                  name="firstName"
+                  placeholder="First Name"
+                />
+                <Field
+                  component={CustomInput}
+                  name="lastName"
+                  placeholder="Last Name"
+                />
+                <Field
+                  component={CustomInput}
+                  name="email"
+                  placeholder="Email Address"
+                  keyboardType="email-address"
+                />
+                <Field
+                  component={CustomInput}
+                  name="phoneNumber"
+                  placeholder="Phone Number"
+                  keyboardType="numeric"
+                />
+                <Field
+                  component={CustomInput}
+                  name="Address"
+                  placeholder="Address"
+                />
+                <Field
+                  component={CustomInput}
+                  name="speciality"
+                  placeholder="Speciality"
+                />
+                <Field
+                  component={CustomInput}
+                  name="facility"
+                  placeholder="Facility"
+                />
+                <Field
+                  component={CustomInput}
+                  name="passowrd"
+                  placeholder="Password"
+                  secureTextEntry
+                />
+                <Field
+                  component={CustomInput}
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  secureTextEntry
+                />
+
+                <View>
+                  <CustomButton onPress={handleSubmit} disabled={!isValid} />
+                </View>
+              </>
+            )}
+          </Formik>
+        </View>
+      </ScrollView>
+      <TouchableOpacity style={styles.lowerText}>
+        <Text
+          style={styles.text}
+          onPress={() => navigation.navigate('SignInScreen')}>
+          <Text style={styles.span}>Have an account Already? </Text>
+          Sign In.
+        </Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 
@@ -198,34 +201,9 @@ const SignUpScreen = connect(
 export default SignUpScreen;
 
 const styles = StyleSheet.create({
-  loginContainer: {
-    flex: 1,
-    alignItems: 'center',
-    //backgroundColor: '#fff',
-    padding: 10,
-    justifyContent: 'center',
-  },
-  header: {
-    width: 300,
-    marginBottom: 10,
-  },
-  loginText: {
-    fontSize: 24,
-    color: '#fff',
-  },
-  TextInput: {
-    paddingHorizontal: 10,
-    color: '#026062',
-    fontWeight: 'normal',
-    fontSize: 20,
-  },
-  forgot: {
-    color: '#aaae',
-    fontSize: 11,
-    textAlign: 'center',
-  },
   text: {
-    color: '#007360',
+    color: primary_color,
+    fontWeight: 'bold',
   },
   span: {
     color: secondary_color,
@@ -234,5 +212,34 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  header: {
+    marginBottom: 10,
+  },
+  headerText: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontStyle: 'normal',
+    fontSize: 20,
+    color: primary_color,
+    textAlign: 'center',
+    marginTop: 40,
+    fontWeight: 'bold',
+  },
+  headerView: {
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 30,
+    textAlign: 'center',
+  },
+  headerViewText: {
+    width: 200,
+    fontSize: 30,
+    color: primary_color,
+    textTransform: 'capitalize',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    left: 135,
   },
 });
