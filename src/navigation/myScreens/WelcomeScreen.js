@@ -4,10 +4,10 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {secondary_color, primary_color} from '../../styles/color';
 import {globalStyles} from '../../styles/Global';
 
-const WelcomeScreen = () => {
+const WelcomeScreen = (navigation) => {
   return (
     <View style={globalStyles.container}>
-      <View>
+      <View style={styles.header}>
         <Image
           source={require('../../assets/img/Criticare_Logo.jpg')}
           style={styles.header}
@@ -25,15 +25,23 @@ const WelcomeScreen = () => {
         />
       </View>
       <View>
-        <TouchableOpacity style={globalStyles.ButtonSmall}>
+        <TouchableOpacity
+          style={globalStyles.ButtonSmall}
+          onPress={() => navigation.navigate('SignInScreen')}>
           <Text style={globalStyles.ButtonText}>Sign In</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.choice}>
-        <Text style={styles.choiceText}>or</Text>
+      <View style={styles.row}>
+        <View style={styles.choice} />
+        <View>
+          <Text style={styles.choiceText}>OR</Text>
+        </View>
+        <View style={styles.choice} />
       </View>
       <View>
-        <TouchableOpacity style={globalStyles.ButtonSmall}>
+        <TouchableOpacity
+          style={globalStyles.ButtonSmall}
+          onPress={() => navigation.navigate('SignUpScreen')}>
           <Text style={globalStyles.ButtonText}>Get Started</Text>
         </TouchableOpacity>
       </View>
@@ -56,21 +64,41 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: primary_color,
     textAlign: 'center',
-    marginTop: 40,
     fontWeight: 'bold',
+    top: -20,
   },
   span: {
     color: secondary_color,
   },
   middleText: {
-    height: 300,
-    width: 300,
+    height: 260,
+    width: 350,
+    left: 10,
+    // top: -10,
   },
   choice: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1,
+    height: 1,
+    backgroundColor: 'grey',
+    top: 20,
   },
   choiceText: {
     color: 'grey',
+    width: 50,
+    textAlign: 'center',
+    top: 20,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+  },
+  header: {
+    padding: 10,
+    alignItems: 'center',
+    height: 150,
+    width: 350,
+    top: -20,
+    left: 10,
   },
 });

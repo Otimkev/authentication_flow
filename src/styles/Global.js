@@ -31,9 +31,8 @@ export const globalStyles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 30,
+    marginTop: 10,
     marginBottom: 10,
-   // padding: 0,
   },
   SubmitButton: {
     width: 100,
@@ -54,7 +53,8 @@ export const globalStyles = StyleSheet.create({
     marginVertical: 16,
     marginHorizontal: 8,
     height: 40,
-    marginTop: 30,
+    marginTop: 10,
+    top: 20,
   },
   ButtonText: {
     // fontSize: 18,
