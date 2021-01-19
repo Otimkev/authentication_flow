@@ -27,28 +27,31 @@ const AddPatientScreenView = ({
   responseData,
   isAddPatientLoading,
 }) => {
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
+  // const [date, setDate] = useState(new Date(1598051730000));
+  // const [mode, setMode] = useState('date');
+  // const [show, setShow] = useState(false);
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-  };
+  // const onChange = (event, selectedDate) => {
+  //   const currentDate = selectedDate || date;
+  //   setShow(Platform.OS === 'ios');
+  //   setDate(currentDate);
+  // };
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
+  // const showMode = (currentMode) => {
+  //   setShow(true);
+  //   setMode(currentMode);
+  // };
 
-  const showDatepicker = () => {
-    showMode('date');
-  };
+  // const showDatepicker = () => {
+  //   showMode('date');
+  // };
 
-  const showTimepicker = () => {
-    showMode('time');
-  };
+  // const showTimepicker = () => {
+  //   showMode('time');
+  // };
+  const [gender, setGender] = useState('');
+  const [maritalStatus, setMaritalStatus] = useState('');
+  const [relationship, setRelationship] = useState('');
 
   const signUpValidationSchema = yup.object().shape({
     firstName: yup
@@ -129,7 +132,12 @@ const AddPatientScreenView = ({
                   name="lastName"
                   placeholder="Last Name"
                 />
-                <Picker style={globalStyles.pickerContainer}>
+                <Picker
+                  selectedValue={this.state.gender}
+                  onValueChange={(itemValue, itemIndex) => ({
+                    gender: itemValue,
+                  })}
+                  style={globalStyles.pickerContainer}>
                   <Picker.Item label="Gender" value="0" />
                   <Picker.Item label="Male" value="Male" />
                   <Picker.Item label="Female" value="Female" />

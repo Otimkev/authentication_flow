@@ -10,6 +10,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Button,
   Image,
   FlatList,
 } from 'react-native';
