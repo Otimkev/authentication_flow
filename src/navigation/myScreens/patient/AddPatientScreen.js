@@ -5,10 +5,13 @@ import {
   Text,
   SafeAreaView,
   TouchableOpacity,
+  Button,
+  Platform,
   View,
 } from 'react-native';
 import CardView from 'react-native-cardview';
 import {globalStyles} from '../../../styles/Global';
+import RNDateTimePicker from '@react-native-community/datetimepicker';
 import {Picker} from '@react-native-community/picker';
 import * as actionCreators from '../../../model/patient/addPatient/Actions';
 import {connect} from 'react-redux';
@@ -24,6 +27,29 @@ const AddPatientScreenView = ({
   responseData,
   isAddPatientLoading,
 }) => {
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
+
   const signUpValidationSchema = yup.object().shape({
     firstName: yup
       .string()
@@ -103,12 +129,14 @@ const AddPatientScreenView = ({
                   name="lastName"
                   placeholder="Last Name"
                 />
-                <Field
-                  component={CustomInput}
-                  name="email"
-                  placeholder="Email Address"
-                  keyboardType="email-address"
-                />
+                <Picker style={globalStyles.pickerContainer}>
+                  <Picker.Item label="Gender" value="0" />
+                  <Picker.Item label="Male" value="Male" />
+                  <Picker.Item label="Female" value="Female" />
+                </Picker>
+                <View>
+                  <RNDateTimePicker mode="date" value={new Date()} />
+                </View>
                 <Field
                   component={CustomInput}
                   name="phoneNumber"

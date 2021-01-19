@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {primary_color, body_color} from '../styles/color';
+import {primary_color, body_color, input_color} from '../styles/color';
 
 export const globalStyles = StyleSheet.create({
   container: {
@@ -127,23 +127,6 @@ export const globalStyles = StyleSheet.create({
     fontSize: 20,
     textTransform: 'capitalize',
   },
-  testContainer: {
-    flex: 1,
-    //backgroundColor: '#fff',
-    padding: 10,
-  },
-  testInput: {
-    height: 45,
-    width: 350,
-    borderColor: primary_color,
-    backgroundColor: '#fff',
-    padding: 10,
-    borderBottomColor: primary_color,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    margin: 5,
-    // justifyContent: 'center',
-    fontSize: 16,
-  },
   mainContent: {
     marginBottom: 3,
     marginTop: 1,
@@ -158,44 +141,11 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
   },
   pickerContainer: {
-    // height: 45,
-    // width: 350,
-    //fontSize: 18,
-    //padding: 5,
-    // borderBottomColor: primary_color,
-    // borderBottomWidth: StyleSheet.hairlineWidth,
-    //backgroundColor: '#fff',
-    //borderRadius: 10,
-    color: primary_color,
-  },
-  fieldSet: {
+    padding: 10,
+    height: 40,
+    width: '95%',
     margin: 10,
-    paddingHorizontal: 10,
-    paddingBottom: 0,
+    backgroundColor: input_color,
     borderRadius: 10,
-    borderWidth: 1,
-    //alignItems: 'center',
-    borderColor: primary_color,
-    width: '90%',
-  },
-  legend: {
-    position: 'absolute',
-    top: -16,
-    left: 10,
-    fontWeight: 'bold',
-    backgroundColor: '#FFFFFF',
-    color: primary_color,
-    fontSize: 18,
-    padding: 3,
-  },
-  legend2: {
-    position: 'absolute',
-    top: -16,
-    left: 10,
-    fontWeight: 'bold',
-    backgroundColor: '#f2f2f2',
-    color: primary_color,
-    fontSize: 18,
-    padding: 3,
   },
 });
