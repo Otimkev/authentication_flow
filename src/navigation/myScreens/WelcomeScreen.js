@@ -4,7 +4,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {secondary_color, primary_color} from '../../styles/color';
 import {globalStyles} from '../../styles/Global';
 
-const WelcomeScreen = (navigation) => {
+const WelcomeScreen = ({navigation}) => {
   return (
     <View style={globalStyles.container}>
       <View style={styles.header}>

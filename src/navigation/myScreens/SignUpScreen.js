@@ -24,7 +24,7 @@ import {secondary_color, primary_color} from '../../styles/color';
 const SignUpScreenView = ({navigation, signup, token}) => {
   // const [firstName, setFirstName] = useState('');
   // const [lastName, setLastName] = useState('');
-  // const [phoneNumber, setPhoneNumber] = useState('');
+  // const [phoneNumber, setphoneNumber] = useState('');
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
   // const [hospital, setHospital] = useState('');
@@ -64,9 +64,9 @@ const SignUpScreenView = ({navigation, signup, token}) => {
       .string()
       .email('Please enter valid email')
       .required('Email is required'),
-    address: yup.string().required('Your Address is required'),
-    speciality: yup.string().required('What is your speciality?'),
-    facility: yup.string().required('Your Facility or Hospital is required'),
+    //address: yup.string().required('Your Address is required'),
+    //speciality: yup.string().required('What is your speciality?'),
+    hospital: yup.string().required('Your Hospital is required'),
     password: yup
       .string()
       .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
@@ -78,10 +78,10 @@ const SignUpScreenView = ({navigation, signup, token}) => {
       )
       .min(8, ({min}) => `Password must be at least ${min} characters`)
       .required('Password is required'),
-    // confirmPassword: yup
-    //   .string()
-    //   .oneOf([yup.ref('password')], 'Passwords do not match')
-    //   .required('Please repeat your Password'),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password')], 'Passwords do not match')
+      .required('Please repeat your Password'),
   });
 
   return (
@@ -103,9 +103,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
               lastName: '',
               email: '',
               phoneNumber: '',
-              address: 'Muyenga, Kampala',
-              speciality: 'Cardiologist',
-              facility: '',
+              hospital: '',
               password: '',
               confirmPassword: '',
             }}
@@ -136,22 +134,12 @@ const SignUpScreenView = ({navigation, signup, token}) => {
                 />
                 <Field
                   component={CustomInput}
-                  name="Address"
-                  placeholder="Address"
+                  name="hospital"
+                  placeholder="hospital"
                 />
                 <Field
                   component={CustomInput}
-                  name="speciality"
-                  placeholder="Speciality"
-                />
-                <Field
-                  component={CustomInput}
-                  name="facility"
-                  placeholder="Facility"
-                />
-                <Field
-                  component={CustomInput}
-                  name="passowrd"
+                  name="password"
                   placeholder="Password"
                   secureTextEntry
                 />
