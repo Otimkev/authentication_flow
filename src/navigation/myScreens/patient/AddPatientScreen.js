@@ -3,8 +3,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
-  ToastAndroid,
+  SafeAreaView,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -13,8 +12,11 @@ import {globalStyles} from '../../../styles/Global';
 import {Picker} from '@react-native-community/picker';
 import * as actionCreators from '../../../model/patient/addPatient/Actions';
 import {connect} from 'react-redux';
-import {Loader} from '../../../components/Loader';
-import {primary_color} from '../../../styles/color';
+import {Formik, Field} from 'formik';
+import * as yup from 'yup';
+import CustomInput from '../../../components/CustomInput';
+import CustomButton from '../../../components/CustomButton';
+import {secondary_color, primary_color} from '../../../styles/color';
 
 const AddPatientScreenView = ({
   navigation,
@@ -22,293 +24,234 @@ const AddPatientScreenView = ({
   responseData,
   isAddPatientLoading,
 }) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [gender, setGender] = useState('male');
-  const [dateOfBirth, setDateOfBirth] = useState('');
-  const [maritalStatus, setMaritalStatus] = useState('single');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [address, setAddress] = useState('');
-  const [emergencyFirstName, setEmergencyFirstName] = useState('');
-  const [emergencyLastName, setEmergencyLastName] = useState('');
-  const [emergencyPhoneNumber, setEmergencyPhoneNumber] = useState('');
-  const [relationship, setRelationship] = useState('friend');
-  const [ward, setWard] = useState('ICU');
-  const [bed, setBed] = useState('05');
-  const [mState, setmState] = useState(false);
-
-  const patientData = {
-    firstName: firstName,
-    lastName: lastName,
-    gender: gender,
-    dateOfBirth: dateOfBirth,
-    maritalStatus: maritalStatus,
-    email: email,
-    phoneNumber: phoneNumber,
-    address: address,
-    emergencyFirstName: emergencyFirstName,
-    emergencyLastName: emergencyLastName,
-    emergencyPhoneNumber: emergencyPhoneNumber,
-    relationship: 'relationship',
-    ward: 'ward',
-    bed: 'bed',
-  };
-
-  const showToast = (message) => {
-    ToastAndroid.show(message, ToastAndroid.SHORT);
-  };
-
+  const signUpValidationSchema = yup.object().shape({
+    firstName: yup
+      .string()
+      .matches(/^[A-Za-z]+$/, 'Name Must be in Alphabet Characters')
+      .min(2, ({min}) => `Password must be at least ${min} characters`)
+      .required('First Name is required'),
+    lastName: yup
+      .string()
+      .matches(/^[A-Za-z]+$/, 'Name Must be in Alphabet Characters')
+      .min(2, ({min}) => `Password must be at least ${min} characters`)
+      .required('Last Name is required'),
+    phoneNumber: yup
+      .string()
+      .matches(/^[0-9]*$/, 'Enter a valid phone number')
+      .min(10, ({min}) => `Phone Number must be at least ${min} characters`)
+      .max(14, ({max}) => `Phone Number Shouldnt exceed ${max} characters`)
+      .required('Phone number is required'),
+    email: yup
+      .string()
+      .email('Please enter valid email')
+      .required('Email is required'),
+    hospital: yup.string().required('Your Hospital is required'),
+    password: yup
+      .string()
+      .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
+      .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
+      .matches(/\d/, 'Password must have a number')
+      .matches(
+        /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+        'Password must have a special character',
+      )
+      .min(8, ({min}) => `Password must be at least ${min} characters`)
+      .required('Password is required'),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password')], 'Passwords do not match')
+      .required('Please repeat your Password'),
+  });
   return (
-    <ScrollView>
-      <CardView
-        style={styles.cardContainer}
-        cardElevation={2}
-        cardMaxElevation={2}
-        cornerRadius={5}>
-        <View style={globalStyles.container}>
-          {/* Patient Name Section */}
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>First Name</Text>
-            <TextInput
-              style={globalStyles.TextInput}
-              autoCapitalize="words"
-              //placeholder="First name"
-              onChangeText={(text) => {
-                setFirstName(text);
-              }}
-            />
-          </View>
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Last Name</Text>
-            <TextInput
-              style={globalStyles.TextInput}
-              autoCapitalize="words"
-              //placeholder="Last name"
-              onChangeText={(text) => {
-                setLastName(text);
-              }}
-            />
-          </View>
-          {/*Patient Age and Sex Section*/}
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Gender</Text>
-            <Picker style={globalStyles.pickerContainer}>
-              <Picker.Item label="Male" value="Male" />
-              <Picker.Item label="Female" value="Female" />
-            </Picker>
-            {/* <TextInput
-                style={globalStyles.TextInput}
-                //placeholder="Gender"
-                onChangeText={(text) => {
-                  setGender(text);
-                }}
-              /> */}
-          </View>
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Age</Text>
-            <TextInput
-              style={globalStyles.TextInput}
-              //placeholder="Age"
-              onChangeText={(text) => {
-                setDateOfBirth(text);
-              }}
-              keyboardType="phone-pad"
-            />
-          </View>
-          {/* Patient Address Section */}
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Address</Text>
-            <TextInput
-              style={globalStyles.TextInput}
-              autoCompleteType="street-address"
-              //placeholder="Address"
-              onChangeText={(text) => {
-                setAddress(text);
-              }}
-            />
-          </View>
-          {/* Patient Marital Status Section */}
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Marital Status</Text>
-            <Picker style={globalStyles.pickerContainer}>
-              <Picker.Item label="Single" value="Single" />
-              <Picker.Item label="Married" value="Married" />
-              <Picker.Item label="Divorced" value="Divorced" />
-              <Picker.Item label="Widowed" value="Widowed" />
-            </Picker>
-            {/* <TextInput
-                style={globalStyles.TextInput}
-                //placeholder="Marital Status"
-                onChangeText={(text) => {
-                  setMaritalStatus(text);
-                }}
-              /> */}
-          </View>
-          {/* Patient Phone Number Section */}
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Phone Number</Text>
-            <TextInput
-              style={globalStyles.TextInput}
-              //placeholder="Phone Number"
-              onChangeText={(text) => {
-                setPhoneNumber(text);
-              }}
-              keyboardType="phone-pad"
-              maxLength={10}
-            />
-          </View>
-          {/* Patient Email Address Section */}
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Email</Text>
-            <TextInput
-              style={globalStyles.TextInput}
-              //placeholder="Email"
-              onChangeText={(text) => {
-                setEmail(text);
-              }}
-              keyboardType="email-address"
-            />
-          </View>
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Ward</Text>
-            <Picker style={globalStyles.pickerContainer}>
-              <Picker.Item label="General Ward" value="General Ward" />
-              <Picker.Item label="Cardiology" value="Cardiology" />
-              <Picker.Item label="ICU" value="ICU" />
-              <Picker.Item label="Orthopaedics" value="Orthopaedics" />
-              <Picker.Item label="Neurology" value="Neurology" />
-              <Picker.Item label="Maternity" value="Maternity" />
-              <Picker.Item label="Oncology" value="Oncology" />
-              <Picker.Item label="Opothalmology" value="Opothalmology" />
-            </Picker>
-          </View>
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Bed Number</Text>
-            <TextInput
-              style={globalStyles.TextInput}
-              //placeholder="Bed"
-              onChangeText={(text) => {
-                setBed(text);
-              }}
-              keyboardType="phone-pad"
-            />
-          </View>
-          {/* Emergency Contact section */}
-          <Text style={globalStyles.BlockHeading}>
-            Emergency contact Information
-          </Text>
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>First Name</Text>
-            <TextInput
-              style={globalStyles.TextInput}
-              //placeholder="First name"
-              onChangeText={(text) => {
-                setEmergencyFirstName(text);
-              }}
-            />
-          </View>
+    <SafeAreaView style={globalStyles.container}>
+      {/* <View style={styles.header}>
+        <Text style={styles.headerText}>
+          innovate.<Text style={styles.span}>Inform</Text>.inspire
+        </Text>
+      </View>
+      <View style={styles.headerView}>
+        <Text style={styles.headerViewText}>Add New Patient</Text>
+      </View> */}
+      <ScrollView>
+        <View>
+          <Formik
+            validationSchema={signUpValidationSchema}
+            initialValues={{
+              firstName: '',
+              lastName: '',
+              gender: '',
+              dateOfBirth: '',
+              maritalStatus: '',
+              phoneNumber: '',
+              address: '',
+              emergencyFirstName: '',
+              emergencyLastName: '',
+              emergencyPhoneNumber: '',
+              relationship: '',
+              email: '',
+            }}
+            onSubmit={(values) => console.log(values)}>
+            {({handleSubmit, isValid}) => (
+              <>
+                <Field
+                  component={CustomInput}
+                  name="firstName"
+                  placeholder="First Name"
+                />
+                <Field
+                  component={CustomInput}
+                  name="lastName"
+                  placeholder="Last Name"
+                />
+                <Field
+                  component={CustomInput}
+                  name="email"
+                  placeholder="Email Address"
+                  keyboardType="email-address"
+                />
+                <Field
+                  component={CustomInput}
+                  name="phoneNumber"
+                  placeholder="Phone Number"
+                  keyboardType="numeric"
+                />
+                <Field
+                  component={CustomInput}
+                  name="hospital"
+                  placeholder="hospital"
+                />
+                <Field
+                  component={CustomInput}
+                  name="password"
+                  placeholder="Password"
+                  secureTextEntry
+                />
+                <Field
+                  component={CustomInput}
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  secureTextEntry
+                />
+                <Field
+                  component={CustomInput}
+                  name="firstName"
+                  placeholder="First Name"
+                />
+                <Field
+                  component={CustomInput}
+                  name="lastName"
+                  placeholder="Last Name"
+                />
+                <Field
+                  component={CustomInput}
+                  name="email"
+                  placeholder="Email Address"
+                  keyboardType="email-address"
+                />
+                <Field
+                  component={CustomInput}
+                  name="phoneNumber"
+                  placeholder="Phone Number"
+                  keyboardType="numeric"
+                />
+                <Field
+                  component={CustomInput}
+                  name="hospital"
+                  placeholder="hospital"
+                />
+                <Field
+                  component={CustomInput}
+                  name="password"
+                  placeholder="Password"
+                  secureTextEntry
+                />
+                <Field
+                  component={CustomInput}
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  secureTextEntry
+                />
 
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Last Name</Text>
-            <TextInput
-              style={globalStyles.TextInput}
-              //placeholder="Last name"
-              onChangeText={(text) => {
-                setEmergencyLastName(text);
-              }}
-            />
-          </View>
-          {/* Emergency Phone Number Section */}
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Phone Number</Text>
-            <TextInput
-              style={globalStyles.TextInput}
-              //placeholder="eg. 0777..."
-              onChangeText={(text) => {
-                setEmergencyPhoneNumber(text);
-              }}
-              keyboardType="phone-pad"
-              maxLength={10}
-            />
-          </View>
-          {/* Emergency Relationship Section */}
-          <View style={globalStyles.fieldSet}>
-            <Text style={globalStyles.legend2}>Relationship</Text>
-            <Picker style={globalStyles.pickerContainer}>
-              <Picker.Item label="Mother" value="Mother" />
-              <Picker.Item label="Father" value="Father" />
-              <Picker.Item label="Sister" value="Sister" />
-              <Picker.Item label="Brother" value="Brother" />
-              <Picker.Item label="Wife" value="Wife" />
-              <Picker.Item label="Husband" value="Husband" />
-              <Picker.Item label="Friend" value="Friend" />
-              <Picker.Item label="Other" value="Other" />
-            </Picker>
-          </View>
-          {/* Submit Button Section */}
-          <View style={globalStyles.DirectionRow}>
-            <TouchableOpacity
-              style={styles.Card}
-              onPress={() => {
-                createPatient(patientData);
-                if (!responseData) {
-                  showToast('Unsccessful');
-                }
-                showToast('Successful');
-                navigation.goBack();
-              }}>
-              <Text style={globalStyles.ButtonText}>Add Patient</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.cancel}
-              onPress={async () => {
-                navigation.navigate('Patients');
-              }}>
-              <Text style={globalStyles.ButtonText}>Cancel</Text>
-            </TouchableOpacity>
-          </View>
+                <View style={styles.termsView}>
+                  <Text style={styles.termsText}>
+                    By Clicking the Forward Button Below, You have agreed and
+                    accepted our{' '}
+                    <Text style={styles.termsHighlight}>
+                      Terms and Conditions
+                    </Text>
+                    . Please Take some time and Read through them.
+                  </Text>
+                </View>
+
+                <View>
+                  <CustomButton onPress={handleSubmit} disabled={!isValid} />
+                </View>
+              </>
+            )}
+          </Formik>
         </View>
-      </CardView>
-    </ScrollView>
+      </ScrollView>
+      {/* <TouchableOpacity style={styles.lowerText}>
+        <Text
+          style={styles.text}
+          onPress={() => navigation.navigate('SignInScreen')}>
+          <Text style={styles.span}>Have an account Already? </Text>
+          Sign In.
+        </Text>
+      </TouchableOpacity> */}
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    width: '100%',
-    height: '100%',
-    padding: 0,
-  },
-  inputWrap: {
-    flex: 1,
-    justifyContent: 'space-between',
-    flexDirection: 'column',
-  },
-  Card: {
-    width: '60%',
-    backgroundColor: primary_color,
-    borderRadius: 10,
-    height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 50,
-    marginBottom: 30,
-  },
-  CardText: {
-    fontSize: 15,
-    color: '#fff',
+  text: {
+    color: primary_color,
     fontWeight: 'bold',
   },
-  cancel: {
-    width: '35%',
-    backgroundColor: 'red',
-    borderRadius: 10,
-    height: 60,
+  span: {
+    color: secondary_color,
+  },
+  lowerText: {
+    padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 50,
+  },
+  header: {
+    marginBottom: 10,
+  },
+  headerText: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontStyle: 'normal',
+    fontSize: 20,
+    color: primary_color,
+    textAlign: 'center',
+    marginTop: 40,
+    fontWeight: 'bold',
+  },
+  headerView: {
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 30,
+    textAlign: 'center',
+  },
+  headerViewText: {
+    width: 300,
+    fontSize: 30,
+    color: primary_color,
+    textTransform: 'capitalize',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    left: 135,
+  },
+  termsText: {
+    color: 'grey',
+    textAlign: 'center',
+    padding: 10,
+  },
+  termsHighlight: {
+    color: primary_color,
   },
 });
 
