@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {globalStyles} from '../../styles/Global';
 import * as actionCreators from '../../model/user/authentication/Actions';
 import {connect} from 'react-redux';
@@ -18,22 +18,21 @@ const SignInScreenView = ({navigation, signin}) => {
       .required('Username is required'),
     password: yup
       .string()
-      .min(4, ({min}) => `Password must be at least ${min} characters`)
+      .min(8, ({min}) => 'Password is Short.')
       .required('Password is required'),
   });
 
   return (
     <View style={globalStyles.container}>
-      <View style={styles.header}>
+      <View>
+        <Image
+          source={require('../../assets/img/Real-timeTemplate.jpg')}
+          style={styles.middleText}
+        />
         <Text style={styles.headerText}>
-          inovate.<Text>Inform</Text>.inspire
+          inovate.<Text style={styles.text}>Inform</Text>.inspire
         </Text>
       </View>
-      {/* <View>
-        <Text style={styles.headerText}>
-          inovate.<Text>Inform</Text>.inspire
-        </Text>
-      </View> */}
       <View style={styles.headerView}>
         <Text style={styles.headerViewText}>Welcome Back</Text>
       </View>
@@ -113,8 +112,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     left: 10,
-    transform: [{rotate: '-15deg'}],
-    fontStyle: 'normal',
+    top: -140,
+    fontSize: 20,
+    color: '#ffffff',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
   headerView: {
     width: 100,
@@ -148,6 +150,10 @@ const styles = StyleSheet.create({
   span: {
     color: primary_color,
     fontWeight: 'bold',
+  },
+  middleText: {
+    height: 260,
+    width: 350,
   },
 });
 

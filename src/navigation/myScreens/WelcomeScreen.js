@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -15,7 +16,7 @@ const WelcomeScreen = ({navigation}) => {
       </View>
       <>
         <Text style={styles.headerText}>
-          inovate.<Text style={styles.span}>Inform</Text>.inspire
+          innovate.<Text style={styles.span}>Inform</Text>.inspire
         </Text>
       </>
       <View>
@@ -73,17 +74,15 @@ const styles = StyleSheet.create({
   middleText: {
     height: 260,
     width: 350,
-    left: 10,
-    // top: -10,
   },
   choice: {
     flex: 1,
     height: 1,
-    backgroundColor: 'grey',
+    backgroundColor: '#b8cda7',
     top: 20,
   },
   choiceText: {
-    color: 'grey',
+    color: '#b8cda7',
     width: 50,
     textAlign: 'center',
     top: 20,
@@ -94,11 +93,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   header: {
-    padding: 10,
     alignItems: 'center',
-    height: 150,
+    height: 170,
     width: 350,
     top: -20,
-    left: 10,
   },
 });

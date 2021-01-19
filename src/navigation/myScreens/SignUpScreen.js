@@ -1,19 +1,15 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
-  TextInput,
   SafeAreaView,
-  ToastAndroid,
-  Image,
   ScrollView,
 } from 'react-native';
 import {globalStyles} from '../../styles/Global';
 import * as actionCreators from '../../model/user/authentication/Actions';
-import {SIGNUP_RESONSE} from '../../utils/Constants';
 import {connect} from 'react-redux';
 import {Formik, Field} from 'formik';
 import * as yup from 'yup';
@@ -22,27 +18,6 @@ import CustomButton from '../../components/CustomButton';
 import {secondary_color, primary_color} from '../../styles/color';
 
 const SignUpScreenView = ({navigation, signup, token}) => {
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
-  // const [phoneNumber, setphoneNumber] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [hospital, setHospital] = useState('');
-  // const [speciality, setSpeciality] = useState('Optician');
-
-  // const postUserData = {
-  //   firstName: firstName,
-  //   lastName: lastName,
-  //   phoneNumber: phoneNumber,
-  //   email: email,
-  //   hospital: hospital,
-  //   password: password,
-
-  //   speciality: speciality,
-  // };
-  const showToast = (message) => {
-    ToastAndroid.show(message, ToastAndroid.SHORT);
-  };
   const signUpValidationSchema = yup.object().shape({
     firstName: yup
       .string()
@@ -64,8 +39,6 @@ const SignUpScreenView = ({navigation, signup, token}) => {
       .string()
       .email('Please enter valid email')
       .required('Email is required'),
-    //address: yup.string().required('Your Address is required'),
-    //speciality: yup.string().required('What is your speciality?'),
     hospital: yup.string().required('Your Hospital is required'),
     password: yup
       .string()
@@ -88,7 +61,7 @@ const SignUpScreenView = ({navigation, signup, token}) => {
     <SafeAreaView style={globalStyles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>
-          inovate.<Text style={styles.span}>Inform</Text>.inspire
+          innovate.<Text style={styles.span}>Inform</Text>.inspire
         </Text>
       </View>
       <View style={styles.headerView}>
@@ -149,6 +122,17 @@ const SignUpScreenView = ({navigation, signup, token}) => {
                   placeholder="Confirm Password"
                   secureTextEntry
                 />
+
+                <View style={styles.termsView}>
+                  <Text style={styles.termsText}>
+                    By Clicking the Forward Button Below, You have agreed and
+                    accepted our{' '}
+                    <Text style={styles.termsHighlight}>
+                      Terms and Conditions
+                    </Text>
+                    . Please Take some time and Read through them.
+                  </Text>
+                </View>
 
                 <View>
                   <CustomButton onPress={handleSubmit} disabled={!isValid} />
@@ -229,5 +213,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     left: 135,
+  },
+  termsText: {
+    color: 'grey',
+    textAlign: 'center',
+    padding: 10,
+  },
+  termsHighlight: {
+    color: primary_color,
   },
 });
