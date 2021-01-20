@@ -1,15 +1,5 @@
 import React, {useState} from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-  Button,
-  Platform,
-  View,
-} from 'react-native';
-import CardView from 'react-native-cardview';
+import {ScrollView, StyleSheet, Text, SafeAreaView, View} from 'react-native';
 import {globalStyles} from '../../../styles/Global';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import {Picker} from '@react-native-community/picker';
