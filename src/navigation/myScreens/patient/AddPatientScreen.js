@@ -15,7 +15,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import {Picker} from '@react-native-community/picker';
 import * as actionCreators from '../../../model/patient/addPatient/Actions';
 import {connect} from 'react-redux';
-import {Formik, Field, Form} from 'formik';
+import {Formik, Field} from 'formik';
 import * as yup from 'yup';
 import CustomInput from '../../../components/CustomInput';
 import CustomButton from '../../../components/CustomButton';
@@ -124,7 +124,7 @@ const AddPatientScreenView = ({
               relationship: '',
               email: '',
             }}
-            onSubmit={(values) => console.log(values)}>
+            onSubmit={(values) => createPatient(values)}>
             {({handleSubmit, isValid}) => (
               <>
                 <Field
@@ -165,7 +165,6 @@ const AddPatientScreenView = ({
                   component={CustomInput}
                   name="gender"
                   placeholder="Gender"
-                  secureTextEntry
                 />
                 <Field
                   component={CustomInput}
