@@ -22,12 +22,12 @@ const SignUpScreenView = ({navigation, signup, token}) => {
     firstName: yup
       .string()
       .matches(/^[A-Za-z]+$/, 'Name Must be in Alphabet Characters')
-      .min(2, ({min}) => `Password must be at least ${min} characters`)
+      .min(2, ({min}) => `Name must be at least ${min} characters`)
       .required('First Name is required'),
     lastName: yup
       .string()
       .matches(/^[A-Za-z]+$/, 'Name Must be in Alphabet Characters')
-      .min(2, ({min}) => `Password must be at least ${min} characters`)
+      .min(2, ({min}) => `Name must be at least ${min} characters`)
       .required('Last Name is required'),
     phoneNumber: yup
       .string()

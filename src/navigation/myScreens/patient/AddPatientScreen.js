@@ -15,7 +15,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import {Picker} from '@react-native-community/picker';
 import * as actionCreators from '../../../model/patient/addPatient/Actions';
 import {connect} from 'react-redux';
-import {Formik, Field} from 'formik';
+import {Formik, Field, Form} from 'formik';
 import * as yup from 'yup';
 import CustomInput from '../../../components/CustomInput';
 import CustomButton from '../../../components/CustomButton';
@@ -49,47 +49,52 @@ const AddPatientScreenView = ({
   // const showTimepicker = () => {
   //   showMode('time');
   // };
-  const [gender, setGender] = useState('');
-  const [maritalStatus, setMaritalStatus] = useState('');
-  const [relationship, setRelationship] = useState('');
+  // const [gender, setGender] = useState('');
+  // const [maritalStatus, setMaritalStatus] = useState('');
+  // const [relationship, setRelationship] = useState('');
 
   const signUpValidationSchema = yup.object().shape({
     firstName: yup
       .string()
       .matches(/^[A-Za-z]+$/, 'Name Must be in Alphabet Characters')
-      .min(2, ({min}) => `Password must be at least ${min} characters`)
+      .min(2, ({min}) => `Name must be at least ${min} characters`)
       .required('First Name is required'),
     lastName: yup
       .string()
       .matches(/^[A-Za-z]+$/, 'Name Must be in Alphabet Characters')
-      .min(2, ({min}) => `Password must be at least ${min} characters`)
+      .min(2, ({min}) => `Name must be at least ${min} characters`)
       .required('Last Name is required'),
     phoneNumber: yup
       .string()
       .matches(/^[0-9]*$/, 'Enter a valid phone number')
       .min(10, ({min}) => `Phone Number must be at least ${min} characters`)
-      .max(14, ({max}) => `Phone Number Shouldnt exceed ${max} characters`)
+      .max(14, ({max}) => `Phone Number shouldn't exceed ${max} characters`)
       .required('Phone number is required'),
-    email: yup
+    address: yup
       .string()
-      .email('Please enter valid email')
-      .required('Email is required'),
-    hospital: yup.string().required('Your Hospital is required'),
-    password: yup
+      .min(2, ({min}) => `Address must be at least ${min} characters`)
+      .required('First Name is required'),
+    gender: yup.string().required('Select a Gender'),
+    dateOfBirth: yup.string().required('Select Date of Birth'),
+    maritalStatus: yup.string().required('Select appropriate Option'),
+    relationship: yup.string().required('Select appropriate relationship'),
+    email: yup.string().email('Please enter valid email'),
+    emergencyFirstName: yup
       .string()
-      .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
-      .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
-      .matches(/\d/, 'Password must have a number')
-      .matches(
-        /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-        'Password must have a special character',
-      )
-      .min(8, ({min}) => `Password must be at least ${min} characters`)
-      .required('Password is required'),
-    confirmPassword: yup
+      .matches(/^[A-Za-z]+$/, 'Name Must be in Alphabet Characters')
+      .min(2, ({min}) => `Name must be at least ${min} characters`)
+      .required('Emergency Contact First Name is required'),
+    emergencyLastName: yup
       .string()
-      .oneOf([yup.ref('password')], 'Passwords do not match')
-      .required('Please repeat your Password'),
+      .matches(/^[A-Za-z]+$/, 'Name Must be in Alphabet Characters')
+      .min(2, ({min}) => `Name must be at least ${min} characters`)
+      .required('Emergency Contact Last Name is required'),
+    emergencyPhoneNumber: yup
+      .string()
+      .matches(/^[0-9]*$/, 'Enter a valid phone number')
+      .min(10, ({min}) => `Phone Number must be at least ${min} characters`)
+      .max(14, ({max}) => `Phone Number shouldn't exceed ${max} characters`)
+      .required('Emergency Contact Phone number is required'),
   });
   return (
     <SafeAreaView style={globalStyles.container}>
@@ -132,7 +137,7 @@ const AddPatientScreenView = ({
                   name="lastName"
                   placeholder="Last Name"
                 />
-                <Picker
+                {/* <Picker
                   selectedValue={this.state.gender}
                   onValueChange={(itemValue, itemIndex) => ({
                     gender: itemValue,
@@ -144,7 +149,7 @@ const AddPatientScreenView = ({
                 </Picker>
                 <View>
                   <RNDateTimePicker mode="date" value={new Date()} />
-                </View>
+                </View> */}
                 <Field
                   component={CustomInput}
                   name="phoneNumber"
@@ -153,30 +158,24 @@ const AddPatientScreenView = ({
                 />
                 <Field
                   component={CustomInput}
-                  name="hospital"
-                  placeholder="hospital"
+                  name="dateOfBirth"
+                  placeholder="Date of Birth"
                 />
                 <Field
                   component={CustomInput}
-                  name="password"
-                  placeholder="Password"
+                  name="gender"
+                  placeholder="Gender"
                   secureTextEntry
                 />
                 <Field
                   component={CustomInput}
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  secureTextEntry
+                  name="maritalStatus"
+                  placeholder="Marital Status"
                 />
                 <Field
                   component={CustomInput}
-                  name="firstName"
-                  placeholder="First Name"
-                />
-                <Field
-                  component={CustomInput}
-                  name="lastName"
-                  placeholder="Last Name"
+                  name="address"
+                  placeholder="Address"
                 />
                 <Field
                   component={CustomInput}
@@ -186,26 +185,24 @@ const AddPatientScreenView = ({
                 />
                 <Field
                   component={CustomInput}
-                  name="phoneNumber"
+                  name="emergencyFirstName"
+                  placeholder="First Name"
+                />
+                <Field
+                  component={CustomInput}
+                  name="emergencyLastName"
+                  placeholder="Last Name"
+                />
+                <Field
+                  component={CustomInput}
+                  name="emergencyPhoneNumber"
                   placeholder="Phone Number"
                   keyboardType="numeric"
                 />
                 <Field
                   component={CustomInput}
-                  name="hospital"
-                  placeholder="hospital"
-                />
-                <Field
-                  component={CustomInput}
-                  name="password"
-                  placeholder="Password"
-                  secureTextEntry
-                />
-                <Field
-                  component={CustomInput}
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  secureTextEntry
+                  name="relationship"
+                  placeholder="Relationship"
                 />
 
                 <View style={styles.termsView}>
