@@ -10,7 +10,7 @@ function* addPatient(action) {
     const data = JSON.parse(userData);
     const response = yield call(
       API.post,
-      `/user/add-patient/${data.result.id}/`,
+      `/api/add-patient/${data.id}/`,
       action.payload,
     );
     console.log(response);

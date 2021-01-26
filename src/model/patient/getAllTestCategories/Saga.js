@@ -5,7 +5,7 @@ import API from '../../QueryApi';
 
 function* fetchAllTestCategories() {
   try {
-    const testCategories = yield call(API.get, '/patient/category/');
+    const testCategories = yield call(API.get, '/api/categories/');
     yield put(actions.getAllTestCategory(testCategories));
   } catch (e) {
     console.log(e);

@@ -14,7 +14,7 @@ const HomeScreen = ({navigation}) => {
   const filterUser = async () => {
     const userData = await AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
-    setcureentUserID(data.result.id);
+    setcureentUserID(data.id);
   };
   return (
     <View style={globalStyles.container}>

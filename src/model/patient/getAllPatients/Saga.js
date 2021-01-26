@@ -11,7 +11,7 @@ function* fetchAllPatients() {
     const data = JSON.parse(userData);
     const vPatients = yield call(
       API.get,
-      `/user/get-patients/${data.result.id}/`,
+      `/api/patients/${data.id}/${1}`,
     );
     console.log(vPatients);
     yield put(actions.getAllPatientsSuccess(vPatients));

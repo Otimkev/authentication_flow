@@ -18,6 +18,8 @@ import {globalStyles} from '../../styles/Global';
 const APatientScreenView = ({navigation, getAPatient, route, aPatient}) => {
   const id = route.params.patientId;
   const userId = route.params.userId;
+  console.log(id)
+  console.log(userId)
   useEffect(() => {
     getAPatient(id);
   }, [getAPatient, id]);

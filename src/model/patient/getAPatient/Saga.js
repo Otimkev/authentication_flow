@@ -7,8 +7,9 @@ function* fetchAPatients(action) {
   try {
     const aPatientResponse = yield call(
       API.get,
-      `/user/get-patient/${action.payload}`,
+      `/api/patient/${action.payload}/`,
     );
+    console.log(aPatientResponse)
     yield put(actions.getAPatientsSuccess(aPatientResponse));
   } catch (e) {
     console.log(e);

@@ -15,7 +15,7 @@ const ProfileScreen = () => {
   const retrieveItem = async () => {
     const retrievedItem = await AsyncStorage.getItem('user');
     const item = JSON.parse(retrievedItem);
-    setUser(item.result);
+    setUser(item);
   };
   retrieveItem('user');
   return (

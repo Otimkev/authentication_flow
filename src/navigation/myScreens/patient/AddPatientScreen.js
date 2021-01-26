@@ -9,6 +9,7 @@ import {Formik, Field} from 'formik';
 import * as yup from 'yup';
 import CustomInput from '../../../components/CustomInput';
 import CustomButton from '../../../components/CustomButton';
+import {showToast} from '../../../components/Toast';
 import {secondary_color, primary_color} from '../../../styles/color';
 
 const AddPatientScreenView = ({
@@ -194,33 +195,21 @@ const AddPatientScreenView = ({
                   placeholder="Relationship"
                 />
 
-                <View style={styles.termsView}>
-                  <Text style={styles.termsText}>
-                    By Clicking the Forward Button Below, You have agreed and
-                    accepted our{' '}
-                    <Text style={styles.termsHighlight}>
-                      Terms and Conditions
-                    </Text>
-                    . Please Take some time and Read through them.
-                  </Text>
-                </View>
-
                 <View>
-                  <CustomButton onPress={handleSubmit} disabled={!isValid} />
+                  <CustomButton onPress={() => {
+                    handleSubmit();
+                    if(!responseData){
+                       showToast("error")
+                    }
+                    showToast("Successful");
+                    navigation.goBack();
+                  }} disabled={!isValid} />
                 </View>
               </>
             )}
           </Formik>
         </View>
       </ScrollView>
-      {/* <TouchableOpacity style={styles.lowerText}>
-        <Text
-          style={styles.text}
-          onPress={() => navigation.navigate('SignInScreen')}>
-          <Text style={styles.span}>Have an account Already? </Text>
-          Sign In.
-        </Text>
-      </TouchableOpacity> */}
     </SafeAreaView>
   );
 };

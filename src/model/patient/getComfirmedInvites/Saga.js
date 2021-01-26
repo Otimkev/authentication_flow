@@ -10,7 +10,7 @@ function* getComfiredPatientInvites() {
     const data = JSON.parse(userData);
     const response = yield call(
       API.get,
-      `/user/accept-invite/${data.result.id}/`,
+      `/user/accept-invite/${data.id}/`,
     );
     yield put(actions.getComfiredPatientsSuccess(response));
   } catch (e) {

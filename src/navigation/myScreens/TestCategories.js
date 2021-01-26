@@ -41,7 +41,7 @@ export const TestCategoryScreenView = ({
           <View>
             <View style={styles.nameContainer}>
               <Text style={globalStyles.nameTxt} numberOfLines={1}>
-                {item.category.label}
+                {item.label}
               </Text>
             </View>
             <View style={styles.msgContainer} />

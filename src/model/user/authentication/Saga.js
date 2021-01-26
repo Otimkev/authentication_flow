@@ -7,7 +7,7 @@ import * as actionCreators from './Actions';
 
 export function* logInWithCredentials(action) {
   try {
-    const user = yield call(API.post, '/user/signin/', action.payload);
+    const user = yield call(API.post, '/api/signin/', action.payload);
     yield AsyncStorage.setItem('user', JSON.stringify(user));
     yield put(actionCreators.checkTokenSuccess(JSON.stringify(user)));
     yield put(actionCreators.logInSuccess(user));
@@ -18,7 +18,7 @@ export function* logInWithCredentials(action) {
 
 export function* registerWithCredentials(action) {
   try {
-    const user = yield call(API.post, '/user/signup/', action.payload);
+    const user = yield call(API.post, '/api/signup/', action.payload);
     yield put(actionCreators.registerSuccess(user));
     yield AsyncStorage.setItem('user', JSON.stringify(user));
     yield put(actionCreators.checkTokenSuccess(JSON.stringify(user)));

@@ -36,16 +36,16 @@ const PatientScreenView = ({
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
     filterUser();
-    login({userId: currentUser});
+    //login({userId: currentUser});
     getAllPatients();
     getAcceptedPatients();
   }, [currentUser, getAcceptedPatients, getAllPatients, isAddPatientLoading]);
   const filterUser = async () => {
     const userData = await AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
-    setCurrentUser(data.result.id);
+    setCurrentUser(data.id);
   };
-  console.log(responseData);
+ 
   const renderItem = (item) => {
     return (
       <TouchableOpacity
@@ -80,15 +80,15 @@ const PatientScreenView = ({
         style={globalStyles.mainContent}
         onPress={() => {
           navigation.navigate('Patient Information', {
-            patientId: item.patient.id,
-            patientNames: `${item.patient.firstName} ${item.patient.lastName}`,
+            patientId: item.id,
+            patientNames: `${item.firstName} ${item.lastName}`,
           });
         }}>
         <View style={styles.row}>
           <View>
             <View style={styles.nameContainer}>
               <Text style={globalStyles.nameTxt} numberOfLines={1}>
-                {`${item.patient.firstName} ${item.patient.lastName}`}
+                {`${item.firstName} ${item.lastName}`}
               </Text>
               <Text style={styles.mblTxt}>0 minutes ago</Text>
             </View>
