@@ -8,9 +8,10 @@ function* sharePatient(action) {
   try {
     const userData = yield AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
+    const {receiverId, patientId} = action.payload;
     const response = yield call(
       API.post,
-      `/user/share/${data.result.id}/`,
+      `/api/share/${data.id}/${receiverId}/${patientId}`,
       action.payload,
     );
     yield put(actions.sharePatientsSuccess(response));

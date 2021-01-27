@@ -26,7 +26,7 @@ const NewChatListScreenView = ({
   const filterUser = async () => {
     const userData = await AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
-    setCurrentUser(data.result.id);
+    setCurrentUser(data.id);
   };
   const renderItem = ({item}) => {
     return (

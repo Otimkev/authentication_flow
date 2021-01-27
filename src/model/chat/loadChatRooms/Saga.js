@@ -8,7 +8,7 @@ function* fetchChatRooms() {
   try {
     const userData = yield AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
-    const chatRooms = yield call(API.get, `/chat/${data.result.id}/`);
+    const chatRooms = yield call(API.get, `/api/chat-head/${data.id}/`);
     console.log(chatRooms);
     yield put(actions.getChatRoomsSuccess(chatRooms));
   } catch (e) {

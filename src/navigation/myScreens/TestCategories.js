@@ -35,13 +35,14 @@ export const TestCategoryScreenView = ({
           navigation.navigate('Test Graph', {
             patientId: patientId,
             label: item.category.label,
+            labelId: item.category.id,
           });
         }}>
         <View style={styles.row}>
           <View>
             <View style={styles.nameContainer}>
               <Text style={globalStyles.nameTxt} numberOfLines={1}>
-                {item.label}
+                {item.category.label}
               </Text>
             </View>
             <View style={styles.msgContainer} />

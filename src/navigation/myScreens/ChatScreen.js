@@ -68,7 +68,7 @@ const ChatScreenView = ({
   const filterUser = async () => {
     const userData = await AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
-    setcurrentUserId(data.result.id);
+    setcurrentUserId(data.id);
   };
   const renderItem = ({item}) => {
     return (

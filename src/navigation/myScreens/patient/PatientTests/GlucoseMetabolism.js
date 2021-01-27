@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -11,133 +11,129 @@ import {
 } from 'react-native';
 import {globalStyles} from '../../../../styles/Global';
 import * as actions from '../../../../model/test/addTest/Actions';
+import * as actions2 from '../../../../model/test/getTestsInCategory/Actions';
 import {connect} from 'react-redux';
 import {primary_color} from '../../../../styles/color';
-
+import {Picker} from '@react-native-community/picker';
+import {Loader} from '../../../../components/Loader';
 const GlucoseMetabolismScreenView = ({
   navigation,
   route,
   createTest,
   addTestData,
+  categoryTests,
+  isLoading,
+  getTestList,
 }) => {
+  const label = route.params.label;
+  const labelId = route.params.labelId;
+  const patientId = route.params.patientId;
+  const [selected, setSelected] = useState(1);
+
+  const [mValue, setValue] = useState('');
+  useEffect(() => {
+    getTestList(labelId);
+  }, [getTestList, labelId]);
+
   const [glucoseFasting, setGlucoseFasting] = useState('');
   const [glucoseRandom, setGlucoseRandom] = useState('');
   const [gtt2Hr75gStandard, setGtt2Hr75gStandard] = useState('');
-  const [hba1cGlycosylatedHB, setHba1cGlycosylatedHB] = useState('');
-  const [microalbumin, setMicroalbumin] = useState('');
-  const label = route.params.category;
-  const patientId = route.params.patientId;
-  const testData = {
-    glucoseFasting,
-    glucoseRandom,
-    gtt2Hr75gStandard,
-    hba1cGlycosylatedHB,
-    microalbumin,
-    category: 'glucose metabolism',
-  };
 
+  const params = [
+    {name: 'glucoseFasting', id: 1},
+    {name: 'glucoseRandom', id: 2},
+    {name: 'gtt2Hr75gStandard', id: 3},
+    {name: 'hba1cGlycosylatedHB', id: 4},
+    {name: 'microalbumin', id: 5},
+  ];
+  const testData = {
+    category: labelId,
+    testLabel: selected,
+    value: mValue,
+  }
+  const [test, setTest] = useState(params);
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
   };
 
+  // Our test list generator for picker
+  let serviceItems = test.map((s, i) => {
+    return <Picker.Item key={i} value={s.id} label={s.name} />;
+  });
+
   return (
-    <View style={globalStyles.testContainer}>
-      <View>
-        <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend2}>Glucose - Fasting</Text>
-          <TextInput
-            //placeholder="Glucose - Fasting"
-            style={globalStyles.TextInput}
-            onChangeText={(text) => {
-              setGlucoseFasting(text);
-            }}
-          />
+    <View>
+      {!isLoading ? (
+        <View style={globalStyles.testContainer}>
+          <View>
+            <View>
+              <Picker
+                selectedValue={selected}
+                onValueChange={(service) => setSelected(service)}>
+                {serviceItems}
+              </Picker>
+            </View>
+            <View style={globalStyles.fieldSet}>
+              <Text style={globalStyles.legend2}>{`${selected}`}</Text>
+              <TextInput
+                placeholder={'Enter Test Value'}
+                style={globalStyles.TextInput}
+                onChangeText={(text) => {
+                  setValue(text);
+                }}
+                keyboardType="phone-pad"
+              />
+            </View>
+          </View>
+          <TouchableOpacity
+            style={globalStyles.ButtonSmall}
+            onPress={() => {
+              createTest(patientId, testData);
+              console.log(testData);
+              showToast('Successful');
+              navigation.navigate('Test Graph', {
+                patientId: patientId,
+                 labelId,
+                label,
+              });
+            }}>
+            <Text style={styles.loginText}>SUBMIT</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={globalStyles.ButtonSmall}
+            onPress={() => {
+              createTest(patientId, testData);
+              console.log(testData);
+              showToast('Successful');
+              navigation.navigate('Test Graph', {
+                patientId: patientId,
+                label: testData.category,
+              });
+            }}>
+            <Text style={styles.loginText}>Preview</Text>
+          </TouchableOpacity>
         </View>
-        <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend2}>Glucose - Random</Text>
-          <TextInput
-            //placeholder="Glucose - Random"
-            style={globalStyles.TextInput}
-            onChangeText={(text) => {
-              setGlucoseRandom(text);
-            }}
-            keyboardType="phone-pad"
-          />
+      ) : (
+        <View>
+          <Text>Loading..</Text>
         </View>
-        <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend2}>GTT 2hr 75g - standard</Text>
-          <TextInput
-            //placeholder="GTT 2hr 75g - standard"
-            style={globalStyles.TextInput}
-            onChangeText={(text) => {
-              setGtt2Hr75gStandard(text);
-            }}
-            keyboardType="phone-pad"
-          />
-        </View>
-        <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend2}>HBA1C/Glycosylated Hb</Text>
-          <TextInput
-            //placeholder="HBA1C/Glycosylated Hb"
-            style={globalStyles.TextInput}
-            onChangeText={(text) => {
-              setHba1cGlycosylatedHB(text);
-            }}
-            keyboardType="phone-pad"
-          />
-        </View>
-        <View style={globalStyles.fieldSet}>
-          <Text style={globalStyles.legend2}>Microalbumin - urine</Text>
-          <TextInput
-            //placeholder="Microalbumin - urine"
-            style={globalStyles.TextInput}
-            onChangeText={(text) => {
-              setMicroalbumin(text);
-            }}
-            keyboardType="phone-pad"
-          />
-        </View>
-      </View>
-      {/* <View style={styles.button}>
-        <Button
-          title="Submit"
-          color={primary_color}
-          onPress={() => {
-            createTest(patientId, testData);
-            console.log(testData);
-            showToast('Successful');
-            navigation.navigate('Test Graph', {
-              patientId: patientId,
-              label: testData.category,
-            });
-          }}
-        />
-      </View> */}
-      <TouchableOpacity
-        style={globalStyles.ButtonSmall}
-        onPress={() => {
-          createTest(patientId, testData);
-          console.log(testData);
-          showToast('Successful');
-          navigation.navigate('Test Graph', {
-            patientId: patientId,
-            label: testData.category,
-          });
-        }}>
-        <Text style={styles.loginText}>SUBMIT</Text>
-      </TouchableOpacity>
+      )}
     </View>
   );
 };
 
 const mapStateToProps = (state, props) => {
   const {addTestData} = state.addTest;
-  return {addTestData};
+  const {categoryTests, isLoading} = state.getTestsInCategory;
+  return {addTestData, categoryTests, isLoading};
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
   createTest: (args1, args2) => {
     dispatch(actions.addTestResponse(args1, args2));
+  },
+  getTestList: (args1) => {
+    dispatch(actions2.getTestInCategoriesResponse(args1));
   },
 });
 

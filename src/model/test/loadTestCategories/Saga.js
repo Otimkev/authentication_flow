@@ -7,7 +7,7 @@ function* getTestCategories(action) {
   try {
     const response = yield call(
       API.get,
-      `/user/get-category/${action.payload}/`,
+      `/api/categories/patient/${action.payload}/`,
     );
     console.log(response);
     yield put(actions.getTestCategorySuccess(response));

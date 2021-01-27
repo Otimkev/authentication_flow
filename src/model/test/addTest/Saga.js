@@ -9,8 +9,8 @@ function* addTest(action) {
     const data = JSON.parse(userData);
     const response = yield call(
       API.post,
-      `/patient/add-test/${data.result.id}/${action.payload.id}/`,
-      action.payload.data,
+      `/api/patient/${action.payload.id}/add-test/`,
+      {...action.payload.data, userId: data.id},
     );
     yield put(actions.addTestSuccess(response));
   } catch (e) {

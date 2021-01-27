@@ -30,14 +30,14 @@ const UserListScreenView = ({
   const filterUser = async () => {
     const userData = await AsyncStorage.getItem('user');
     const data = JSON.parse(userData);
-    setCurrentUser(data.result.id);
+    setCurrentUser(data.id);
   };
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         style={globalStyles.mainContent}
         onPress={() => {
-          sharePatient({targetId: item.id, patientId: id});
+          sharePatient({receiverId: item.id, patientId: id});
           if (!responseData) {
             showToast('Error Sharing');
           }

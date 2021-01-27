@@ -3,22 +3,22 @@ import * as actions from './Actions';
 import * as actionTypes from '../../../utils/Constants';
 import API from '../../QueryApi';
 
-function* getCategoryTests(action) {
+function* getTestsInCategoryTests(action) {
   try {
     const result = yield call(API.get, `/api/categories/${action.payload}`);
-    yield put(actions.getTestCategoriesSuccess(result));
+    yield put(actions.getTestInCategoriesSuccess(result));
     console.log(result);
   } catch (e) {
     console.log(e);
-    yield put(actions.getTestCategoriesFailure(e));
+    yield put(actions.getTestInCategoriesFailure(e));
   }
 }
 
-function* getCategoryTestsSaga() {
+function* getTestsInCategorySaga() {
   yield takeLatest(
-    actionTypes.GET_ALL_CATEGORY_TEST_RESPONSE,
-    getCategoryTests,
+    actionTypes.GET_TESTS_IN_CATEGORY_RESONSE,
+    getTestsInCategoryTests,
   );
 }
 
-export {getCategoryTestsSaga};
+export {getTestsInCategorySaga};

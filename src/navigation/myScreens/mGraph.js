@@ -28,23 +28,26 @@ const GraphScreenView = ({
   categoryTests,
   getCategoryTests,
 }) => {
-  const {patientId, label} = route.params;
+  const {patientId, label, labelId} = route.params;
+
   const [test, setTest] = useState('');
   const [testData, setTestData] = useState([]);
   const [title, setTitle] = useState('');
-  const [isGraph, setIsGraph] = useState(false);
+  const [isGraph, setIsGraph] = useState(true);
   useEffect(() => {
-    getCategoryTests(label);
-  }, [getAllTests, getCategoryTests, label, patientId, test]);
-  const dt = patientTestData.map((item) =>
-    new Date().toDateString(item.createAt),
-  );
-  const val = patientTestData.map((item) => item.value);
+    getCategoryTests(labelId);
+  }, [getAllTests, getCategoryTests, label, labelId, patientId, test]);
 
+  const k = patientTestData ? patientTestData : [];
+  console.log(k);
+    // const dt = patientTestData.map((item) =>
+  //   new Date().toDateString(item.createdAt),
+  // );
+  const val = k.map((item) => item.value);
   const testGraph = () => {
     return (
       <View style={{flex: 1}}>
-        {isFetching ? (
+        {isGraph ? (
           <Loader />
         ) : (
           <View>
@@ -53,7 +56,7 @@ const GraphScreenView = ({
               <View style={{margin: 8}}>
                 <LineChart
                   data={{
-                    labels: dt,
+                    labels: ['w'],
                     datasets: [
                       {
                         data: val,
@@ -90,9 +93,9 @@ const GraphScreenView = ({
             color={primary_color}
             title="Add Test"
             onPress={() =>
-              navigation.navigate(`${label}`, {
+              navigation.navigate('glucose metabolism', {
                 patientId,
-                category: label,
+                labelId,
               })
             }
           />
@@ -105,15 +108,15 @@ const GraphScreenView = ({
     return (
       <TouchableOpacity
         onPress={() => {
-          setTitle(item.value);
-          setIsGraph(true);
-          getAllTests({patientId, category: label, test: item.value});
+          setTitle(item.label);
+          setIsGraph(false);
+          getAllTests({patientId, testId: 1});
         }}>
         <View style={styles.row}>
           <View>
             <View style={styles.nameContainer}>
               <Text style={styles.nameTxt} numberOfLines={1}>
-                {item.value}
+                {item.label}
               </Text>
             </View>
           </View>

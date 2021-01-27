@@ -97,3 +97,8 @@ export const GET_INVITED_PATIENT_TESTS_FAILURE =
 export const GET_COMFIRMED_INVITES_RESPONSE = 'getComfiredInvitesResponse';
 export const GET_COMFIRMED_INVITES_SUCESS = 'getComfiredInvitessSuccess';
 export const GET_COMFIRMED_INVITES_FAILURE = 'getComfiredInvitessFailure';
+
+
+export const GET_TESTS_IN_CATEGORY_RESONSE = 'getTestInCategoryResponse';
+export const GET_TESTS_IN_CATEGORY_SUCESS = 'getTestInCategorySuccess';
+export const GET_TESTS_IN_CATEGORY_FAILURE = 'getTestInCategoryFailure';

@@ -25,6 +25,6 @@ export const login = (credentials) => {
 export const openChat = (users) => {
   socket.emit('chat', users);
 };
-export const sendMessage = (userId, recipientId, roomId, text) => {
-  socket.emit('message', {userId, recipientId, roomId, text});
+export const sendMessage = (senderId, receiverId, text) => {
+  socket.emit('message', {senderId, receiverId, text});
 };

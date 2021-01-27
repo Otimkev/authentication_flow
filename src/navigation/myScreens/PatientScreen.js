@@ -36,7 +36,7 @@ const PatientScreenView = ({
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
     filterUser();
-    //login({userId: currentUser});
+    login({userId: currentUser});
     getAllPatients();
     getAcceptedPatients();
   }, [currentUser, getAcceptedPatients, getAllPatients, isAddPatientLoading]);
@@ -54,6 +54,7 @@ const PatientScreenView = ({
           navigation.navigate('Patient Information', {
             patientId: item.id,
             patientNames: `${item.firstName} ${item.lastName}`,
+            userId: currentUser,
           });
         }}>
         <View style={styles.row}>
@@ -82,6 +83,7 @@ const PatientScreenView = ({
           navigation.navigate('Patient Information', {
             patientId: item.id,
             patientNames: `${item.firstName} ${item.lastName}`,
+            userId: currentUser,
           });
         }}>
         <View style={styles.row}>

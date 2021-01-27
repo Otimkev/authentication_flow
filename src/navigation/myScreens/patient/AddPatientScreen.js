@@ -128,19 +128,7 @@ const AddPatientScreenView = ({
                   name="lastName"
                   placeholder="Last Name"
                 />
-                {/* <Picker
-                  selectedValue={this.state.gender}
-                  onValueChange={(itemValue, itemIndex) => ({
-                    gender: itemValue,
-                  })}
-                  style={globalStyles.pickerContainer}>
-                  <Picker.Item label="Gender" value="0" />
-                  <Picker.Item label="Male" value="Male" />
-                  <Picker.Item label="Female" value="Female" />
-                </Picker>
-                <View>
-                  <RNDateTimePicker mode="date" value={new Date()} />
-                </View> */}
+         
                 <Field
                   component={CustomInput}
                   name="phoneNumber"

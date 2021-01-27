@@ -20,6 +20,7 @@ import {testCategoriesReducer} from './patient/getAllTestCategories/Reducer';
 import {getCategoryTestsReducer} from './test/getCategoryTests/Reducer';
 import {getInvitedPatientTestsReducer} from './test/loadTestsInvitedPatientTests/Reducer';
 import {getComfiredPatientsReducer} from './patient/getComfirmedInvites/Reducer';
+import {getTestsInCategoryReducer} from './test/getTestsInCategory/Reducer';
 
 export const RootReducer = combineReducers({
   mPatients: PatientReducer,
@@ -43,4 +44,5 @@ export const RootReducer = combineReducers({
   getCategoryTests: getCategoryTestsReducer,
   getInvitedPatientsTests: getInvitedPatientTestsReducer,
   getComfiredPatientInvites: getComfiredPatientsReducer,
+  getTestsInCategory: getTestsInCategoryReducer,
 });

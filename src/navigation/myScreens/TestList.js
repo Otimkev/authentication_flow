@@ -26,7 +26,11 @@ const TestListScreenView = ({
       <TouchableOpacity
         style={globalStyles.mainContent}
         onPress={() => {
-          navigation.navigate(item.label, {label: item.label, patientId: id});
+          navigation.navigate('glucose metabolism', {
+            label: item.label,
+            patientId: id,
+            labelId: item.id,
+          });
         }}>
         <View style={styles.row}>
           <View>

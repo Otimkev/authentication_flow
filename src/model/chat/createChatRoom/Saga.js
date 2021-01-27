@@ -10,7 +10,7 @@ function* createChatRoom(action) {
     const data = JSON.parse(userData);
     const response = yield call(
       API.post,
-      `/chat/initiate/${data.result.id}/`,
+      `/chat/initiate/${data.id}/`,
       action.payload,
     );
     yield put(actions.createChatRoomSuccess(response));
