@@ -33,7 +33,18 @@ const GlucoseMetabolismScreenView = ({
   const [mValue, setValue] = useState('');
   useEffect(() => {
     getTestList(labelId);
-  }, [getTestList, labelId]);
+
+    const populateTests = () => {
+      let testList = [];
+      if (categoryTests !== undefined) {
+        for (let i; i <= categoryTests.length(); i++) {
+          testList.append(categoryTests[i]);
+        }
+        return testList;
+      }
+    };
+    populateTests();
+  }, [categoryTests, getTestList, labelId]);
 
   const [glucoseFasting, setGlucoseFasting] = useState('');
   const [glucoseRandom, setGlucoseRandom] = useState('');
@@ -50,7 +61,7 @@ const GlucoseMetabolismScreenView = ({
     category: labelId,
     testLabel: selected,
     value: mValue,
-  }
+  };
   const [test, setTest] = useState(params);
   const showToast = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -93,7 +104,7 @@ const GlucoseMetabolismScreenView = ({
               showToast('Successful');
               navigation.navigate('Test Graph', {
                 patientId: patientId,
-                 labelId,
+                labelId,
                 label,
               });
             }}>
