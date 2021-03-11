@@ -34,12 +34,10 @@ function* signUpSaga(action) {
   }
 }
 
-function* watchAuthSaga() {
+function* watch_auth_saga() {
   yield takeEvery(types.LOG_IN, loginSaga);
   yield takeEvery(types.LOG_OUT, logoutSaga);
   yield takeEvery(types.SIGN_UP, signUpSaga);
 }
 
-export default function* rootSaga() {
-  yield all([watchAuthSaga()]);
-}
+export default watch_auth_saga;

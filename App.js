@@ -1,16 +1,23 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import {Store} from './src/store/Store';
-import AppRoot from './AppRoot';
-//import {startSocketIO} from './src/utils/Service';
+import {Provider as PaperProvider} from 'react-native-paper';
+import createSagaMiddleware from 'redux-saga';
+import Main from './src/App';
 
-export default function App({navigation}) {
-  // useEffect(() => {
-  //   startSocketIO(Store);
-  // });
-  return (
-    <Provider store={Store}>
-      <AppRoot />
+import rootReducer from './src/store/rootReducer';
+import rootSaga from './src/store/root_saga';
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(rootSaga);
+
+const App = () => (
+  <PaperProvider>
+    <Provider store={store}>
+      <Main />
     </Provider>
-  );
-}
+  </PaperProvider>
+);
+
+export default App;

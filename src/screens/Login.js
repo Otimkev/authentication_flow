@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-
 import ScreenContainer from '../components/ScreenContainer';
 import AppInput from '../components/AppInput';
 import AppButton from '../components/AppButton';
 import AppLink from '../components/AppLink';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 
 import * as actions from '../store/actions';
 

@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet } from 'react-native';
-import {
-  FormLabel,
-  FormInput,
-} from 'react-native-elements';
+import {View, StyleSheet} from 'react-native';
+import {Input} from 'react-native-elements';
 
-import { colors } from '../theme';
+import {colors} from '../theme';
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -17,13 +14,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppInput = ({ label, onChangeInput, ...rest }) => (
+const AppInput = ({label, onChangeInput, ...rest}) => (
   <View style={styles.inputContainer}>
-    <FormLabel>{label}</FormLabel>
-    <FormInput
+    <Input
       onChangeText={onChangeInput}
       containerStyle={styles.inputContainerStyle}
       {...rest}
+      placeholder={label}
     />
   </View>
 );

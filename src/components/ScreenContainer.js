@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 
-import { colors } from '../theme';
+import {colors} from '../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,10 +14,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const ScreenContainer = ({ children }) => (
-  <View style={styles.container}>
-    {children}
-  </View>
+const ScreenContainer = ({children}) => (
+  <SafeAreaView>
+    <View style={styles.container}>{children}</View>
+  </SafeAreaView>
 );
 
 ScreenContainer.propTypes = {

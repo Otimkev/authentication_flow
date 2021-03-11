@@ -1,11 +1,14 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const APP_PREFIX = '@REACT_NATIVE_AUTH';
 
 export const storeData = async (key, value) => {
   try {
     await AsyncStorage.setItem(`${APP_PREFIX}:${key}`, value);
-    console.log('user saved', await AsyncStorage.getItem(`${APP_PREFIX}:${key}`));
+    console.log(
+      'user saved',
+      await AsyncStorage.getItem(`${APP_PREFIX}:${key}`),
+    );
   } catch (error) {
     console.log('Error saving data', error);
   }
