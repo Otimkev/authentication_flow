@@ -24,11 +24,12 @@ const HomeScreenView = ({
   patients_list,
   isLoading,
   get_all_patients,
+  route,
 }) => {
   useEffect(() => {
     get_all_patients();
   }, [get_all_patients]);
-
+  console.log(isLoading);
   const {colors} = useTheme();
   const list = [];
   const theme = useTheme();
@@ -38,7 +39,7 @@ const HomeScreenView = ({
       <ListItem
         bottomDivider
         onPress={() => {
-          navigation.navigate('patient_details', {
+          navigation.navigate('patient_details', 'Home', {
             patient_id: item.id,
             user_name: `${item.firstName} ${item.lastName}`,
           });

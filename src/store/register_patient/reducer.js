@@ -3,25 +3,25 @@ import * as types from './action_types';
 
 const initialState = {
   isLoading: false,
-  patient_details: [],
+  is_patient_registerd: [],
   error: null,
 };
 
-export const get_patients_details_reducer = createReducer(initialState, {
-  [types.GET_A_PATIENT](state, action) {
+export const register_patient_reducer = createReducer(initialState, {
+  [types.REGISTER_A_PATIENT](state, action) {
     return {
       ...state,
       isLoading: true,
     };
   },
-  [types.GET_A_PATIENT_SUCCESS](state, action) {
+  [types.REGISTER_A_PATIENT_SUCCESS](state, action) {
     return {
       ...state,
       isLoading: false,
-      patient_details: action.payload,
+      is_patient_registerd: action.payload,
     };
   },
-  [types.GET_A_PATIENT_FAILURE](state, action) {
+  [types.REGISTER_A_PATIENT_FAILURE](state, action) {
     return {
       ...state,
       isLoading: false,

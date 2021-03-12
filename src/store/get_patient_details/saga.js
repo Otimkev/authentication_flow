@@ -5,8 +5,9 @@ import * as actions from './actions';
 import * as api from '../../services/patients_service/patient_api_service';
 
 function* get_a_patients_details_Saga(action) {
+  const patient_id = action.payload;
   try {
-    const response = yield call(api.get_a_patient, {...action.payload});
+    const response = yield call(api.get_a_patient, {patient_id});
     yield put(actions.get_patients_details_success(response));
   } catch (error) {
     yield put(actions.get_patients_details_failure(error));
