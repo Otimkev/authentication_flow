@@ -21,7 +21,7 @@ export const HomeStackScreen = ({navigation}) => (
       name="Home"
       component={PatientDetail}
       options={({route}) => ({
-        title: "route.params.user_name",
+        title: route.params.user_name,
         headerLeft: () => (
           <Icon.Button
             name={'bars'}

@@ -7,6 +7,7 @@ import {
   StyleSheet,
   StatusBar,
   FlatList,
+  ScrollView,
 } from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import AppButton from '../../components/AppButton';
@@ -29,7 +30,6 @@ const HomeScreenView = ({
   useEffect(() => {
     get_all_patients();
   }, [get_all_patients]);
-  console.log(isLoading);
   const {colors} = useTheme();
   const list = [];
   const theme = useTheme();
@@ -39,9 +39,12 @@ const HomeScreenView = ({
       <ListItem
         bottomDivider
         onPress={() => {
-          navigation.navigate('patient_details', 'Home', {
-            patient_id: item.id,
-            user_name: `${item.firstName} ${item.lastName}`,
+          navigation.navigate('patient_details', {
+            screen: 'Home',
+            params: {
+              patient_id: item.id,
+              user_name: `${item.firstName} ${item.lastName}`,
+            },
           });
         }}>
         <ListItem.Content>
@@ -58,7 +61,7 @@ const HomeScreenView = ({
       <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
       {isLoading ? (
         <Loader />
-      ) : patients_list.length <= 0 ? (
+      ) : patients_list === [] ? (
         <ProfileScreen />
       ) : (
         <View>
@@ -68,14 +71,16 @@ const HomeScreenView = ({
             renderItem={renderItem}
             keyExtractor={(item) => Math.random().toString()}
           />
-          <AppButton
-            onPress={() => {
-              navigation.navigate('SupportScreen', {patient_id: 2});
-            }}
-            icon={{name: 'exit-to-app'}}
-            buttonStyle={styles.buttonStyle}
-            title="Register Patient"
-          />
+          <View>
+            <AppButton
+              onPress={() => {
+                navigation.navigate('SupportScreen', {patient_id: 2});
+              }}
+              icon={{name: 'exit-to-app'}}
+              buttonStyle={styles.buttonStyle}
+              title="Register Patient"
+            />
+          </View>
         </View>
       )}
     </View>
@@ -99,5 +104,8 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  buttonStyle: {
+    marginBottom: 50,
   },
 });

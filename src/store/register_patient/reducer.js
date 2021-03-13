@@ -3,8 +3,8 @@ import * as types from './action_types';
 
 const initialState = {
   isLoading: false,
-  is_patient_registerd: [],
-  error: null,
+  is_patient_registerd: "[]",
+  error: 'null',
 };
 
 export const register_patient_reducer = createReducer(initialState, {

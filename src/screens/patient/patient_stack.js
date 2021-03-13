@@ -2,8 +2,9 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const PatientStack = createStackNavigator();
-import PatientScreen from './patient_screen';
+import RegisterPatient from './patient_screen';
 import {colors} from '../../theme';
+import ProfileScreen from '../profile/profile_screen';
 
 export const PatientStackScreen = ({navigation}) => (
   <PatientStack.Navigator
@@ -18,9 +19,24 @@ export const PatientStackScreen = ({navigation}) => (
     }}>
     <PatientStack.Screen
       name="Patient"
-      component={PatientScreen}
+      component={RegisterPatient}
       options={{
-        title: 'Patient',
+        title: 'Register Patient',
+        headerLeft: () => (
+          <Icon.Button
+            name={'bars'}
+            size={25}
+            backgroundColor={colors.primary}
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <PatientStack.Screen
+      name="empty"
+      component={ProfileScreen}
+      options={{
+        title: '--',
         headerLeft: () => (
           <Icon.Button
             name={'bars'}
