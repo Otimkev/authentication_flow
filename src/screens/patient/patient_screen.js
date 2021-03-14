@@ -6,49 +6,70 @@ import {index_patients} from '../../store/patients/actions';
 import {Loader} from '../../components/Loader';
 import AppInput from '../../components/AppInput';
 import AppButton from '../../components/AppButton';
+import axios from 'axios';
+import {API_URL} from '../../utils/config';
 
 class RegisterPatientScreenView extends React.PureComponent {
-  // firstName: '',
-  // lastName: '',
-  // gender: '',
-  // dateOfBirth: '',
-  // maritalStatus: '',
-  // phoneNumber: '',
-  // address: '',
-  // emergencyFirstName: '',
-  // emergencyLastName: '',
-  // emergencyPhoneNumber: '',
-  // relationship: '',
-  // email: '',
+  // firstName: 'sam',
+  // lastName: 'walter',
+  // gender: 'male',
+  // dateOfBirth: '1/2/1989',
+  // maritalStatus: 'single',
+  // phoneNumber: 1705055589,
+  // address: 'hoima',
+  // emergencyFirstName: 'walter',
+  // emergencyLastName: 'pink',
+  // emergencyPhoneNumber: 2705066789,
+  // relationship: 'friend',
+  // email: 'sppoopiiiooo.com',
+
 
   state = {
-    firstName: 'sam',
-    lastName: 'walter',
-    gender: 'male',
-    dateOfBirth: '1/2/1989',
-    maritalStatus: 'single',
-    phoneNumber: 1705055589,
-    address: 'hoima',
-    emergencyFirstName: 'walter',
-    emergencyLastName: 'pink',
-    emergencyPhoneNumber: 2705066789,
-    relationship: 'friend',
-    email: 'sppoopiooo.com',
+  firstName: '',
+  lastName: '',
+  gender: '',
+  dateOfBirth: '',
+  maritalStatus: '',
+  phoneNumber: '',
+  address: '',
+  emergencyFirstName: '',
+  emergencyLastName: '',
+  emergencyPhoneNumber: '',
+  relationship: '',
+  email: '',
   };
 
   onChangeInput = (text, name) => {
     this.setState({[name]: text});
   };
-  onSubmit = () => {
+  onSubmit = async () => {
     const params = {...this.state};
-    this.props.register_patient(params);
-    const res = this.props.is_patient_registerd;
-    const e = this.props.error;
-    console.log(`r->${res}`)
-    console.log(`e->${e}`);
-    if (res !== []) {
-      return null;
-    }
+      try{
+        const response = await axios.post(`${API_URL}register-patient/${4}/`, params);
+        console.log(response.data['success'])
+        if(response.data['success'] === false) {
+          alert('Error registering!');
+       return null;
+        }
+        this.setState({})
+             this.props.reload_index_patient();
+             return this.props.navigation.goBack();
+      }catch(error){
+        console.log(error)
+      }
+    // this.props.register_patient(params);
+
+ 
+    //   console.log(res.['success']);
+    //   if (res['success'] === false) {
+    //     alert('Error registering!');
+    //     return null;
+    //   }
+    //   if(res['success'] === true) {
+    //   this.setState({}cons
+    //   this.props.reload_index_patient();
+    //   return this.props.navigation.goBack();}
+
   };
   render() {
     const {

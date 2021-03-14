@@ -57,7 +57,7 @@ const HomeScreenView = ({
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} horizontal={false} >
       <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
       {isLoading ? (
         <Loader />
@@ -83,7 +83,7 @@ const HomeScreenView = ({
           </View>
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 };
 

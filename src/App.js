@@ -23,6 +23,7 @@ import SupportScreen from './screens/screens/SupportScreen';
 import SettingsScreen from './screens/screens/SettingsScreen';
 import BookmarkScreen from './screens/screens/BookmarkScreen';
 import {DrawerContent} from './screens/screens/DrawerContent';
+import {ChatStackScreen} from './screens/chat/chat_stack';
 
 const AuthStackCreator = createStackNavigator();
 const AuthStack = () => (
@@ -96,6 +97,7 @@ class Main extends React.Component {
               />
               <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
               <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
+              <Drawer.Screen name="Chat_stack" component={ChatStackScreen} />
             </Drawer.Navigator>
           ) : (
             <RootStackScreen />

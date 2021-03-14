@@ -13,7 +13,11 @@ import ProfileScreen from './ProfileScreen';
 import {colors} from '../../theme/index';
 import {PatientStackScreen} from '../patient/patient_stack';
 import PatientScreen from '../patient/patient_screen';
+import NotificationScreen from '../notifications/notification_screen';
+import {ChatStackScreen} from '../chat/chat_stack';
+import ChatHeadScreen from '../chat/chat_head_screen';
 const HomeStack = createStackNavigator();
+const ChatStack = createStackNavigator();
 const DetailsStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
@@ -36,6 +40,17 @@ const MainTabScreen = () => (
       component={DetailsStackScreen}
       options={{
         tabBarLabel: 'Updates',
+        tabBarColor: colors.primary,
+        tabBarIcon: ({color}) => (
+          <Icon name="ios-notifications" color={color} size={26} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Chats"
+      component={ChatStackScreens}
+      options={{
+        tabBarLabel: 'chats',
         tabBarColor: colors.primary,
         tabBarIcon: ({color}) => (
           <Icon name="ios-notifications" color={color} size={26} />
@@ -99,6 +114,36 @@ const HomeStackScreen = ({navigation}) => (
   </HomeStack.Navigator>
 );
 
+const ChatStackScreens = ({navigation}) => (
+  <ChatStack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: colors.primary,
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}>
+    <ChatStack.Screen
+      name="Chat"
+      component={ChatHeadScreen}
+      options={{
+        title: 'Chat',
+        headerLeft: () => (
+          <Icon.Button
+            name="ios-menu"
+            size={25}
+            backgroundColor="#009387"
+            onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+          />
+        ),
+      }}
+    />
+    <ChatStack.Screen name="ChatStackScreen" component={PatientScreen} />
+  </ChatStack.Navigator>
+);
+
 const DetailsStackScreen = ({navigation}) => (
   <DetailsStack.Navigator
     screenOptions={{
@@ -112,7 +157,7 @@ const DetailsStackScreen = ({navigation}) => (
     }}>
     <DetailsStack.Screen
       name="Details"
-      component={DetailsScreen}
+      component={NotificationScreen}
       options={{
         headerLeft: () => (
           <Icon.Button

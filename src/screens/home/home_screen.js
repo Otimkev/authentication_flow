@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Button, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import * as action_types from '../../store/get_patient_details/actions';
 import {Loader} from '../../components/Loader';
+import AppButton from '../../components/AppButton';
 
 const PatientDetailView = ({
   navigation,
@@ -11,11 +12,10 @@ const PatientDetailView = ({
   patient_details,
   route,
 }) => {
-  console.log('route.params.patient_id');
-  const patient_id = 1;
+  const patient_id = route.params.patient_id;
   useEffect(() => {
     get_patient_details({patient_id});
-  }, [get_patient_details]);
+  }, [get_patient_details, patient_id]);
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -26,6 +26,24 @@ const PatientDetailView = ({
             <Text>
               {patient_details.firstName ? patient_details.firstName : '--'}
             </Text>
+            <AppButton
+              onPress={() => {
+                navigation.navigate('Share', {patient_id: patient_id});
+              }}
+              icon={{name: 'exit-to-app'}}
+              buttonStyle={styles.buttonStyle}
+              title="share"
+            />
+            <AppButton
+              onPress={() => {
+                navigation.navigate('view_patient_category_tests', {
+                  patient_id: patient_id,
+                });
+              }}
+              icon={{name: 'exit-to-app'}}
+              buttonStyle={styles.buttonStyle}
+              title="view tests"
+            />
           </View>
         </ScrollView>
       )}

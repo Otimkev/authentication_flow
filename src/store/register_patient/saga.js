@@ -11,7 +11,6 @@ function* register_patient_Saga(action) {
       patient_data,
       user_id: 4,
     });
-    console.log(`saga->${response}`);
     yield put(actions.register_patient_success(response));
   } catch (error) {
     yield put(actions.register_patient_failure(error));
