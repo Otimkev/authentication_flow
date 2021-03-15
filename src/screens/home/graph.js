@@ -16,6 +16,8 @@ import AppButton from '../../components/AppButton';
 import AppInput from '../../components/AppInput';
 import {showToast} from '../../components/Toast';
 import {LineChart} from 'react-native-chart-kit';
+import {globalStyles} from '../../styles/Global';
+import {primary_color, secondary_color} from '../../styles/color';
 
 const Graph = ({navigation, route}) => {
   const {category_id, category_label, patient_id} = route.params;
@@ -125,19 +127,16 @@ const Graph = ({navigation, route}) => {
     return <Picker.Item key={i} value={s.id} label={s.label} />;
   });
 
-  const h = m.map((i) => {
-    i.createdAt;
-  });
-  const g = m.map((i) => {
-    i.value;
-  });
 
   console.log('M');
   const testGraph = () => {
     return (
       <View>
         <View>
-          <Text style={styles.title}>{'Graph of time against'}</Text>
+          <View style={styles.headerView}>
+            <Text style={styles.title}>{'Graph of time against'}</Text>
+          </View>
+
           <ScrollView horizontal={true}>
             <View style={{margin: 8}}>
               <LineChart
@@ -152,16 +151,16 @@ const Graph = ({navigation, route}) => {
                 width={Dimensions.get('window').width * 1.5} // from react-native
                 height={300}
                 yAxisLabel=""
-                yAxisSuffix="mm "
+                yAxisSuffix="g"
                 yAxisInterval={1} // optional, defaults to 1
                 chartConfig={{
                   backgroundColor: '#1cc910',
                   backgroundGradientFrom: '#eff3ff',
                   backgroundGradientTo: '#efefef',
-                  decimalPlaces: 2, // optional, defaults to 2dp
+                  decimalPlaces: 1, // optional, defaults to 2dp
                   color: (opacity = 255) => `rgba(0, 0, 0, ${opacity})`,
                   style: {
-                    borderRadius: 16,
+                    borderRadius: 8,
                   },
                 }}
                 bezier
@@ -183,7 +182,8 @@ const Graph = ({navigation, route}) => {
         <Loader />
       ) : (
         <View>
-          <View style={{marginBottom: 16}}>
+          <View
+            style={{marginVertical: 10, borderWidth: 1, borderColor: '#ccc'}}>
             <Picker
               selectedValue={selected}
               onValueChange={(service) => setSelected(service)}>
@@ -195,6 +195,7 @@ const Graph = ({navigation, route}) => {
           <View>
             <AppButton
               title="Add Test"
+              buttonStyle={styles.buttonStyle}
               onPress={() => {
                 navigation.navigate('lab_test_form', {
                   category_label: category_label,
@@ -217,11 +218,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
+    padding: 10,
+  },
+  headerView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 10,
+    textAlign: 'center',
+  },
+  buttonStyle: {
+    borderRadius: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 20,
+    height: 45,
+    backgroundColor: primary_color,
   },
   container2: {
     flex: 1,
   },
   container3: {
     flex: 1,
+  },
+  title: {
+    fontSize: 16,
   },
 });

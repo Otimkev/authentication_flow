@@ -38,14 +38,14 @@ const ChatHeadScreen = ({navigation, route}) => {
 
       const fetchUser = async () => {
         try {
-          //const user_id = await retrieveData('user');
-          const res = await axios.get(`${API_URL}chat-head/${user_id}`);
+          const userId = await retrieveData('user');
+          const res = await axios.get(`${API_URL}chat/${user_id}/head/`);
           if (res.status === 200) {
             console.log(res.data);
           }
           if (isActive) {
             setisLoading(false);
-            set_user_id(user_id);
+            set_user_id(userId);
             set_chat_head_list(res.data);
           }
         } catch (e) {
@@ -61,30 +61,30 @@ const ChatHeadScreen = ({navigation, route}) => {
     }, [user_id]),
   );
 
-  const on_share = async (receiver_id) => {
-    try {
-      const res = await axios.post(`${API_URL}share/${4}/${receiver_id}/${1}/`);
-      console.log(receiver_id);
-      if (res.status === 200) {
-        return navigation.goBack();
-      } else {
-        alert('Error sharing!');
-        return null;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const renderItem = ({item}) => {
     return (
       <ListItem
         bottomDivider
         onPress={() => {
-          navigation.navigate('test_graph');
+          navigation.navigate('ConversationStackScreen', {
+            screen: 'chat_room',
+            params: {
+              receiver_username: `${
+                user_id === item.member.id
+                  ? item.author.firstName
+                  : item.member.firstName
+              }`,
+              receiver_id: item.member.id,
+              room_id: item.id,
+            },
+          });
         }}>
         <ListItem.Content>
-          <ListItem.Title>{item.category.id}</ListItem.Title>
+          <ListItem.Title>
+            {user_id === item.member.id
+              ? `${item.author.firstName} ${item.author.lastName}`
+              : `${item.author.firstName} ${item.author.lastName}`}
+          </ListItem.Title>
         </ListItem.Content>
         <ListItem.Chevron />
       </ListItem>
@@ -126,6 +126,7 @@ export default ChatHeadScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
   },
   container2: {
     flex: 1,

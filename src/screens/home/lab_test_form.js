@@ -9,16 +9,18 @@ import {useFocusEffect} from '@react-navigation/native';
 import AppButton from '../../components/AppButton';
 import AppInput from '../../components/AppInput';
 import {showToast} from '../../components/Toast';
+import {globalStyles} from '../../styles/Global';
+import {primary_color, secondary_color} from '../../styles/color';
 
 const LabTestForm = ({navigation, route}) => {
   const {category_id, category_label, patient_id} = route.params;
   const [test_list, set_test_list] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-  const [user_id, set_user_id] = useState(1);
+  const [user_id, set_user_id] = useState(null);
   const [selected, setSelected] = useState(1);
   const [values, set_value] = useState('');
   const data = {
-    userId: 4,
+    userId: user_id,
     category: category_id,
     testLabel: selected,
     value: values,
@@ -30,13 +32,14 @@ const LabTestForm = ({navigation, route}) => {
 
       const fetchCategories = async () => {
         try {
+          const userId = await retrieveData('user');
           const res = await axios.get(`${API_URL}categories/${category_id}/`);
           if (res.status === 200) {
             console.log(res.data);
           }
           if (isActive) {
             setisLoading(false);
-
+            set_user_id(userId);
             set_test_list(res.data);
           }
         } catch (e) {
@@ -91,11 +94,15 @@ const LabTestForm = ({navigation, route}) => {
       ) : (
         <View>
           <View>
-            <Picker
-              selectedValue={selected}
-              onValueChange={(service) => setSelected(service)}>
-              {serviceItems}
-            </Picker>
+            <View
+              style={{marginVertical: 10, borderWidth: 1, borderColor: '#ccc'}}>
+              <Picker
+                selectedValue={selected}
+                onValueChange={(service) => setSelected(service)}>
+                {serviceItems}
+              </Picker>
+            </View>
+
             <View>
               <AppInput
                 label="Enter Test"
@@ -105,14 +112,20 @@ const LabTestForm = ({navigation, route}) => {
           </View>
           <View>
             <AppButton
-              title="submit"
+              title="Submit"
               onPress={onSubmit}
               disabled={!value || !userId}
+              buttonStyle={styles.buttonStyle}
             />
             <AppButton
-              title="Back"
+              title="View Test Graph"
+              buttonStyle={styles.buttonStyle}
               onPress={() => {
-                navigation.goBack();
+                navigation.navigate('test_graph', {
+                  patient_id,
+                  category_label,
+                  category_id,
+                });
               }}
             />
           </View>
@@ -128,6 +141,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
+    padding: 10,
+  },
+  buttonStyle: {
+    borderRadius: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginBottom: 0,
+    height: 45,
+    marginVertical: 20,
+    backgroundColor: primary_color,
   },
   container2: {
     flex: 1,

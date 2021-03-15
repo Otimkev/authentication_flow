@@ -63,8 +63,10 @@ const NotificationScreen = ({navigation, route}) => {
 
   const EmptyCategories = () => {
     return (
-      <View>
-        <Text>Empty list</Text>
+      <View style={{flex: 1, justifyContent: 'center'}}>
+        <Text style={{textAlign: 'center', fontSize: 16}}>
+          Notification list Empty
+        </Text>
       </View>
     );
   };
@@ -110,5 +112,6 @@ export default NotificationScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
   },
 });

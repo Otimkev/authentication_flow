@@ -13,12 +13,21 @@ import {useTheme} from '@react-navigation/native';
 import AppButton from '../../components/AppButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ListItem, Avatar} from 'react-native-elements';
-import {TextInput} from 'react-native-gesture-handler';
 import ProfileScreen from '../profile/profile_screen';
 import {Loader} from '../../components/Loader';
 import * as action_types from '../../store/patients/action_types';
-import {colors} from '../../theme';
-import ScreenContainer from '../../components/ScreenContainer';
+import {globalStyles} from '../../styles/Global';
+import {FloatingAction} from 'react-native-floating-action';
+
+const actions = [
+  {
+    text: 'Add patient.',
+    // icon: require('../../assets/img/chat2.png'),
+    name: 'SupportScreen',
+    position: 4,
+    color: '#007360',
+  },
+];
 
 const HomeScreenView = ({
   navigation,
@@ -47,8 +56,9 @@ const HomeScreenView = ({
             },
           });
         }}>
+        <Avatar source={require('../../assets/doctor3.png')} />
         <ListItem.Content>
-          <ListItem.Title>{item.firstName}</ListItem.Title>
+          <ListItem.Title>{`${item.firstName} ${item.lastName}`}</ListItem.Title>
           <ListItem.Subtitle>{item.lastName}</ListItem.Subtitle>
         </ListItem.Content>
         <ListItem.Chevron />
@@ -57,8 +67,7 @@ const HomeScreenView = ({
   };
 
   return (
-    <ScrollView style={styles.container} horizontal={false} >
-      <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
+    <View style={globalStyles.container}>
       {isLoading ? (
         <Loader />
       ) : patients_list === [] ? (
@@ -71,19 +80,16 @@ const HomeScreenView = ({
             renderItem={renderItem}
             keyExtractor={(item) => Math.random().toString()}
           />
-          <View>
-            <AppButton
-              onPress={() => {
-                navigation.navigate('SupportScreen', {patient_id: 2});
-              }}
-              icon={{name: 'exit-to-app'}}
-              buttonStyle={styles.buttonStyle}
-              title="Register Patient"
-            />
-          </View>
         </View>
       )}
-    </ScrollView>
+      <FloatingAction
+        actions={actions}
+        color="#007360"
+        onPressItem={(name) => {
+          navigation.navigate(name);
+        }}
+      />
+    </View>
   );
 };
 

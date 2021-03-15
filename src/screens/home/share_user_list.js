@@ -22,6 +22,7 @@ import axios from 'axios';
 import {API_URL} from '../../utils/config';
 import {retrieveData} from '../../services/persistentStorage';
 import {useFocusEffect} from '@react-navigation/native';
+import {showToast} from '../../components/Toast';
 
 const ShareListView = ({navigation, route}) => {
   const patient_id = route.params.patient_id;
@@ -35,14 +36,14 @@ const ShareListView = ({navigation, route}) => {
 
       const fetchUser = async () => {
         try {
-          const user_id = await retrieveData('user');
+          const userId = await retrieveData('user');
           const res = await axios.get(`${API_URL}all-users/`);
           if (res.status === 200) {
             console.log(res.data);
           }
           if (isActive) {
             setisLoading(false);
-            set_user_id(user_id);
+            set_user_id(userId);
             set_share_list(res.data);
           }
         } catch (e) {
@@ -62,10 +63,11 @@ const ShareListView = ({navigation, route}) => {
     console.log(receiver_id)
     try {
       const res = await axios.post(
-        `${API_URL}share/${4}/${receiver_id}/${patient_id}/`,
+        `${API_URL}share/${user_id}/${receiver_id}/${patient_id}/`,
       );
       console.log(receiver_id);
       if (res.status === 200) {
+        showToast('Share successful');
         return navigation.goBack();
       } else {
         alert('Error sharing!');
@@ -80,12 +82,13 @@ const ShareListView = ({navigation, route}) => {
     return (
       <ListItem
         bottomDivider
-        onPress={async () => {
-          await on_share(item.id);
+        onPress={() => {
+          on_share(item.id);
         }}>
+      <Avatar source={require('../../assets/doctor3.png')} />
         <ListItem.Content>
-          <ListItem.Title>{item.firstName}</ListItem.Title>
-          <ListItem.Subtitle>{item.lastName}</ListItem.Subtitle>
+          <ListItem.Title>{`${item.firstName} ${item.lastName}`}</ListItem.Title>
+          <ListItem.Subtitle>{item.hospital}</ListItem.Subtitle>
         </ListItem.Content>
         <ListItem.Chevron />
       </ListItem>

@@ -1,10 +1,21 @@
 import * as types from './actionTypes';
 
-export const signUp = ({email, password}) => ({
+export const signUp = ({
+  email,
+  password,
+  hostpital,
+  phoneNumber,
+  firstName,
+  lastName,
+}) => ({
   type: types.SIGN_UP,
   payload: {
     email,
     password,
+    hostpital,
+    phoneNumber,
+    firstName,
+    lastName,
   },
 });
 

@@ -12,16 +12,25 @@ import * as action_types from '../../store/get_patient_details/actions';
 import {Loader} from '../../components/Loader';
 import {useTheme} from '@react-navigation/native';
 import AppButton from '../../components/AppButton';
+import {globalStyles} from '../../styles/Global';
+import {primary_color, secondary_color} from '../../styles/color';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ListItem, Avatar} from 'react-native-elements';
-import {TextInput} from 'react-native-gesture-handler';
-import ProfileScreen from '../profile/profile_screen';
-import {colors} from '../../theme';
-import ScreenContainer from '../../components/ScreenContainer';
 import axios from 'axios';
 import {API_URL} from '../../utils/config';
 import {retrieveData} from '../../services/persistentStorage';
 import {useFocusEffect} from '@react-navigation/native';
+import {FloatingAction} from 'react-native-floating-action';
+
+const actions = [
+  {
+    text: 'Add Test Category.',
+    // icon: require('../../assets/img/chat2.png'),
+    name: 'view_category_tests',
+    position: 4,
+    color: '#007360',
+  },
+];
 
 const ListDonePatientCategories = ({navigation, route}) => {
   const patient_id = route.params.patient_id;
@@ -117,18 +126,10 @@ const ListDonePatientCategories = ({navigation, route}) => {
       {isLoading ? (
         <Loader />
       ) : category_list.length <= 0 ? (
-        <View style={styles.container2}>
-          <Text>Empty list</Text>
-          <AppButton
-            onPress={() => {
-              navigation.navigate('view_category_tests', {
-                patient_id: patient_id,
-              });
-            }}
-            icon={{name: 'exit-to-app'}}
-            buttonStyle={styles.buttonStyle}
-            title="Add test"
-          />
+        <View style={globalStyles.container}>
+          <View >
+            <Text style={{fontSize: 16, textAlign: 'center'}}>Empty list!</Text>
+          </View>
         </View>
       ) : (
         <View>
@@ -138,19 +139,18 @@ const ListDonePatientCategories = ({navigation, route}) => {
             renderItem={renderItem}
             keyExtractor={(item) => Math.random().toString()}
           />
-          <AppButton
-            onPress={() => {
-              navigation.navigate('view_category_tests', {
-                patient_id: patient_id,
-              });
-            }}
-            icon={{name: 'exit-to-app'}}
-            buttonStyle={styles.buttonStyle}
-            title="Add Test Category"
-          />
           <View />
         </View>
       )}
+      <FloatingAction
+        actions={actions}
+        color="#007360"
+        onPressItem={(name) => {
+          navigation.navigate(name, {
+            patient_id: patient_id,
+          });
+        }}
+      />
     </View>
   );
 };
@@ -160,9 +160,18 @@ export default ListDonePatientCategories;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
   },
   container2: {
     flex: 1,
     justifyContent: 'center',
+  },
+  buttonStyle: {
+    borderRadius: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginBottom: 0,
+    height: 45,
+    backgroundColor: primary_color,
   },
 });

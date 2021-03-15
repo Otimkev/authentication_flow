@@ -8,6 +8,11 @@ import * as storage from '../services/persistentStorage';
 function* loginSaga(action) {
   try {
     const user = yield call(api.login, {...action.payload});
+    //storage.removeAllData();
+    if (user['success'] === false) {
+      yield put(actions.loginFailure('Wrong Credentials!'));
+      return;
+    }
     yield call(storage.storeData, 'user', JSON.stringify(user));
     yield put(actions.loginSuccess(user));
   } catch (error) {
@@ -27,6 +32,11 @@ function* logoutSaga() {
 function* signUpSaga(action) {
   try {
     const user = yield call(api.signUp, {...action.payload});
+    console.log('USER', user);
+    if (user['success'] === false) {
+      yield put(actions.signUpFailure('Email already exists!'));
+      return;
+    }
     yield call(storage.storeData, 'user', JSON.stringify(user));
     yield put(actions.signUpSuccess(user));
   } catch (error) {

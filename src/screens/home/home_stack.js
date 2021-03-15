@@ -28,12 +28,16 @@ export const HomeStackScreen = ({navigation}) => (
       component={PatientDetail}
       options={({route}) => ({
         title: route.params.user_name,
-        headerLeft: () => (
+        headerRight: () => (
           <Icon.Button
-            name={'bars'}
+            name={'share'}
             size={25}
             backgroundColor={colors.primary}
-            onPress={() => navigation.openDrawer()}
+            onPress={() =>
+              navigation.navigate('Share', {
+                patient_id: route.params.patient_id,
+              })
+            }
           />
         ),
       })}
@@ -57,14 +61,6 @@ export const HomeStackScreen = ({navigation}) => (
       component={ListDonePatientCategories}
       options={({route}) => ({
         title: 'Categories',
-        headerLeft: () => (
-          <Icon.Button
-            name={'bars'}
-            size={25}
-            backgroundColor={colors.primary}
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
       })}
     />
     <HomeStack.Screen
@@ -72,14 +68,6 @@ export const HomeStackScreen = ({navigation}) => (
       component={IndexTestCategories}
       options={({route}) => ({
         title: 'Lab Test Categories',
-        headerLeft: () => (
-          <Icon.Button
-            name={'bars'}
-            size={25}
-            backgroundColor={colors.primary}
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
       })}
     />
     <HomeStack.Screen

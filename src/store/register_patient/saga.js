@@ -1,15 +1,17 @@
 import {put, takeEvery, all, call} from 'redux-saga/effects';
 import * as types from './action_types';
 import * as actions from './actions';
-
+import {retrieveData} from '../../services/persistentStorage';
 import * as api from '../../services/patients_service/patient_api_service';
 
 function* register_patient_Saga(action) {
   const patient_data = action.payload;
   try {
+    const user_id = yield call(retrieveData, 'user');
+    const userId = user_id.id;
     const response = yield call(api.register_patient, {
       patient_data,
-      user_id: 4,
+      user_id: userId,
     });
     yield put(actions.register_patient_success(response));
   } catch (error) {

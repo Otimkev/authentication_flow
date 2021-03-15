@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import {View, StyleSheet} from 'react-native';
 import {Input} from 'react-native-elements';
 
-import {colors} from '../theme';
+import {colors} from '../theme/index';
 
 const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    paddingVertical: 20,
   },
   inputContainerStyle: {
-    borderBottomColor: colors.green,
   },
 });
 

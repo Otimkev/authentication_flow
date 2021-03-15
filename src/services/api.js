@@ -1,28 +1,49 @@
 import axios from 'axios';
+import {API_URL} from '../utils/config';
 
-export const login = ({email, password}) =>
-  // fake async http call returning user
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        username: email,
-        email,
-        password,
-      });
-    }, 300);
-  });
+export const login = async ({email, password}) => {
+  try {
+    const res = await axios.post(`${API_URL}signin/`, {email, password});
+    if (res.status === 200) {
+      return {
+        token: res.data.data.accessToken,
+        success: res.data.success,
+        id: res.data.data.id,
+      };
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export const signUp = ({email, password}) =>
-  // fake async http call returning user
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        username: email,
-        email,
-        password,
-      });
-    }, 300);
-  });
+export const signUp = async ({
+  email,
+  password,
+  hostpital,
+  phoneNumber,
+  firstName,
+  lastName,
+}) => {
+  try {
+    const res = await axios.post(`${API_URL}signup/`, {
+      email,
+      password,
+      hostpital,
+      phoneNumber,
+      firstName,
+      lastName,
+    });
+    if (res.status === 200) {
+      return {
+        token: res.data.data.accessToken,
+        success: res.data.success,
+        id: res.data.data.id,
+      };
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const index_specialists = async () => {
   const response = await axios.get('');

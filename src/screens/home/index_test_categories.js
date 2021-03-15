@@ -57,23 +57,6 @@ const IndexTestCategories = ({navigation, route}) => {
     }, []),
   );
 
-  const on_share = async (receiver_id) => {
-    try {
-      const res = await axios.post(
-        `${API_URL}share/${4}/${receiver_id}/${'patient_id'}/`,
-      );
-      console.log(receiver_id);
-      if (res.status === 200) {
-        return navigation.goBack();
-      } else {
-        alert('Error sharing!');
-        return null;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const renderItem = ({item}) => {
     return (
       <ListItem
@@ -120,5 +103,6 @@ export default IndexTestCategories;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
   },
 });

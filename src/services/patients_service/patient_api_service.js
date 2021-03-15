@@ -1,9 +1,11 @@
 import axios from 'axios';
 import {API_URL} from '../../utils/config';
+import {retrieveData} from '../persistentStorage';
 
 export const index_patients = async () => {
   try {
-    const response = await axios.get(`${API_URL}patients/${4}/${1}/`);
+    const user_id = await retrieveData('user');
+    const response = await axios.get(`${API_URL}patients/${user_id.id}/${1}/`);
     return response.data;
   } catch (error) {
     console.log(error);

@@ -76,11 +76,14 @@ const StartChatListScreen = ({navigation, route}) => {
         onPress={() => {
           navigation.navigate('chat_room', {
             receiver_username: `${item.firstName} ${item.lastName}`,
+            receiver_id: item.id,
+            room_id: false,
           });
         }}>
+         <Avatar source={require('../../assets/doctor3.png')} />
         <ListItem.Content>
-          <ListItem.Title>{item.firstName}</ListItem.Title>
-          <ListItem.Subtitle>{item.lastName}</ListItem.Subtitle>
+          <ListItem.Title>{`${item.firstName} ${item.lastName}`}</ListItem.Title>
+          <ListItem.Subtitle>{item.hospital}</ListItem.Subtitle>
         </ListItem.Content>
         <ListItem.Chevron />
       </ListItem>
@@ -113,5 +116,6 @@ export default StartChatListScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
   },
 });

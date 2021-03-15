@@ -24,37 +24,17 @@ import SettingsScreen from './screens/screens/SettingsScreen';
 import BookmarkScreen from './screens/screens/BookmarkScreen';
 import {DrawerContent} from './screens/screens/DrawerContent';
 import {ChatStackScreen} from './screens/chat/chat_stack';
+import {ConversationStackScreen} from './screens/chat/chat_stack_conversation';
 
-const AuthStackCreator = createStackNavigator();
-const AuthStack = () => (
-  <AuthStackCreator.Navigator
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: '#007360',
-      },
-      headerTintColor: colors.green,
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    }}>
-    <AuthStackCreator.Screen name="Login" component={Login} />
-    <AuthStackCreator.Screen name="SignUp" component={SignUp} />
-    <AuthStackCreator.Screen name="ForgotPassword" component={ForgotPassword} />
-  </AuthStackCreator.Navigator>
-);
-
-const MainStackCreator = createStackNavigator();
 const Drawer = createDrawerNavigator();
-const MainStack = () => <BottomNavigation />;
-const mDrawer = () => {
-  return;
-};
+
 class Main extends React.Component {
   async componentDidMount() {
     const {user, storageLogin} = this.props;
     if (user === null) {
       try {
         const savedUser = await storage.retrieveData('user');
+        console.log('savedUser', savedUser);
         storageLogin(savedUser);
       } catch (error) {
         console.log('error getting user from stroage: ', error);
@@ -66,10 +46,10 @@ class Main extends React.Component {
     const {isAuthenticating, user} = this.props;
 
     if (!isAuthenticating) {
-      if (user && user.username) {
+      if (user && user['token']) {
         if (!prevProps.user) {
           // a user has logged in
-        } else if (user.username !== prevProps.user.username) {
+        } else if (user['token'] !== prevProps.user['token']) {
           // a new user has logged in
         }
       }
@@ -78,7 +58,7 @@ class Main extends React.Component {
 
   render() {
     const {user} = this.props;
-    const isLoggedIn = user && !!user.username;
+    const isLoggedIn = user && !!user['token'];
     console.log(isLoggedIn);
     return (
       <SafeAreaProvider>
@@ -98,6 +78,10 @@ class Main extends React.Component {
               <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
               <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
               <Drawer.Screen name="Chat_stack" component={ChatStackScreen} />
+              <Drawer.Screen
+                name="ConversationStackScreen"
+                component={ConversationStackScreen}
+              />
             </Drawer.Navigator>
           ) : (
             <RootStackScreen />
