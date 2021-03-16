@@ -74,7 +74,7 @@ const ProfileScreen = ({navigation, logout}) => {
         />
         <View style={{marginTop: 20}}>
           <Text
-            style={{fontSize: 16}}>{`${user.firstName} ${user.lastName}`}</Text>
+            style={{fontSize: 16}}>{`Dr. ${user.firstName} ${user.lastName}`}</Text>
         </View>
       </View>
       <View />
@@ -83,7 +83,7 @@ const ProfileScreen = ({navigation, logout}) => {
         <Icon name="email" color={primary_color} size={25} />
       </View>
       <View>
-        <Text style={{fontSize: 16}}>ajldfja</Text>
+        <Text style={{fontSize: 16}}>{user.email}</Text>
       </View>
 
       <View style={{marginTop: 10}}>

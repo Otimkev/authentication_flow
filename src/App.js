@@ -22,7 +22,7 @@ import MainTabScreen from './screens/screens/MainTabScreen';
 import SupportScreen from './screens/screens/SupportScreen';
 import SettingsScreen from './screens/screens/SettingsScreen';
 import BookmarkScreen from './screens/screens/BookmarkScreen';
-import {DrawerContent} from './screens/screens/DrawerContent';
+import DrawerContent from './screens/screens/DrawerContent';
 import {ChatStackScreen} from './screens/chat/chat_stack';
 import {ConversationStackScreen} from './screens/chat/chat_stack_conversation';
 

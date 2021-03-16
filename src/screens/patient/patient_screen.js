@@ -15,6 +15,7 @@ import {API_URL} from '../../utils/config';
 import AppButton from '../../components/AppButton';
 import * as action_types from '../../store/register_patient/actions';
 import {index_patients} from '../../store/patients/actions';
+import {retrieveData} from '../../services/persistentStorage';
 
 class RegisterPatientScreenView extends React.PureComponent {
   // firstName: 'sam',
@@ -32,8 +33,10 @@ class RegisterPatientScreenView extends React.PureComponent {
 
   on_Submit = async (params) => {
     try {
+      const user = await retrieveData('user');
+      console.log(user.id)
       const response = await axios.post(
-        `${API_URL}register-patient/${4}/`,
+        `${API_URL}register-patient/${user.id}/`,
         params,
       );
 

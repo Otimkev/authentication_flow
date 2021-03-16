@@ -67,7 +67,7 @@ const HomeScreenView = ({
   };
 
   return (
-    <View style={globalStyles.container}>
+    <View style={styles.container}>
       {isLoading ? (
         <Loader />
       ) : patients_list === [] ? (
@@ -110,6 +110,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
   },
   buttonStyle: {
     marginBottom: 50,

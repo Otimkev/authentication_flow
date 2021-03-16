@@ -54,7 +54,7 @@ const MainTabScreen = () => (
         tabBarLabel: 'chat',
         tabBarColor: colors.primary,
         tabBarIcon: ({color}) => (
-          <Icon name="ios-notifications" color={color} size={26} />
+          <Icon name="chatbox-sharp" color={color} size={26} />
         ),
       }}
     />

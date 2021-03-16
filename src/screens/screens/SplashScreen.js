@@ -17,8 +17,11 @@ const SplashScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="#009387" barStyle="light-content" />
-      <Text>splash screen</Text>
+      <StatusBar backgroundColor="#fff" barStyle="light-content" />
+      <Image
+        style={styles.imageContainer}
+        source={require('../../assets/img/Crit.png')}
+      />
     </SafeAreaView>
   );
 };
@@ -31,7 +34,13 @@ const height_logo = height * 0.28;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#009387',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+  imageContainer: {
+    width: 250,
+    height: 75,
   },
   header: {
     flex: 2,

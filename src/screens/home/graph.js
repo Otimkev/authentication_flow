@@ -18,6 +18,7 @@ import {showToast} from '../../components/Toast';
 import {LineChart} from 'react-native-chart-kit';
 import {globalStyles} from '../../styles/Global';
 import {primary_color, secondary_color} from '../../styles/color';
+import moment from 'moment';
 
 const Graph = ({navigation, route}) => {
   const {category_id, category_label, patient_id} = route.params;
@@ -39,7 +40,10 @@ const Graph = ({navigation, route}) => {
         let data = await response.data;
         let test_data = res.data;
         let newState = data.map((e) => e); // map your state here
-        let new_l = test_data.map((e) => e.createdAt);
+
+        let new_l = test_data.map((e) =>
+          new Date(e.createdAt).toLocaleTimeString(),
+        );
         let new_v = test_data.map((e) => e.value);
         set_test_list(newState); // and then update the state
         setisLoading(false);
@@ -127,14 +131,13 @@ const Graph = ({navigation, route}) => {
     return <Picker.Item key={i} value={s.id} label={s.label} />;
   });
 
-
   console.log('M');
   const testGraph = () => {
     return (
       <View>
         <View>
           <View style={styles.headerView}>
-            <Text style={styles.title}>{'Graph of time against'}</Text>
+            <Text style={styles.title}>{'Lab Test  Graph'}</Text>
           </View>
 
           <ScrollView horizontal={true}>
@@ -195,6 +198,18 @@ const Graph = ({navigation, route}) => {
           <View>
             <AppButton
               title="Add Test"
+              buttonStyle={styles.buttonStyle}
+              onPress={() => {
+                navigation.navigate('lab_test_form', {
+                  category_label: category_label,
+                  category_id: category_id,
+                  patient_id: patient_id,
+                  is_from_graph: true,
+                });
+              }}
+            />
+            <AppButton
+              title="View Diagonosis"
               buttonStyle={styles.buttonStyle}
               onPress={() => {
                 navigation.navigate('lab_test_form', {

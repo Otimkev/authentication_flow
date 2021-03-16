@@ -5,16 +5,55 @@ import {ActivityIndicator, IconButton} from 'react-native-paper';
 import {Loader} from '../../components/Loader';
 import socketIO from 'socket.io-client';
 import {identify} from '../../utils/socket_io';
+import {prompt_message_history} from '../../utils/socket_io';
+import {history} from '../../utils/socket_io';
+import {useFocusEffect} from '@react-navigation/native';
+import axios from 'axios';
+import socket from '../../utils/socket_config';
+import {send_message} from '../../utils/socket_io';
+import {retrieveData} from '../../services/persistentStorage';
 
 //import {openChat, sendMessage} from '../utils/SocketEvents';
 
 const ConversationScreen = ({navigation, route}) => {
-  useEffect(() => {
-    identify(1);
-  }, []);
-  //   const {roomId, memberId, senderId} = route.params;
-  const [messages, setMessages] = useState([]);
+  const [user_id, setuser_id] = useState(null);
+  const {receiver_id, room_id} = route.params;
+  const ROOM_ID = room_id ? room_id : false;
+  const [chat_message_history, setmessage_history] = useState([]);
+  const [incoming_messages, setincoming_messages] = useState([]);
+  useFocusEffect(
+    React.useCallback(() => {
+      let isActive = true;
 
+      const fetch_messages = async () => {
+        try {
+          const userId = await retrieveData('user');
+          prompt_message_history(ROOM_ID);
+          console.log('ROOm', ROOM_ID)
+          if (isActive) {
+            setuser_id(userId.id);
+            socket.on('priorMessages', async (message_historys) => {
+              setmessage_history(message_historys);
+            });
+            socket.on('incomingMessage', async (response) => {
+              setincoming_messages(response);
+            });
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      };
+
+      fetch_messages();
+
+      return () => {
+        isActive = false;
+      };
+    }, [ROOM_ID]),
+  );
+
+  const [messages, setMessages] = useState([]);
+  console.log('DATA', chat_message_history);
   const m = [
     {
       _id: 0,
@@ -24,9 +63,10 @@ const ConversationScreen = ({navigation, route}) => {
       // Any additional custom parameters are passed through
     },
   ];
+  //user_id, receiver_id, room_id, text
   const onSend = (newMessages = []) => {
     const plainText = newMessages.map((msg) => msg.text);
-    // sendMessage(senderId, memberId, roomId, plainText[0]);
+    send_message({user_id, receiver_id, room_id: ROOM_ID, text: plainText[0]});
     setMessages(GiftedChat.append(messages, newMessages));
   };
 
@@ -34,7 +74,7 @@ const ConversationScreen = ({navigation, route}) => {
     return (
       <Send {...props}>
         <View style={styles.sendingContainer}>
-          <IconButton icon="send-circle" size={32} color="#007360" />
+          <IconButton icon="send-circle" size={40} color="#007360" />
         </View>
       </Send>
     );
@@ -70,9 +110,9 @@ const ConversationScreen = ({navigation, route}) => {
   return (
     <View style={{flex: 1}}>
       <GiftedChat
-        messages={[...m, ...messages]}
+        messages={[...m, ...messages, ...chat_message_history]}
         onSend={(newMessage) => onSend(newMessage)}
-        user={{_id: 1}}
+        user={{_id: 18}}
         alwaysShowSend
         renderSend={renderSend}
         renderBubble={renderBubble}

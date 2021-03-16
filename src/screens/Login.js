@@ -37,9 +37,9 @@ const SignInScreenView = ({navigation, login, loginError}) => {
           source={require('../assets/img/Real-timeTemplate.jpg')}
           style={styles.middleText}
         /> */}
-        <Text style={styles.headerText}>
+        {/* <Text style={styles.headerText}>
           inovate.<Text style={styles.text}>Inform</Text>.inspire
-        </Text>
+        </Text> */}
       </View>
       <View style={styles.headerView}>
         <Text style={styles.headerTextError}>
@@ -84,7 +84,7 @@ const SignInScreenView = ({navigation, login, loginError}) => {
       <View style={styles.Row}>
         <View>
           <TouchableOpacity>
-            <Text style={styles.forgot}>Forgot Password?</Text>
+            <Text style={styles.forgot} onPress={()=> navigation.navigate('ForgotPassword')}>Forgot Password?</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     left: 10,
     top: -140,
     fontSize: 20,
-    color: '#ffffff',
+    color: primary_color,
     textAlign: 'center',
     fontWeight: 'bold',
   },

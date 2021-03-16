@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {
   useTheme,
@@ -15,23 +15,50 @@ import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Font from 'react-native-vector-icons/FontAwesome5';
+import {connect} from 'react-redux';
+import * as actions from '../../store/actions';
+import {primary_color} from '../../styles/color';
+import axios from 'axios';
+import {API_URL} from '../../utils/config';
+import {retrieveData} from '../../services/persistentStorage';
+import {useFocusEffect} from '@react-navigation/native';
 
-export function DrawerContent(props) {
+function DrawerContent(props) {
+  const [user, set_user] = React.useState(0);
+
+  const get_user = async () => {
+    try {
+      const datas = await retrieveData('user');
+      const res = await axios.get(`${API_URL}user/${datas.id}`);
+      console.log(res.data);
+      set_user(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+
+    get_user();
+  };
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
-            <View style={{flexDirection: 'row', marginTop: 15}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                marginTop: 15,
+                backgroundColor: primary_color,
+              }}>
               <Avatar.Image
-                source={{
-                  uri: 'https://api.adorable.io/avatars/50/abott@adorable.png',
-                }}
+                source={require('../../assets/doctor3.png')}
                 size={50}
               />
               <View style={{marginLeft: 15, flexDirection: 'column'}}>
-                <Title style={styles.title}>John Doe</Title>
-                <Caption style={styles.caption}>@j_doe</Caption>
+                <Title
+                  style={
+                    styles.title
+                  }>{`${user.firstName} ${user.lastName}`}</Title>
+                <Caption style={styles.caption}>{`${user.email}`}</Caption>
               </View>
             </View>
 
@@ -95,12 +122,15 @@ export function DrawerContent(props) {
   );
 }
 
+export default connect(null, actions)(DrawerContent);
+
 const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
   },
   userInfoSection: {
-    paddingLeft: 20,
+    paddingLeft: 0,
+    backgroundColor: primary_color,
   },
   title: {
     fontSize: 16,

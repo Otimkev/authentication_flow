@@ -31,7 +31,7 @@ const actions = [
 const ChatHeadScreen = ({navigation, route}) => {
   const [chat_head_list, set_chat_head_list] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-  const [user_id, set_user_id] = useState(1);
+  const [user_id, set_user_id] = useState(null);
   useFocusEffect(
     React.useCallback(() => {
       let isActive = true;
@@ -39,14 +39,16 @@ const ChatHeadScreen = ({navigation, route}) => {
       const fetchUser = async () => {
         try {
           const userId = await retrieveData('user');
-          const res = await axios.get(`${API_URL}chat/${user_id}/head/`);
-          if (res.status === 200) {
-            console.log(res.data);
-          }
+          console.log(userId.id);
+          const res = await axios.get(`${API_URL}chat/${userId.id}/head/`);
+
           if (isActive) {
-            setisLoading(false);
-            set_user_id(userId);
-            set_chat_head_list(res.data);
+            if (res.status === 200) {
+              console.log(res.data);
+              setisLoading(false);
+              set_user_id(userId.id);
+              set_chat_head_list(res.data);
+            }
           }
         } catch (e) {
           console.log(e);
@@ -58,8 +60,16 @@ const ChatHeadScreen = ({navigation, route}) => {
       return () => {
         isActive = false;
       };
-    }, [user_id]),
+    }, []),
   );
+
+  const EmptyCategories = () => {
+    return (
+      <View style={{flex: 1, justifyContent: 'center'}}>
+        <Text style={{textAlign: 'center', fontSize: 16}}>Empty chats!</Text>
+      </View>
+    );
+  };
 
   const renderItem = ({item}) => {
     return (
@@ -71,8 +81,8 @@ const ChatHeadScreen = ({navigation, route}) => {
             params: {
               receiver_username: `${
                 user_id === item.member.id
-                  ? item.author.firstName
-                  : item.member.firstName
+                  ? `${item.author.firstName} ${item.author.lastName}`
+                  : `${item.member.firstName} ${item.member.lastName}`
               }`,
               receiver_id: item.member.id,
               room_id: item.id,
@@ -83,7 +93,7 @@ const ChatHeadScreen = ({navigation, route}) => {
           <ListItem.Title>
             {user_id === item.member.id
               ? `${item.author.firstName} ${item.author.lastName}`
-              : `${item.author.firstName} ${item.author.lastName}`}
+              : `${item.member.firstName} ${item.member.lastName}`}
           </ListItem.Title>
         </ListItem.Content>
         <ListItem.Chevron />
@@ -96,9 +106,7 @@ const ChatHeadScreen = ({navigation, route}) => {
       {isLoading ? (
         <Loader />
       ) : chat_head_list.length <= 0 ? (
-        <View style={styles.container2}>
-          <Text>Empty list</Text>
-        </View>
+        EmptyCategories()
       ) : (
         <View>
           <FlatList

@@ -43,7 +43,7 @@ const ShareListView = ({navigation, route}) => {
           }
           if (isActive) {
             setisLoading(false);
-            set_user_id(userId);
+            set_user_id(userId.id);
             set_share_list(res.data);
           }
         } catch (e) {
@@ -104,7 +104,7 @@ const ShareListView = ({navigation, route}) => {
       ) : (
         <View>
           <FlatList
-            data={share_list.filter((user) => user.id !== 1)}
+            data={share_list.filter((user) => user.id !== user_id)}
             extraData={true}
             renderItem={renderItem}
             keyExtractor={(item) => Math.random().toString()}

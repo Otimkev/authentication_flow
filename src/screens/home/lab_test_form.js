@@ -39,7 +39,7 @@ const LabTestForm = ({navigation, route}) => {
           }
           if (isActive) {
             setisLoading(false);
-            set_user_id(userId);
+            set_user_id(userId.id);
             set_test_list(res.data);
           }
         } catch (e) {

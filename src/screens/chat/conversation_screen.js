@@ -16,7 +16,7 @@ import {retrieveData} from '../../services/persistentStorage';
 //import {openChat, sendMessage} from '../utils/SocketEvents';
 
 const ConversationScreen = ({navigation, route}) => {
-  const [user_id, setuser_id] = useState(null);
+  const [user_id, setuser_id] = useState(0);
   const {receiver_id, room_id} = route.params;
   const ROOM_ID = room_id ? room_id : false;
   const [chat_message_history, setmessage_history] = useState([]);
@@ -30,7 +30,7 @@ const ConversationScreen = ({navigation, route}) => {
           const userId = await retrieveData('user');
           prompt_message_history(ROOM_ID);
           if (isActive) {
-            setuser_id(userId);
+            setuser_id(userId.id);
             socket.on('priorMessages', async (message_historys) => {
               setmessage_history(message_historys);
             });
@@ -52,7 +52,7 @@ const ConversationScreen = ({navigation, route}) => {
   );
 
   const [messages, setMessages] = useState([]);
-
+  console.log('ROOm', chat_message_history)
   const m = [
     {
       _id: 0,
@@ -66,6 +66,8 @@ const ConversationScreen = ({navigation, route}) => {
   const onSend = (newMessages = []) => {
     const plainText = newMessages.map((msg) => msg.text);
     send_message({user_id, receiver_id, room_id: ROOM_ID, text: plainText[0]});
+    console.log(user_id)
+    console.log(receiver_id)
     setMessages(GiftedChat.append(messages, newMessages));
   };
 
