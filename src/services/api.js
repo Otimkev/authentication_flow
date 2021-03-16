@@ -9,6 +9,7 @@ export const login = async ({email, password}) => {
         token: res.data.data.accessToken,
         success: res.data.success,
         id: res.data.data.id,
+        username: res.data.data.firstName,
       };
     }
   } catch (error) {
@@ -38,6 +39,7 @@ export const signUp = async ({
         token: res.data.data.accessToken,
         success: res.data.success,
         id: res.data.data.id,
+        username: res.data.data.firstName,
       };
     }
   } catch (error) {

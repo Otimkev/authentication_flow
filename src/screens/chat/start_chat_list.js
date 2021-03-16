@@ -14,7 +14,7 @@ import {ListItem, Avatar} from 'react-native-elements';
 const StartChatListScreen = ({navigation, route}) => {
   const [chat_head_list, set_chat_head_list] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-  const [user_id, set_user_id] = useState(1);
+  const [user_id, set_user_id] = useState(0);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -22,13 +22,14 @@ const StartChatListScreen = ({navigation, route}) => {
 
       const fetchCategories = async () => {
         try {
+          const userId = await retrieveData('user');
           const res = await axios.get(`${API_URL}all-users/`);
           if (res.status === 200) {
             console.log(res.data);
           }
           if (isActive) {
             setisLoading(false);
-
+            set_user_id(userId.id)
             set_chat_head_list(res.data);
           }
         } catch (e) {
@@ -83,7 +84,7 @@ const StartChatListScreen = ({navigation, route}) => {
       ) : (
         <View>
           <FlatList
-            data={chat_head_list.filter((user) => user.id !== 1)}
+            data={chat_head_list.filter((user) => user.id !== user_id)}
             extraData={true}
             renderItem={renderItem}
             keyExtractor={(item) => Math.random().toString()}

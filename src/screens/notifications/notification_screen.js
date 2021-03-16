@@ -22,13 +22,14 @@ const NotificationScreen = ({navigation, route}) => {
 
       const fetchCategories = async () => {
         try {
+          const userId = await retrieveData('user');
           const res = await axios.get(`${API_URL}get-share/${user_id}`);
           if (res.status === 200) {
             console.log(res.data);
           }
           if (isActive) {
             setisLoading(false);
-
+            set_user_id(userId.id)
             set_chat_head_list(res.data);
           }
         } catch (e) {
@@ -44,22 +45,6 @@ const NotificationScreen = ({navigation, route}) => {
     }, [user_id]),
   );
 
-  const on_select = async (receiver_id) => {
-    try {
-      const res = await axios.post(
-        `${API_URL}share/${4}/${receiver_id}/${'patient_id'}/`,
-      );
-      console.log(receiver_id);
-      if (res.status === 200) {
-        return navigation.goBack();
-      } else {
-        alert('Error sharing!');
-        return null;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const EmptyCategories = () => {
     return (
@@ -78,8 +63,10 @@ const NotificationScreen = ({navigation, route}) => {
         onPress={() => {
           navigation.navigate('lab_test_form');
         }}>
+          <Avatar source={require('../../assets/doctor3.png')} />
         <ListItem.Content>
-          <ListItem.Title>{item.label}</ListItem.Title>
+          <ListItem.Title>{`From Dr. ${item.sender.firstName} ${item.sender.lastName}`}</ListItem.Title>
+          <ListItem.Subtitle>{`Request to view patient.`}</ListItem.Subtitle>
         </ListItem.Content>
         <ListItem.Chevron />
       </ListItem>

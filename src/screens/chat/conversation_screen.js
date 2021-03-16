@@ -21,6 +21,7 @@ const ConversationScreen = ({navigation, route}) => {
   const ROOM_ID = room_id ? room_id : false;
   const [chat_message_history, setmessage_history] = useState([]);
   const [incoming_messages, setincoming_messages] = useState([]);
+  const [user_name, setusername] = useState([]);
   useFocusEffect(
     React.useCallback(() => {
       let isActive = true;
@@ -28,11 +29,18 @@ const ConversationScreen = ({navigation, route}) => {
       const fetch_messages = async () => {
         try {
           const userId = await retrieveData('user');
+
           prompt_message_history(ROOM_ID);
           if (isActive) {
+            console.log(userId)
             setuser_id(userId.id);
+            setusername(userId.username);
             socket.on('priorMessages', async (message_historys) => {
-              setmessage_history(message_historys);
+              try {
+                setmessage_history(message_historys);
+              } catch (e) {
+                console.log(e);
+              }
             });
             socket.on('incomingMessage', async (response) => {
               setincoming_messages(response);
@@ -52,7 +60,7 @@ const ConversationScreen = ({navigation, route}) => {
   );
 
   const [messages, setMessages] = useState([]);
-  console.log('ROOm', chat_message_history)
+  console.log('ROOm', user_name);
   const m = [
     {
       _id: 0,
@@ -66,8 +74,8 @@ const ConversationScreen = ({navigation, route}) => {
   const onSend = (newMessages = []) => {
     const plainText = newMessages.map((msg) => msg.text);
     send_message({user_id, receiver_id, room_id: ROOM_ID, text: plainText[0]});
-    console.log(user_id)
-    console.log(receiver_id)
+    console.log(user_id);
+    console.log(receiver_id);
     setMessages(GiftedChat.append(messages, newMessages));
   };
 
@@ -113,7 +121,7 @@ const ConversationScreen = ({navigation, route}) => {
       <GiftedChat
         messages={[...m, ...messages, ...chat_message_history]}
         onSend={(newMessage) => onSend(newMessage)}
-        user={{_id: user_id}}
+        user={{_id: user_id, name: user_name }}
         alwaysShowSend
         renderSend={renderSend}
         renderBubble={renderBubble}
