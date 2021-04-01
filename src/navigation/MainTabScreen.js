@@ -3,18 +3,12 @@ import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DrawerActions} from 'react-navigation-drawer';
-
 import Icon from 'react-native-vector-icons/Ionicons';
-
-import HomeScreen from './HomeScreen';
-import DetailsScreen from './DetailsScreen';
-import ExploreScreen from './ExploreScreen';
-import ProfileScreen from './ProfileScreen';
-import {colors} from '../../theme/index';
-import {PatientStackScreen} from '../patient/patient_stack';
+import HomeScreen from '../screens/screens/HomeScreen';
+import ProfileScreen from '../screens/screens/ProfileScreen';
+import {colors} from '../theme/index';
 import PatientScreen from '../patient/patient_screen';
-import NotificationScreen from '../notifications/notification_screen';
-import {ChatStackScreen} from '../chat/chat_stack';
+import NotificationScreen from '../screens/notifications/notification_screen';
 import ChatHeadScreen from '../chat/chat_head_screen';
 const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
@@ -69,17 +63,7 @@ const MainTabScreen = () => (
         ),
       }}
     />
-    {/* <Tab.Screen
-      name="Explore"
-      component={ExploreScreen}
-      options={{
-        tabBarLabel: 'Explore',
-        tabBarColor: colors.primary,
-        tabBarIcon: ({color}) => (
-          <Icon name="ios-aperture" color={color} size={26} />
-        ),
-      }}
-    /> */}
+
   </Tab.Navigator>
 );
 

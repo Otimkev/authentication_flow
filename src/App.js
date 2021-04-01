@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
@@ -8,10 +7,6 @@ import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as actions from './store/actions';
 import * as storage from './services/persistentStorage';
-import SignUp from './screens/SignUp';
-import Login from './screens/Login';
-import ProtectedScreen from './screens/ProtectedScreen';
-import ForgotPassword from './screens/ForgotPassword';
 import {PatientStackScreen} from './screens/patient/patient_stack';
 import {HomeStackScreen} from './screens/home/home_stack';
 

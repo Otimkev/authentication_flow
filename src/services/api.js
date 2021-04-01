@@ -47,9 +47,5 @@ export const signUp = async ({
   }
 };
 
-export const index_specialists = async () => {
-  const response = await axios.get('');
-  console.log(response.data);
-};
 
 export default {};

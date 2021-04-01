@@ -2,8 +2,8 @@ import {put, takeEvery, all, call} from 'redux-saga/effects';
 import * as types from './actionTypes';
 import * as actions from './actions';
 
-import * as api from '../services/api';
-import * as storage from '../services/persistentStorage';
+import * as api from '../../services/api';
+import * as storage from '../../services/persistentStorage';
 
 function* loginSaga(action) {
   try {

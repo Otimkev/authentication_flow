@@ -19,15 +19,6 @@ const BottomNavigation = () => (
         tabBarIcon: () => <Icon name="home" color={color} size={22} />,
       }}
     />
-    {/* <Tab.Screen
-      name="Chats"
-      component={ChatsStackScreen}
-      options={{
-        tabBarLabel: 'Chats',
-        tabBarColor: '#007360',
-        tabBarIcon: () => <Icon name="commenting" color={color} size={20} />,
-      }}
-    /> */}
     <Tab.Screen
       name="Patient"
       component={PatientStackScreen}
